@@ -1,13 +1,14 @@
 {
-    "compilerOptions": {
-        "module": "es6",
-        "target": "es6",
-        "allowSyntheticDefaultImports": true,
-        "baseUrl": "src",
-        "sourceMap": true,
-        "outDir": "ts-build",
-        "jsx": "preserve",
-        "strict": true
-    },
-    "exclude": ["node_modules"]
+  "compilerOptions": {
+    "module": "es6",
+    "target": "es6",
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "src",
+    "sourceMap": true,
+    "outDir": "ts-build",
+    "jsx": "preserve",
+    "strict": true,
+    "moduleResolution": "node"
+  },
+  "exclude": ["node_modules"]
 }
