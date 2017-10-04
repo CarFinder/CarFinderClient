@@ -29,7 +29,7 @@ class NavBar extends React.Component<Props, object> {
             </div>
             <div className="items-right">
               <Button color="contrast">
-                <Link to="/signup">Sign in</Link>
+                <Link to="/signin">Sign in</Link>
               </Button>
             </div>
           </Toolbar>
