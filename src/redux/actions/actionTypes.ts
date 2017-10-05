@@ -6,3 +6,9 @@ export type USER_LOGGED_OUT = typeof USER_LOGGED_OUT;
 
 export const USER_SIGN_UP = 'USER_SIGN_UP ';
 export type USER_SIGN_UP = typeof USER_SIGN_UP;
+
+export const USER_SIGN_UP_SUCCESS = 'USER_SIGN_UP_SUCCESS';
+export type USER_SIGN_UP_SUCCESS = typeof USER_SIGN_UP_SUCCESS;
+
+export const USER_SIGN_UP_FAILURE = 'USER_SIGN_UP_FAILURE';
+export type USER_SIGN_UP_FAILURE = typeof USER_SIGN_UP_FAILURE;
