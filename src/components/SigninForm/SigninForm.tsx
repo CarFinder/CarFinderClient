@@ -5,7 +5,7 @@ import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
 import Divider from 'material-ui/Divider';
 import Paper from 'material-ui/Paper';
-import { required, email } from '../../utils/validation';
+import { required, email, password } from '../../utils/validation';
 import './style.less';
 
 export interface Props {
