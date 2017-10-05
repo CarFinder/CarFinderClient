@@ -5,6 +5,7 @@ import Button from 'material-ui/Button';
 import Tooltip from 'material-ui/Tooltip';
 import HelpOutline from 'material-ui-icons/HelpOutline';
 import KeyboardArrowLeft from 'material-ui-icons/KeyboardArrowLeft';
+import { validateSignup as validate } from '../../../utils/signupValidation';
 import '../style.less';
 
 export interface Props {
@@ -20,7 +21,8 @@ const renderTextField = ({ input, name, title, meta: { touched, error }, ...cust
     name={name}
     type="password"
     label={title}
-    error={touched && error}
+    helperText={touched && error}
+    error={touched && !!error}
     {...input}
     {...custom}
   />
@@ -69,5 +71,6 @@ const ThirdPage = (props: Props) => {
 export default reduxForm({
   form: 'signupForm',
   destroyOnUnmount: false,
-  forceUnregisterOnUnmount: true
+  forceUnregisterOnUnmount: true,
+  validate
 })(ThirdPage);

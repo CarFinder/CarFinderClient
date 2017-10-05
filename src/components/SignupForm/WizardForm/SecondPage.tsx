@@ -4,6 +4,7 @@ import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
 import KeyboardArrowLeft from 'material-ui-icons/KeyboardArrowLeft';
 import KeyboardArrowRight from 'material-ui-icons/KeyboardArrowRight';
+import { validateSignup as validate } from '../../../utils/signupValidation';
 import '../style.less';
 
 export interface Props {
@@ -19,7 +20,8 @@ const renderTextField = ({ input, name, title, meta: { touched, error }, ...cust
     name={name}
     type="email"
     label={title}
-    error={touched && error}
+    helperText={touched && error}
+    error={touched && !!error}
     {...input}
     {...custom}
   />
@@ -52,5 +54,6 @@ const SecondPage = (props: Props) => {
 export default reduxForm({
   form: 'signupForm',
   destroyOnUnmount: false,
-  forceUnregisterOnUnmount: true
+  forceUnregisterOnUnmount: true,
+  validate
 })(SecondPage);
