@@ -7,6 +7,9 @@ export function mapStateToProps({ }: InitialState) {
   return {
     
   }
+export interface UserData {
+  email: string,
+  password: string
 }
 
 export function mapDispatchToProps(dispatch: Dispatch<actions.UserAction>) {
