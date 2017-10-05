@@ -64,6 +64,6 @@ const SigninForm = (props: Props) => {
   );
 };
 
-export default reduxForm({
+export default reduxForm<Props, any>({
   form: 'SigninForm'
 })(SigninForm);
