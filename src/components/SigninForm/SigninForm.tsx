@@ -9,11 +9,14 @@ import { required, email } from '../../utils/validation';
 import './style.less';
 
 export interface Props {
-  input?: any;
-  name?: any;
-  label?: any;
+  email?: string;
+  input?: HTMLInputElement;
+  name?: string;
+  type?: string;
   meta?: any;
+  id?: string;
   handleSubmit: any;
+  handleLogIn?: () => void;
 }
 
 const renderTextField = ({ input, label, meta: { touched, error }, ...custom }: Props) => (
