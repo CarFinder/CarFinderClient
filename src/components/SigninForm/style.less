@@ -11,19 +11,12 @@
   display: inline-block;
   text-align: center;
   padding: 2rem;
-  @media screen and (max-width: 1600px) {
-    min-width: 50%;
-  }
-  @media screen and (max-width: 800px) {
-    min-width: 80%;
-  }
-  @media screen and (max-width: 500px) {
-    min-width: 100%;
-  }
 }
 
-.form-content div {
-  margin: 0.5rem;
+.form-content {
+  & div {
+    margin: 0.5rem;
+  }
 }
 
 .form-input {
@@ -42,4 +35,5 @@
 
 .error {
   color: red;
+  font-size: 0.75rem;
 }
