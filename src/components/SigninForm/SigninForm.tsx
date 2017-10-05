@@ -26,43 +26,47 @@ const renderTextField = ({ input, type, meta: { touched, error }, ...custom }: P
   </div>
 );
 
-const SigninForm = (props: Props) => {
-  return (
-    <div className="signin-form">
-      <Paper className="form-container">
         <form className="form-content" onSubmit={props.handleSubmit}>
-          <h1>Вход</h1>
-          <div>
-            <Field
-              name="email"
-              component={renderTextField}
-              placeholder="Email"
-              validate={[required, email]}
-            />
-          </div>
-          <div>
-            <Field
-              name="password"
-              component={renderTextField}
-              placeholder="Пароль"
-              validate={required}
-            />
-          </div>
-          <div>
-            <Button className="form-button" type="submit" raised>
-              Войти
-            </Button>
-          </div>
-          <Divider />
-          <div className="form-links">
-            <Link to="/restore-password">Забыли пароль?</Link>
-            <Link to="/signup">Зарегистрироваться</Link>
-          </div>
-        </form>
-      </Paper>
-    </div>
-  );
-};
+class SigninForm extends React.Component<Props, object> {
+  render() {
+    }
+    return (
+      <div className="signin-form">
+        <Paper className="form-container">
+            <h1>Вход</h1>
+            <div>
+              <Field
+                name="email"
+                component={renderTextField}
+                placeholder="Email"
+                validate={[required, email]}
+              />
+            </div>
+            <div>
+              <Field
+                name="password"
+                type="password"
+                component={renderTextField}
+                placeholder="Пароль"
+                validate={[required, password]}
+              />
+            </div>
+            <div>
+              <Button className="form-button" type="submit" raised>
+                Войти
+              </Button>
+            </div>
+            <Divider />
+            <div className="form-links">
+              <Link to="/restore-password">Забыли пароль?</Link>
+              <Link to="/signup">Зарегистрироваться</Link>
+            </div>
+          </form>
+        </Paper>
+      </div>
+    );
+  }
+}
 
 export default reduxForm<Props, any>({
   form: 'SigninForm'
