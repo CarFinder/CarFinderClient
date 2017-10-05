@@ -27,11 +27,7 @@ const App = () => {
 
 const sagaMiddleware = createSagaMiddleware();
 const initialState = {};
-
-const store: Store<any> = createStore(rootReducer, initialState, composeWithDevTools());
 const composeEnhansers = composeWithDevTools || compose;
-
-
 const store: Store<InitialState> = createStore(
   rootReducer,
   initialState,
