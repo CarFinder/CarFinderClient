@@ -13,7 +13,9 @@ export interface Props {
   name?: string;
   title?: string;
   meta?: any;
-  handleSubmit?: React.FormEventHandler<any>;
+  pristine: boolean;
+  submitting: boolean;
+  handleSubmit: any;
 }
 
 const renderTextField = ({ input, name, title, meta: { touched, error }, ...custom }: Props) => (
@@ -57,10 +59,13 @@ const ThirdPage = (props: Props) => {
         />
       </div>
       <div className="button-group">
-        <Button dense color="primary" type="button">
-          <KeyboardArrowLeft /> Назад
-        </Button>
-        <Button raised color="primary" type="submit" className="next">
+        <Button
+          raised
+          color="primary"
+          disabled={props.pristine || props.submitting}
+          type="submit"
+          className="next"
+        >
           Зарегистрироваться
         </Button>
       </div>

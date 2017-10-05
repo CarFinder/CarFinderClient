@@ -11,7 +11,7 @@ import rootReducer from './redux/reducers';
 // Styles
 import 'index.less';
 // Components
-import Signup from './components/SignupForm/SignupForm';
+import Signup from './containers/Signup';
 import Home from './components/HomePage/HomePage';
 
 const App = () => {

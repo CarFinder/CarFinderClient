@@ -29,7 +29,7 @@ export function userLoggedOut(): UserLoggedOut {
   };
 }
 
-export function userSignup(user: object): UserSignUp {
+export function userSignup(user: any): UserSignUp {
   return {
     type: actionTypes.USER_SIGN_UP,
     payload: user

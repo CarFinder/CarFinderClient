@@ -40,9 +40,6 @@ const SecondPage = (props: Props) => {
         />
       </div>
       <div className="button-group">
-        <Button dense color="primary" type="button">
-          <KeyboardArrowLeft /> Назад
-        </Button>
         <Button dense color="primary" type="submit" className="next">
           Далее <KeyboardArrowRight />
         </Button>

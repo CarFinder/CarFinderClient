@@ -1,12 +1,20 @@
 import { connect, Dispatch } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as actionCreators from '../redux/actions/userActions';
+import * as actions from '../redux/actions/userActions';
 import SignupForm from '../components/SignupForm/SignupForm';
 
-const mapDispatchToProps = (dispatch: Dispatch<actionCreators.UserAction>) => {
-  return {
-    onSubmit: (actionCreators.userSignup, dispatch)
-  };
-};
+export interface UserData {
+  name: string;
+  email: string;
+  password: string;
+  passwordConfirmation: string;
+}
 
-export default connect(null, mapDispatchToProps)(SignupForm);
+interface DispatchFromProps {
+  handleSignup: (userData: UserData) => any;
+}
+
+const mapDispatchToProps = (dispatch: Dispatch<actions.UserAction>) => ({
+  handleSignup: (userData: UserData) => dispatch(actions.userSignup(userData))
+});
+
+export default connect<null, DispatchFromProps>(null, mapDispatchToProps)(SignupForm);
