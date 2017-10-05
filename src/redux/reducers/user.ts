@@ -7,6 +7,7 @@ export default function userReducer(state: InitialState, action: UserAction): In
     case USER_LOGGED_IN:
       return action.payload;
     case USER_LOGGED_OUT:
+      localStorage.removeItem("jwt");
       return {};
     default:
       return {};
