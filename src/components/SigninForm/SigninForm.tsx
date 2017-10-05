@@ -19,9 +19,9 @@ export interface Props {
   handleLogIn?: () => void;
 }
 
-const renderTextField = ({ input, label, meta: { touched, error }, ...custom }: Props) => (
+const renderTextField = ({ input, type, meta: { touched, error }, ...custom }: Props) => (
   <div>
-    <TextField className="form-input" errorText={touched && error} {...input} {...custom} />
+    <TextField className="form-input" {...input} {...custom} />
     {touched && (error && <span className="error">{error}</span>)}
   </div>
 );
