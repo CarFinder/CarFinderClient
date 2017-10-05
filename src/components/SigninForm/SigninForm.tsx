@@ -29,6 +29,8 @@ const renderTextField = ({ input, type, meta: { touched, error }, ...custom }: P
         <form className="form-content" onSubmit={props.handleSubmit}>
 class SigninForm extends React.Component<Props, object> {
   render() {
+    if (this.props.id) {
+      <Redirect to="/home" />;
     }
     return (
       <div className="signin-form">
