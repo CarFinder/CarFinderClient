@@ -26,7 +26,6 @@ const renderTextField = ({ input, type, meta: { touched, error }, ...custom }: P
   </div>
 );
 
-        <form className="form-content" onSubmit={props.handleSubmit}>
 class SigninForm extends React.Component<Props, object> {
   render() {
     if (this.props.id) {
@@ -35,6 +34,7 @@ class SigninForm extends React.Component<Props, object> {
     return (
       <div className="signin-form">
         <Paper className="form-container">
+          <form className="form-content" onSubmit={this.props.handleSubmit(this.props.handleLogIn)}>
             <h1>Вход</h1>
             <div>
               <Field
