@@ -9,7 +9,7 @@ export interface UserLoggedOut {
   type: actionTypes.USER_LOGGED_OUT;
 }
 
-export type UserAction = UserLoggedIn | UserLoggedOut;
+export type UserAction = UserLoggedIn | UserLoggedOut | GetUserData;
 
 export function userLoggedIn(user: object): UserLoggedIn {
   return {
