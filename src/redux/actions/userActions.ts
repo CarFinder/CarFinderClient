@@ -28,3 +28,10 @@ export function userLoggedOut(): UserLoggedOut {
     type: actionTypes.USER_LOGGED_OUT
   };
 }
+
+export function getUserData(userData: object): GetUserData {
+  return {
+    type: actionTypes.GET_USERDATA,
+    payload: userData
+  };
+}
