@@ -6,6 +6,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { Store, createStore, applyMiddleware, compose } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { InitialState } from './redux/models/userModel';
 import createSagaMiddleware from 'redux-saga';
 import rootReducer from './redux/reducers';
 import rootSaga from './redux/sagas/index';
