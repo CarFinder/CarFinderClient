@@ -9,12 +9,12 @@ export interface UserLoggedOut {
   type: actionTypes.USER_LOGGED_OUT;
 }
 
-export interface GetUserData {
-  type: actionTypes.GET_USERDATA;
+export interface UserSignIn {
+  type: actionTypes.USER_SIGN_IN;
   payload: object;
 }
 
-export type UserAction = UserLoggedIn | UserLoggedOut | GetUserData;
+export type UserAction = UserLoggedIn | UserLoggedOut | UserSignIn;
 
 export function userLoggedIn(user: object): UserLoggedIn {
   return {
@@ -29,9 +29,9 @@ export function userLoggedOut(): UserLoggedOut {
   };
 }
 
-export function getUserData(userData: object): GetUserData {
+export function userSignIn(userData: object): UserSignIn {
   return {
-    type: actionTypes.GET_USERDATA,
+    type: actionTypes.USER_SIGN_IN,
     payload: userData
   };
 }
