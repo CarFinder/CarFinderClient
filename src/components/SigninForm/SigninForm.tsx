@@ -17,6 +17,7 @@ export interface Props {
   id?: string;
   handleSubmit: any;
   handleLogIn?: () => void;
+  invalid?: boolean;
 }
 
 const renderTextField = ({ input, type, meta: { touched, error }, ...custom }: Props) => (
@@ -49,9 +50,6 @@ class SigninForm extends React.Component<Props, object> {
               />
             </div>
             <div>
-              <Button className="form-button" type="submit" raised>
-                Войти
-              </Button>
             </div>
             <Divider />
             <div className="form-links">
@@ -66,6 +64,9 @@ class SigninForm extends React.Component<Props, object> {
     props.history.push('/home');
   }
 }
+            <Button className="form-button" type="submit" disabled={props.invalid} raised>
+              Войти
+            </Button>
 
 export default reduxForm<Props, any>({
   form: 'SigninForm',
