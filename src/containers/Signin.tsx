@@ -9,7 +9,7 @@ export interface UserData {
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<actions.UserAction>) => ({
-  handleLogIn: (userData: UserData) => dispatch(actions.getUserData(userData))
+  handleLogIn: (userData: UserData) => dispatch(actions.userSignIn(userData))
 })
 
 export default connect<null,any>(null, mapDispatchToProps)(SigninForm);
