@@ -1,8 +1,9 @@
 import * as actionTypes from './actionTypes';
+import { UserData } from '../../containers/Signup';
 
 export interface UserLoggedIn {
   type: actionTypes.USER_LOGGED_IN;
-  payload: object;
+  payload: any;
 }
 
 export interface UserLoggedOut {
@@ -11,12 +12,12 @@ export interface UserLoggedOut {
 
 export interface UserSignUp {
   type: actionTypes.USER_SIGN_UP;
-  payload: object;
+  payload: UserData;
 }
 
 export type UserAction = UserLoggedIn | UserLoggedOut | UserSignUp;
 
-export function userLoggedIn(user: object): UserLoggedIn {
+export function userLoggedIn(user: any): UserLoggedIn {
   return {
     type: actionTypes.USER_LOGGED_IN,
     payload: user
@@ -29,7 +30,7 @@ export function userLoggedOut(): UserLoggedOut {
   };
 }
 
-export function userSignup(user: any): UserSignUp {
+export function userSignup(user: UserData): UserSignUp {
   return {
     type: actionTypes.USER_SIGN_UP,
     payload: user
