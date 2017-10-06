@@ -5,7 +5,7 @@ import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
 import Divider from 'material-ui/Divider';
 import Paper from 'material-ui/Paper';
-import { required, email, password } from '../../utils/validation';
+import { validateSignin as validate } from '../../utils/signinValidation';
 import './style.less';
 
 export interface Props {
@@ -38,7 +38,6 @@ class SigninForm extends React.Component<Props, object> {
                 name="email"
                 component={renderTextField}
                 placeholder="Email"
-                validate={[required, email]}
               />
             </div>
             <div>
@@ -47,7 +46,6 @@ class SigninForm extends React.Component<Props, object> {
                 type="password"
                 component={renderTextField}
                 placeholder="Пароль"
-                validate={[required, password]}
               />
             </div>
             <div>
@@ -70,5 +68,6 @@ class SigninForm extends React.Component<Props, object> {
 }
 
 export default reduxForm<Props, any>({
-  form: 'SigninForm'
+  form: 'SigninForm',
+  validate
 })(SigninForm);
