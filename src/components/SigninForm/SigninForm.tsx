@@ -27,48 +27,43 @@ const renderTextField = ({ input, type, meta: { touched, error }, ...custom }: P
   </div>
 );
 
-class SigninForm extends React.Component<Props, object> {
-  render() {
-    return (
-      <div className="signin-form">
-        <Paper className="form-container">
-          <form className="form-content" onSubmit={this.props.handleSubmit(this.props.handleLogIn)}>
-            <h1>Вход</h1>
-            <div>
-              <Field
-                name="email"
-                component={renderTextField}
-                placeholder="Email"
-              />
-            </div>
-            <div>
-              <Field
-                name="password"
-                type="password"
-                component={renderTextField}
-                placeholder="Пароль"
-              />
-            </div>
-            <div>
-            </div>
-            <Divider />
-            <div className="form-links">
-              <Link to="/restore-password">Забыли пароль?</Link>
-              <Link to="/signup">Зарегистрироваться</Link>
-            </div>
-          </form>
-        </Paper>
-      </div>
-    );
+const SigninForm = (props: Props) => {
   if (localStorage.getItem('jwt')) {
     props.history.push('/home');
   }
-}
+  return (
+    <div className="signin-form">
+      <Paper className="form-container">
+        <form className="form-content" onSubmit={props.handleSubmit(props.handleLogIn)}>
+          <h1>Вход</h1>
+          <div>
+            <Field name="email" type="email" component={renderTextField} placeholder="Email" />
+          </div>
+          <div>
+            <Field
+              name="password"
+              type="password"
+              component={renderTextField}
+              placeholder="Пароль"
+            />
+          </div>
+          <div>
             <Button className="form-button" type="submit" disabled={props.invalid} raised>
               Войти
             </Button>
+          </div>
+          <Divider />
+          <div className="form-links">
+            <Link to="/restore-password">Забыли пароль?</Link>
+            <Link to="/signup">Зарегистрироваться</Link>
+          </div>
+        </form>
+      </Paper>
+    </div>
+  );
+};
 
-export default reduxForm<Props, any>({
+export default reduxForm({
   form: 'SigninForm',
   validate
 })(SigninForm);
