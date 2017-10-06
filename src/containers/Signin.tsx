@@ -8,12 +8,8 @@ export interface UserData {
   password: string
 }
 
-const mapStateToProps = (state: InitialState) => ({
-  id: state.id
-})
-
 const mapDispatchToProps = (dispatch: Dispatch<actions.UserAction>) => ({
   handleLogIn: (userData: UserData) => dispatch(actions.getUserData(userData))
 })
 
-export default connect<any,any>(mapStateToProps, mapDispatchToProps)(SigninForm);
+export default connect<null,any>(null, mapDispatchToProps)(SigninForm);
