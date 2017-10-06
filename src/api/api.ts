@@ -4,13 +4,8 @@ import { UserData } from '../containers/Signin'
 export default {
     user: {
         getUser: (data: UserData) => 
-            axios.post('api/signin', { data })
-                .then(function(responce) { 
-                    localStorage.setItem("jwt", (responce.data));
-                    //decode jwt and return it
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })  
+            axios.post('user/signin', { data })
+                .then((responce) => responce.data)
+                .catch((error) => error)  
         }
     }
