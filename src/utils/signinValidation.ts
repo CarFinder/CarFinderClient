@@ -10,7 +10,7 @@ export const validateSignin = (values: SigninFormData): object => {
   const errors: any = {};
   if (!values.email) {
     errors.email = 'Поле обязательно для заполнения';
-  } else if (emailRegExp.test(values.email)) {
+  } else if (!emailRegExp.test(values.email)) {
     errors.email = 'Неверный формат е-мэйла';
   }
   if (!values.password) {
