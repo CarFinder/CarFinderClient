@@ -28,9 +28,6 @@ const renderTextField = ({ input, type, meta: { touched, error }, ...custom }: P
 
 class SigninForm extends React.Component<Props, object> {
   render() {
-    if (this.props.id) {
-      <Redirect to="/home" />;
-    }
     return (
       <div className="signin-form">
         <Paper className="form-container">
@@ -67,6 +64,8 @@ class SigninForm extends React.Component<Props, object> {
         </Paper>
       </div>
     );
+  if (localStorage.getItem('jwt')) {
+    props.history.push('/home');
   }
 }
 
