@@ -9,18 +9,18 @@ import { validateSignin as validate } from '../../utils/signinValidation';
 import './style.less';
 
 export interface Props {
-  email?: string;
   input?: HTMLInputElement;
   name?: string;
-  type?: string;
   meta?: any;
+  custom?: object;
   id?: string;
   handleSubmit: any;
   handleLogIn?: () => void;
+  history?: any;
   invalid?: boolean;
 }
 
-const renderTextField = ({ input, type, meta: { touched, error }, ...custom }: Props) => (
+const renderTextField = ({ input, meta: { touched, error }, ...custom }: Props) => (
   <div>
     <TextField className="form-input" {...input} {...custom} />
     {touched && (error && <span className="error">{error}</span>)}
