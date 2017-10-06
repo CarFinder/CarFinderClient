@@ -1,8 +1,8 @@
+import { fork } from 'redux-saga/effects';
+import signinSaga from './signinSaga'
 
 function* rootSaga() {
-    yield [
-        watchLogIn()
-    ]
+    yield [fork(signinSaga)]
 }
 
 export default rootSaga;
