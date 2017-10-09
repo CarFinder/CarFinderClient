@@ -5,7 +5,7 @@ export default {
     user: {
         getUser: (data: UserData) => 
             axios.post('user/signin', { data })
-                .then((responce) => responce.data)
+                .then((response) => response)
                 .catch((error) => error)  
         }
     }
