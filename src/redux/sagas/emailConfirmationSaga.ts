@@ -8,9 +8,17 @@ function* callConfrimEmail(action: any) {
   yield put({ type: actionTypes.SET_AUTH_ERROR, payload: '' });
   try {
     // TODO: Handle error from server
-    const response = yield call(api.user.confirmEmail, action.payload);
-    yield put({ type: actionTypes.SET_LOADING, payload: false });
-    yield put({ type: actionTypes.USER_CONFIRM_EMAIL_SUCCESS });
+    const result = yield call(api.user.confirmEmail, action.payload);
+    if (result.response.data.error.type) {
+      yield put({
+        type: actionTypes.SET_AUTH_ERROR,
+        payload: result.response.data.error.ruMessage
+      });
+      yield put({ type: actionTypes.SET_LOADING, payload: false });
+    } else {
+      yield put({ type: actionTypes.SET_LOADING, payload: false });
+      yield put({ type: actionTypes.USER_CONFIRM_EMAIL_SUCCESS });
+    }
     yield call(action.resolve);
   } catch {
     yield put({ type: actionTypes.SET_AUTH_ERROR, payload: 'Can not reach the server' });

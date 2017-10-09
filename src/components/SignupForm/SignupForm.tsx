@@ -75,7 +75,7 @@ class SignupFrom extends React.Component<Props, State> {
                 )}
                 <Grid item className="form-content">
                   {authError && (
-                    <Typography type="body1" component="p" color="accent">
+                    <Typography type="subheading" component="p" color="accent">
                       {authError}
                     </Typography>
                   )}

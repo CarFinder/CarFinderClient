@@ -58,7 +58,7 @@ class EmailConfirmation extends React.Component<Props, State> {
                   {loading && (
                     <div>
                       <CircularProgress className="loader" />
-                      <Typography type="body1" component="p">
+                      <Typography type="subheading" component="p">
                         Подтверждаем ваш е-мэйл. Пожалуйста, подождите.
                       </Typography>
                     </div>
@@ -66,7 +66,7 @@ class EmailConfirmation extends React.Component<Props, State> {
                   {!loading &&
                     !hasError && (
                       <div className="success-message">
-                        <Typography type="body1" component="p" color="inherit">
+                        <Typography type="subheading" component="p" color="inherit">
                           <Done className="message-icon" /> Е-мэйл подтвержден. Спасибо.
                         </Typography>
                       </div>
@@ -74,7 +74,7 @@ class EmailConfirmation extends React.Component<Props, State> {
                   {!loading &&
                     hasError && (
                       <div className="error-message">
-                        <Typography type="body1" component="p" color="inherit">
+                        <Typography type="subheading" component="p" color="inherit">
                           <Error className="message-icon" /> Извините, произошла ошибка. Мы не можем
                           подтвердить ваш е-мэйл.
                         </Typography>
