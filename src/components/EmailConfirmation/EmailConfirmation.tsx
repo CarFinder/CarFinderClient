@@ -5,7 +5,6 @@ import Paper from 'material-ui/Paper';
 import { CircularProgress } from 'material-ui/Progress';
 import Error from 'material-ui-icons/Error';
 import Done from 'material-ui-icons/Done';
-import NavBar from '../Common/NavBar/NavBar';
 import './style.less';
 
 export interface Props {
@@ -47,48 +46,45 @@ class EmailConfirmation extends React.Component<Props, State> {
   render() {
     const { loading, hasError } = this.state;
     return (
-      <div>
-        <NavBar />
-        <div className="email-confirmation">
-          <Grid container>
-            <Grid item xs={12}>
-              <Grid container align="center" direction="column" justify="center">
-                <Paper className="form-container">
-                  <Grid item className="form-title">
-                    <Typography type="display1">Подтверждение е-мэйла</Typography>
-                  </Grid>
-                  <Grid item className="form-content">
-                    {loading && (
-                      <div>
-                        <CircularProgress className="loader" />
-                        <Typography type="body1" component="p">
-                          Подтверждаем ваш е-мэйл. Пожалуйста, подождите.
+      <div className="email-confirmation">
+        <Grid container>
+          <Grid item xs={12}>
+            <Grid container align="center" direction="column" justify="center">
+              <Paper className="form-container">
+                <Grid item className="form-title">
+                  <Typography type="display1">Подтверждение е-мэйла</Typography>
+                </Grid>
+                <Grid item className="form-content">
+                  {loading && (
+                    <div>
+                      <CircularProgress className="loader" />
+                      <Typography type="body1" component="p">
+                        Подтверждаем ваш е-мэйл. Пожалуйста, подождите.
+                      </Typography>
+                    </div>
+                  )}
+                  {!loading &&
+                    !hasError && (
+                      <div className="success-message">
+                        <Typography type="body1" component="p" color="inherit">
+                          <Done className="message-icon" /> Е-мэйл подтвержден. Спасибо.
                         </Typography>
                       </div>
                     )}
-                    {!loading &&
-                      !hasError && (
-                        <div className="success-message">
-                          <Typography type="body1" component="p" color="inherit">
-                            <Done className="message-icon" /> Е-мэйл подтвержден. Спасибо.
-                          </Typography>
-                        </div>
-                      )}
-                    {!loading &&
-                      hasError && (
-                        <div className="error-message">
-                          <Typography type="body1" component="p" color="inherit">
-                            <Error className="message-icon" /> Извините, произошла ошибка. Мы не
-                            можем подтвердить ваш е-мэйл.
-                          </Typography>
-                        </div>
-                      )}
-                  </Grid>
-                </Paper>
-              </Grid>
+                  {!loading &&
+                    hasError && (
+                      <div className="error-message">
+                        <Typography type="body1" component="p" color="inherit">
+                          <Error className="message-icon" /> Извините, произошла ошибка. Мы не можем
+                          подтвердить ваш е-мэйл.
+                        </Typography>
+                      </div>
+                    )}
+                </Grid>
+              </Paper>
             </Grid>
           </Grid>
-        </div>
+        </Grid>
       </div>
     );
   }

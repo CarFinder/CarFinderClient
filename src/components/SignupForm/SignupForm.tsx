@@ -6,7 +6,6 @@ import Button from 'material-ui/Button';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 import { CircularProgress } from 'material-ui/Progress';
-import NavBar from '../Common/NavBar/NavBar';
 import FormStepper from './WizardForm/FormStepper';
 import FirstPage from './WizardForm/FirstPage';
 import SecondPage from './WizardForm/SecondPage';
@@ -59,46 +58,43 @@ class SignupFrom extends React.Component<Props, State> {
     const { page } = this.state;
     const { loading, authError } = this.props;
     return (
-      <div>
-        <NavBar />
-        <div className="signup-form">
-          <Grid container>
-            <Grid item xs={12}>
-              <Grid container align="center" direction="column" justify="center">
-                <Paper className="form-container">
-                  {page !== 4 && (
-                    <Grid item className="form-title">
-                      <Typography type="display1">Регистрация</Typography>
-                    </Grid>
-                  )}
-                  {page !== 4 && (
-                    <Grid item className="form-stepper">
-                      <FormStepper page={page} />
-                    </Grid>
-                  )}
-                  <Grid item className="form-content">
-                    {authError && (
-                      <Typography type="body1" component="p" color="accent">
-                        {authError}
-                      </Typography>
-                    )}
-                    {page === 1 && <FirstPage onSubmit={this.nextPage} />}
-                    {page === 2 && <SecondPage onSubmit={this.nextPage} />}
-                    {page === 3 && <ThirdPage onSubmit={this.handleSubmit} />}
-                    {page === 4 && <LastPage />}
-                    {loading && <CircularProgress size={50} />}
+      <div className="signup-form">
+        <Grid container>
+          <Grid item xs={12}>
+            <Grid container align="center" direction="column" justify="center">
+              <Paper className="form-container">
+                {page !== 4 && (
+                  <Grid item className="form-title">
+                    <Typography type="display1">Регистрация</Typography>
                   </Grid>
-                  <Divider />
-                  <Grid item className="form-links">
-                    <Button dense color="accent">
-                      <Link to="/signin">Уже зарегестрированы? Войти.</Link>
-                    </Button>
+                )}
+                {page !== 4 && (
+                  <Grid item className="form-stepper">
+                    <FormStepper page={page} />
                   </Grid>
-                </Paper>
-              </Grid>
+                )}
+                <Grid item className="form-content">
+                  {authError && (
+                    <Typography type="body1" component="p" color="accent">
+                      {authError}
+                    </Typography>
+                  )}
+                  {page === 1 && <FirstPage onSubmit={this.nextPage} />}
+                  {page === 2 && <SecondPage onSubmit={this.nextPage} />}
+                  {page === 3 && <ThirdPage onSubmit={this.handleSubmit} />}
+                  {page === 4 && <LastPage />}
+                  {loading && <CircularProgress size={50} />}
+                </Grid>
+                <Divider />
+                <Grid item className="form-links">
+                  <Button dense color="accent">
+                    <Link to="/signin">Уже зарегестрированы? Войти.</Link>
+                  </Button>
+                </Grid>
+              </Paper>
             </Grid>
           </Grid>
-        </div>
+        </Grid>
       </div>
     );
   }

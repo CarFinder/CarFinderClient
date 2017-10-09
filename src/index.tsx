@@ -12,6 +12,7 @@ import rootSaga from './redux/sagas/index';
 // Styles
 import 'index.less';
 // Components
+import NavBar from './components/Common/NavBar/NavBar';
 import Signup from './containers/Signup';
 import Home from './components/HomePage/HomePage';
 import EmailConfirmation from './containers/EmailConfirmation';
@@ -20,6 +21,7 @@ import NotFound from './components/Common/NotFound/NotFound';
 const App = () => {
   return (
     <div>
+      <NavBar />
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/signup" component={Signup} />

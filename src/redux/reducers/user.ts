@@ -9,14 +9,6 @@ import {
   USER_CONFIRM_EMAIL_SUCCESS
 } from '../actions/actionTypes';
 
-const initialState = {
-  id: '',
-  name: '',
-  email: '',
-  confirmed: false,
-  signedup: false
-};
-
 export default function userReducer(state: InitialState = {}, action: UserAction): InitialState {
   switch (action.type) {
     case USER_LOGGED_IN:

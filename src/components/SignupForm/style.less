@@ -6,39 +6,41 @@ button {
   margin-top: 100px;
 }
 
-.form-container {
-  min-width: 30%;
-  text-align: center;
-  padding: 2rem;
-  @media screen and (max-width: 1600px) {
-    min-width: 50%;
+.form {
+  &-container {
+    min-width: 30%;
+    text-align: center;
+    padding: 2rem;
+    @media screen and (max-width: 1600px) {
+      min-width: 50%;
+    }
+    @media screen and (max-width: 800px) {
+      min-width: 80%;
+    }
+    @media screen and (max-width: 500px) {
+      min-width: 100%;
+    }
   }
-  @media screen and (max-width: 800px) {
-    min-width: 80%;
+
+  &-title,
+  &-links {
+    display: flex;
+    justify-content: center;
   }
-  @media screen and (max-width: 500px) {
-    min-width: 100%;
+
+  &-title,
+  &-content {
+    padding: 10px 100px;
   }
-}
 
-.form-title,
-.form-links {
-  display: flex;
-  justify-content: center;
-}
+  &-field {
+    flex: 1;
+  }
 
-.form-title,
-.form-content {
-  padding: 10px 100px;
-}
-
-.form-field {
-  flex: 1;
-}
-
-.form-control {
-  display: flex;
-  flex-direction: row;
+  &-control {
+    display: flex;
+    flex-direction: row;
+  }
 }
 
 .hint {
@@ -48,7 +50,12 @@ button {
 .button-group {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-end;
+}
+
+.submit-icon {
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .stepper {
@@ -56,24 +63,28 @@ button {
   width: 100%;
   position: relative;
   margin-bottom: 20px;
-}
-.stepper .stepper-row {
-  display: table-row;
-}
-.stepper .stepper-row:before {
-  top: 40px;
-  bottom: 0;
-  position: absolute;
-  content: ' ';
-  width: 100%;
-  height: 2px;
-  background-color: #33459b;
-}
-.stepper .stepper-row .stepper-step {
-  display: table-cell;
-  text-align: center;
-  position: relative;
-}
-.stepper .stepper-row .stepper-step p {
-  margin-top: 0.5rem;
+
+  & .stepper-row {
+    display: table-row;
+
+    &:before {
+      top: 40px;
+      bottom: 0;
+      position: absolute;
+      content: ' ';
+      width: 100%;
+      height: 2px;
+      background-color: #33459b;
+    }
+
+    & .stepper-step {
+      display: table-cell;
+      text-align: center;
+      position: relative;
+
+      & p {
+        margin-top: 0.5rem;
+      }
+    }
+  }
 }

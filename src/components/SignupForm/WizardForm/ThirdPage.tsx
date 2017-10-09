@@ -5,6 +5,7 @@ import Button from 'material-ui/Button';
 import Tooltip from 'material-ui/Tooltip';
 import HelpOutline from 'material-ui-icons/HelpOutline';
 import KeyboardArrowLeft from 'material-ui-icons/KeyboardArrowLeft';
+import Send from 'material-ui-icons/Send';
 import { validateSignup as validate } from '../../../utils/signupValidation';
 import '../style.less';
 
@@ -60,13 +61,13 @@ const ThirdPage = (props: Props) => {
       </div>
       <div className="button-group">
         <Button
-          raised
+          dense
           color="primary"
           disabled={props.pristine || props.submitting}
           type="submit"
           className="next"
         >
-          Зарегистрироваться
+          Отправить <Send className="submit-icon" />
         </Button>
       </div>
     </form>
