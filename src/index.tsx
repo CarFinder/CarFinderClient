@@ -14,12 +14,14 @@ import 'index.less';
 // Components
 import Signup from './containers/Signup';
 import Home from './components/HomePage/HomePage';
+import EmailConfirmation from './components/EmailConfirmation/EmailConfirmation';
 
 const App = () => {
   return (
     <div>
       <Route exact path="/" component={Home} />
       <Route path="/signup" component={Signup} />
+      <Route path="/confirmation/:token" component={EmailConfirmation} />
     </div>
   );
 };
