@@ -1,7 +1,7 @@
 // React
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 // Redux
 import { Provider } from 'react-redux';
 import { Store, createStore, applyMiddleware, compose } from 'redux';
@@ -12,29 +12,26 @@ import rootSaga from './redux/sagas/index';
 // Styles
 import 'index.less';
 // Components
-import Signup from './components/SignupForm/SignupForm';
-import Signin from './containers/Signin';
+import NavBar from './components/Common/NavBar/NavBar';
 import Home from './components/HomePage/HomePage';
+import Signin from './containers/Signin';
 
 const App = () => {
   return (
     <div>
-      <Route exact path="/" component={Home} />
-      <Route path="/signup" component={Signup} />
-      <Route path="/signin" component={Signin} />
+      <NavBar />
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/signin" component={Signin} />
+      </Switch>
     </div>
   );
 };
 
 const sagaMiddleware = createSagaMiddleware();
 const initialState = {};
-const composeEnhansers = composeWithDevTools || compose;
-const store: Store<any> = createStore(
-  rootReducer,
-  initialState,
-  composeEnhansers(applyMiddleware(sagaMiddleware))
-);
 
+const store: Store<any> = createStore(rootReducer, initialState, applyMiddleware(sagaMiddleware));
 sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
