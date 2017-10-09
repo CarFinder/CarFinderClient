@@ -20,20 +20,17 @@ class NavBar extends React.Component<Props, object> {
               CarFinder
             </Typography>
             <div className="items-left">
-              <Link to="/">
-                <Button color="contrast">Домашняя</Button>
-              </Link>
-              <Link to="/catalog">
-                <Button color="contrast">Каталог</Button>
-              </Link>
+              <Button color="contrast">
+                <Link to="/">Home</Link>
+              </Button>
+              <Button color="contrast">
+                <Link to="/catalog">Catalog</Link>
+              </Button>
             </div>
             <div className="items-right">
-              <Link to="/signin">
-                <Button color="contrast">Вход</Button>
-              </Link>
-              <Link to="/signup">
-                <Button color="contrast">Регистрация</Button>
-              </Link>
+              <Button color="contrast">
+                <Link to="/signup">Sign in</Link>
+              </Button>
             </div>
           </Toolbar>
         </AppBar>
