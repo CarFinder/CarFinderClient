@@ -5,6 +5,7 @@ import Divider from 'material-ui/Divider';
 import Button from 'material-ui/Button';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
+import { CircularProgress } from 'material-ui/Progress';
 import NavBar from '../Common/NavBar/NavBar';
 import FormStepper from './WizardForm/FormStepper';
 import FirstPage from './WizardForm/FirstPage';
@@ -17,6 +18,9 @@ import './style.less';
 
 export interface Props {
   handleSignup: (userData: UserData) => any;
+  loading: boolean;
+  signedup: boolean;
+  authError?: any;
 }
 
 export interface State {
@@ -31,11 +35,20 @@ class SignupFrom extends React.Component<Props, State> {
     };
   }
 
+  componentWillReceiveProps(props: Props) {
+    if (props.signedup) {
+      this.setState({
+        page: 4
+      });
+    } else if (props.authError) {
+      this.setState({
+        page: 1
+      });
+    }
+  }
+
   handleSubmit = (userData: UserData) => {
     this.props.handleSignup(userData);
-    this.setState({
-      page: 4
-    });
   };
 
   nextPage = () => {
@@ -44,6 +57,7 @@ class SignupFrom extends React.Component<Props, State> {
 
   render() {
     const { page } = this.state;
+    const { loading, authError } = this.props;
     return (
       <div>
         <NavBar />
@@ -63,10 +77,16 @@ class SignupFrom extends React.Component<Props, State> {
                     </Grid>
                   )}
                   <Grid item className="form-content">
+                    {authError && (
+                      <Typography type="body1" component="p" color="accent">
+                        {authError}
+                      </Typography>
+                    )}
                     {page === 1 && <FirstPage onSubmit={this.nextPage} />}
                     {page === 2 && <SecondPage onSubmit={this.nextPage} />}
                     {page === 3 && <ThirdPage onSubmit={this.handleSubmit} />}
                     {page === 4 && <LastPage />}
+                    {loading && <CircularProgress size={50} />}
                   </Grid>
                   <Divider />
                   <Grid item className="form-links">

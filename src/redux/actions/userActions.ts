@@ -15,7 +15,11 @@ export interface UserSignUp {
   payload: UserData;
 }
 
-export type UserAction = UserLoggedIn | UserLoggedOut | UserSignUp;
+export interface UserSignedUp {
+  type: actionTypes.USER_SIGN_UP_SUCCESS;
+}
+
+export type UserAction = UserLoggedIn | UserLoggedOut | UserSignUp | UserSignedUp;
 
 export function userLoggedIn(user: any): UserLoggedIn {
   return {
@@ -34,5 +38,11 @@ export function userSignup(user: UserData): UserSignUp {
   return {
     type: actionTypes.USER_SIGN_UP,
     payload: user
+  };
+}
+
+export function userSignedUp() {
+  return {
+    type: actionTypes.USER_SIGN_UP_SUCCESS
   };
 }

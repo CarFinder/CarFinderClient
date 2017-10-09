@@ -4,11 +4,15 @@ import * as actionTypes from '../actions/actionTypes';
 import api from '../../api/api';
 
 function* callSignup(action: any) {
+  yield put({ type: actionTypes.SET_LOADING, payload: true });
   try {
     yield call(api.user.signup, action.payload);
+    yield put({ type: actionTypes.SET_LOADING, payload: false });
+    yield put({ type: actionTypes.USER_SIGN_UP_SUCCESS });
     yield call(action.resolve);
-  } catch {
-    // TODO: handle error here
+  } catch (e) {
+    yield put({ type: actionTypes.SET_AUTH_ERROR, payload: e });
+    yield put({ type: actionTypes.SET_LOADING, payload: false });
   }
 }
 
