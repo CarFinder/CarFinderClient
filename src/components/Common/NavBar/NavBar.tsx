@@ -21,15 +21,18 @@ class NavBar extends React.Component<Props, object> {
             </Typography>
             <div className="items-left">
               <Link to="/">
-                <Button color="contrast">Home</Button>
+                <Button color="contrast">Домашняя</Button>
               </Link>
               <Link to="/catalog">
-                <Button color="contrast">Catalog</Button>
+                <Button color="contrast">Каталог</Button>
               </Link>
             </div>
             <div className="items-right">
+              <Link to="/signin">
+                <Button color="contrast">Вход</Button>
+              </Link>
               <Link to="/signup">
-                <Button color="contrast">Sign in</Button>
+                <Button color="contrast">Регистрация</Button>
               </Link>
             </div>
           </Toolbar>
