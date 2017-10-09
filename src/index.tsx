@@ -50,3 +50,12 @@ ReactDOM.render(
   </BrowserRouter>,
   document.getElementById('app')
 );
+
+ReactDOM.render(
+  <BrowserRouter>
+    <Provider store={store}>
+      <Route component={App} />
+    </Provider>
+  </BrowserRouter>,
+  document.getElementById('app')
+);
