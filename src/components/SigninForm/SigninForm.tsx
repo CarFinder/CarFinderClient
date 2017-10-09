@@ -12,6 +12,7 @@ import './style.less';
 export interface Props {
   input?: HTMLInputElement;
   name?: string;
+  title?: string;
   meta?: any;
   custom?: object;
   handleSubmit: any;
@@ -22,10 +23,17 @@ export interface Props {
   authError?: string;
 }
 
-const renderTextField = ({ input, meta: { touched, error }, ...custom }: Props) => (
+const renderTextField = ({ title, input, meta: { touched, error }, ...custom }: Props) => (
   <div>
-    <TextField className="form-input" {...input} {...custom} />
-    {touched && (error && <span className="error">{error}</span>)}
+    <TextField
+      name={name}
+      label={title}
+      className="form-input"
+      helperText={touched && error}
+      error={touched && !!error}
+      {...input}
+      {...custom}
+    />
   </div>
 );
 
@@ -39,7 +47,13 @@ const SigninForm = (props: Props) => {
         <form className="form-content" onSubmit={props.handleSubmit(props.handleLogIn)}>
           <h1>Вход</h1>
           <div>
-            <Field name="email" type="email" component={renderTextField} placeholder="Email" />
+            <Field
+              name="email"
+              type="email"
+              component={renderTextField}
+              placeholder="Email"
+              title="Email"
+            />
           </div>
           <div>
             <Field
@@ -47,6 +61,7 @@ const SigninForm = (props: Props) => {
               type="password"
               component={renderTextField}
               placeholder="Пароль"
+              title="Пароль"
             />
           </div>
           {props.authError && <span className="error">{props.authError}</span>}
