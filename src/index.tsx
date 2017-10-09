@@ -14,7 +14,7 @@ import 'index.less';
 // Components
 import Signup from './containers/Signup';
 import Home from './components/HomePage/HomePage';
-import EmailConfirmation from './components/EmailConfirmation/EmailConfirmation';
+import EmailConfirmation from './containers/EmailConfirmation';
 
 const App = () => {
   return (

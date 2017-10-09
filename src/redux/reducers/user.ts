@@ -4,7 +4,9 @@ import {
   USER_LOGGED_IN,
   USER_LOGGED_OUT,
   USER_SIGN_UP,
-  USER_SIGN_UP_SUCCESS
+  USER_SIGN_UP_SUCCESS,
+  USER_CONFIRM_EMAIL,
+  USER_CONFIRM_EMAIL_SUCCESS
 } from '../actions/actionTypes';
 
 const initialState = {
@@ -27,6 +29,13 @@ export default function userReducer(state: InitialState = {}, action: UserAction
       return {
         ...state,
         signedup: true
+      };
+    case USER_CONFIRM_EMAIL:
+      return state;
+    case USER_CONFIRM_EMAIL_SUCCESS:
+      return {
+        ...state,
+        confirmed: true
       };
     default:
       return state;

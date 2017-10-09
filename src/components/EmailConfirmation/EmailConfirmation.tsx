@@ -16,6 +16,7 @@ export interface Props {
       token: string;
     };
   };
+  handleEmailConfirmation: (token: string) => any;
 }
 
 export interface State {
@@ -32,8 +33,9 @@ class EmailConfirmation extends React.Component<Props, State> {
     };
   }
   componentDidMount() {
-    // handle email confirmation request here
-    console.log(this.props.match.params.token);
+    if (this.props.match.params.token) {
+      this.props.handleEmailConfirmation(this.props.match.params.token);
+    }
   }
 
   componentWillReceiveProps(props: Props) {
@@ -66,15 +68,20 @@ class EmailConfirmation extends React.Component<Props, State> {
                     )}
                     {!loading &&
                       !hasError && (
-                        <Typography type="body1" component="p">
-                          <Done /> Е-мэйл подтвержден. Спасибо.
-                        </Typography>
+                        <div className="success-message">
+                          <Typography type="body1" component="p" color="inherit">
+                            <Done className="message-icon" /> Е-мэйл подтвержден. Спасибо.
+                          </Typography>
+                        </div>
                       )}
                     {!loading &&
                       hasError && (
-                        <Typography type="body1" component="p" color="accent">
-                          <Error /> Извините, произошла ошибка. Мы не можем подтвердить ваш е-мэйл.
-                        </Typography>
+                        <div className="error-message">
+                          <Typography type="body1" component="p" color="inherit">
+                            <Error className="message-icon" /> Извините, произошла ошибка. Мы не
+                            можем подтвердить ваш е-мэйл.
+                          </Typography>
+                        </div>
                       )}
                   </Grid>
                 </Paper>
