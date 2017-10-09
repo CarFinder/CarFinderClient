@@ -5,6 +5,7 @@ import api from '../../api/api';
 
 function* callSignup(action: any) {
   yield put({ type: actionTypes.SET_LOADING, payload: true });
+  yield put({ type: actionTypes.SET_AUTH_ERROR, payload: '' });
   try {
     yield call(api.user.signup, action.payload);
     yield put({ type: actionTypes.SET_LOADING, payload: false });
