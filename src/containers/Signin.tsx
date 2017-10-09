@@ -8,6 +8,10 @@ export interface UserData {
   password: string
 }
 
+interface PropsInterface {
+  handleLogIn: any;
+}
+
 const mapDispatchToProps = (dispatch: Dispatch<actions.UserAction>) => ({
   handleLogIn: (userData: UserData) => dispatch(actions.userSignIn(userData))
 })
