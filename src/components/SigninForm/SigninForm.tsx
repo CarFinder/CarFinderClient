@@ -14,7 +14,6 @@ export interface Props {
   name?: string;
   meta?: any;
   custom?: object;
-  id?: string;
   handleSubmit: any;
   handleLogIn?: () => void;
   history?: any;
