@@ -1,7 +1,7 @@
 import * as actionTypes from './actionTypes';
 
 export interface UserLoggedIn {
-  type: actionTypes.USER_LOGGED_IN;
+  type: actionTypes.USER_SIGN_IN_SUCCESS;
   payload: object;
 }
 
@@ -18,7 +18,7 @@ export type UserAction = UserLoggedIn | UserLoggedOut | UserSignIn;
 
 export function userLoggedIn(user: object): UserLoggedIn {
   return {
-    type: actionTypes.USER_LOGGED_IN,
+    type: actionTypes.USER_SIGN_IN_SUCCESS,
     payload: user
   };
 }

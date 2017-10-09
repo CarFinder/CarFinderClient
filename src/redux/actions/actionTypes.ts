@@ -1,11 +1,11 @@
-export const USER_LOGGED_IN = 'USER_LOGGED_IN';
-export type USER_LOGGED_IN = typeof USER_LOGGED_IN;
-
 export const USER_LOGGED_OUT = 'USER_LOGGED_OUT ';
 export type USER_LOGGED_OUT = typeof USER_LOGGED_OUT;
 
 export const USER_SIGN_IN = 'USER_SIGN_IN';
 export type USER_SIGN_IN = typeof USER_SIGN_IN;
+
+export const USER_SIGN_IN_SUCCESS = 'USER_SIGN_IN_SUCCESS';
+export type USER_SIGN_IN_SUCCESS = typeof USER_SIGN_IN_SUCCESS;
 
 export const USER_CONFIRM_EMAIL = 'USER_CONFIRM_EMAIL';
 export type USER_CONFIRM_EMAIL = typeof USER_CONFIRM_EMAIL;
