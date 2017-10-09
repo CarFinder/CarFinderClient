@@ -4,10 +4,11 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Route } from 'react-router-dom';
 // Redux
 import { Provider } from 'react-redux';
-import { Store, createStore, applyMiddleware } from 'redux';
+import { Store, createStore, applyMiddleware, compose } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import createSagaMiddleware from 'redux-saga';
 import rootReducer from './redux/reducers';
+import rootSaga from './redux/sagas/index';
 // Styles
 import 'index.less';
 // Components
@@ -27,8 +28,14 @@ const App = () => {
 
 const sagaMiddleware = createSagaMiddleware();
 const initialState = {};
+const composeEnhansers = composeWithDevTools || compose;
+const store: Store<any> = createStore(
+  rootReducer,
+  initialState,
+  composeEnhansers(applyMiddleware(sagaMiddleware))
+);
 
-const store: Store<any> = createStore(rootReducer, initialState, composeWithDevTools());
+sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
   <BrowserRouter>
