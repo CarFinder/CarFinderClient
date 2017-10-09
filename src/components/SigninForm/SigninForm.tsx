@@ -20,6 +20,7 @@ export interface Props {
   history?: any;
   invalid?: boolean;
   loading?: boolean;
+  authError?: string;
 }
 
 const renderTextField = ({ input, meta: { touched, error }, ...custom }: Props) => (
@@ -49,6 +50,7 @@ const SigninForm = (props: Props) => {
               placeholder="Пароль"
             />
           </div>
+          {props.authError && <span className="error">{props.authError}</span>}
           <div>
             {props.loading && <CircularProgress />}
             {!props.loading && (

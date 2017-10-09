@@ -7,15 +7,19 @@ import jwt_decode from 'jwt-decode';
 function* fetchUser(userData: any) {
     yield put({type: "SET_LOADING", payload: true});
     try {
-        const user = yield call(API.user.getUser, userData.payload);
-        const decodedData = jwt_decode(user.data.token);
-        localStorage.setItem('jwt', user.data.token);
-        yield put({type: "USER_LOGGED_IN", user: decodedData});
+        const { response, error } = yield call(API.user.getUser, userData.payload)
+        if (response) {
+            const decodedData = jwt_decode(response.token);
+            localStorage.setItem('jwt', response.token);
             yield put({type: "SET_LOADING", payload: false});
+            yield put({type: "USER_LOGGED_IN", user: decodedData});
+        } else {
             yield put({type: "SET_LOADING", payload: false});
+            yield put({type: "SET_AUTH_ERROR", payload: "Cannot reach server"});
+        }
     } catch (e) {
-       yield put({type: "SET_AUTH_ERROR", message: e.message});
         yield put({type: "SET_LOADING", payload: false});
+        yield put({type: "SET_AUTH_ERROR", payload: e.message});
     }
  }
  
