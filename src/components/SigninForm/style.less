@@ -1,43 +1,54 @@
-.signin-form {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+button {
+  margin: 15px 0;
 }
 
-.form-container {
-  min-width: 30%;
-  display: inline-block;
-  text-align: center;
-  padding: 2rem;
+.signup-form {
+  margin-top: 100px;
 }
 
-.form-content {
-  & div {
-    margin: 0.5rem;
+.form {
+  &-container {
+    min-width: 30%;
+    text-align: center;
+    padding: 2rem;
+    @media screen and (max-width: 1600px) {
+      min-width: 50%;
+    }
+    @media screen and (max-width: 800px) {
+      min-width: 80%;
+    }
+    @media screen and (max-width: 500px) {
+      min-width: 100%;
+    }
+  }
+
+  &-title,
+  &-links {
+    display: flex;
+    justify-content: center;
+  }
+
+  &-title,
+  &-content {
+    padding: 10px 100px;
+  }
+
+  &-field {
+    flex: 1;
+  }
+
+  &-control {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0.6rem;
   }
 }
 
-.form-input {
-  display: flex !important;
+.hint {
+  position: absolute;
 }
 
-.form-button {
-  margin: 1rem;
-}
-
-.form-links {
-  padding: 1rem;
-  display: flex;
-  justify-content: space-between;
-  & > *:hover {
-    color: blue;
-    text-decoration: underline;
-  }
-}
-
-.error {
-  color: red;
-  font-size: 0.75rem;
+.submit-icon {
+  margin-left: 5px;
+  margin-right: 5px;
 }
