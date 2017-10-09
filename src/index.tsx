@@ -1,7 +1,7 @@
 // React
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 // Redux
 import { Provider } from 'react-redux';
 import { Store, createStore, applyMiddleware, compose } from 'redux';
@@ -15,13 +15,17 @@ import 'index.less';
 import Signup from './containers/Signup';
 import Home from './components/HomePage/HomePage';
 import EmailConfirmation from './containers/EmailConfirmation';
+import NotFound from './components/Common/NotFound/NotFound';
 
 const App = () => {
   return (
     <div>
-      <Route exact path="/" component={Home} />
-      <Route path="/signup" component={Signup} />
-      <Route path="/confirmation/:token" component={EmailConfirmation} />
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/signup" component={Signup} />
+        <Route path="/confirmation/:token" component={EmailConfirmation} />
+        <Route path="*" component={NotFound} />
+      </Switch>
     </div>
   );
 };
