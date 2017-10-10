@@ -1,5 +1,6 @@
 import API from '../../api/api';
 import { UserData } from '../../containers/Signin';
+import setAuthorizationHeader from '../../utils/axiosHeader';
 import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
 import { SagaIterator } from 'redux-saga';
 import jwt_decode from 'jwt-decode';
@@ -11,6 +12,8 @@ function* callSignin(action: any) {
     if (!response.data.error) {
       const decodedData = jwt_decode(response.data.token);
       localStorage.setItem('jwt', response.data.token);
+      setAuthorizationHeader(response.data.token);
+
       yield put({ type: 'SET_LOADING', payload: false });
       yield put({ type: 'USER_SIGN_IN_SUCCESS', payload: decodedData });
     } else {
