@@ -2,7 +2,7 @@
   "name": "car-finder",
   "version": "1.0.0",
   "scripts": {
-    "dev-server": "webpack-dev-server --port 3001"
+    "dev-server": "webpack-dev-server"
   },
   "main": "index.tsx",
   "license": "MIT",
@@ -58,5 +58,5 @@
     "typeface-roboto": "^0.0.35",
     "typescript": "^2.5.3"
   },
-  "proxy": "http://localhost:3000"
+  "proxy": "http://localhost:3000/"
 }

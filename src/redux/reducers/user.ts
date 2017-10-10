@@ -1,17 +1,38 @@
 import { UserAction } from '../actions/userActions';
 import { InitialState, User } from '../models/userModel';
-import { USER_SIGN_IN_SUCCESS, USER_LOGGED_OUT, USER_SIGN_IN } from '../actions/actionTypes';
+import {
+  USER_SIGN_IN_SUCCESS,
+  USER_LOGGED_OUT,
+  USER_SIGN_IN,
+  USER_SIGN_UP,
+  USER_SIGN_UP_SUCCESS,
+  USER_CONFIRM_EMAIL,
+  USER_CONFIRM_EMAIL_SUCCESS
+} from '../actions/actionTypes';
 
 export default function userReducer(state: InitialState = {}, action: UserAction): InitialState {
   switch (action.type) {
     case USER_SIGN_IN_SUCCESS:
       return action.payload;
     case USER_LOGGED_OUT:
-      localStorage.removeItem("jwt");
       return {};
     case USER_SIGN_IN:
       return state;
+    case USER_SIGN_UP:
+      return state;
+    case USER_SIGN_UP_SUCCESS:
+      return {
+        ...state,
+        signedup: true
+      };
+    case USER_CONFIRM_EMAIL:
+      return state;
+    case USER_CONFIRM_EMAIL_SUCCESS:
+      return {
+        ...state,
+        confirmed: true
+      };
     default:
-      return {};
+      return state;
   }
 }

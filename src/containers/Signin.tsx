@@ -4,8 +4,8 @@ import { InitialState } from '../redux/models/userModel';
 import { connect, Dispatch } from 'react-redux';
 
 export interface UserData {
-  email: string,
-  password: string
+  email: string;
+  password: string;
 }
 
 interface PropsInterface {
@@ -19,11 +19,11 @@ interface StateInterface {
 
 const mapStateToProps = (state: any) => ({
   loading: state.formState.loading,
-  authError: state.formState.authError,
+  authError: state.formState.authError
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<actions.UserAction>) => ({
   handleLogIn: (userData: UserData) => dispatch(actions.userSignIn(userData))
-})
+});
 
 export default connect<StateInterface, any>(mapStateToProps, mapDispatchToProps)(SigninForm);

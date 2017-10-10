@@ -1,10 +1,12 @@
-import { combineReducers } from 'redux';
+import { Reducer, Action, combineReducers } from 'redux';
+import { reducer as reduxFormReducer } from 'redux-form';
 import userReducer from './user';
 import formStateReducer from './formState';
-import { reducer as reduxFormReducer } from 'redux-form';
 
-const rootReducer = combineReducers({
-  user: userReducer, form: reduxFormReducer, formState: formStateReducer
+const rootReducer: Reducer<any> = combineReducers({
+  form: reduxFormReducer,
+  formState: formStateReducer,
+  user: userReducer
 });
 
 export default rootReducer;

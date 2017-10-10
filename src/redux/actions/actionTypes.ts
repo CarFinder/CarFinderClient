@@ -7,6 +7,12 @@ export type USER_SIGN_IN = typeof USER_SIGN_IN;
 export const USER_SIGN_IN_SUCCESS = 'USER_SIGN_IN_SUCCESS';
 export type USER_SIGN_IN_SUCCESS = typeof USER_SIGN_IN_SUCCESS;
 
+export const USER_SIGN_UP = 'USER_SIGN_UP';
+export type USER_SIGN_UP = typeof USER_SIGN_UP;
+
+export const USER_SIGN_UP_SUCCESS = 'USER_SIGN_UP_SUCCESS';
+export type USER_SIGN_UP_SUCCESS = typeof USER_SIGN_UP_SUCCESS;
+
 export const USER_CONFIRM_EMAIL = 'USER_CONFIRM_EMAIL';
 export type USER_CONFIRM_EMAIL = typeof USER_CONFIRM_EMAIL;
 
