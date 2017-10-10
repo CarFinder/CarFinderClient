@@ -7,8 +7,8 @@ import jwt_decode from 'jwt-decode';
 function* callSignin(action: any) {
     yield put({type: "SET_LOADING", payload: true});
     try {
-        const { response, error } = yield call(API.user.getUser, action.payload)
-        if (response) {
+        const response = yield call(API.user.getUser, action.payload)
+        if (!response.error) {
             const decodedData = jwt_decode(response.token);
             localStorage.setItem('jwt', response.token);
             yield put({type: "SET_LOADING", payload: false});
@@ -19,7 +19,7 @@ function* callSignin(action: any) {
         }
     } catch (e) {
         yield put({type: "SET_LOADING", payload: false});
-        yield put({type: "SET_AUTH_ERROR", payload: e.messadge});
+        yield put({type: "SET_AUTH_ERROR", payload: e.message});
     }
  }
  
