@@ -1,10 +1,13 @@
-export const USER_LOGGED_IN = 'USER_LOGGED_IN';
-export type USER_LOGGED_IN = typeof USER_LOGGED_IN;
-
 export const USER_LOGGED_OUT = 'USER_LOGGED_OUT ';
 export type USER_LOGGED_OUT = typeof USER_LOGGED_OUT;
 
-export const USER_SIGN_UP = 'USER_SIGN_UP ';
+export const USER_SIGN_IN = 'USER_SIGN_IN';
+export type USER_SIGN_IN = typeof USER_SIGN_IN;
+
+export const USER_SIGN_IN_SUCCESS = 'USER_SIGN_IN_SUCCESS';
+export type USER_SIGN_IN_SUCCESS = typeof USER_SIGN_IN_SUCCESS;
+
+export const USER_SIGN_UP = 'USER_SIGN_UP';
 export type USER_SIGN_UP = typeof USER_SIGN_UP;
 
 export const USER_SIGN_UP_SUCCESS = 'USER_SIGN_UP_SUCCESS';

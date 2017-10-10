@@ -7,12 +7,12 @@ function* callSignup(action: any) {
   yield put({ type: actionTypes.SET_LOADING, payload: true });
   yield put({ type: actionTypes.SET_AUTH_ERROR, payload: '' });
   try {
-    const result = yield call(api.user.signup, action.payload);
-    if (result.response.data.error.type) {
+    const response = yield call(api.user.signup, action.payload);
+    if (response.data.error.type) {
       yield put({ type: actionTypes.SET_LOADING, payload: false });
       yield put({
         type: actionTypes.SET_AUTH_ERROR,
-        payload: result.response.data.error.ruMessage
+        payload: response.data.error
       });
     } else {
       yield put({ type: actionTypes.SET_LOADING, payload: false });

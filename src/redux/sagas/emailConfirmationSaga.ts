@@ -8,11 +8,11 @@ function* callConfrimEmail(action: any) {
   yield put({ type: actionTypes.SET_AUTH_ERROR, payload: '' });
   try {
     // TODO: Handle error from server
-    const result = yield call(api.user.confirmEmail, action.payload);
-    if (result.response.data.error.type) {
+    const response = yield call(api.user.confirmEmail, action.payload);
+    if (response.data.error.type) {
       yield put({
         type: actionTypes.SET_AUTH_ERROR,
-        payload: result.response.data.error.ruMessage
+        payload: response.data.error
       });
       yield put({ type: actionTypes.SET_LOADING, payload: false });
     } else {

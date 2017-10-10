@@ -1,13 +1,20 @@
 import * as actionTypes from './actionTypes';
 import { UserData } from '../../containers/Signup';
+import { User } from '../models/userModel';
+import { UserData as SigninUserData } from '../../containers/Signin';
 
 export interface UserLoggedIn {
-  type: actionTypes.USER_LOGGED_IN;
-  payload: any;
+  type: actionTypes.USER_SIGN_IN_SUCCESS;
+  payload: User;
 }
 
 export interface UserLoggedOut {
   type: actionTypes.USER_LOGGED_OUT;
+}
+
+export interface UserSignIn {
+  type: actionTypes.USER_SIGN_IN;
+  payload: SigninUserData;
 }
 
 export interface UserSignUp {
@@ -31,21 +38,30 @@ export interface UserConfirmedEmail {
 export type UserAction =
   | UserLoggedIn
   | UserLoggedOut
+  | UserSignIn
   | UserSignUp
   | UserSignedUp
   | UserConfirmEmail
   | UserConfirmedEmail;
 
-export function userLoggedIn(user: any): UserLoggedIn {
+export function userLoggedIn(user: User): UserLoggedIn {
   return {
-    type: actionTypes.USER_LOGGED_IN,
+    type: actionTypes.USER_SIGN_IN_SUCCESS,
     payload: user
   };
 }
 
 export function userLoggedOut(): UserLoggedOut {
+  localStorage.removeItem('jwt');
   return {
     type: actionTypes.USER_LOGGED_OUT
+  };
+}
+
+export function userSignIn(userData: SigninUserData): UserSignIn {
+  return {
+    type: actionTypes.USER_SIGN_IN,
+    payload: userData
   };
 }
 
@@ -56,7 +72,7 @@ export function userSignup(user: UserData): UserSignUp {
   };
 }
 
-export function userSignedUp() {
+export function userSignedUp(): UserSignedUp {
   return {
     type: actionTypes.USER_SIGN_UP_SUCCESS
   };

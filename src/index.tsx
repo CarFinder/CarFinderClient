@@ -14,6 +14,7 @@ import 'index.less';
 // Components
 import NavBar from './components/Common/NavBar/NavBar';
 import Signup from './containers/Signup';
+import Signin from './containers/Signin';
 import Home from './components/HomePage/HomePage';
 import EmailConfirmation from './containers/EmailConfirmation';
 import NotFound from './components/Common/NotFound/NotFound';
@@ -25,6 +26,7 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/signup" component={Signup} />
+        <Route path="/signin" component={Signin} />
         <Route path="/confirmation/:token" component={EmailConfirmation} />
         <Route path="*" component={NotFound} />
       </Switch>
