@@ -1,4 +1,5 @@
 import * as actionTypes from './actionTypes';
+import setAuthorizationHeader from '../../utils/axiosHeader';
 import { UserData } from '../../containers/Signup';
 import { User } from '../models/userModel';
 import { UserData as SigninUserData } from '../../containers/Signin';
@@ -53,6 +54,7 @@ export function userLoggedIn(user: User): UserLoggedIn {
 
 export function userLoggedOut(): UserLoggedOut {
   localStorage.removeItem('jwt');
+  setAuthorizationHeader();
   return {
     type: actionTypes.USER_LOGGED_OUT
   };
