@@ -13,6 +13,9 @@ module.exports = {
   },
   devServer: {
     port: 3001,
+    proxy: {
+      '/api': 'http://localhost:3000'
+    },
     historyApiFallback: true,
     inline: true,
     stats: {

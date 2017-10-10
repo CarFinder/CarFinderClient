@@ -58,5 +58,5 @@
     "typeface-roboto": "^0.0.35",
     "typescript": "^2.5.3"
   },
-  "proxy": "http://localhost:3000/"
+  "proxy": "http://localhost:3000"
 }
