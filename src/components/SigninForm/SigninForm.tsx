@@ -15,6 +15,7 @@ export interface Props {
   handleLogIn: (userData: UserData) => any;
   loading: boolean;
   authError?: any;
+  history: any;
 }
 
 export interface State {
@@ -27,6 +28,11 @@ const SigninFrom = (props: Props) => {
   function handleSubmit(userData: UserData) {
     props.handleLogIn(userData);
   }
+
+  if (localStorage.getItem('jwt')) {
+    props.history.push('/home');
+  }
+
   return (
     <div className="signup-form">
       <Grid container>

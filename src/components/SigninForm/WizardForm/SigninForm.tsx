@@ -18,7 +18,6 @@ export interface Props {
   meta?: any;
   custom?: object;
   handleSubmit: any;
-  history?: any;
   invalid?: boolean;
 }
 
@@ -35,9 +34,6 @@ const renderTextField = ({ title, input, meta: { touched, error }, ...custom }: 
 );
 
 const SigninForm = (props: Props) => {
-  if (localStorage.getItem('jwt')) {
-    props.history.push('/home');
-  }
   return (
     <form onSubmit={props.handleSubmit}>
       <div className="form-control">

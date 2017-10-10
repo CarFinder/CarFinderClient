@@ -9,20 +9,14 @@ function* callSignin(action: any) {
   yield put({ type: 'SET_LOADING', payload: true });
   try {
     const response = yield call(API.user.getUser, action.payload);
-    if (!response.data.error) {
-      const decodedData = jwt_decode(response.data.token);
-      localStorage.setItem('jwt', response.data.token);
-      setAuthorizationHeader(response.data.token);
-
-      yield put({ type: 'SET_LOADING', payload: false });
-      yield put({ type: 'USER_SIGN_IN_SUCCESS', payload: decodedData });
-    } else {
-      yield put({ type: 'SET_LOADING', payload: false });
-      yield put({ type: 'SET_AUTH_ERROR', payload: response.data.error });
-    }
+    const decodedData = jwt_decode(response.data.token);
+    localStorage.setItem('jwt', response.data.token);
+    setAuthorizationHeader(response.data.token);
+    yield put({ type: 'SET_LOADING', payload: false });
+    yield put({ type: 'USER_SIGN_IN_SUCCESS', payload: decodedData });
   } catch (e) {
     yield put({ type: 'SET_LOADING', payload: false });
-    yield put({ type: 'SET_AUTH_ERROR', payload: e.message });
+    yield put({ type: 'SET_AUTH_ERROR', payload: e.response.data.error });
   }
 }
 

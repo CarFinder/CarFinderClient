@@ -7,21 +7,11 @@ function* callConfrimEmail(action: any) {
   yield put({ type: actionTypes.SET_LOADING, payload: true });
   yield put({ type: actionTypes.SET_AUTH_ERROR, payload: '' });
   try {
-    // TODO: Handle error from server
     const response = yield call(api.user.confirmEmail, action.payload);
-    if (response.data.error.type) {
-      yield put({
-        type: actionTypes.SET_AUTH_ERROR,
-        payload: response.data.error
-      });
-      yield put({ type: actionTypes.SET_LOADING, payload: false });
-    } else {
-      yield put({ type: actionTypes.SET_LOADING, payload: false });
-      yield put({ type: actionTypes.USER_CONFIRM_EMAIL_SUCCESS });
-    }
-    yield call(action.resolve);
-  } catch {
-    yield put({ type: actionTypes.SET_AUTH_ERROR, payload: 'Can not reach the server' });
+    yield put({ type: actionTypes.SET_LOADING, payload: false });
+    yield put({ type: actionTypes.USER_CONFIRM_EMAIL_SUCCESS });
+  } catch (e) {
+    yield put({ type: actionTypes.SET_AUTH_ERROR, payload: e.response.data.error });
     yield put({ type: actionTypes.SET_LOADING, payload: false });
   }
 }
