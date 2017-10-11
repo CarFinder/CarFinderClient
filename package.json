@@ -41,12 +41,14 @@
     "webpack-notifier": "^1.5.0"
   },
   "dependencies": {
+    "@types/query-string": "^5.0.0",
     "@types/redux": "3.6.0",
     "axios": "^0.16.2",
     "classnames": "^2.2.5",
     "jwt-decode": "^2.2.0",
     "material-ui": "next",
     "material-ui-icons": "^1.0.0-beta.10",
+    "query-string": "^5.0.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-redux": "^5.0.6",

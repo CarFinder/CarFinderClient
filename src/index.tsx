@@ -27,7 +27,7 @@ const App = () => {
         <Route exact path="/" component={Home} />
         <Route path="/signup" component={Signup} />
         <Route path="/signin" component={Signin} />
-        <Route path="/confirmation/:token" component={EmailConfirmation} />
+        <Route path="/confirmation" component={EmailConfirmation} />
         <Route path="*" component={NotFound} />
       </Switch>
     </div>

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import queryString from 'query-string';
 import Grid from 'material-ui/Grid';
 import Typography from 'material-ui/Typography';
 import Paper from 'material-ui/Paper';
@@ -10,6 +11,9 @@ import './style.less';
 export interface Props {
   loading: boolean;
   authError?: any;
+  location: {
+    search: any;
+  };
   match: {
     params: {
       token: string;
@@ -32,8 +36,9 @@ class EmailConfirmation extends React.Component<Props, State> {
     };
   }
   componentDidMount() {
-    if (this.props.match.params.token) {
-      this.props.handleEmailConfirmation(this.props.match.params.token);
+    if (queryString.parse(this.props.location.search).token) {
+      const token = queryString.parse(this.props.location.search).token;
+      this.props.handleEmailConfirmation(token);
     }
   }
 
