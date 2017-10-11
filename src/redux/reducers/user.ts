@@ -28,10 +28,7 @@ export default function userReducer(state: InitialState = {}, action: UserAction
     case USER_CONFIRM_EMAIL:
       return state;
     case USER_CONFIRM_EMAIL_SUCCESS:
-      return {
-        ...state,
-        confirmed: true
-      };
+      return state;
     default:
       return state;
   }
