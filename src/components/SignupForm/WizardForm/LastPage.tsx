@@ -1,11 +1,9 @@
+import Typography from 'material-ui/Typography';
 import * as React from 'react';
 import { reduxForm } from 'redux-form';
-import Typography from 'material-ui/Typography';
 import '../style.less';
 
-export interface Props {}
-
-const LastPage = (props: Props) => {
+const LastPage = () => {
   return (
     <div>
       <Typography type="display1" component="h3" className="form-title">
@@ -21,6 +19,6 @@ const LastPage = (props: Props) => {
 
 export default reduxForm({
   form: 'signupForm',
-  destroyOnUnmount: false,
+  destroyOnUnmount: true,
   forceUnregisterOnUnmount: true
 })(LastPage);

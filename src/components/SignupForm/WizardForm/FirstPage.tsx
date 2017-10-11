@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { reduxForm, Field } from 'redux-form';
-import TextField from 'material-ui/TextField';
-import Button from 'material-ui/Button';
 import KeyboardArrowRight from 'material-ui-icons/KeyboardArrowRight';
+import Button from 'material-ui/Button';
+import TextField from 'material-ui/TextField';
+import * as React from 'react';
+import { Field, reduxForm } from 'redux-form';
 import { validateSignup as validate } from '../../../utils/signupValidation';
 import '../style.less';
 

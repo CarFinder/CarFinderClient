@@ -1,10 +1,8 @@
-import * as React from 'react';
 import Grid from 'material-ui/Grid';
+import * as React from 'react';
 
-export interface Props {}
-
-class HomePage extends React.Component<Props, object> {
-  render() {
+class HomePage extends React.Component<object, object> {
+  public render() {
     return (
       <div>
         <Grid container>

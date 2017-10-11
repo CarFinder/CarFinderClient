@@ -1,14 +1,14 @@
+import Button from 'material-ui/Button';
+import Divider from 'material-ui/Divider';
+import Grid from 'material-ui/Grid';
+import Paper from 'material-ui/Paper';
+import { CircularProgress } from 'material-ui/Progress';
+import Typography from 'material-ui/Typography';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import Grid from 'material-ui/Grid';
-import Divider from 'material-ui/Divider';
-import Button from 'material-ui/Button';
-import Paper from 'material-ui/Paper';
-import Typography from 'material-ui/Typography';
-import { CircularProgress } from 'material-ui/Progress';
-import Form from './WizardForm/SigninForm';
 import { UserData } from '../../containers/Signin';
 import { User } from '../../redux/models/userModel';
+import Form from './WizardForm/SigninForm';
 
 import './style.less';
 
@@ -20,18 +20,18 @@ export interface Props {
   user: User;
 }
 
-class SigninFrom extends React.Component<Props, any> {
-  componentWillReceiveProps(nextProps: Props) {
+class SigninFrom extends React.Component<Props, object> {
+  public componentWillReceiveProps(nextProps: Props) {
     if (Object.getOwnPropertyNames(nextProps.user).length !== 0) {
       this.props.history.push('/home');
     }
   }
 
-  handleSubmit = (userData: UserData) => {
+  public handleSubmit = (userData: UserData) => {
     this.props.handleLogIn(userData);
   };
 
-  render() {
+  public render() {
     const { loading, authError } = this.props;
 
     return (

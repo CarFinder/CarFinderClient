@@ -1,8 +1,8 @@
-import * as actionTypes from './actionTypes';
-import setAuthorizationHeader from '../../utils/axiosHeader';
-import { UserData } from '../../containers/Signup';
-import { User } from '../models/userModel';
 import { UserData as SigninUserData } from '../../containers/Signin';
+import { UserData } from '../../containers/Signup';
+import setAuthorizationHeader from '../../utils/axiosHeader';
+import { User } from '../models/userModel';
+import * as actionTypes from './actionTypes';
 
 export interface UserLoggedIn {
   type: actionTypes.USER_SIGN_IN_SUCCESS;

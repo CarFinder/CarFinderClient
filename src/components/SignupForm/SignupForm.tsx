@@ -1,17 +1,17 @@
+import Button from 'material-ui/Button';
+import Divider from 'material-ui/Divider';
+import Grid from 'material-ui/Grid';
+import Paper from 'material-ui/Paper';
+import { CircularProgress } from 'material-ui/Progress';
+import Typography from 'material-ui/Typography';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import Grid from 'material-ui/Grid';
-import Divider from 'material-ui/Divider';
-import Button from 'material-ui/Button';
-import Paper from 'material-ui/Paper';
-import Typography from 'material-ui/Typography';
-import { CircularProgress } from 'material-ui/Progress';
-import FormStepper from './WizardForm/FormStepper';
+import { UserData } from '../../containers/Signup';
 import FirstPage from './WizardForm/FirstPage';
+import FormStepper from './WizardForm/FormStepper';
+import LastPage from './WizardForm/LastPage';
 import SecondPage from './WizardForm/SecondPage';
 import ThirdPage from './WizardForm/ThirdPage';
-import LastPage from './WizardForm/LastPage';
-import { UserData } from '../../containers/Signup';
 
 import './style.less';
 
@@ -34,7 +34,7 @@ class SignupFrom extends React.Component<Props, State> {
     };
   }
 
-  componentWillReceiveProps(props: Props) {
+  public componentWillReceiveProps(props: Props) {
     if (props.signedup) {
       this.setState({
         page: 4
@@ -46,15 +46,15 @@ class SignupFrom extends React.Component<Props, State> {
     }
   }
 
-  handleSubmit = (userData: UserData) => {
+  public handleSubmit = (userData: UserData) => {
     this.props.handleSignup(userData);
   };
 
-  nextPage = () => {
+  public nextPage = () => {
     this.setState({ page: this.state.page + 1 });
   };
 
-  render() {
+  public render() {
     const { page } = this.state;
     const { loading, authError } = this.props;
     return (

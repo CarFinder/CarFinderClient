@@ -1,8 +1,8 @@
-import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
 import { SagaIterator } from 'redux-saga';
-import * as actionTypes from '../actions/actionTypes';
-import { transformDataForSignup } from '../../utils/utils';
+import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
 import api from '../../api/api';
+import { transformDataForSignup } from '../../utils/utils';
+import * as actionTypes from '../actions/actionTypes';
 
 function* callSignup(action: any) {
   yield put({ type: actionTypes.SET_LOADING, payload: true });

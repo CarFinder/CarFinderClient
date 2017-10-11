@@ -1,9 +1,9 @@
-import * as React from 'react';
+import Email from 'material-ui-icons/Email';
+import FolderShared from 'material-ui-icons/FolderShared';
+import Security from 'material-ui-icons/Security';
 import Button from 'material-ui/Button';
 import Tooltip from 'material-ui/Tooltip';
-import FolderShared from 'material-ui-icons/FolderShared';
-import Email from 'material-ui-icons/Email';
-import Security from 'material-ui-icons/Security';
+import * as React from 'react';
 import '../style.less';
 
 export interface Props {

@@ -1,23 +1,19 @@
-// React
+import 'index.less';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-// Redux
 import { Provider } from 'react-redux';
-import { Store, createStore, applyMiddleware, compose } from 'redux';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { applyMiddleware, compose, createStore, Store } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import createSagaMiddleware from 'redux-saga';
-import rootReducer from './redux/reducers';
-import rootSaga from './redux/sagas/index';
-// Styles
-import 'index.less';
-// Components
 import NavBar from './components/Common/NavBar/NavBar';
-import Signup from './containers/Signup';
-import Signin from './containers/Signin';
+import NotFound from './components/Common/NotFound/NotFound';
 import Home from './components/HomePage/HomePage';
 import EmailConfirmation from './containers/EmailConfirmation';
-import NotFound from './components/Common/NotFound/NotFound';
+import Signin from './containers/Signin';
+import Signup from './containers/Signup';
+import rootReducer from './redux/reducers';
+import rootSaga from './redux/sagas/index';
 
 const App = () => {
   return (

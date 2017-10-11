@@ -1,8 +1,7 @@
+import { connect, Dispatch } from 'react-redux';
 import SigninForm from '../components/SigninForm/SigninForm';
 import * as actions from '../redux/actions/userActions';
-import { InitialState } from '../redux/models/userModel';
-import { connect, Dispatch } from 'react-redux';
-import { User } from '../redux/models/userModel';
+import { InitialState, User } from '../redux/models/userModel';
 
 export interface UserData {
   email: string;

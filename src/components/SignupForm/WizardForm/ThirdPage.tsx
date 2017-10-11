@@ -1,11 +1,11 @@
-import * as React from 'react';
-import { reduxForm, Field, FormSubmitHandler } from 'redux-form';
-import TextField from 'material-ui/TextField';
-import Button from 'material-ui/Button';
-import Tooltip from 'material-ui/Tooltip';
 import HelpOutline from 'material-ui-icons/HelpOutline';
 import KeyboardArrowLeft from 'material-ui-icons/KeyboardArrowLeft';
 import Send from 'material-ui-icons/Send';
+import Button from 'material-ui/Button';
+import TextField from 'material-ui/TextField';
+import Tooltip from 'material-ui/Tooltip';
+import * as React from 'react';
+import { Field, FormSubmitHandler, reduxForm } from 'redux-form';
 import { validateSignup as validate } from '../../../utils/signupValidation';
 import '../style.less';
 

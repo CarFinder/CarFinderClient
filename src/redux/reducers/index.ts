@@ -1,7 +1,7 @@
-import { Reducer, Action, combineReducers } from 'redux';
+import { Action, combineReducers, Reducer } from 'redux';
 import { reducer as reduxFormReducer } from 'redux-form';
-import userReducer from './user';
 import formStateReducer from './formState';
+import userReducer from './user';
 
 const rootReducer: Reducer<any> = combineReducers({
   form: reduxFormReducer,

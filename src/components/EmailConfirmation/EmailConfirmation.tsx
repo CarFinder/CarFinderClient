@@ -1,11 +1,11 @@
-import * as React from 'react';
-import queryString from 'query-string';
+import Done from 'material-ui-icons/Done';
+import Error from 'material-ui-icons/Error';
 import Grid from 'material-ui/Grid';
-import Typography from 'material-ui/Typography';
 import Paper from 'material-ui/Paper';
 import { CircularProgress } from 'material-ui/Progress';
-import Error from 'material-ui-icons/Error';
-import Done from 'material-ui-icons/Done';
+import Typography from 'material-ui/Typography';
+import queryString from 'query-string';
+import * as React from 'react';
 import './style.less';
 
 export interface Props {
@@ -35,20 +35,20 @@ class EmailConfirmation extends React.Component<Props, State> {
       hasError: false
     };
   }
-  componentDidMount() {
+  public componentDidMount() {
     if (queryString.parse(this.props.location.search).token) {
       const token = queryString.parse(this.props.location.search).token;
       this.props.handleEmailConfirmation(token);
     }
   }
 
-  componentWillReceiveProps(props: Props) {
+  public componentWillReceiveProps(props: Props) {
     this.setState({
       loading: props.loading,
       hasError: !!props.authError
     });
   }
-  render() {
+  public render() {
     const { loading, hasError } = this.state;
     return (
       <div className="email-confirmation">

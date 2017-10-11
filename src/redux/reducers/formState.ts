@@ -1,6 +1,6 @@
 // import { FormStateAction } from '../actions/formStateActions';
-import { InitialState, FormState } from '../models/formStateModel';
-import { SET_LOADING, SET_AUTH_ERROR, SET_SEARCH_ERROR } from '../actions/actionTypes';
+import { SET_AUTH_ERROR, SET_LOADING, SET_SEARCH_ERROR } from '../actions/actionTypes';
+import { FormState, InitialState } from '../models/formStateModel';
 
 const initialState = {
   loading: false,

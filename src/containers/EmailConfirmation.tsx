@@ -1,6 +1,6 @@
 import { connect, Dispatch } from 'react-redux';
-import * as userActions from '../redux/actions/userActions';
 import EmailConfirmation from '../components/EmailConfirmation/EmailConfirmation';
+import * as userActions from '../redux/actions/userActions';
 
 interface DispatchFromProps {
   handleEmailConfirmation: (token: string) => any;

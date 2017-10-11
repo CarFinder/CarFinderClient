@@ -1,6 +1,6 @@
 import { connect, Dispatch } from 'react-redux';
-import * as userActions from '../redux/actions/userActions';
 import SignupForm from '../components/SignupForm/SignupForm';
+import * as userActions from '../redux/actions/userActions';
 
 export interface UserData {
   name: string;

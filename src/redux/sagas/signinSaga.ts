@@ -1,9 +1,9 @@
+import jwt_decode from 'jwt-decode';
+import { SagaIterator } from 'redux-saga';
+import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
 import API from '../../api/api';
 import { UserData } from '../../containers/Signin';
 import setAuthorizationHeader from '../../utils/axiosHeader';
-import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
-import { SagaIterator } from 'redux-saga';
-import jwt_decode from 'jwt-decode';
 
 function* callSignin(action: any) {
   yield put({ type: 'SET_LOADING', payload: true });
