@@ -20,54 +20,54 @@ export interface Props {
   user: User;
 }
 
-export interface State {
-  page: number;
-}
-
-const SigninFrom = (props: Props) => {
-  const { loading, authError } = props;
-
-  function handleSubmit(userData: UserData) {
-    props.handleLogIn(userData);
+class SigninFrom extends React.Component<Props, any> {
+  componentWillReceiveProps(nextProps: Props) {
+    if (Object.getOwnPropertyNames(nextProps.user).length !== 0) {
+      this.props.history.push('/home');
+    }
   }
 
-  if (localStorage.getItem('jwt')) {
-    props.history.push('/home');
-  }
+  handleSubmit = (userData: UserData) => {
+    this.props.handleLogIn(userData);
+  };
 
-  return (
-    <div className="signup-form">
-      <Grid container>
-        <Grid item xs={12}>
-          <Grid container align="center" direction="column" justify="center">
-            <Paper className="form-container">
-              <Grid item className="form-title">
-                <Typography type="display1">Вход</Typography>
-              </Grid>
-              <Grid item className="form-content">
-                {authError && (
-                  <Typography type="body1" component="p" color="accent">
-                    {authError.ruMessage}
-                  </Typography>
-                )}
-                <Form onSubmit={handleSubmit} />
-                {loading && <CircularProgress size={50} />}
-              </Grid>
-              <Divider />
-              <Grid item className="form-links">
-                <Button dense color="accent">
-                  <Link to="/restore-password">Забыли пароль?</Link>
-                </Button>
-                <Button dense color="accent">
-                  <Link to="/signup">Зарегистрироваться</Link>
-                </Button>
-              </Grid>
-            </Paper>
+  render() {
+    const { loading, authError } = this.props;
+
+    return (
+      <div className="signup-form">
+        <Grid container>
+          <Grid item xs={12}>
+            <Grid container align="center" direction="column" justify="center">
+              <Paper className="form-container">
+                <Grid item className="form-title">
+                  <Typography type="display1">Вход</Typography>
+                </Grid>
+                <Grid item className="form-content">
+                  {authError && (
+                    <Typography type="body1" component="p" color="accent">
+                      {authError.ruMessage}
+                    </Typography>
+                  )}
+                  <Form onSubmit={this.handleSubmit} />
+                  {loading && <CircularProgress size={50} />}
+                </Grid>
+                <Divider />
+                <Grid item className="form-links">
+                  <Button dense color="accent">
+                    <Link to="/restore-password">Забыли пароль?</Link>
+                  </Button>
+                  <Button dense color="accent">
+                    <Link to="/signup">Зарегистрироваться</Link>
+                  </Button>
+                </Grid>
+              </Paper>
+            </Grid>
           </Grid>
         </Grid>
-      </Grid>
-    </div>
-  );
-};
+      </div>
+    );
+  }
+}
 
 export default SigninFrom;
