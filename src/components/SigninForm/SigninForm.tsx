@@ -8,6 +8,7 @@ import Typography from 'material-ui/Typography';
 import { CircularProgress } from 'material-ui/Progress';
 import Form from './WizardForm/SigninForm';
 import { UserData } from '../../containers/Signin';
+import { User } from '../../redux/models/userModel';
 
 import './style.less';
 
@@ -16,6 +17,7 @@ export interface Props {
   loading: boolean;
   authError?: any;
   history: any;
+  user: User;
 }
 
 export interface State {
