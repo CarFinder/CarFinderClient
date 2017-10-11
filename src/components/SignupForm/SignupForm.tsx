@@ -16,6 +16,7 @@ import ThirdPage from './WizardForm/ThirdPage';
 import './style.less';
 
 export interface Props {
+  handleClearError: () => any;
   handleSignup: (userData: UserData) => any;
   loading: boolean;
   signedup: boolean;
@@ -44,6 +45,10 @@ class SignupFrom extends React.Component<Props, State> {
         page: 1
       });
     }
+  }
+
+  componentWillMount() {
+    this.props.handleClearError();
   }
 
   public handleSubmit = (userData: UserData) => {

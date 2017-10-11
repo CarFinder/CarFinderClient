@@ -13,6 +13,7 @@ import Form from './WizardForm/SigninForm';
 import './style.less';
 
 export interface Props {
+  handleClearError: () => any;
   handleLogIn: (userData: UserData) => any;
   loading: boolean;
   authError?: any;
@@ -25,6 +26,10 @@ class SigninFrom extends React.Component<Props, object> {
     if (Object.getOwnPropertyNames(nextProps.user).length !== 0) {
       this.props.history.push('/home');
     }
+  }
+
+  componentDidMount() {
+    this.props.handleClearError();
   }
 
   public handleSubmit = (userData: UserData) => {
