@@ -8,42 +8,49 @@ CarFinder
   <li><a href="#authors">Authors</a></li>
  </ul>
 <h1 id="installation">Installation</h1>
-Install dependencies in package.json.
+<p>Install dependencies in package.json via <code>npm install</code>. To start project, run <code>npm run dev-server</code>.</p>
 <h1  id="description">Description</h1>
 CarFinder project is a system which aggregates car sale ads from different platforms. It provides filters to display ads with your chosen parameters. You can save your filter options to get email notifications about new offers. CarFinder comes with liquidity calculator, which provides an option to check the liquidity of a car you want to sale.
 <table>
   <h2>Sprints</h2>
   <tr>
-    <th>Sprint number</th>
-    <th>Start date</th>
-    <th>End date</th>
-    <th>Description</th>
+    <th>Issue</th>
+    <th>Sprint 1</th>
+    <th>Sprint 2</th>
+    <th>Sprint 3</th>
    </tr>
   <tr>
-    <td>1</td>
-    <td>06.10.2017</td>
-    <td>20.10.2017</td>
-    <td>User can sign up, sign in to the system, restore password, view car ads from auto.onliner.by, filter ads.</td>
+    <td>Sign up</td>
+    <td>&#10004;</td>
+    <td></td>
+    <td></td>
   </tr>
   <tr>
-    <td>2</td>
-    <td>20.10.2017</td>
-    <td>03.11.2017</td>
-    <td>User can view ads from av.by, open car ad preview, view user profile and change user settings (interface language, password), save filter options, view ads for every saved filter.</td>
+    <td>Sign in</td>
+    <td>&#10004;</td>
+    <td></td>
+    <td></td>
   </tr>
   <tr>
-    <td>3</td>
-    <td>03.11.2017</td>
-    <td>17.11.2017</td>
-    <td>User can view most liquid ads, check ad liquidity via liquidity calculator.</td>
+    <td>Restore password</td>
+    <td>In progress</td>
+    <td></td>
+    <td></td>
   </tr>
  </table>
 <h1  id="technologies">Technologies</h1>
-Node.js, TypeScript, MongoDB, React, Redux.
+<ul>
+  <li>TypeScript</li>
+  <li>React</li>
+  <li>Redux</li>
+  <li>Redux Form</li>
+  <li>Redux Saga</li>
+  <li>Material UI</li>
+ </ul>
 <h1  id="authors">Authors</h1>
-<p>Ilya Bobr https://github.com/BobriK502 </p>
-<p>Anton Stankovski https://github.com/StankAnt </p>
-<p>Anatoly Belobrovik https://github.com/AnatolyBelobrovik</p>
-<p>Elizaveta Buraya https://github.com/ElizavetaBuraya</p>
+<a href="https://github.com/BobriK502">Ilya Bobr</a><br>
+<a href="https://github.com/StankAnt">Anton Stankovski</a><br>
+<a href="https://github.com/AnatolyBelobrovik">Anatoly Belobrovik</a><br>
+<a href="https://github.com/ElizavetaBuraya">Elizaveta Buraya</a>
 <h1>License</h1>
 MIT
