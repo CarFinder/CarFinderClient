@@ -8,6 +8,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import createSagaMiddleware from 'redux-saga';
 import NavBar from './components/Common/NavBar/NavBar';
 import NotFound from './components/Common/NotFound/NotFound';
+import RequireAuth from './components/Common/Routes/RequireAuth';
 import Home from './components/HomePage/HomePage';
 import EmailConfirmation from './containers/EmailConfirmation';
 import Signin from './containers/Signin';
@@ -21,6 +22,7 @@ const App = () => {
       <NavBar />
       <Switch>
         <Route exact path="/" component={Home} />
+        <Route exact path="/home" component={RequireAuth(Home)} />
         <Route path="/signup" component={Signup} />
         <Route path="/signin" component={Signin} />
         <Route path="/confirmation" component={EmailConfirmation} />
