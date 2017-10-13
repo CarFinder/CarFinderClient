@@ -13,6 +13,7 @@ import Home from './components/HomePage/HomePage';
 import EmailConfirmation from './containers/EmailConfirmation';
 import Signin from './containers/Signin';
 import Signup from './containers/Signup';
+import ChangePassword from './containers/ChangePassword';
 import rootReducer from './redux/reducers';
 import rootSaga from './redux/sagas/index';
 
@@ -25,6 +26,8 @@ const App = () => {
         <Route exact path="/home" component={RequireAuth(Home)} />
         <Route path="/signup" component={Signup} />
         <Route path="/signin" component={Signin} />
+        <Route path="/restore-password" component={ChangePassword} />
+        <Route path="/restore" component={ChangePassword} />
         <Route path="/confirmation" component={EmailConfirmation} />
         <Route path="*" component={NotFound} />
       </Switch>
