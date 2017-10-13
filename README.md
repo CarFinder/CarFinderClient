@@ -33,6 +33,18 @@ CarFinder project is a system which aggregates car sale ads from different platf
   </tr>
   <tr>
     <td>Restore password</td>
+    <td>&#10004;</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Filter cars</td>
+    <td>In progress</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>View filter results</td>
     <td>In progress</td>
     <td></td>
     <td></td>
