@@ -26,7 +26,6 @@ const App = () => {
         <Route exact path="/home" component={RequireAuth(Home)} />
         <Route path="/signup" component={Signup} />
         <Route path="/signin" component={Signin} />
-        <Route path="/restore-password" component={ChangePassword} />
         <Route path="/restore" component={ChangePassword} />
         <Route path="/confirmation" component={EmailConfirmation} />
         <Route path="*" component={NotFound} />
