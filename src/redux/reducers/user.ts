@@ -5,7 +5,8 @@ import {
   USER_SIGN_IN,
   USER_SIGN_IN_SUCCESS,
   USER_SIGN_UP,
-  USER_SIGN_UP_SUCCESS
+  USER_SIGN_UP_SUCCESS,
+  USER_CHANGE_PASSWORD
 } from '../actions/actionTypes';
 import { UserAction } from '../actions/userActions';
 import { InitialState, User } from '../models/userModel';
@@ -28,6 +29,8 @@ export default function userReducer(state: InitialState = {}, action: UserAction
     case USER_CONFIRM_EMAIL:
       return state;
     case USER_CONFIRM_EMAIL_SUCCESS:
+      return state;
+    case USER_CHANGE_PASSWORD:
       return state;
     default:
       return state;
