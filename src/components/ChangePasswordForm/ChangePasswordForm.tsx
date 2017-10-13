@@ -13,9 +13,9 @@ import { UserData } from '../../containers/Signin';
 import './style.less';
 
 export interface Props {
-  handleSubmitEmail: (userData: UserData) => any;
-  handleChangePassword: (userData: UserData, token: string) => any;
-  handleClearSuccessMessage: () => any;
+  handleSubmitEmail: (userData: UserData) => void;
+  handleChangePassword: (userData: UserData, token: string) => void;
+  handleClearSuccessMessage: () => void;
   successMessage: string;
   history: any;
   loading: boolean;
