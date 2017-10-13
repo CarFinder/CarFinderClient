@@ -10,8 +10,8 @@ export interface UserData {
 }
 
 interface PropsInterface {
-  handleSubmitEmail: any;
-  handleChangePassword: any;
+  handleSubmitEmail: (userData: UserData) => void;
+  handleChangePassword: (userData: UserData, token: string) => void;
 }
 
 interface StateInterface {
@@ -26,6 +26,7 @@ const mapStateToProps = (state: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<actions.UserAction>) => ({
+  handleClearError: () => dispatch(formStateActions.setAuthError('')),
   handleClearSuccessMessage: () => dispatch(formStateActions.SetSuccessMessage('')),
   handleSubmitEmail: (userData: UserData) => dispatch(actions.userSubmitEmail(userData)),
   handleChangePassword: (userData: UserData, token: string) =>

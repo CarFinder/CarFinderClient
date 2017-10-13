@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import TextField from 'material-ui/TextField';
 import Tooltip from 'material-ui/Tooltip';
 import HelpOutline from 'material-ui-icons/HelpOutline';

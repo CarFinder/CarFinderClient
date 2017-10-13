@@ -16,6 +16,7 @@ export interface Props {
   handleSubmitEmail: (userData: UserData) => void;
   handleChangePassword: (userData: UserData, token: string) => void;
   handleClearSuccessMessage: () => void;
+  handleClearError: () => void;
   successMessage: string;
   history: any;
   loading: boolean;
@@ -45,6 +46,9 @@ class ChangePasswordForm extends React.Component<Props, State> {
     if (this.props.successMessage) {
       this.props.handleClearSuccessMessage();
     }
+    if (this.props.authError) {
+      this.props.handleClearError();
+    }
     if (queryString.parse(this.props.location.search).token) {
       const newToken = queryString.parse(this.props.location.search).token;
       this.setState({
@@ -53,18 +57,17 @@ class ChangePasswordForm extends React.Component<Props, State> {
     }
   }
 
-  componentDidUpdate(nextProps: any) {
+  public componentDidUpdate(nextProps: any) {
     if (this.state.token && this.props.successMessage) {
       this.props.history.push('/signin');
     }
   }
 
-  handleEmailSubmit = (userData: UserData) => {
+  public handleEmailSubmit = (userData: UserData) => {
     this.props.handleSubmitEmail(userData);
   };
 
-  handlePasswordSubmit = (userData: UserData) => {
-    console.log(userData);
+  public handlePasswordSubmit = (userData: UserData) => {
     this.props.handleChangePassword(userData, this.state.token);
   };
   render() {
@@ -86,7 +89,7 @@ class ChangePasswordForm extends React.Component<Props, State> {
                     </Typography>
                   )}
                   {!token && <EmailForm onSubmit={this.handleEmailSubmit} />}
-                  {token && <PasswordForm onSubmit={this.handlePasswordSubmit} token={token} />}
+                  {token && <PasswordForm onSubmit={this.handlePasswordSubmit} />}
                   {loading && <CircularProgress size={50} />}
                   {successMessage && (
                     <Typography type="body1" component="p" color="primary">
@@ -96,9 +99,11 @@ class ChangePasswordForm extends React.Component<Props, State> {
                 </Grid>
                 <Divider />
                 <Grid item className="form-links">
-                  <Button dense color="accent">
-                    <Link to="/signin">Вернуться на страницу входа</Link>
-                  </Button>
+                  <Link to="/signin">
+                    <Button dense color="accent">
+                      Вернуться на страницу входа
+                    </Button>
+                  </Link>
                 </Grid>
               </Paper>
             </Grid>

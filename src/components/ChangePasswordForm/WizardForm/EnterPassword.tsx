@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import TextField from 'material-ui/TextField';
 import Tooltip from 'material-ui/Tooltip';
 import HelpOutline from 'material-ui-icons/HelpOutline';
@@ -20,7 +20,6 @@ export interface Props {
   handleSubmit: any;
   history?: any;
   invalid?: boolean;
-  token: string;
 }
 
 const renderTextField = ({ title, input, meta: { touched, error }, ...custom }: Props) => (
@@ -74,7 +73,7 @@ const EnterPassword = (props: Props) => {
   );
 };
 
-export default reduxForm<any, any>({
+export default reduxForm({
   form: 'EnterPassword',
   validate
 })(EnterPassword);
