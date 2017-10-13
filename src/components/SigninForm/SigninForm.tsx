@@ -60,7 +60,7 @@ class SigninFrom extends React.Component<Props, object> {
                 <Divider />
                 <Grid item className="form-links">
                   <Button dense color="accent">
-                    <Link to="/restore-password">Забыли пароль?</Link>
+                    <Link to="/restore">Забыли пароль?</Link>
                   </Button>
                   <Button dense color="accent">
                     <Link to="/signup">Зарегистрироваться</Link>

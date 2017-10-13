@@ -1,5 +1,6 @@
 import { UserData as SigninUserData } from '../../containers/Signin';
 import { UserData } from '../../containers/Signup';
+import { UserData as ChangePasswordData } from '../../containers/ChangePassword';
 import setAuthorizationHeader from '../../utils/axiosHeader';
 import { User } from '../models/userModel';
 import * as actionTypes from './actionTypes';
@@ -36,6 +37,17 @@ export interface UserConfirmedEmail {
   type: actionTypes.USER_CONFIRM_EMAIL_SUCCESS;
 }
 
+export interface UserSubmitEmail {
+  type: actionTypes.USER_SUBMIT_EMAIL;
+  payload: ChangePasswordData;
+}
+
+export interface UserChangePassword {
+  type: actionTypes.USER_CHANGE_PASSWORD;
+  payload: ChangePasswordData;
+  token: string;
+}
+
 export type UserAction =
   | UserLoggedIn
   | UserLoggedOut
@@ -43,7 +55,9 @@ export type UserAction =
   | UserSignUp
   | UserSignedUp
   | UserConfirmEmail
-  | UserConfirmedEmail;
+  | UserConfirmedEmail
+  | UserSubmitEmail
+  | UserChangePassword;
 
 export function userLoggedIn(user: User): UserLoggedIn {
   return {
@@ -90,5 +104,23 @@ export function userConfirmEmail(token: string): UserConfirmEmail {
 export function userConfirmedEmail(): UserConfirmedEmail {
   return {
     type: actionTypes.USER_CONFIRM_EMAIL_SUCCESS
+  };
+}
+
+export function userSubmitEmail(userData: ChangePasswordData): UserSubmitEmail {
+  return {
+    type: actionTypes.USER_SUBMIT_EMAIL,
+    payload: userData
+  };
+}
+
+export function userChangePassword(
+  userData: ChangePasswordData,
+  token: string
+): UserChangePassword {
+  return {
+    type: actionTypes.USER_CHANGE_PASSWORD,
+    payload: userData,
+    token: token
   };
 }

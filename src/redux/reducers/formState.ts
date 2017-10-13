@@ -1,5 +1,10 @@
 // import { FormStateAction } from '../actions/formStateActions';
-import { SET_AUTH_ERROR, SET_LOADING, SET_SEARCH_ERROR } from '../actions/actionTypes';
+import {
+  SET_AUTH_ERROR,
+  SET_LOADING,
+  SET_SEARCH_ERROR,
+  SET_SUCCESS_MESSAGE
+} from '../actions/actionTypes';
 import { FormState, InitialState } from '../models/formStateModel';
 
 const initialState = {
@@ -25,6 +30,11 @@ export default function userReducer(state: InitialState = initialState, action: 
       return {
         ...state,
         searchError: action.payload
+      };
+    case SET_SUCCESS_MESSAGE:
+      return {
+        ...state,
+        successMessage: action.payload
       };
     default:
       return state;
