@@ -12,6 +12,7 @@ import FormStepper from './WizardForm/FormStepper';
 import LastPage from './WizardForm/LastPage';
 import SecondPage from './WizardForm/SecondPage';
 import ThirdPage from './WizardForm/ThirdPage';
+import interfaceLanguage from '../../utils/interfaceLanguage';
 
 import './style.less';
 
@@ -21,6 +22,7 @@ export interface Props {
   loading: boolean;
   signedup: boolean;
   authError?: any;
+  language: string;
 }
 
 export interface State {
@@ -61,7 +63,9 @@ class SignupFrom extends React.Component<Props, State> {
 
   public render() {
     const { page } = this.state;
-    const { loading, authError } = this.props;
+    const { loading, authError, language } = this.props;
+    const lang = this.props.language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
+
     return (
       <div className="signup-form">
         <Grid container>
@@ -70,30 +74,30 @@ class SignupFrom extends React.Component<Props, State> {
               <Paper className="form-container">
                 {page !== 4 && (
                   <Grid item className="form-title">
-                    <Typography type="display1">Регистрация</Typography>
+                    <Typography type="display1">{lang.signupForm.title}</Typography>
                   </Grid>
                 )}
                 {page !== 4 && (
                   <Grid item className="form-stepper">
-                    <FormStepper page={page} />
+                    <FormStepper page={page} language={language} />
                   </Grid>
                 )}
                 <Grid item className="form-content">
                   {authError && (
                     <Typography type="subheading" component="p" color="accent">
-                      {authError.ruMessage}
+                      {lang.authErrors[authError.code.toString()]}
                     </Typography>
                   )}
-                  {page === 1 && <FirstPage onSubmit={this.nextPage} />}
-                  {page === 2 && <SecondPage onSubmit={this.nextPage} />}
-                  {page === 3 && <ThirdPage onSubmit={this.handleSubmit} />}
-                  {page === 4 && <LastPage />}
+                  {page === 1 && <FirstPage onSubmit={this.nextPage} language={language} />}
+                  {page === 2 && <SecondPage onSubmit={this.nextPage} language={language} />}
+                  {page === 3 && <ThirdPage onSubmit={this.handleSubmit} language={language} />}
+                  {page === 4 && <LastPage language={language} />}
                   {loading && <CircularProgress size={50} />}
                 </Grid>
                 <Divider />
                 <Grid item className="form-links">
                   <Button dense color="accent">
-                    <Link to="/signin">Уже зарегестрированы? Войти.</Link>
+                    <Link to="/signin">{lang.signupForm.signinLink}</Link>
                   </Button>
                 </Grid>
               </Paper>

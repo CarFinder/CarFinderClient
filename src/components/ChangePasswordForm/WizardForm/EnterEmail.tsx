@@ -8,7 +8,8 @@ import Button from 'material-ui/Button';
 import Paper from 'material-ui/Paper';
 import Send from 'material-ui-icons/Send';
 import CircularProgress from 'material-ui/Progress/CircularProgress';
-import { validateSignin as validate } from '../../../utils/signinValidation';
+import { validateChangePassword as validate } from '../../../utils/changePasswordValidation';
+import interfaceLanguage from '../../../utils/interfaceLanguage';
 import '../style.less';
 
 export interface Props {
@@ -20,6 +21,7 @@ export interface Props {
   handleSubmit: any;
   history?: any;
   invalid?: boolean;
+  language: string;
 }
 
 const renderTextField = ({ title, input, meta: { touched, error }, ...custom }: Props) => (
@@ -35,6 +37,7 @@ const renderTextField = ({ title, input, meta: { touched, error }, ...custom }: 
 );
 
 const EnterEmail = (props: Props) => {
+  const lang = props.language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
   return (
     <form onSubmit={props.handleSubmit}>
       <div className="form-control">
@@ -42,21 +45,21 @@ const EnterEmail = (props: Props) => {
           name="email"
           type="email"
           component={renderTextField}
-          placeholder="Email"
-          title="Email"
+          placeholder={lang.changePassword.emailFieldPlaceholder}
+          title={lang.changePassword.emailField}
           className="form-field"
         />
       </div>
       <div className="button">
         <Button dense color="primary" type="submit" className="next" disabled={props.invalid}>
-          Отправить <Send className="submit-icon" />
+          {lang.changePassword.submitEmail} <Send className="submit-icon" />
         </Button>
       </div>
     </form>
   );
 };
 
-export default reduxForm({
+export default reduxForm<any, any>({
   form: 'SigninForm',
   validate
 })(EnterEmail);

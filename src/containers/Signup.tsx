@@ -24,7 +24,8 @@ interface StateToProps {
 const mapStateToProps = (state: any) => ({
   loading: state.formState.loading,
   authError: state.formState.authError,
-  signedup: state.user.signedup
+  signedup: state.user.signedup,
+  language: state.user.interfaceLanguage
 });
 
 const mapDispatchToProps = (

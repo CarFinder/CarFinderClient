@@ -9,11 +9,13 @@ interface DispatchFromProps {
 interface StateToProps {
   loading: boolean;
   authError: boolean;
+  language: string;
 }
 
 const mapStateToProps = (state: any) => ({
   loading: state.formState.loading,
-  authError: state.formState.authError
+  authError: state.formState.authError,
+  language: state.user.interfaceLanguage
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<userActions.UserAction>) => ({

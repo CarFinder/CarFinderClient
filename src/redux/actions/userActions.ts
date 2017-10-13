@@ -48,6 +48,11 @@ export interface UserChangePassword {
   token: string;
 }
 
+export interface UserChangeLanguage {
+  type: actionTypes.SET_LANGUAGE;
+  payload: string;
+}
+
 export type UserAction =
   | UserLoggedIn
   | UserLoggedOut
@@ -57,7 +62,8 @@ export type UserAction =
   | UserConfirmEmail
   | UserConfirmedEmail
   | UserSubmitEmail
-  | UserChangePassword;
+  | UserChangePassword
+  | UserChangeLanguage;
 
 export function userLoggedIn(user: User): UserLoggedIn {
   return {
@@ -122,5 +128,13 @@ export function userChangePassword(
     type: actionTypes.USER_CHANGE_PASSWORD,
     payload: userData,
     token: token
+  };
+}
+
+export function userChangeLanguage(language: string): UserChangeLanguage {
+  localStorage.setItem('interfaceLanguage', language);
+  return {
+    type: actionTypes.SET_LANGUAGE,
+    payload: language
   };
 }

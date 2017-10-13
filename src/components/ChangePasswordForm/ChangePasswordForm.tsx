@@ -10,6 +10,7 @@ import { CircularProgress } from 'material-ui/Progress';
 import EmailForm from './WizardForm/EnterEmail';
 import PasswordForm from './WizardForm/EnterPassword';
 import { UserData } from '../../containers/Signin';
+import interfaceLanguage from '../../utils/interfaceLanguage';
 import './style.less';
 
 export interface Props {
@@ -21,6 +22,7 @@ export interface Props {
   history: any;
   loading: boolean;
   authError?: any;
+  language: string;
   location: {
     search: any;
   };
@@ -71,8 +73,9 @@ class ChangePasswordForm extends React.Component<Props, State> {
     this.props.handleChangePassword(userData, this.state.token);
   };
   render() {
-    const { loading, authError, successMessage } = this.props;
+    const { loading, authError, successMessage, language } = this.props;
     const { token } = this.state;
+    const lang = this.props.language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
     return (
       <div className="signup-form">
         <Grid container>
@@ -80,16 +83,18 @@ class ChangePasswordForm extends React.Component<Props, State> {
             <Grid container align="center" direction="column" justify="center">
               <Paper className="form-container">
                 <Grid item className="form-title">
-                  <Typography type="display1">Восстановление пароля</Typography>
+                  <Typography type="display1">{lang.changePassword.title}</Typography>
                 </Grid>
                 <Grid item className="form-content">
                   {authError && (
                     <Typography type="body1" component="p" color="accent">
-                      Произошла ошибка
+                      {lang.authErrors[authError.code.toString()]}
                     </Typography>
                   )}
-                  {!token && <EmailForm onSubmit={this.handleEmailSubmit} />}
-                  {token && <PasswordForm onSubmit={this.handlePasswordSubmit} />}
+                  {!token && <EmailForm onSubmit={this.handleEmailSubmit} language={language} />}
+                  {token && (
+                    <PasswordForm onSubmit={this.handlePasswordSubmit} language={language} />
+                  )}
                   {loading && <CircularProgress size={50} />}
                   {successMessage && (
                     <Typography type="body1" component="p" color="primary">
@@ -101,7 +106,7 @@ class ChangePasswordForm extends React.Component<Props, State> {
                 <Grid item className="form-links">
                   <Link to="/signin">
                     <Button dense color="accent">
-                      Вернуться на страницу входа
+                      {lang.changePassword.signinLink}
                     </Button>
                   </Link>
                 </Grid>

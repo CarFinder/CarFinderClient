@@ -18,12 +18,14 @@ interface StateInterface {
   authError: any;
   loading: boolean;
   user: User;
+  language: string;
 }
 
 const mapStateToProps = (state: any) => ({
   loading: state.formState.loading,
   authError: state.formState.authError,
-  user: state.user
+  user: state.user,
+  language: state.user.interfaceLanguage
 });
 
 const mapDispatchToProps = (

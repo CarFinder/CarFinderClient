@@ -5,6 +5,7 @@ import TextField from 'material-ui/TextField';
 import * as React from 'react';
 import { Field, FormSubmitHandler, reduxForm } from 'redux-form';
 import { validateSignup as validate } from '../../../utils/signupValidation';
+import interfaceLanguage from '../../../utils/interfaceLanguage';
 import '../style.less';
 
 export interface Props {
@@ -13,6 +14,7 @@ export interface Props {
   title?: string;
   meta?: any;
   handleSubmit?: React.FormEventHandler<any>;
+  language?: string;
 }
 
 const renderTextField = ({ input, name, title, meta: { touched, error }, ...custom }: Props) => (
@@ -28,27 +30,28 @@ const renderTextField = ({ input, name, title, meta: { touched, error }, ...cust
 );
 
 const SecondPage = (props: Props) => {
+  const lang = props.language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
   return (
     <form onSubmit={props.handleSubmit}>
       <div className="form-control">
         <Field
           name="email"
-          placeholder="Введите ваш е-мэйл"
+          placeholder={lang.signupForm.emailFieldPlaceholder}
           component={renderTextField}
-          title="Ваш е-мэйл"
+          title={lang.signupForm.emailField}
           className="form-field"
         />
       </div>
       <div className="button-group">
         <Button dense color="primary" type="submit" className="next">
-          Далее <KeyboardArrowRight />
+          {lang.signupForm.nextButton} <KeyboardArrowRight />
         </Button>
       </div>
     </form>
   );
 };
 
-export default reduxForm({
+export default reduxForm<any, any>({
   form: 'signupForm',
   destroyOnUnmount: false,
   forceUnregisterOnUnmount: true,

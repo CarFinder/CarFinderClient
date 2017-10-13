@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import { UserData } from '../../containers/Signin';
 import { User } from '../../redux/models/userModel';
 import Form from './WizardForm/SigninForm';
+import interfaceLanguage from '../../utils/interfaceLanguage';
 
 import './style.less';
 
@@ -19,11 +20,12 @@ export interface Props {
   authError?: any;
   history: any;
   user: User;
+  language: string;
 }
 
 class SigninFrom extends React.Component<Props, object> {
   public componentWillReceiveProps(nextProps: Props) {
-    if (Object.getOwnPropertyNames(nextProps.user).length !== 0) {
+    if (nextProps.user.email) {
       this.props.history.push('/home');
     }
   }
@@ -37,7 +39,8 @@ class SigninFrom extends React.Component<Props, object> {
   };
 
   public render() {
-    const { loading, authError } = this.props;
+    const { loading, authError, language } = this.props;
+    const lang = this.props.language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
 
     return (
       <div className="signup-form">
@@ -46,24 +49,24 @@ class SigninFrom extends React.Component<Props, object> {
             <Grid container align="center" direction="column" justify="center">
               <Paper className="form-container">
                 <Grid item className="form-title">
-                  <Typography type="display1">Вход</Typography>
+                  <Typography type="display1">{lang.signinForm.title}</Typography>
                 </Grid>
                 <Grid item className="form-content">
                   {authError && (
                     <Typography type="body1" component="p" color="accent">
-                      {authError.ruMessage}
+                      {lang.authErrors[authError.code.toString()]}
                     </Typography>
                   )}
-                  <Form onSubmit={this.handleSubmit} />
+                  <Form onSubmit={this.handleSubmit} language={language} />
                   {loading && <CircularProgress size={50} />}
                 </Grid>
                 <Divider />
                 <Grid item className="form-links">
                   <Button dense color="accent">
-                    <Link to="/restore">Забыли пароль?</Link>
+                    <Link to="/restore">{lang.signinForm.changePassword}</Link>
                   </Button>
                   <Button dense color="accent">
-                    <Link to="/signup">Зарегистрироваться</Link>
+                    <Link to="/signup">{lang.signinForm.signupLink}</Link>
                   </Button>
                 </Grid>
               </Paper>

@@ -4,6 +4,7 @@ export type User = {
   email?: string;
   confirmed?: boolean;
   signedup?: boolean;
+  interfaceLanguage?: string;
 };
 
 export type InitialState = User;

@@ -6,11 +6,13 @@ import { CircularProgress } from 'material-ui/Progress';
 import Typography from 'material-ui/Typography';
 import queryString from 'query-string';
 import * as React from 'react';
+import interfaceLanguage from '../../utils/interfaceLanguage';
 import './style.less';
 
 export interface Props {
   loading: boolean;
   authError?: any;
+  language: string;
   location: {
     search: any;
   };
@@ -50,6 +52,7 @@ class EmailConfirmation extends React.Component<Props, State> {
   }
   public render() {
     const { loading, hasError } = this.state;
+    const lang = this.props.language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
     return (
       <div className="email-confirmation">
         <Grid container>
@@ -57,14 +60,14 @@ class EmailConfirmation extends React.Component<Props, State> {
             <Grid container align="center" direction="column" justify="center">
               <Paper className="form-container">
                 <Grid item className="form-title">
-                  <Typography type="display1">Подтверждение е-мэйла</Typography>
+                  <Typography type="display1">{lang.emailConfirmation.title}</Typography>
                 </Grid>
                 <Grid item className="form-content">
                   {loading && (
                     <div>
                       <CircularProgress className="loader" />
                       <Typography type="subheading" component="p">
-                        Подтверждаем ваш е-мэйл. Пожалуйста, подождите.
+                        {lang.emailConfirmation.loadingMessage}
                       </Typography>
                     </div>
                   )}
@@ -72,7 +75,7 @@ class EmailConfirmation extends React.Component<Props, State> {
                     !hasError && (
                       <div className="success-message">
                         <Typography type="subheading" component="p" color="inherit">
-                          <Done className="message-icon" /> Е-мэйл подтвержден. Спасибо.
+                          <Done className="message-icon" /> {lang.emailConfirmation.successMessage}
                         </Typography>
                       </div>
                     )}
@@ -80,8 +83,7 @@ class EmailConfirmation extends React.Component<Props, State> {
                     hasError && (
                       <div className="error-message">
                         <Typography type="subheading" component="p" color="inherit">
-                          <Error className="message-icon" /> Извините, произошла ошибка. Мы не можем
-                          подтвердить ваш е-мэйл.
+                          <Error className="message-icon" /> {lang.emailConfirmation.errorMessage}
                         </Typography>
                       </div>
                     )}

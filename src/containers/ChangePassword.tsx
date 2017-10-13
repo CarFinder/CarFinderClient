@@ -17,12 +17,14 @@ interface PropsInterface {
 interface StateInterface {
   authError: any;
   loading: boolean;
+  language: string;
 }
 
 const mapStateToProps = (state: any) => ({
   loading: state.formState.loading,
   authError: state.formState.authError,
-  successMessage: state.formState.successMessage
+  successMessage: state.formState.successMessage,
+  language: state.user.interfaceLanguage
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<actions.UserAction>) => ({

@@ -9,6 +9,7 @@ import * as React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 import { validateSignin as validate } from '../../../utils/signinValidation';
+import interfaceLanguage from '../../../utils/interfaceLanguage';
 import '../style.less';
 
 export interface Props {
@@ -19,6 +20,7 @@ export interface Props {
   custom?: object;
   handleSubmit: any;
   invalid?: boolean;
+  language: string;
 }
 
 const renderTextField = ({ title, input, meta: { touched, error }, ...custom }: Props) => (
@@ -34,6 +36,7 @@ const renderTextField = ({ title, input, meta: { touched, error }, ...custom }: 
 );
 
 const SigninForm = (props: Props) => {
+  const lang = props.language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
   return (
     <form onSubmit={props.handleSubmit}>
       <div className="form-control">
@@ -41,8 +44,8 @@ const SigninForm = (props: Props) => {
           name="email"
           type="email"
           component={renderTextField}
-          placeholder="Email"
-          title="Email"
+          placeholder={lang.signinForm.emailFieldPlaceholder}
+          title={lang.signinForm.emailField}
           className="form-field"
         />
       </div>
@@ -51,28 +54,24 @@ const SigninForm = (props: Props) => {
           name="password"
           type="password"
           component={renderTextField}
-          placeholder="Пароль"
-          title="Пароль"
+          placeholder={lang.signinForm.passwordFieldPlaceholder}
+          title={lang.signinForm.passwordField}
           className="form-field"
         />
-        <Tooltip
-          id="tooltip-pass"
-          title="Пароль должен быть не менее 8 символов, содержать как минимум 1 цифру и 1 специальный символ"
-          placement="top-start"
-        >
+        <Tooltip id="tooltip-pass" title={lang.signinForm.passwordTooltip} placement="top-start">
           <HelpOutline className="hint" color="grey" />
         </Tooltip>
       </div>
       <div className="button">
         <Button dense color="primary" type="submit" className="next" disabled={props.invalid}>
-          Войти <Send className="submit-icon" />
+          {lang.signinForm.submitButton} <Send className="submit-icon" />
         </Button>
       </div>
     </form>
   );
 };
 
-export default reduxForm({
+export default reduxForm<any, any>({
   form: 'SigninForm',
   validate
 })(SigninForm);

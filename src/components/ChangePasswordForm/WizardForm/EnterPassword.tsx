@@ -8,6 +8,7 @@ import Button from 'material-ui/Button';
 import Paper from 'material-ui/Paper';
 import Send from 'material-ui-icons/Send';
 import CircularProgress from 'material-ui/Progress/CircularProgress';
+import interfaceLanguage from '../../../utils/interfaceLanguage';
 import { validateChangePassword as validate } from '../../../utils/changePasswordValidation';
 import '../style.less';
 
@@ -20,6 +21,7 @@ export interface Props {
   handleSubmit: any;
   history?: any;
   invalid?: boolean;
+  language: string;
 }
 
 const renderTextField = ({ title, input, meta: { touched, error }, ...custom }: Props) => (
@@ -35,6 +37,7 @@ const renderTextField = ({ title, input, meta: { touched, error }, ...custom }: 
 );
 
 const EnterPassword = (props: Props) => {
+  const lang = props.language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
   return (
     <form onSubmit={props.handleSubmit}>
       <div className="form-control">
@@ -42,13 +45,13 @@ const EnterPassword = (props: Props) => {
           name="password"
           type="password"
           component={renderTextField}
-          placeholder="Введите новый пароль"
-          title="Введите новый пароль"
+          placeholder={lang.changePassword.passwordFieldPlaceholder}
+          title={lang.changePassword.passwordField}
           className="form-field"
         />
         <Tooltip
           id="tooltip-pass"
-          title="Пароль должен быть не менее 8 символов, содержать как минимум 1 цифру и 1 специальный символ"
+          title={lang.changePassword.passwordTooltip}
           placement="top-start"
         >
           <HelpOutline className="hint" color="grey" />
@@ -59,21 +62,21 @@ const EnterPassword = (props: Props) => {
           name="passwordConfirmation"
           type="password"
           component={renderTextField}
-          placeholder="Подтвердите новый пароль"
-          title="Подтвердите новый пароль"
+          placeholder={lang.changePassword.confirmPasswordFieldPlaceholder}
+          title={lang.changePassword.confirmPasswordField}
           className="form-field"
         />
       </div>
       <div className="button">
         <Button dense color="primary" type="submit" className="next" disabled={props.invalid}>
-          Изменить пароль <Send className="submit-icon" />
+          {lang.changePassword.submitPassword} <Send className="submit-icon" />
         </Button>
       </div>
     </form>
   );
 };
 
-export default reduxForm({
+export default reduxForm<any, any>({
   form: 'EnterPassword',
   validate
 })(EnterPassword);

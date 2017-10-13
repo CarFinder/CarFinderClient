@@ -6,7 +6,8 @@ import {
   USER_SIGN_IN_SUCCESS,
   USER_SIGN_UP,
   USER_SIGN_UP_SUCCESS,
-  USER_CHANGE_PASSWORD
+  USER_CHANGE_PASSWORD,
+  SET_LANGUAGE
 } from '../actions/actionTypes';
 import { UserAction } from '../actions/userActions';
 import { InitialState, User } from '../models/userModel';
@@ -32,6 +33,11 @@ export default function userReducer(state: InitialState = {}, action: UserAction
       return state;
     case USER_CHANGE_PASSWORD:
       return state;
+    case SET_LANGUAGE:
+      return {
+        ...state,
+        interfaceLanguage: action.payload
+      };
     default:
       return state;
   }
