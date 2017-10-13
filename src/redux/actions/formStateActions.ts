@@ -15,7 +15,12 @@ export interface SetSearchError {
   payload: any;
 }
 
-export type FormStateAction = SetLoading | SetAuthError | SetSearchError;
+export interface SetSuccessMessage {
+  type: actionTypes.SET_SUCCESS_MESSAGE;
+  payload: string;
+}
+
+export type FormStateAction = SetLoading | SetAuthError | SetSearchError | SetSuccessMessage;
 
 export function setLoading(loadingState: boolean): SetLoading {
   return {
@@ -35,5 +40,12 @@ export function setSearchError(error: any): SetSearchError {
   return {
     type: actionTypes.SET_SEARCH_ERROR,
     payload: error
+  };
+}
+
+export function SetSuccessMessage(message: string): SetSuccessMessage {
+  return {
+    type: actionTypes.SET_SUCCESS_MESSAGE,
+    payload: message
   };
 }
