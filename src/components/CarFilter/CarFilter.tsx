@@ -5,7 +5,7 @@ import './style.less';
 export interface Props {
   handleClearError: () => void;
   handleClearFilters: () => void;
-  handleFetchFilterValues: () => void;
+  handleFetchMarksValues: () => void;
   handleSetCurrentFilter: (payload: any) => void;
   loading: boolean;
   searchError: any;
@@ -32,6 +32,28 @@ export interface State {
 }
 
 class CarFilter extends React.Component<Props, State> {
+  constructor() {
+    super();
+    this.state = {
+      data: {
+        mark: '',
+        model: '',
+        bodyType: '',
+        yearFrom: 0,
+        yearTo: 0,
+        priceForm: 0,
+        priceTo: 0,
+        kmsFrom: 0,
+        kmsTo: 0
+      },
+      errors: null
+    };
+  }
+  public componentDidMount() {
+    this.props.handleClearError();
+    this.props.handleClearFilters();
+    this.props.handleFetchMarksValues();
+  }
   public render() {
     return <div />;
   }

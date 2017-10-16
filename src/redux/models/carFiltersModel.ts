@@ -3,7 +3,6 @@ export type CarFilter = {
     marks?: string[];
     models?: string[];
     bodyTypes?: string[];
-    yearsRange?: number[];
   };
   currentFilter?: {
     mark?: string;

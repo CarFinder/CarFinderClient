@@ -7,7 +7,7 @@ import './style.less';
 export interface Props {
   handleClearError: () => void;
   handleClearFilters: () => void;
-  handleFetchFilterValues: () => void;
+  handleFetchMarksValues: () => void;
   handleSetCurrentFilter: (payload: any) => void;
   loading: boolean;
   searchError?: any;
@@ -27,7 +27,7 @@ const Catalogue = (props: Props) => {
     handleClearError,
     handleClearFilters,
     handleSetCurrentFilter,
-    handleFetchFilterValues
+    handleFetchMarksValues
   } = props;
 
   return (
@@ -36,7 +36,7 @@ const Catalogue = (props: Props) => {
         language={language}
         handleClearError={handleClearError}
         handleClearFilters={handleClearFilters}
-        handleFetchFilterValues={handleFetchFilterValues}
+        handleFetchMarksValues={handleFetchMarksValues}
         handleSetCurrentFilter={handleSetCurrentFilter}
         carFilters={carFilters}
         searchError={searchError}

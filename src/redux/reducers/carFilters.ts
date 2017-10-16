@@ -1,8 +1,8 @@
 import {
   CLEAR_CAR_FILTERS,
-  FETCH_FILTER_VALUES,
+  FETCH_MARKS_VALUES,
   SET_CURRENT_FILTER,
-  SET_FILTER_VALUES
+  SET_MARKS_VALUES
 } from '../actions/actionTypes';
 import { InitialState } from '../models/carFiltersModel';
 
@@ -10,7 +10,6 @@ const initialState = {
   filterValues: {
     marks: [],
     models: [],
-    yearsRange: [],
     bodyTypes: []
   },
   currentFilter: {
@@ -33,12 +32,15 @@ export default function carFiltersReducer(
   switch (action.type) {
     case CLEAR_CAR_FILTERS:
       return {};
-    case FETCH_FILTER_VALUES:
+    case FETCH_MARKS_VALUES:
       return state;
-    case SET_FILTER_VALUES: {
+    case SET_MARKS_VALUES: {
       return {
         ...state,
-        filterValues: action.payload
+        filterValues: {
+          ...state.filterValues,
+          marks: action.payload
+        }
       };
     }
     case SET_CURRENT_FILTER: {

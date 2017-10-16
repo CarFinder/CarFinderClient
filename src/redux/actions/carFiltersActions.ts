@@ -29,15 +29,21 @@ export interface SetCurrentFilter {
   };
 }
 
-export interface FetchFilterValues {
-  type: actionTypes.FETCH_FILTER_VALUES;
+export interface FetchMarksValues {
+  type: actionTypes.FETCH_MARKS_VALUES;
+}
+
+export interface SetMarksValues {
+  type: actionTypes.SET_MARKS_VALUES;
+  payload: string[];
 }
 
 export type CarFiltersActions =
   | ClearFilters
   | SetFilterValues
   | SetCurrentFilter
-  | FetchFilterValues;
+  | FetchMarksValues
+  | SetMarksValues;
 
 export function clearFilters(): ClearFilters {
   return { type: actionTypes.CLEAR_CAR_FILTERS };
@@ -57,8 +63,15 @@ export function setCurrentFilter(payload: any): SetCurrentFilter {
   };
 }
 
-export function fetchFilterValues(): FetchFilterValues {
+export function fetchMarksValues(): FetchMarksValues {
   return {
-    type: actionTypes.FETCH_FILTER_VALUES
+    type: actionTypes.FETCH_MARKS_VALUES
+  };
+}
+
+export function setMarksValues(payload: string[]): SetMarksValues {
+  return {
+    type: actionTypes.SET_MARKS_VALUES,
+    payload
   };
 }

@@ -7,7 +7,7 @@ import { InitialState } from '../redux/models/userModel';
 interface PropsInterface {
   handleClearError: () => void;
   handleClearFilters: () => void;
-  handleFetchFilterValues: () => void;
+  handleFetchMarksValues: () => void;
   handleSetCurrentFilter: (payload: any) => void;
 }
 
@@ -31,7 +31,7 @@ const mapStateToProps = (state: any) => ({
 const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
   handleClearError: () => dispatch(formStateActions.setSearchError('')),
   handleClearFilters: () => dispatch(carFiltersActions.clearFilters()),
-  handleFetchFilterValues: () => dispatch(carFiltersActions.fetchFilterValues()),
+  handleFetchMarksValues: () => dispatch(carFiltersActions.fetchMarksValues()),
   handleSetCurrentFilter: (payload: any) => dispatch(carFiltersActions.setCurrentFilter(payload))
 });
 
