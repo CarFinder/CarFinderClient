@@ -39,3 +39,6 @@ export type SET_SUCCESS_MESSAGE = typeof SET_SUCCESS_MESSAGE;
 
 export const SET_LANGUAGE = 'SET_LANGUAGE';
 export type SET_LANGUAGE = typeof SET_LANGUAGE;
+
+export const SET_FILTER_RESULTS = 'SET_FILTER_RESULTS';
+export type SET_FILTER_RESULTS = typeof SET_FILTER_RESULTS;
