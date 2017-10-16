@@ -1,13 +1,13 @@
 import {
+  SET_LANGUAGE,
+  USER_CHANGE_PASSWORD,
   USER_CONFIRM_EMAIL,
   USER_CONFIRM_EMAIL_SUCCESS,
   USER_LOGGED_OUT,
   USER_SIGN_IN,
   USER_SIGN_IN_SUCCESS,
   USER_SIGN_UP,
-  USER_SIGN_UP_SUCCESS,
-  USER_CHANGE_PASSWORD,
-  SET_LANGUAGE
+  USER_SIGN_UP_SUCCESS
 } from '../actions/actionTypes';
 import { UserAction } from '../actions/userActions';
 import { InitialState, User } from '../models/userModel';

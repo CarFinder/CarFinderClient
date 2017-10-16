@@ -6,7 +6,22 @@ export interface Props {
   language: string;
 }
 
-class CarFilter extends React.Component<Props, any> {
+export interface State {
+  data: {
+    mark: string;
+    model: string;
+    bodyType: string;
+    yearFrom: number;
+    yearTo: number;
+    priceForm: number;
+    priceTo: number;
+    kmsFrom: number;
+    kmsTo: number;
+  };
+  errors: any;
+}
+
+class CarFilter extends React.Component<Props, State> {
   public render() {
     return <div />;
   }
