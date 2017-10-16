@@ -18,7 +18,7 @@ const Catalogue = (props: Props) => {
   return (
     <div>
       <CarFilter language={language} />
-      <FilterResults language={language} filterResults={filterResults} />
+      <FilterResults filterResults={filterResults} />
     </div>
   );
 };
