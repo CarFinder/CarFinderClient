@@ -1,0 +1,50 @@
+.carfilters-form {
+  margin: 100px 50px;
+}
+
+.form {
+  &-fullwidth-fields {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-fields {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  &-container {
+    flex-grow: 1;
+    // min-width: 30%;
+    text-align: center;
+    padding: 2rem;
+    // @media screen and (max-width: 1600px) {
+    //   min-width: 50%;
+    // }
+    // @media screen and (max-width: 800px) {
+    //   min-width: 80%;
+    // }
+    // @media screen and (max-width: 500px) {
+    //   min-width: 100%;
+    // }
+  }
+
+  &-title,
+  &-links {
+    display: flex;
+    justify-content: center;
+  }
+
+  &-title,
+  &-content {
+    padding: 10px 100px;
+  }
+
+  &-field {
+    flex: 1;
+  }
+  &-control {
+    margin-right: 10px;
+  }
+}
