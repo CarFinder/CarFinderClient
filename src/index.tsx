@@ -1,4 +1,5 @@
 import 'index.less';
+import jwt_decode from 'jwt-decode';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -15,10 +16,18 @@ import ChangePassword from './containers/ChangePassword';
 import EmailConfirmation from './containers/EmailConfirmation';
 import Signin from './containers/Signin';
 import Signup from './containers/Signup';
+import * as actions from './redux/actions/userActions';
 import rootReducer from './redux/reducers';
 import rootSaga from './redux/sagas/index';
+import setAuthorizationHeader from './utils/axiosHeader';
 
 const App = () => {
+  if (localStorage.jwt) {
+    const payload = jwt_decode(localStorage.jwt);
+    setAuthorizationHeader(localStorage.jwt);
+    store.dispatch(actions.userLoggedIn(payload));
+  }
+
   return (
     <div>
       <NavBar />
