@@ -1,4 +1,9 @@
-import { CLEAR_CAR_FILTERS, SET_CURRENT_FILTER, SET_FILTER_VALUES } from '../actions/actionTypes';
+import {
+  CLEAR_CAR_FILTERS,
+  FETCH_FILTER_VALUES,
+  SET_CURRENT_FILTER,
+  SET_FILTER_VALUES
+} from '../actions/actionTypes';
 import { InitialState } from '../models/carFiltersModel';
 
 const initialState = {
@@ -28,6 +33,8 @@ export default function carFiltersReducer(
   switch (action.type) {
     case CLEAR_CAR_FILTERS:
       return {};
+    case FETCH_FILTER_VALUES:
+      return state;
     case SET_FILTER_VALUES: {
       return {
         ...state,

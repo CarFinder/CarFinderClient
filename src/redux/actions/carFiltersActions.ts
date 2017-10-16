@@ -29,7 +29,15 @@ export interface SetCurrentFilter {
   };
 }
 
-export type CarFiltersActions = ClearFilters | SetFilterValues | SetCurrentFilter;
+export interface FetchFilterValues {
+  type: actionTypes.FETCH_FILTER_VALUES;
+}
+
+export type CarFiltersActions =
+  | ClearFilters
+  | SetFilterValues
+  | SetCurrentFilter
+  | FetchFilterValues;
 
 export function clearFilters(): ClearFilters {
   return { type: actionTypes.CLEAR_CAR_FILTERS };
@@ -46,5 +54,11 @@ export function setCurrentFilter(payload: any): SetCurrentFilter {
   return {
     type: actionTypes.SET_CURRENT_FILTER,
     payload
+  };
+}
+
+export function fetchFilterValues(): FetchFilterValues {
+  return {
+    type: actionTypes.FETCH_FILTER_VALUES
   };
 }

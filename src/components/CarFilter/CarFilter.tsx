@@ -3,7 +3,17 @@ import interfaceLanguage from '../../utils/interfaceLanguage';
 import './style.less';
 
 export interface Props {
+  handleClearError: () => void;
+  handleClearFilters: () => void;
+  handleFetchFilterValues: () => void;
+  handleSetCurrentFilter: (payload: any) => void;
+  loading: boolean;
+  searchError: any;
   language: string;
+  carFilters: {
+    filterValues: any;
+    currentFilter: any;
+  };
 }
 
 export interface State {

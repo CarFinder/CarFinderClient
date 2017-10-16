@@ -6,16 +6,42 @@ import './style.less';
 
 export interface Props {
   handleClearError: () => void;
+  handleClearFilters: () => void;
+  handleFetchFilterValues: () => void;
+  handleSetCurrentFilter: (payload: any) => void;
   loading: boolean;
   searchError?: any;
   language: string;
+  carFilters: {
+    filterValues: any;
+    currentFilter: any;
+  };
 }
 
 const Catalogue = (props: Props) => {
-  const { language } = props;
+  const {
+    language,
+    loading,
+    searchError,
+    carFilters,
+    handleClearError,
+    handleClearFilters,
+    handleSetCurrentFilter,
+    handleFetchFilterValues
+  } = props;
+
   return (
     <div>
-      <CarFilter language={language} />
+      <CarFilter
+        language={language}
+        handleClearError={handleClearError}
+        handleClearFilters={handleClearFilters}
+        handleFetchFilterValues={handleFetchFilterValues}
+        handleSetCurrentFilter={handleSetCurrentFilter}
+        carFilters={carFilters}
+        searchError={searchError}
+        loading={loading}
+      />
       <FilterResults language={language} />
     </div>
   );
