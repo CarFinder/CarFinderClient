@@ -1,7 +1,9 @@
 import {
   CLEAR_CAR_FILTERS,
+  FETCH_BODY_TYPES_VALUES,
   FETCH_MARKS_VALUES,
   FETCH_MODELS_VALUES,
+  SET_BODY_TYPES_VALUES,
   SET_CURRENT_FILTER,
   SET_MARKS_VALUES,
   SET_MODELS_VALUES
@@ -53,6 +55,17 @@ export default function carFiltersReducer(
         filterValues: {
           ...state.filterValues,
           models: action.payload
+        }
+      };
+    }
+    case FETCH_BODY_TYPES_VALUES:
+      return state;
+    case SET_BODY_TYPES_VALUES: {
+      return {
+        ...state,
+        filterValues: {
+          ...state.filterValues,
+          bodyTypes: action.payload
         }
       };
     }

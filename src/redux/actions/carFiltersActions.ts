@@ -47,6 +47,15 @@ export interface SetModelsValues {
   payload: any[];
 }
 
+export interface FetchBodyTypesValues {
+  type: actionTypes.FETCH_BODY_TYPES_VALUES;
+}
+
+export interface SetBodyTypesValues {
+  type: actionTypes.SET_BODY_TYPES_VALUES;
+  payload: any[];
+}
+
 export type CarFiltersActions =
   | ClearFilters
   | SetFilterValues
@@ -54,7 +63,9 @@ export type CarFiltersActions =
   | FetchMarksValues
   | SetMarksValues
   | FetchModelsValues
-  | SetModelsValues;
+  | SetModelsValues
+  | FetchBodyTypesValues
+  | SetBodyTypesValues;
 
 export function clearFilters(): ClearFilters {
   return { type: actionTypes.CLEAR_CAR_FILTERS };
@@ -97,6 +108,19 @@ export function fetchModelsValues(mark: string): FetchModelsValues {
 export function setModelsValues(payload: any[]): SetModelsValues {
   return {
     type: actionTypes.SET_MODELS_VALUES,
+    payload
+  };
+}
+
+export function fetchBodyTypesValues(): FetchBodyTypesValues {
+  return {
+    type: actionTypes.FETCH_BODY_TYPES_VALUES
+  };
+}
+
+export function setBodyTypesValues(payload: any[]): SetBodyTypesValues {
+  return {
+    type: actionTypes.SET_BODY_TYPES_VALUES,
     payload
   };
 }

@@ -8,6 +8,7 @@ export interface Props {
   handleClearError: () => void;
   handleClearFilters: () => void;
   handleFetchMarksValues: () => void;
+  handleFetchBodyTypesValues: () => void;
   handleFetchModelsValues: (mark: string) => void;
   handleSetCurrentFilter: (payload: any) => void;
   loading: boolean;
@@ -29,6 +30,7 @@ const Catalogue = (props: Props) => {
     handleClearFilters,
     handleSetCurrentFilter,
     handleFetchMarksValues,
+    handleFetchBodyTypesValues,
     handleFetchModelsValues
   } = props;
 
@@ -41,6 +43,7 @@ const Catalogue = (props: Props) => {
         handleFetchMarksValues={handleFetchMarksValues}
         handleFetchModelsValues={handleFetchModelsValues}
         handleSetCurrentFilter={handleSetCurrentFilter}
+        handleFetchBodyTypesValues={handleFetchBodyTypesValues}
         carFilters={carFilters}
         searchError={searchError}
         loading={loading}

@@ -41,6 +41,25 @@ const models = [
   }
 ];
 
+const bodyTypes = [
+  {
+    id: 1,
+    name: 'Body Type 1'
+  },
+  {
+    id: 2,
+    name: 'Body Type 2'
+  },
+  {
+    id: 3,
+    name: 'Body Type 3'
+  },
+  {
+    id: 4,
+    name: 'Body Type 4'
+  }
+];
+
 function* callFetchMarks(action: any) {
   yield put({ type: actionTypes.SET_LOADING, payload: true });
   yield put({ type: actionTypes.SET_SEARCH_ERROR, payload: '' });
@@ -67,7 +86,21 @@ function* callFetchModels(action: any) {
   }
 }
 
+function* callFetchBodyTypes(action: any) {
+  yield put({ type: actionTypes.SET_LOADING, payload: true });
+  yield put({ type: actionTypes.SET_SEARCH_ERROR, payload: '' });
+  try {
+    // const response = yield call(api.filters.fetchBodyTypes);
+    yield put({ type: actionTypes.SET_LOADING, payload: false });
+    yield put({ type: actionTypes.SET_BODY_TYPES_VALUES, payload: bodyTypes });
+  } catch (e) {
+    yield put({ type: actionTypes.SET_SEARCH_ERROR, payload: e.response.data.error });
+    yield put({ type: actionTypes.SET_LOADING, payload: false });
+  }
+}
+
 export default function* watchCarFilters(): SagaIterator {
   yield takeEvery(actionTypes.FETCH_MARKS_VALUES, callFetchMarks);
+  yield takeEvery(actionTypes.FETCH_BODY_TYPES_VALUES, callFetchBodyTypes);
   yield takeEvery(actionTypes.FETCH_MODELS_VALUES, callFetchModels);
 }

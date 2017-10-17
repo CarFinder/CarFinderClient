@@ -16,6 +16,7 @@ export interface Props {
   handleClearError: () => void;
   handleClearFilters: () => void;
   handleFetchMarksValues: () => void;
+  handleFetchBodyTypesValues: () => void;
   handleFetchModelsValues: (mark: string) => void;
   handleSetCurrentFilter: (payload: any) => void;
   loading: boolean;
@@ -64,6 +65,7 @@ class CarFilter extends React.Component<Props, State> {
     this.props.handleClearError();
     this.props.handleClearFilters();
     this.props.handleFetchMarksValues();
+    this.props.handleFetchBodyTypesValues();
   }
 
   public onChange = (name: string) => (e: any) => {
@@ -147,7 +149,7 @@ class CarFilter extends React.Component<Props, State> {
                         field="bodyType"
                         label="Body Type"
                         value={data.bodyType}
-                        options={this.props.carFilters.filterValues.marks}
+                        options={this.props.carFilters.filterValues.bodyTypes}
                         onChange={this.onChange}
                         error={errors.bodyType}
                       />
