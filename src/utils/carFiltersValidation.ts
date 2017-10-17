@@ -50,9 +50,11 @@ export const validateForm = (values: FormData): any => {
     errors.yearTo = 'Please fill in a valid year';
   }
   if (values.yearFrom && values.yearTo && !validatePairValues(values.yearFrom, values.yearTo)) {
+    errors.yearFrom = 'Invalid parameters';
     errors.yearTo = 'Invalid parameters';
   }
   if (values.priceFrom && values.priceTo && !validatePairValues(values.priceFrom, values.priceTo)) {
+    errors.priceFrom = 'Invalid parameters';
     errors.priceTo = 'Invalid parameters';
   }
   if (values.kmsFrom && values.kmsTo && !validatePairValues(values.kmsFrom, values.kmsTo)) {
