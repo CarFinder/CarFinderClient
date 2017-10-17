@@ -11,13 +11,3 @@ export const transformDataForSignup = (userData: UserDataForSignup) => {
     password: userData.password
   };
 };
-
-export const getYearsRange = () => {
-  const currentYear = new Date().getFullYear();
-  let startYear: number = 1960;
-  const years: number[] = [];
-  while (startYear <= currentYear) {
-    years.push(startYear++);
-  }
-  return years;
-};

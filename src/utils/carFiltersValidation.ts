@@ -4,7 +4,7 @@ interface FormData {
   bodyType: string;
   yearFrom: number;
   yearTo: number;
-  priceForm: number;
+  priceFrom: number;
   priceTo: number;
   kmsFrom: number;
   kmsTo: number;

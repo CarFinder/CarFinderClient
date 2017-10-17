@@ -1,18 +1,15 @@
 import Save from 'material-ui-icons/Save';
 import Search from 'material-ui-icons/Search';
 import Button from 'material-ui/Button';
-import { FormControl, FormHelperText } from 'material-ui/Form';
 import Grid from 'material-ui/Grid';
-import Input, { InputLabel } from 'material-ui/Input';
-import { MenuItem } from 'material-ui/Menu';
 import Paper from 'material-ui/Paper';
 import { CircularProgress } from 'material-ui/Progress';
-import Select from 'material-ui/Select';
 import Typography from 'material-ui/Typography';
 import * as React from 'react';
 import { validateForm, validateMark } from '../../utils/carFiltersValidation';
 import interfaceLanguage from '../../utils/interfaceLanguage';
-import { getYearsRange } from '../../utils/utils';
+import SelectInput from '../Common/FormInputs/SelectInput';
+import TextInput from '../Common/FormInputs/TextInput';
 import './style.less';
 
 export interface Props {
@@ -36,13 +33,12 @@ export interface State {
     bodyType: string;
     yearFrom: number;
     yearTo: number;
-    priceForm: number;
+    priceFrom: number;
     priceTo: number;
     kmsFrom: number;
     kmsTo: number;
   };
   errors: any;
-  yearsRange: number[];
 }
 
 class CarFilter extends React.Component<Props, State> {
@@ -55,13 +51,12 @@ class CarFilter extends React.Component<Props, State> {
         bodyType: '',
         yearFrom: 0,
         yearTo: 0,
-        priceForm: 0,
+        priceFrom: 0,
         priceTo: 0,
         kmsFrom: 0,
         kmsTo: 0
       },
-      errors: {},
-      yearsRange: getYearsRange()
+      errors: {}
     };
   }
   public componentDidMount() {
@@ -127,135 +122,82 @@ class CarFilter extends React.Component<Props, State> {
                   )}
                   <form className="form">
                     <div className="form-fullwidth-fields">
-                      <FormControl className="form-field">
-                        <InputLabel htmlFor="mark">Maker</InputLabel>
-                        <Select
-                          value={data.mark}
-                          onChange={this.onChange('mark')}
-                          input={<Input id="mark" name="mark" className="form-control" />}
-                        >
-                          {this.props.carFilters.filterValues.marks.map((marks: string) => {
-                            return (
-                              <MenuItem key={marks} value={marks}>
-                                {marks}
-                              </MenuItem>
-                            );
-                          })}
-                        </Select>
-                        {errors.mark && <FormHelperText>{errors.mark}</FormHelperText>}
-                      </FormControl>
-                      <FormControl className="form-field">
-                        <InputLabel htmlFor="model">Model</InputLabel>
-                        <Select
-                          value={data.model}
-                          onChange={this.onChange('model')}
-                          input={<Input id="model" name="model" className="form-control" />}
-                        >
-                          {this.props.carFilters.filterValues.marks.map((marks: string) => {
-                            return (
-                              <MenuItem key={marks} value={marks}>
-                                {marks}
-                              </MenuItem>
-                            );
-                          })}
-                        </Select>
-                        {errors.model && <FormHelperText>{errors.model}</FormHelperText>}
-                      </FormControl>
+                      <SelectInput
+                        field="mark"
+                        label="Maker"
+                        value={data.mark}
+                        options={this.props.carFilters.filterValues.marks}
+                        onChange={this.onChange}
+                        error={errors.mark}
+                      />
+                      <SelectInput
+                        field="model"
+                        label="Model"
+                        value={data.model}
+                        options={this.props.carFilters.filterValues.marks}
+                        onChange={this.onChange}
+                        error={errors.model}
+                      />
                     </div>
                     <div className="form-fields">
-                      <FormControl className="form-field">
-                        <InputLabel htmlFor="bodyType">Body Type</InputLabel>
-                        <Select
-                          value={data.bodyType}
-                          onChange={this.onChange('bodyType')}
-                          input={<Input id="bodyType" name="bodyType" className="form-control" />}
-                        >
-                          {this.props.carFilters.filterValues.marks.map((marks: string) => {
-                            return (
-                              <MenuItem key={marks} value={marks}>
-                                {marks}
-                              </MenuItem>
-                            );
-                          })}
-                        </Select>
-                        {errors.bodyType && <FormHelperText>{errors.bodyType}</FormHelperText>}
-                      </FormControl>
-                      <FormControl className="form-field">
-                        <InputLabel htmlFor="yearFrom">Year From</InputLabel>
-                        <Select
-                          value={data.yearFrom}
-                          onChange={this.onChange('yearFrom')}
-                          input={<Input id="yearFrom" name="yearFrom" className="form-control" />}
-                        >
-                          {this.state.yearsRange.map((year: number) => {
-                            return (
-                              <MenuItem key={year} value={year}>
-                                {year}
-                              </MenuItem>
-                            );
-                          })}
-                        </Select>
-                        {errors.yearFrom && <FormHelperText>{errors.yearFrom}</FormHelperText>}
-                      </FormControl>
-                      <FormControl className="form-field">
-                        <InputLabel htmlFor="yearTo">Year To</InputLabel>
-                        <Select
-                          value={data.yearTo}
-                          onChange={this.onChange('yearTo')}
-                          input={<Input id="yearTo" name="yearTo" className="form-control" />}
-                        >
-                          {this.state.yearsRange.map((year: number) => {
-                            return (
-                              <MenuItem key={year} value={year}>
-                                {year}
-                              </MenuItem>
-                            );
-                          })}
-                        </Select>
-                        {errors.yearTo && <FormHelperText>{errors.yearTo}</FormHelperText>}
-                      </FormControl>
-                      <FormControl className="form-field">
-                        <InputLabel htmlFor="priceForm">Price From, BYN</InputLabel>
-                        <Input
-                          id="priceForm"
-                          name="priceForm"
-                          className="form-control"
-                          onChange={this.onChange('priceForm')}
-                        />
-                        {errors.priceForm && <FormHelperText>{errors.priceForm}</FormHelperText>}
-                      </FormControl>
-                      <FormControl className="form-field">
-                        <InputLabel htmlFor="priceTo">Price To, BYN</InputLabel>
-                        <Input
-                          id="priceTo"
-                          name="priceTo"
-                          className="form-control"
-                          onChange={this.onChange('priceTo')}
-                        />
-                        {errors.priceTo && <FormHelperText>{errors.priceTo}</FormHelperText>}
-                      </FormControl>
+                      <SelectInput
+                        field="bodyType"
+                        label="Body Type"
+                        value={data.bodyType}
+                        options={this.props.carFilters.filterValues.marks}
+                        onChange={this.onChange}
+                        error={errors.bodyType}
+                      />
+                      <TextInput
+                        field="yearFrom"
+                        label="Year From"
+                        type="number"
+                        value={data.yearFrom}
+                        onChange={this.onChange}
+                        error={errors.yearFrom}
+                      />
+                      <TextInput
+                        field="yearTo"
+                        label="Year To"
+                        type="number"
+                        value={data.yearTo}
+                        onChange={this.onChange}
+                        error={errors.yearTo}
+                      />
+                      <TextInput
+                        field="priceFrom"
+                        label="Price From"
+                        type="number"
+                        value={data.priceFrom}
+                        onChange={this.onChange}
+                        error={errors.priceFrom}
+                      />
+                      <TextInput
+                        field="priceTo"
+                        label="Price To"
+                        type="number"
+                        value={data.priceTo}
+                        onChange={this.onChange}
+                        error={errors.priceTo}
+                      />
+                      <TextInput
+                        field="kmsFrom"
+                        label="KMs From"
+                        type="number"
+                        value={data.kmsFrom}
+                        onChange={this.onChange}
+                        error={errors.kmsFrom}
+                      />
+                      <TextInput
+                        field="kmsTo"
+                        label="KMs To"
+                        type="number"
+                        value={data.kmsTo}
+                        onChange={this.onChange}
+                        error={errors.kmsTo}
+                      />
                     </div>
-                    <div className="form-fields">
-                      <FormControl className="form-field">
-                        <InputLabel htmlFor="kmsFrom">KMs From</InputLabel>
-                        <Input
-                          id="kmsFrom"
-                          name="kmsFrom"
-                          className="form-control"
-                          onChange={this.onChange('kmsFrom')}
-                        />
-                        {errors.kmsFrom && <FormHelperText>{errors.kmsFrom}</FormHelperText>}
-                      </FormControl>
-                      <FormControl className="form-field">
-                        <InputLabel htmlFor="kmsFrom">KMs to</InputLabel>
-                        <Input
-                          id="kmsTo"
-                          name="kmsTo"
-                          className="form-control"
-                          onChange={this.onChange('kmsTo')}
-                        />
-                        {errors.kmsTo && <FormHelperText>{errors.kmsTo}</FormHelperText>}
-                      </FormControl>
+                    <div className="form-fields pull-right">
                       <Button color="primary" type="button" className="form-control">
                         Save <Save />
                       </Button>
@@ -264,8 +206,8 @@ class CarFilter extends React.Component<Props, State> {
                       </Button>
                     </div>
                   </form>
-                  {loading && <CircularProgress size={50} />}
                 </Grid>
+                {loading && <CircularProgress size={50} />}
               </Paper>
             </Grid>
           </Grid>

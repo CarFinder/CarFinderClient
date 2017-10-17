@@ -2,6 +2,10 @@
   margin: 100px 50px;
 }
 
+.pull-right {
+  justify-content: flex-end;
+}
+
 .form {
   &-fullwidth-fields {
     display: flex;
@@ -16,18 +20,8 @@
 
   &-container {
     flex-grow: 1;
-    // min-width: 30%;
     text-align: center;
     padding: 2rem;
-    // @media screen and (max-width: 1600px) {
-    //   min-width: 50%;
-    // }
-    // @media screen and (max-width: 800px) {
-    //   min-width: 80%;
-    // }
-    // @media screen and (max-width: 500px) {
-    //   min-width: 100%;
-    // }
   }
 
   &-title,
@@ -39,12 +33,5 @@
   &-title,
   &-content {
     padding: 10px 100px;
-  }
-
-  &-field {
-    flex: 1;
-  }
-  &-control {
-    margin-right: 10px;
   }
 }
