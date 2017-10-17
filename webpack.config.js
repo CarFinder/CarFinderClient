@@ -12,7 +12,10 @@ module.exports = {
     path: path.resolve('./dist')
   },
   devServer: {
-    port: 3000,
+    port: 3001,
+    proxy: {
+      '/api': 'http://localhost:2999'
+    },
     historyApiFallback: true,
     inline: true,
     stats: {
