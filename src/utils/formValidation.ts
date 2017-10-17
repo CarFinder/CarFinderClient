@@ -1,3 +1,5 @@
+import language from './interfaceLanguage';
+
 export interface SignupFormData {
   name: string;
   email: string;
@@ -10,26 +12,31 @@ const passwordRegExp = new RegExp('^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&
 const emailRegExp = new RegExp('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$');
 
 export const validateForm = (values: SignupFormData): object => {
+  const lang =
+    localStorage.getItem('interfaceLanguage') === 'ru'
+      ? language.ru.validation
+      : language.en.validation;
+
   const errors: any = {};
   if (!values.name) {
-    errors.name = 'Поле обязательно для заполнения';
+    errors.name = lang.required;
   } else if (!nameRegExp.test(values.name)) {
-    errors.name = 'Неверный формат имени';
+    errors.name = lang.invalidName;
   }
   if (!values.email) {
-    errors.email = 'Поле обязательно для заполнения';
+    errors.email = lang.required;
   } else if (!emailRegExp.test(values.email)) {
-    errors.email = 'Неверный формат е-мэйла';
+    errors.email = lang.invalidEmail;
   }
   if (!values.password) {
-    errors.password = 'Поле обязательно для заполнения';
+    errors.password = lang.required;
   } else if (!passwordRegExp.test(values.password)) {
-    errors.password = 'Неверный формат пароля';
+    errors.password = lang.invalidPassword;
   }
   if (!values.passwordConfirmation) {
-    errors.passwordConfirmation = 'Поле обязательно для заполнения';
+    errors.passwordConfirmation = lang.required;
   } else if (values.passwordConfirmation !== values.password) {
-    errors.passwordConfirmation = 'Пароли должны совпадать';
+    errors.passwordConfirmation = lang.invalidPasswordConfirmation;
   }
   return errors;
 };
