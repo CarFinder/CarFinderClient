@@ -6,7 +6,7 @@ import TextField from 'material-ui/TextField';
 import Tooltip from 'material-ui/Tooltip';
 import * as React from 'react';
 import { Field, FormSubmitHandler, reduxForm } from 'redux-form';
-import { validateSignup as validate } from '../../../utils/signupValidation';
+import { validateForm as validate } from '../../../utils/formValidation';
 import interfaceLanguage from '../../../utils/interfaceLanguage';
 import '../style.less';
 
