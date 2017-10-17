@@ -11,6 +11,7 @@ interface PropsInterface {
   handleFetchModelsValues: (mark: string) => void;
   handleFetchBodyTypesValues: () => void;
   handleSetCurrentFilter: (payload: any) => void;
+  handeSetSortingParams: (payload: any) => void;
 }
 
 interface StateInterface {
@@ -20,6 +21,7 @@ interface StateInterface {
   carFilters: {
     filterValues: any;
     currentFilter: any;
+    sortingParams: any;
   };
 }
 
@@ -36,7 +38,8 @@ const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
   handleFetchMarksValues: () => dispatch(carFiltersActions.fetchMarksValues()),
   handleFetchBodyTypesValues: () => dispatch(carFiltersActions.fetchBodyTypesValues()),
   handleFetchModelsValues: (mark: string) => dispatch(carFiltersActions.fetchModelsValues(mark)),
-  handleSetCurrentFilter: (payload: any) => dispatch(carFiltersActions.setCurrentFilter(payload))
+  handleSetCurrentFilter: (payload: any) => dispatch(carFiltersActions.setCurrentFilter(payload)),
+  handeSetSortingParams: (payload: any) => dispatch(carFiltersActions.setSortingParams(payload))
 });
 
 export default connect<StateInterface, PropsInterface>(mapStateToProps, mapDispatchToProps)(

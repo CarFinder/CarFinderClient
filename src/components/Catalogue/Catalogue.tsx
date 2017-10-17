@@ -1,5 +1,6 @@
 import * as React from 'react';
 import CarFilter from '../CarFilter/CarFilter';
+import CarSorting from '../CarSorting/CarSorting';
 import FilterResults from '../FilterResults/FilterResults';
 
 import './style.less';
@@ -11,12 +12,14 @@ export interface Props {
   handleFetchBodyTypesValues: () => void;
   handleFetchModelsValues: (mark: string) => void;
   handleSetCurrentFilter: (payload: any) => void;
+  handeSetSortingParams: (payload: any) => void;
   loading: boolean;
   searchError?: any;
   language: string;
   carFilters: {
     filterValues: any;
     currentFilter: any;
+    sortingParams: any;
   };
 }
 
@@ -31,7 +34,8 @@ const Catalogue = (props: Props) => {
     handleSetCurrentFilter,
     handleFetchMarksValues,
     handleFetchBodyTypesValues,
-    handleFetchModelsValues
+    handleFetchModelsValues,
+    handeSetSortingParams
   } = props;
 
   return (
@@ -47,6 +51,10 @@ const Catalogue = (props: Props) => {
         carFilters={carFilters}
         searchError={searchError}
         loading={loading}
+      />
+      <CarSorting
+        sortingParams={carFilters.sortingParams}
+        handeSetSortingParams={handeSetSortingParams}
       />
       <FilterResults language={language} />
     </div>
