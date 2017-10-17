@@ -14,32 +14,41 @@ export const transformDataForSignup = (userData: UserDataForSignup) => {
   };
 };
 
-export const transformDataForSearch = (filtersData: FormDataForSearch) => {
-  const filter: any = {};
-  filter.markId = filtersData.markId;
+export const transformDataForSearch = (filtersData: FormDataForSearch, sortingParams: any) => {
+  const data: any = {};
+  data.filter.markId = filtersData.markId;
   if (filtersData.modelId) {
-    filter.modelId = filtersData.modelId;
+    data.filter.modelId = filtersData.modelId;
   }
   if (filtersData.bodyTypeId) {
-    filter.bodyTypeId = filtersData.bodyTypeId;
+    data.filter.bodyTypeId = filtersData.bodyTypeId;
   }
   if (filtersData.yearFrom) {
-    filter.yearFrom = filtersData.yearFrom;
+    data.filter.yearFrom = filtersData.yearFrom;
   }
   if (filtersData.yearTo) {
-    filter.yearTo = filtersData.yearTo;
+    data.filter.yearTo = filtersData.yearTo;
   }
   if (filtersData.priceFrom) {
-    filter.priceFrom = filtersData.priceFrom;
+    data.filter.priceFrom = filtersData.priceFrom;
   }
   if (filtersData.priceTo) {
-    filter.priceTo = filtersData.priceTo;
+    data.filter.priceTo = filtersData.priceTo;
   }
   if (filtersData.kmsFrom) {
-    filter.kmsFrom = filtersData.kmsFrom;
+    data.filter.kmsFrom = filtersData.kmsFrom;
   }
   if (filtersData.kmsTo) {
-    filter.kmsTo = filtersData.kmsTo;
+    data.filter.kmsTo = filtersData.kmsTo;
   }
-  return filter;
+  if (sortingParams.limit) {
+    data.limit = sortingParams.limit;
+  }
+  if (sortingParams.skip) {
+    data.skip = sortingParams.skip;
+  }
+  if (sortingParams.sort) {
+    data.sort = sortingParams.sort;
+  }
+  return data;
 };

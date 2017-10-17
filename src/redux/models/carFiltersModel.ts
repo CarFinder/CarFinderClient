@@ -15,6 +15,11 @@ export type CarFilter = {
     kmsFrom?: number;
     kmsTo?: number;
   };
+  sortingParams?: {
+    limit?: number;
+    skip?: number;
+    sort?: string;
+  };
 };
 
 export type InitialState = CarFilter;

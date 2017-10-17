@@ -6,7 +6,8 @@ import {
   SET_BODY_TYPES_VALUES,
   SET_CURRENT_FILTER,
   SET_MARKS_VALUES,
-  SET_MODELS_VALUES
+  SET_MODELS_VALUES,
+  SET_SORTING_PARAMS
 } from '../actions/actionTypes';
 import { InitialState } from '../models/carFiltersModel';
 
@@ -26,6 +27,11 @@ const initialState = {
     priceTo: 0,
     kmsFrom: 0,
     kmsTo: 0
+  },
+  sortingParams: {
+    limit: 0,
+    skip: 0,
+    sort: ''
   }
 };
 
@@ -73,6 +79,12 @@ export default function carFiltersReducer(
       return {
         ...state,
         currentFilter: action.payload
+      };
+    }
+    case SET_SORTING_PARAMS: {
+      return {
+        ...state,
+        sortingParams: action.payload
       };
     }
     default:

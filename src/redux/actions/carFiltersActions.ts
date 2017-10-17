@@ -56,6 +56,11 @@ export interface SetBodyTypesValues {
   payload: any[];
 }
 
+export interface SetSortingParams {
+  type: actionTypes.SET_SORTING_PARAMS;
+  payload: any;
+}
+
 export type CarFiltersActions =
   | ClearFilters
   | SetFilterValues
@@ -65,7 +70,8 @@ export type CarFiltersActions =
   | FetchModelsValues
   | SetModelsValues
   | FetchBodyTypesValues
-  | SetBodyTypesValues;
+  | SetBodyTypesValues
+  | SetSortingParams;
 
 export function clearFilters(): ClearFilters {
   return { type: actionTypes.CLEAR_CAR_FILTERS };
@@ -121,6 +127,13 @@ export function fetchBodyTypesValues(): FetchBodyTypesValues {
 export function setBodyTypesValues(payload: any[]): SetBodyTypesValues {
   return {
     type: actionTypes.SET_BODY_TYPES_VALUES,
+    payload
+  };
+}
+
+export function setSortingParams(payload: any): SetSortingParams {
+  return {
+    type: actionTypes.SET_SORTING_PARAMS,
     payload
   };
 }
