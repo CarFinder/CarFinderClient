@@ -38,7 +38,7 @@ const SelectInput = ({
       {options &&
         options.map((option: any) => {
           return (
-            <MenuItem key={option.id} value={option.name}>
+            <MenuItem key={option.id} value={option.id}>
               {option.name}
             </MenuItem>
           );

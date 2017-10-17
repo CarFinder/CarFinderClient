@@ -30,9 +30,9 @@ export interface Props {
 
 export interface State {
   data: {
-    mark: string;
-    model: string;
-    bodyType: string;
+    markId: string;
+    modelId: string;
+    bodyTypeId: string;
     yearFrom: number;
     yearTo: number;
     priceFrom: number;
@@ -48,9 +48,9 @@ class CarFilter extends React.Component<Props, State> {
     super();
     this.state = {
       data: {
-        mark: '',
-        model: '',
-        bodyType: '',
+        markId: '',
+        modelId: '',
+        bodyTypeId: '',
         yearFrom: 0,
         yearTo: 0,
         priceFrom: 0,
@@ -98,12 +98,12 @@ class CarFilter extends React.Component<Props, State> {
   };
 
   public onSubmitMark = () => {
-    const errors = validateMark(this.state.data.mark);
+    const errors = validateMark(this.state.data.markId);
     this.setState({
       errors
     });
     if (Object.keys(errors).length === 0) {
-      this.props.handleFetchModelsValues(this.state.data.mark);
+      this.props.handleFetchModelsValues(this.state.data.markId);
     }
   };
 
@@ -123,35 +123,35 @@ class CarFilter extends React.Component<Props, State> {
                       Error here
                     </Typography>
                   )}
-                  <form className="form">
+                  <form className="form" onSubmit={this.onSubmit}>
                     <div className="form-fullwidth-fields">
                       <SelectInput
-                        field="mark"
+                        field="markId"
                         label="Maker"
-                        value={data.mark}
+                        value={data.markId}
                         options={this.props.carFilters.filterValues.marks}
                         onChange={this.onChange}
                         onBlur={this.onSubmitMark}
-                        error={errors.mark}
+                        error={errors.markId}
                       />
                       <SelectInput
-                        field="model"
+                        field="modelId"
                         label="Model"
-                        value={data.model}
+                        value={data.modelId}
                         options={this.props.carFilters.filterValues.models}
                         onChange={this.onChange}
                         disabled={!this.props.carFilters.filterValues.models}
-                        error={errors.model}
+                        error={errors.modelId}
                       />
                     </div>
                     <div className="form-fields">
                       <SelectInput
-                        field="bodyType"
+                        field="bodyTypeId"
                         label="Body Type"
-                        value={data.bodyType}
+                        value={data.bodyTypeId}
                         options={this.props.carFilters.filterValues.bodyTypes}
                         onChange={this.onChange}
-                        error={errors.bodyType}
+                        error={errors.bodyTypeId}
                       />
                       <TextInput
                         field="yearFrom"
