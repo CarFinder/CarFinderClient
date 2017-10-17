@@ -7,28 +7,43 @@ import './style.less';
 
 interface Props {
   onChange: (name: string) => any;
+  onBlur?: () => any;
   field: string;
   label: string;
   value: any;
-  options: string[];
+  disabled?: boolean;
+  options: any[];
   error?: string;
 }
 
-const SelectInput = ({ field, label, value, error, options, onChange }: Props) => (
+const SelectInput = ({
+  field,
+  label,
+  value,
+  error,
+  options,
+  onChange,
+  onBlur,
+  disabled
+}: Props) => (
   <FormControl className="form-field" error={!!error}>
     <InputLabel htmlFor={field}>{label}</InputLabel>
     <Select
       value={value}
       onChange={onChange(field)}
+      onBlur={onBlur}
+      disabled={disabled}
       input={<Input id={field} name={field} className="form-control" />}
     >
-      {options.map((option: string) => {
-        return (
-          <MenuItem key={option} value={option}>
-            {option}
-          </MenuItem>
-        );
-      })}
+      {options &&
+        options.map((option: any) => {
+          return (
+            <MenuItem key={option.id} value={option.name}>
+              {option.name}
+            </MenuItem>
+          );
+        })}
+      {!options && <MenuItem value={'default'}>Please choose maker first</MenuItem>})}
     </Select>
     {error && <FormHelperText>{error}</FormHelperText>}
   </FormControl>

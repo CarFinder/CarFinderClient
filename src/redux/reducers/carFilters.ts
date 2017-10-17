@@ -1,8 +1,10 @@
 import {
   CLEAR_CAR_FILTERS,
   FETCH_MARKS_VALUES,
+  FETCH_MODELS_VALUES,
   SET_CURRENT_FILTER,
-  SET_MARKS_VALUES
+  SET_MARKS_VALUES,
+  SET_MODELS_VALUES
 } from '../actions/actionTypes';
 import { InitialState } from '../models/carFiltersModel';
 
@@ -40,6 +42,17 @@ export default function carFiltersReducer(
         filterValues: {
           ...state.filterValues,
           marks: action.payload
+        }
+      };
+    }
+    case FETCH_MODELS_VALUES:
+      return state;
+    case SET_MODELS_VALUES: {
+      return {
+        ...state,
+        filterValues: {
+          ...state.filterValues,
+          models: action.payload
         }
       };
     }

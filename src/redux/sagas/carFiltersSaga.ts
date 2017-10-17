@@ -3,7 +3,43 @@ import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
 import api from '../../api/api';
 import * as actionTypes from '../actions/actionTypes';
 
-const marks = ['Audi', 'BMW', 'Peugeot', 'Volkswagen'];
+const marks = [
+  {
+    id: 1,
+    name: 'Audi'
+  },
+  {
+    id: 2,
+    name: 'BMW'
+  },
+  {
+    id: 3,
+    name: 'Peugeot'
+  },
+  {
+    id: 4,
+    name: 'Volkswagen'
+  }
+];
+
+const models = [
+  {
+    id: 1,
+    name: 'Model 1'
+  },
+  {
+    id: 2,
+    name: 'Model 2'
+  },
+  {
+    id: 3,
+    name: 'Model 3'
+  },
+  {
+    id: 4,
+    name: 'Model 4'
+  }
+];
 
 function* callFetchMarks(action: any) {
   yield put({ type: actionTypes.SET_LOADING, payload: true });
@@ -13,11 +49,25 @@ function* callFetchMarks(action: any) {
     yield put({ type: actionTypes.SET_LOADING, payload: false });
     yield put({ type: actionTypes.SET_MARKS_VALUES, payload: marks });
   } catch (e) {
-    yield put({ type: actionTypes.SET_AUTH_ERROR, payload: e.response.data.error });
+    yield put({ type: actionTypes.SET_SEARCH_ERROR, payload: e.response.data.error });
+    yield put({ type: actionTypes.SET_LOADING, payload: false });
+  }
+}
+
+function* callFetchModels(action: any) {
+  yield put({ type: actionTypes.SET_LOADING, payload: true });
+  yield put({ type: actionTypes.SET_SEARCH_ERROR, payload: '' });
+  try {
+    // const response = yield call(api.filters.fetchModels, action.payload);
+    yield put({ type: actionTypes.SET_LOADING, payload: false });
+    yield put({ type: actionTypes.SET_MODELS_VALUES, payload: models });
+  } catch (e) {
+    yield put({ type: actionTypes.SET_SEARCH_ERROR, payload: e.response.data.error });
     yield put({ type: actionTypes.SET_LOADING, payload: false });
   }
 }
 
 export default function* watchCarFilters(): SagaIterator {
   yield takeEvery(actionTypes.FETCH_MARKS_VALUES, callFetchMarks);
+  yield takeEvery(actionTypes.FETCH_MODELS_VALUES, callFetchModels);
 }

@@ -16,6 +16,7 @@ export interface Props {
   handleClearError: () => void;
   handleClearFilters: () => void;
   handleFetchMarksValues: () => void;
+  handleFetchModelsValues: (mark: string) => void;
   handleSetCurrentFilter: (payload: any) => void;
   loading: boolean;
   searchError: any;
@@ -100,7 +101,7 @@ class CarFilter extends React.Component<Props, State> {
       errors
     });
     if (Object.keys(errors).length === 0) {
-      // fetch models here
+      this.props.handleFetchModelsValues(this.state.data.mark);
     }
   };
 
@@ -128,14 +129,16 @@ class CarFilter extends React.Component<Props, State> {
                         value={data.mark}
                         options={this.props.carFilters.filterValues.marks}
                         onChange={this.onChange}
+                        onBlur={this.onSubmitMark}
                         error={errors.mark}
                       />
                       <SelectInput
                         field="model"
                         label="Model"
                         value={data.model}
-                        options={this.props.carFilters.filterValues.marks}
+                        options={this.props.carFilters.filterValues.models}
                         onChange={this.onChange}
+                        disabled={!this.props.carFilters.filterValues.models}
                         error={errors.model}
                       />
                     </div>
@@ -153,7 +156,7 @@ class CarFilter extends React.Component<Props, State> {
                         label="Year From"
                         type="number"
                         value={data.yearFrom}
-                        onChange={this.onChange}
+                        onChange={this.onChangeNumber}
                         error={errors.yearFrom}
                       />
                       <TextInput
@@ -161,7 +164,7 @@ class CarFilter extends React.Component<Props, State> {
                         label="Year To"
                         type="number"
                         value={data.yearTo}
-                        onChange={this.onChange}
+                        onChange={this.onChangeNumber}
                         error={errors.yearTo}
                       />
                       <TextInput
@@ -169,7 +172,7 @@ class CarFilter extends React.Component<Props, State> {
                         label="Price From"
                         type="number"
                         value={data.priceFrom}
-                        onChange={this.onChange}
+                        onChange={this.onChangeNumber}
                         error={errors.priceFrom}
                       />
                       <TextInput
@@ -177,7 +180,7 @@ class CarFilter extends React.Component<Props, State> {
                         label="Price To"
                         type="number"
                         value={data.priceTo}
-                        onChange={this.onChange}
+                        onChange={this.onChangeNumber}
                         error={errors.priceTo}
                       />
                       <TextInput
@@ -185,7 +188,7 @@ class CarFilter extends React.Component<Props, State> {
                         label="KMs From"
                         type="number"
                         value={data.kmsFrom}
-                        onChange={this.onChange}
+                        onChange={this.onChangeNumber}
                         error={errors.kmsFrom}
                       />
                       <TextInput
@@ -193,7 +196,7 @@ class CarFilter extends React.Component<Props, State> {
                         label="KMs To"
                         type="number"
                         value={data.kmsTo}
-                        onChange={this.onChange}
+                        onChange={this.onChangeNumber}
                         error={errors.kmsTo}
                       />
                     </div>

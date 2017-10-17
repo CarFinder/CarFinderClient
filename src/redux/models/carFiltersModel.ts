@@ -1,7 +1,7 @@
 export type CarFilter = {
   filterValues?: {
-    marks?: string[];
-    models?: string[];
+    marks?: any[];
+    models?: any[];
     bodyTypes?: string[];
   };
   currentFilter?: {

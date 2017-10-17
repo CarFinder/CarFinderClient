@@ -11,6 +11,7 @@ export default {
     changePassword: (data: RestorePasswordUserData) => axios.post('/api/user/restore', { data })
   },
   filters: {
-    fetchMarks: () => axios.get('/api/filter/marks')
+    fetchMarks: () => axios.get('/api/filter/marks'),
+    fetchModels: (markId: any) => axios.post('/api/filter/models', markId)
   }
 };
