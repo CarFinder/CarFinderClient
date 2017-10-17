@@ -1,14 +1,21 @@
-export interface ChangePasswordFormData {
+export interface SignupFormData {
+  name: string;
   email: string;
   password: string;
   passwordConfirmation: string;
 }
 
-const passwordRegEx = new RegExp('^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$');
+const nameRegExp = new RegExp(`^[a-zA-Zа-яёА-ЯЁ\s\'\-]+$`);
+const passwordRegExp = new RegExp('^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$');
 const emailRegExp = new RegExp('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$');
 
-export const validateChangePassword = (values: ChangePasswordFormData): object => {
+export const validateForm = (values: SignupFormData): object => {
   const errors: any = {};
+  if (!values.name) {
+    errors.name = 'Поле обязательно для заполнения';
+  } else if (!nameRegExp.test(values.name)) {
+    errors.name = 'Неверный формат имени';
+  }
   if (!values.email) {
     errors.email = 'Поле обязательно для заполнения';
   } else if (!emailRegExp.test(values.email)) {
@@ -16,7 +23,7 @@ export const validateChangePassword = (values: ChangePasswordFormData): object =
   }
   if (!values.password) {
     errors.password = 'Поле обязательно для заполнения';
-  } else if (!passwordRegEx.test(values.password)) {
+  } else if (!passwordRegExp.test(values.password)) {
     errors.password = 'Неверный формат пароля';
   }
   if (!values.passwordConfirmation) {

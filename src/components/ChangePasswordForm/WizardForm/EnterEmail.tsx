@@ -1,14 +1,14 @@
-import * as React from 'react';
-import { Field, reduxForm } from 'redux-form';
-import { Link } from 'react-router-dom';
-import TextField from 'material-ui/TextField';
-import Tooltip from 'material-ui/Tooltip';
 import HelpOutline from 'material-ui-icons/HelpOutline';
+import Send from 'material-ui-icons/Send';
 import Button from 'material-ui/Button';
 import Paper from 'material-ui/Paper';
-import Send from 'material-ui-icons/Send';
 import CircularProgress from 'material-ui/Progress/CircularProgress';
-import { validateChangePassword as validate } from '../../../utils/changePasswordValidation';
+import TextField from 'material-ui/TextField';
+import Tooltip from 'material-ui/Tooltip';
+import * as React from 'react';
+import { Link } from 'react-router-dom';
+import { Field, reduxForm } from 'redux-form';
+import { validateForm as validate } from '../../../utils/formValidation';
 import interfaceLanguage from '../../../utils/interfaceLanguage';
 import '../style.less';
 
@@ -60,6 +60,6 @@ const EnterEmail = (props: Props) => {
 };
 
 export default reduxForm<any, any>({
-  form: 'SigninForm',
+  form: 'EnterEmail',
   validate
 })(EnterEmail);

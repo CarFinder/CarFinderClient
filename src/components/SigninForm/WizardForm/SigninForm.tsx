@@ -8,7 +8,7 @@ import Tooltip from 'material-ui/Tooltip';
 import * as React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
-import { validateSignin as validate } from '../../../utils/signinValidation';
+import { validateForm as validate } from '../../../utils/formValidation';
 import interfaceLanguage from '../../../utils/interfaceLanguage';
 import '../style.less';
 
