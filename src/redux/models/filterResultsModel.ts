@@ -3,7 +3,7 @@ export interface FilterResults {
 }
 
 export interface CarModel {
-  id: string;
+  _id: string;
   bodyType: string;
   description: string;
   images: string[];
