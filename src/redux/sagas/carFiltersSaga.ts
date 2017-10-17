@@ -106,9 +106,25 @@ function* callFetchFilterResults(action: any) {
   try {
     const sortingParams = select(getSortingParams);
     const data = transformDataForSearch(action.payload, sortingParams);
-    const response = yield call(api.filters.fetchResults, data);
-    yield put({ type: actionTypes.SET_LOADING, payload: false });
+    // const response = yield call(api.filters.fetchResults, data);
     // yield put({ type: HERE GOES ACTION, payload: HERE GOES PAYLOAD });
+    yield put({ type: actionTypes.SET_LOADING, payload: false });
+  } catch (e) {
+    yield put({ type: actionTypes.SET_SEARCH_ERROR, payload: e.response.data.error });
+    yield put({ type: actionTypes.SET_LOADING, payload: false });
+  }
+}
+
+function* callUpdateFilterResults() {
+  yield put({ type: actionTypes.SET_LOADING, payload: true });
+  yield put({ type: actionTypes.SET_SEARCH_ERROR, payload: '' });
+  try {
+    const filterParams = select(getFilterParams);
+    const sortingParams = select(getSortingParams);
+    const data = transformDataForSearch(filterParams, sortingParams);
+    const response = yield call(api.filters.fetchResults, data);
+    // yield put({ type: HERE GOES ACTION, payload: HERE GOES PAYLOAD });
+    yield put({ type: actionTypes.SET_LOADING, payload: false });
   } catch (e) {
     yield put({ type: actionTypes.SET_SEARCH_ERROR, payload: e.response.data.error });
     yield put({ type: actionTypes.SET_LOADING, payload: false });
@@ -119,6 +135,9 @@ export default function* watchCarFilters(): SagaIterator {
   yield takeEvery(actionTypes.FETCH_MARKS_VALUES, callFetchMarks);
   yield takeEvery(actionTypes.FETCH_BODY_TYPES_VALUES, callFetchBodyTypes);
   yield takeEvery(actionTypes.FETCH_MODELS_VALUES, callFetchModels);
+  yield takeEvery(actionTypes.SET_CURRENT_FILTER, callFetchFilterResults);
+  yield takeEvery(actionTypes.UPDATE_CURRENT_FILTER, callUpdateFilterResults);
 }
 
 export const getSortingParams = (state: any) => state.carFilters.sortingParams;
+export const getFilterParams = (state: any) => state.carFilters.currentFilter;

@@ -61,6 +61,10 @@ export interface SetSortingParams {
   payload: any;
 }
 
+export interface UpdateCurrentFilter {
+  type: actionTypes.UPDATE_CURRENT_FILTER;
+}
+
 export type CarFiltersActions =
   | ClearFilters
   | SetFilterValues
@@ -71,7 +75,8 @@ export type CarFiltersActions =
   | SetModelsValues
   | FetchBodyTypesValues
   | SetBodyTypesValues
-  | SetSortingParams;
+  | SetSortingParams
+  | UpdateCurrentFilter;
 
 export function clearFilters(): ClearFilters {
   return { type: actionTypes.CLEAR_CAR_FILTERS };
@@ -137,3 +142,9 @@ export function setSortingParams(payload: any): SetSortingParams {
     payload
   };
 }
+
+export const updateCurrentFilter = (): UpdateCurrentFilter => {
+  return {
+    type: actionTypes.UPDATE_CURRENT_FILTER
+  };
+};

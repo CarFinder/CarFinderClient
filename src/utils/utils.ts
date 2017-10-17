@@ -1,5 +1,3 @@
-import { FormData as FormDataForSearch } from './carFiltersValidation';
-
 interface UserDataForSignup {
   name: string;
   email: string;
@@ -14,7 +12,7 @@ export const transformDataForSignup = (userData: UserDataForSignup) => {
   };
 };
 
-export const transformDataForSearch = (filtersData: FormDataForSearch, sortingParams: any) => {
+export const transformDataForSearch = (filtersData: any, sortingParams: any) => {
   const data: any = {};
   data.filter.markId = filtersData.markId;
   if (filtersData.modelId) {
