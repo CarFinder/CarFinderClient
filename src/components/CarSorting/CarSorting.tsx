@@ -32,25 +32,25 @@ class CarSorting extends React.Component<Props, State> {
       sort: 'Lowest',
       limitValues: [
         {
-          id: 1,
+          id: 20,
           name: 20
         },
         {
-          id: 2,
+          id: 30,
           name: 30
         },
         {
-          id: 3,
+          id: 50,
           name: 50
         }
       ],
       sortValues: [
         {
-          id: 1,
+          id: 'Highest',
           name: 'Highest'
         },
         {
-          id: 2,
+          id: 'Lowest',
           name: 'Lowest'
         }
       ]
@@ -69,11 +69,15 @@ class CarSorting extends React.Component<Props, State> {
     // handle submit logic here
   };
 
-  public componentDidMount() {
+  public updateSortingParams = () => {
     this.props.handeSetSortingParams({
       limit: this.state.limit,
       sort: this.state.sort
     });
+  };
+
+  public componentDidMount() {
+    this.updateSortingParams();
   }
   public render() {
     const { limit, sort, limitValues, sortValues } = this.state;
@@ -86,6 +90,7 @@ class CarSorting extends React.Component<Props, State> {
             value={limit}
             options={limitValues}
             onChange={this.onChange}
+            onBlur={this.updateSortingParams}
           />
           <SelectInput
             field="sort"
@@ -93,6 +98,7 @@ class CarSorting extends React.Component<Props, State> {
             value={sort}
             options={sortValues}
             onChange={this.onChange}
+            onBlur={this.updateSortingParams}
           />
         </form>
       </Paper>
