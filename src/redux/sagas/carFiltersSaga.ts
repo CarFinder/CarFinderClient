@@ -122,7 +122,7 @@ function* callUpdateFilterResults() {
     const filterParams = select(getFilterParams);
     const sortingParams = select(getSortingParams);
     const data = transformDataForSearch(filterParams, sortingParams);
-    const response = yield call(api.filters.fetchResults, data);
+    // const response = yield call(api.filters.fetchResults, data);
     // yield put({ type: HERE GOES ACTION, payload: HERE GOES PAYLOAD });
     yield put({ type: actionTypes.SET_LOADING, payload: false });
   } catch (e) {

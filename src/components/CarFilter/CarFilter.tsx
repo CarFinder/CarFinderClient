@@ -8,7 +8,7 @@ import Typography from 'material-ui/Typography';
 import * as React from 'react';
 import { validateForm, validateMark } from '../../utils/carFiltersValidation';
 import interfaceLanguage from '../../utils/interfaceLanguage';
-import SelectInput from '../Common/FormInputs/SelectInput';
+import MultipleSelectInput from '../Common/FormInputs/MultipleSelectInput';
 import TextInput from '../Common/FormInputs/TextInput';
 import './style.less';
 
@@ -17,7 +17,7 @@ export interface Props {
   handleClearFilters: () => void;
   handleFetchMarksValues: () => void;
   handleFetchBodyTypesValues: () => void;
-  handleFetchModelsValues: (mark: string) => void;
+  handleFetchModelsValues: (mark: string[]) => void;
   handleSetCurrentFilter: (payload: any) => void;
   loading: boolean;
   searchError: any;
@@ -30,9 +30,9 @@ export interface Props {
 
 export interface State {
   data: {
-    markId: string;
-    modelId: string;
-    bodyTypeId: string;
+    markId: string[];
+    modelId: string[];
+    bodyTypeId: string[];
     yearFrom: number;
     yearTo: number;
     priceFrom: number;
@@ -48,9 +48,9 @@ class CarFilter extends React.Component<Props, State> {
     super();
     this.state = {
       data: {
-        markId: '',
-        modelId: '',
-        bodyTypeId: '',
+        markId: [],
+        modelId: [],
+        bodyTypeId: [],
         yearFrom: 0,
         yearTo: 0,
         priceFrom: 0,
@@ -125,7 +125,7 @@ class CarFilter extends React.Component<Props, State> {
                   )}
                   <form className="form" onSubmit={this.onSubmit}>
                     <div className="form-fullwidth-fields">
-                      <SelectInput
+                      <MultipleSelectInput
                         field="markId"
                         label="Maker"
                         value={data.markId}
@@ -134,7 +134,7 @@ class CarFilter extends React.Component<Props, State> {
                         onBlur={this.onSubmitMark}
                         error={errors.markId}
                       />
-                      <SelectInput
+                      <MultipleSelectInput
                         field="modelId"
                         label="Model"
                         value={data.modelId}
@@ -145,7 +145,7 @@ class CarFilter extends React.Component<Props, State> {
                       />
                     </div>
                     <div className="form-fields">
-                      <SelectInput
+                      <MultipleSelectInput
                         field="bodyTypeId"
                         label="Body Type"
                         value={data.bodyTypeId}

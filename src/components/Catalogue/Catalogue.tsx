@@ -10,7 +10,7 @@ export interface Props {
   handleClearFilters: () => void;
   handleFetchMarksValues: () => void;
   handleFetchBodyTypesValues: () => void;
-  handleFetchModelsValues: (mark: string) => void;
+  handleFetchModelsValues: (mark: string[]) => void;
   handleSetCurrentFilter: (payload: any) => void;
   handeSetSortingParams: (payload: any) => void;
   loading: boolean;

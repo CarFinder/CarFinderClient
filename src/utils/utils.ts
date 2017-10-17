@@ -13,12 +13,17 @@ export const transformDataForSignup = (userData: UserDataForSignup) => {
 };
 
 export const transformDataForSearch = (filtersData: any, sortingParams: any) => {
-  const data: any = {};
+  const data: any = {
+    filter: {},
+    limit: '',
+    sort: '',
+    skip: ''
+  };
   data.filter.markId = filtersData.markId;
-  if (filtersData.modelId) {
+  if (filtersData.modelId.length !== 0) {
     data.filter.modelId = filtersData.modelId;
   }
-  if (filtersData.bodyTypeId) {
+  if (filtersData.bodyTypeId.length !== 0) {
     data.filter.bodyTypeId = filtersData.bodyTypeId;
   }
   if (filtersData.yearFrom) {

@@ -16,7 +16,7 @@ interface Props {
   error?: string;
 }
 
-const SelectInput = ({
+const MultipleSelectInput = ({
   field,
   label,
   value,
@@ -50,4 +50,4 @@ const SelectInput = ({
   </FormControl>
 );
 
-export default SelectInput;
+export default MultipleSelectInput;
