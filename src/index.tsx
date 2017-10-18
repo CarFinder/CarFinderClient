@@ -16,7 +16,6 @@ import ChangePassword from './containers/ChangePassword';
 import EmailConfirmation from './containers/EmailConfirmation';
 import Signin from './containers/Signin';
 import Signup from './containers/Signup';
-import { User } from './redux//models/userModel';
 import * as actions from './redux/actions/userActions';
 import rootReducer from './redux/reducers';
 import rootSaga from './redux/sagas/index';
@@ -28,13 +27,14 @@ const App = () => {
     setAuthorizationHeader(localStorage.jwt);
     store.dispatch(actions.userLoggedIn(payload));
   }
+
   return (
     <div>
       <NavBar />
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/home" component={RequireAuth(Home)} />
-        <Route exact path="/catalog" component={Catalogue} /> //add RequireAuth
+        <Route path="/catalog" component={RequireAuth(Catalogue)} />
         <Route path="/signup" component={Signup} />
         <Route path="/signin" component={Signin} />
         <Route path="/restore" component={ChangePassword} />

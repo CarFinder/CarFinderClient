@@ -1,6 +1,6 @@
+import { UserData as ChangePasswordData } from '../../containers/ChangePassword';
 import { UserData as SigninUserData } from '../../containers/Signin';
 import { UserData } from '../../containers/Signup';
-import { UserData as ChangePasswordData } from '../../containers/ChangePassword';
 import setAuthorizationHeader from '../../utils/axiosHeader';
 import { User } from '../models/userModel';
 import * as actionTypes from './actionTypes';
