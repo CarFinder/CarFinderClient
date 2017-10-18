@@ -2,6 +2,8 @@ import { connect, Dispatch } from 'react-redux';
 import Catalogue from '../components/Catalogue/Catalogue';
 import * as carFiltersActions from '../redux/actions/carFiltersActions';
 import * as formStateActions from '../redux/actions/formStateActions';
+import * as actions from '../redux/actions/userActions';
+import { CarModel } from '../redux/models/filterResultsModel';
 import { InitialState } from '../redux/models/userModel';
 
 interface PropsInterface {
@@ -18,6 +20,7 @@ interface StateInterface {
   searchError: any;
   loading: boolean;
   language: string;
+  filterResults: CarModel[];
   carFilters: {
     filterValues: any;
     currentFilter: any;
@@ -29,6 +32,7 @@ const mapStateToProps = (state: any) => ({
   loading: state.formState.loading,
   searchError: state.formState.searchError,
   language: state.user.interfaceLanguage,
+  filterResults: state.filterResults.filterResults,
   carFilters: state.carFilters
 });
 
@@ -42,6 +46,4 @@ const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
   handeSetSortingParams: (payload: any) => dispatch(carFiltersActions.setSortingParams(payload))
 });
 
-export default connect<StateInterface, PropsInterface>(mapStateToProps, mapDispatchToProps)(
-  Catalogue
-);
+export default connect<any, PropsInterface>(mapStateToProps, mapDispatchToProps)(Catalogue);

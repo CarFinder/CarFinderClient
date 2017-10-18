@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { CarModel } from '../../redux/models/filterResultsModel';
 import CarFilter from '../CarFilter/CarFilter';
 import CarSorting from '../CarSorting/CarSorting';
 import FilterResults from '../FilterResults/FilterResults';
@@ -16,6 +17,7 @@ export interface Props {
   loading: boolean;
   searchError?: any;
   language: string;
+  filterResults: CarModel[];
   carFilters: {
     filterValues: any;
     currentFilter: any;
@@ -35,7 +37,8 @@ const Catalogue = (props: Props) => {
     handleFetchMarksValues,
     handleFetchBodyTypesValues,
     handleFetchModelsValues,
-    handeSetSortingParams
+    handeSetSortingParams,
+    filterResults
   } = props;
 
   return (
@@ -56,7 +59,7 @@ const Catalogue = (props: Props) => {
         sortingParams={carFilters.sortingParams}
         handeSetSortingParams={handeSetSortingParams}
       />
-      <FilterResults language={language} />
+      <FilterResults language={language} filterResults={filterResults} />
     </div>
   );
 };
