@@ -64,11 +64,6 @@ class CarSorting extends React.Component<Props, State> {
     });
   };
 
-  public onSubmit = (e: any) => {
-    e.preventDefault();
-    // handle submit logic here
-  };
-
   public updateSortingParams = () => {
     this.props.handeSetSortingParams({
       limit: this.state.limit,
