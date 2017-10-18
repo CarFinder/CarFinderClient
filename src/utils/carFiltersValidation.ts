@@ -1,3 +1,5 @@
+import language from './interfaceLanguage';
+
 export interface FormData {
   markId: string[];
   modelId: string[];
@@ -11,11 +13,15 @@ export interface FormData {
 }
 
 const yearValidation = new RegExp('^(19[0-9][0-9]|200d|201[0-7])$');
+const lang =
+localStorage.getItem('interfaceLanguage') === 'ru'
+  ? language.ru.validation
+  : language.en.validation;
 
 export const validateMark = (markId: string[]): any => {
   const errors: any = {};
   if (markId.length === 0) {
-    errors.markId = 'Field is required';
+    errors.markId = lang.required;
   }
   return errors;
 };
@@ -41,24 +47,24 @@ export const validatePairValues = (from: number, to: number): boolean => {
 export const validateForm = (values: FormData): any => {
   const errors: any = {};
   if (values.markId.length === 0) {
-    errors.markId = 'Field is required';
+    errors.markId = lang.required;
   }
   if (values.yearFrom && !validateYears(values.yearFrom)) {
-    errors.yearFrom = 'Please fill in a valid year';
+    errors.yearFrom = lang.invalidYear;
   }
   if (values.yearTo && !validateYears(values.yearTo)) {
-    errors.yearTo = 'Please fill in a valid year';
+    errors.yearTo = lang.invalidYear;
   }
   if (values.yearFrom && values.yearTo && !validatePairValues(values.yearFrom, values.yearTo)) {
-    errors.yearFrom = 'Invalid parameters';
-    errors.yearTo = 'Invalid parameters';
+    errors.yearFrom = lang.invalidParameters;
+    errors.yearTo = lang.invalidParameters;
   }
   if (values.priceFrom && values.priceTo && !validatePairValues(values.priceFrom, values.priceTo)) {
-    errors.priceFrom = 'Invalid parameters';
-    errors.priceTo = 'Invalid parameters';
+    errors.priceFrom = lang.invalidParameters;
+    errors.priceTo = lang.invalidParameters;
   }
   if (values.kmsFrom && values.kmsTo && !validatePairValues(values.kmsFrom, values.kmsTo)) {
-    errors.kmsTo = 'Invalid parameters';
+    errors.kmsTo = lang.invalidParameters;
   }
   return errors;
 };

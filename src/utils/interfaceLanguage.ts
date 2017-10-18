@@ -9,6 +9,9 @@ export interface Language {
     authErrors: {
       [key: string]: string;
     };
+    searchErrors: {
+      [key: string]: string;
+    };
     signupForm: {
       [key: string]: string;
     };
@@ -19,6 +22,9 @@ export interface Language {
       [key: string]: string;
     };
     changePassword: {
+      [key: string]: string;
+    };
+    carFilters: {
       [key: string]: string;
     };
   };
@@ -32,6 +38,9 @@ export interface Language {
     authErrors: {
       [key: string]: string;
     };
+    searchErrors: {
+      [key: string]: string;
+    };
     signupForm: {
       [key: string]: string;
     };
@@ -44,6 +53,9 @@ export interface Language {
     changePassword: {
       [key: string]: string;
     };
+    carFilters: {
+      [key: string]: string;
+    };
   };
 }
 
@@ -54,7 +66,9 @@ const interfaceLanguage: Language = {
       invalidEmail: 'Неверный формат е-мэйла',
       invalidPassword: 'Неверный формат пароля',
       invalidName: 'Неверный формат имени',
-      invalidPasswordConfirmation: 'Пароли должны совпадать'
+      invalidPasswordConfirmation: 'Пароли должны совпадать',
+      invalidYear: 'Неверный формат года',
+      invalidParameters: 'Неверный формат введенных данных'
     },
     navigation: {
       homepage: 'домашняя',
@@ -71,6 +85,9 @@ const interfaceLanguage: Language = {
       101: 'Неверный е-мэйл или пароль',
       105: 'Неверный формат введенных данных',
       11000: 'такой аккаунт уже существует'
+    },
+    searchErrors: {
+      serverUnavailable: 'В данный момент сервер не доступен. Обновите страницу или попытайтесь позже',
     },
     signupForm: {
       title: 'Регистрация',
@@ -126,6 +143,24 @@ const interfaceLanguage: Language = {
       confirmPasswordFieldPlaceholder: 'Подтвердите пароль',
       passwordTooltip:
         'Пароль должен быть не менее 8 символов, содержать как минимум 1 цифру и 1 специальный символ'
+    },
+    carFilters: {
+      maker: 'Марка',
+      model: 'Модель',
+      bodyType: 'Тип кузова',
+      yearFrom: 'Год выпуска от',
+      yearTo: 'Год выпуска до',
+      priceFrom: 'Цена от',
+      priceTo: 'Цена до',
+      kmFrom: 'Пробег от',
+      kmTo: 'Пробег до',
+      saveFilters: 'Сохранить',
+      searchFilters: 'Поиск',
+      chooseFilters: 'Пожалуйста выберите параметры поиска',
+      adsPerPage: 'Количество объявлений на странице',
+      price: 'Цена',
+      lowestPrice: 'Сначала дешевые',
+      highestPrice: 'Сначала дорогие'
     }
   },
   en: {
@@ -134,7 +169,9 @@ const interfaceLanguage: Language = {
       invalidEmail: 'Invalid email format',
       invalidPassword: 'Invalid password format',
       invalidName: 'Invalid username format',
-      invalidPasswordConfirmation: 'Passwords should match'
+      invalidPasswordConfirmation: 'Passwords should match',
+      invalidYear: 'Please fill in a valid year',
+      invalidParameters: 'Invalid parameters'
     },
     navigation: {
       homepage: 'home',
@@ -151,6 +188,9 @@ const interfaceLanguage: Language = {
       101: 'Incorrect email or password',
       105: 'Wrong data format',
       11000: 'Account already exists'
+    },
+    searchErrors: {
+      serverUnavailable: 'Server is currently unavailable. Please reload the page and try again.',
     },
     signupForm: {
       title: 'Sign up',
@@ -206,6 +246,24 @@ const interfaceLanguage: Language = {
       confirmPasswordFieldPlaceholder: 'Confirm password',
       passwordTooltip:
         'Password should be no less than 8 symbols, contain at least 1 digit and one special character'
+    },
+    carFilters: {
+      maker: 'Maker',
+      model: 'Model',
+      bodyType: 'Body Type',
+      yearFrom: 'Year From',
+      yearTo: 'Year To',
+      priceFrom: 'Price From',
+      priceTo: 'Price To',
+      kmFrom: 'KMs From',
+      kmTo: 'KMs To',
+      saveFilters: 'Save',
+      searchFilters: 'Search',
+      chooseFilters: 'Please choose search options',
+      adsPerPage: 'Ads per page',
+      price: 'Price',
+      lowestPrice: 'Lowest',
+      highestPrice: 'Highest'
     }
   }
 };

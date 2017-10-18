@@ -114,8 +114,8 @@ class CarFilter extends React.Component<Props, State> {
   public render() {
     const { data, errors } = this.state;
     const { filterValues } = this.props.carFilters;
-    const { searchError, loading } = this.props;
-    const lang = this.props.language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
+    const { searchError, loading, language } = this.props;
+    const lang = language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
     return (
       <div className="carfilters-form">
         <Grid container>
@@ -125,14 +125,14 @@ class CarFilter extends React.Component<Props, State> {
                 <Grid item className="form-content">
                   {searchError && (
                     <Typography type="subheading" component="p" color="accent">
-                      Server is currently unavailable. Please reload the page and try again.
+                      {lang.searchErrors.serverUnavailable}
                     </Typography>
                   )}
                   <form className="form" onSubmit={this.onSubmit}>
                     <div className="form-fullwidth-fields">
                       <MultipleSelectInput
                         field="markId"
-                        label="Maker"
+                        label={lang.carFilters.maker}
                         value={data.markId}
                         options={filterValues.marks}
                         onChange={this.onChange}
@@ -142,7 +142,7 @@ class CarFilter extends React.Component<Props, State> {
                       />
                       <MultipleSelectInput
                         field="modelId"
-                        label="Model"
+                        label={lang.carFilters.model}
                         value={data.modelId}
                         options={filterValues.models}
                         onChange={this.onChange}
@@ -153,7 +153,7 @@ class CarFilter extends React.Component<Props, State> {
                     <div className="form-fields">
                       <MultipleSelectInput
                         field="bodyTypeId"
-                        label="Body Type"
+                        label={lang.carFilters.bodyType}
                         value={data.bodyTypeId}
                         options={filterValues.bodyTypes}
                         onChange={this.onChange}
@@ -162,7 +162,7 @@ class CarFilter extends React.Component<Props, State> {
                       />
                       <TextInput
                         field="yearFrom"
-                        label="Year From"
+                        label={lang.carFilters.yearFrom}
                         type="number"
                         value={data.yearFrom}
                         onChange={this.onChangeNumber}
@@ -170,7 +170,7 @@ class CarFilter extends React.Component<Props, State> {
                       />
                       <TextInput
                         field="yearTo"
-                        label="Year To"
+                        label={lang.carFilters.yearTo}
                         type="number"
                         value={data.yearTo}
                         onChange={this.onChangeNumber}
@@ -178,7 +178,7 @@ class CarFilter extends React.Component<Props, State> {
                       />
                       <TextInput
                         field="priceFrom"
-                        label="Price From"
+                        label={lang.carFilters.priceFrom}
                         type="number"
                         value={data.priceFrom}
                         onChange={this.onChangeNumber}
@@ -186,7 +186,7 @@ class CarFilter extends React.Component<Props, State> {
                       />
                       <TextInput
                         field="priceTo"
-                        label="Price To"
+                        label={lang.carFilters.priceTo}
                         type="number"
                         value={data.priceTo}
                         onChange={this.onChangeNumber}
@@ -194,7 +194,7 @@ class CarFilter extends React.Component<Props, State> {
                       />
                       <TextInput
                         field="kmsFrom"
-                        label="KMs From"
+                        label={lang.carFilters.kmFrom}
                         type="number"
                         value={data.kmsFrom}
                         onChange={this.onChangeNumber}
@@ -202,7 +202,7 @@ class CarFilter extends React.Component<Props, State> {
                       />
                       <TextInput
                         field="kmsTo"
-                        label="KMs To"
+                        label={lang.carFilters.kmTo}
                         type="number"
                         value={data.kmsTo}
                         onChange={this.onChangeNumber}
@@ -211,10 +211,10 @@ class CarFilter extends React.Component<Props, State> {
                     </div>
                     <div className="form-fields pull-right">
                       <Button color="primary" type="button" className="form-control">
-                        Save <Save />
+                      {lang.carFilters.saveFilters} <Save />
                       </Button>
                       <Button raised color="primary" type="submit" className="form-control">
-                        Search <Search />
+                      {lang.carFilters.searchFilters} <Search />
                       </Button>
                     </div>
                   </form>

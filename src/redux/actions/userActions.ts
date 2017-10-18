@@ -66,6 +66,7 @@ export type UserAction =
   | UserChangeLanguage;
 
 export function userLoggedIn(user: User): UserLoggedIn {
+  user.interfaceLanguage = localStorage.getItem('interfaceLanguage') || user.interfaceLanguage;
   return {
     type: actionTypes.USER_SIGN_IN_SUCCESS,
     payload: user
