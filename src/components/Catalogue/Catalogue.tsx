@@ -59,7 +59,7 @@ const Catalogue = (props: Props) => {
         sortingParams={carFilters.sortingParams}
         handeSetSortingParams={handeSetSortingParams}
       />
-      <FilterResults language={language} filterResults={filterResults} />
+      <FilterResults filterResults={filterResults} />
     </div>
   );
 };
