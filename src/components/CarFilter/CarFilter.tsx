@@ -23,7 +23,11 @@ export interface Props {
   searchError: any;
   language: string;
   carFilters: {
-    filterValues: any;
+    filterValues: {
+      marks: any[];
+      models: any[];
+      bodyTypes: any[];
+    };
     currentFilter: any;
   };
 }
@@ -109,6 +113,7 @@ class CarFilter extends React.Component<Props, State> {
 
   public render() {
     const { data, errors } = this.state;
+    const { filterValues } = this.props.carFilters;
     const { searchError, loading } = this.props;
     const lang = this.props.language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
     return (
@@ -120,7 +125,7 @@ class CarFilter extends React.Component<Props, State> {
                 <Grid item className="form-content">
                   {searchError && (
                     <Typography type="subheading" component="p" color="accent">
-                      Error here
+                      Server is currently unavailable. Please reload the page and try again.
                     </Typography>
                   )}
                   <form className="form" onSubmit={this.onSubmit}>
@@ -129,18 +134,19 @@ class CarFilter extends React.Component<Props, State> {
                         field="markId"
                         label="Maker"
                         value={data.markId}
-                        options={this.props.carFilters.filterValues.marks}
+                        options={filterValues.marks}
                         onChange={this.onChange}
                         onBlur={this.onSubmitMark}
+                        disabled={filterValues.marks.length === 0}
                         error={errors.markId}
                       />
                       <MultipleSelectInput
                         field="modelId"
                         label="Model"
                         value={data.modelId}
-                        options={this.props.carFilters.filterValues.models}
+                        options={filterValues.models}
                         onChange={this.onChange}
-                        disabled={!this.props.carFilters.filterValues.models}
+                        disabled={filterValues.models.length === 0}
                         error={errors.modelId}
                       />
                     </div>
@@ -149,8 +155,9 @@ class CarFilter extends React.Component<Props, State> {
                         field="bodyTypeId"
                         label="Body Type"
                         value={data.bodyTypeId}
-                        options={this.props.carFilters.filterValues.bodyTypes}
+                        options={filterValues.bodyTypes}
                         onChange={this.onChange}
+                        disabled={filterValues.bodyTypes.length === 0}
                         error={errors.bodyTypeId}
                       />
                       <TextInput

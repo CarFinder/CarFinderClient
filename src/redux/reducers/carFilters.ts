@@ -42,7 +42,7 @@ export default function carFiltersReducer(
 ): InitialState {
   switch (action.type) {
     case CLEAR_CAR_FILTERS:
-      return {};
+      return initialState;
     case FETCH_MARKS_VALUES:
       return state;
     case SET_MARKS_VALUES: {

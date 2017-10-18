@@ -36,7 +36,7 @@ const MultipleSelectInput = ({
       disabled={disabled}
       input={<Input id={field} name={field} className="form-control" />}
     >
-      {options &&
+      {options.length !== 0 &&
         options.map((option: any) => {
           return (
             <MenuItem key={option.id} value={option.id}>
