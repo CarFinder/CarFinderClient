@@ -2,7 +2,6 @@ import Grid from 'material-ui/Grid';
 import { CircularProgress } from 'material-ui/Progress';
 import * as React from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
-import store from '../../index';
 import * as actions from '../../redux/actions/filterResultsActions';
 import { CarModel } from '../../redux/models/filterResultsModel';
 import CarAd from './CarAd/CarAd';
@@ -49,7 +48,6 @@ class FilterResults extends React.Component<Props, State> {
   };
 
   public loadFunc = () => {
-    // call action here
     this.populateAds();
   };
 
