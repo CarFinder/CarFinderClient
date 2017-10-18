@@ -14,6 +14,7 @@ interface PropsInterface {
   handleFetchBodyTypesValues: () => void;
   handleSetCurrentFilter: (payload: any) => void;
   handeSetSortingParams: (payload: any) => void;
+  handleUpdateAds: () => void;
 }
 
 interface StateInterface {
@@ -43,7 +44,8 @@ const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
   handleFetchBodyTypesValues: () => dispatch(carFiltersActions.fetchBodyTypesValues()),
   handleFetchModelsValues: (mark: string[]) => dispatch(carFiltersActions.fetchModelsValues(mark)),
   handleSetCurrentFilter: (payload: any) => dispatch(carFiltersActions.setCurrentFilter(payload)),
-  handeSetSortingParams: (payload: any) => dispatch(carFiltersActions.setSortingParams(payload))
+  handeSetSortingParams: (payload: any) => dispatch(carFiltersActions.setSortingParams(payload)),
+  handleUpdateAds: () => dispatch(carFiltersActions.updateCurrentFilter())
 });
 
 export default connect<any, PropsInterface>(mapStateToProps, mapDispatchToProps)(Catalogue);

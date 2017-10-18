@@ -9,6 +9,7 @@ import './style.less';
 
 export interface Props {
   filterResults: CarModel[];
+  handleUpdateAds: () => void;
 }
 
 export interface State {
@@ -48,6 +49,7 @@ class FilterResults extends React.Component<Props, State> {
   };
 
   public loadFunc = () => {
+    this.props.handleUpdateAds();
     this.populateAds();
   };
 
