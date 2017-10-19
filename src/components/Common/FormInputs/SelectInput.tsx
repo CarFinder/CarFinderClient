@@ -39,9 +39,9 @@ const SelectInput = ({
       input={<Input id={field} name={field} className="form-control" />}
     >
       {options.length !== 0 &&
-        options.map((option: any) => {
+        options.map((option: any, index: number) => {
           return (
-            <MenuItem key={option._id} value={option._id}>
+            <MenuItem key={index} value={option._id}>
               {option.name}
             </MenuItem>
           );
