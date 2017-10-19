@@ -80,10 +80,18 @@ class NavBar extends React.Component<Props, State> {
               </Link>
             </div>
             <div className="items-right">
-              <Button color="contrast" onClick={() => handleChangelanguage('ru')}>
+              <Button
+                color="contrast"
+                className={language === 'ru' ? 'selected' : ''}
+                onClick={() => handleChangelanguage('ru')}
+              >
                 {lang.navigation.ruLang}
               </Button>
-              <Button color="contrast" onClick={() => handleChangelanguage('en')}>
+              <Button
+                color="contrast"
+                className={language === 'en' ? 'selected' : ''}
+                onClick={() => handleChangelanguage('en')}
+              >
                 {lang.navigation.engLang}
               </Button>
               {!isAuthenticated && (
