@@ -9,7 +9,6 @@ import * as React from 'react';
 import { validateForm, validateMark } from '../../utils/carFiltersValidation';
 import interfaceLanguage from '../../utils/interfaceLanguage';
 import SelectInput from '../Common/FormInputs/SelectInput';
-import MultipleSelectInput from '../Common/FormInputs/MultipleSelectInput';
 import TextInput from '../Common/FormInputs/TextInput';
 import './style.less';
 
