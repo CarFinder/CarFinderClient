@@ -75,7 +75,8 @@ const interfaceLanguage: Language = {
       catalog: 'каталог',
       signin: 'вход',
       signup: 'регистрация',
-      signout: 'выход',
+      signout: 'Выход',
+      profile: 'Профиль',
       ruLang: 'Рус',
       engLang: 'Англ'
     },
@@ -87,7 +88,8 @@ const interfaceLanguage: Language = {
       11000: 'такой аккаунт уже существует'
     },
     searchErrors: {
-      serverUnavailable: 'В данный момент сервер не доступен. Обновите страницу или попытайтесь позже',
+      serverUnavailable:
+        'В данный момент сервер не доступен. Обновите страницу или попытайтесь позже'
     },
     signupForm: {
       title: 'Регистрация',
@@ -179,6 +181,7 @@ const interfaceLanguage: Language = {
       signin: 'Sign in',
       signup: 'Sign up',
       signout: 'Sign out',
+      profile: 'User profile',
       ruLang: 'Rus',
       engLang: 'Eng'
     },
@@ -190,7 +193,7 @@ const interfaceLanguage: Language = {
       11000: 'Account already exists'
     },
     searchErrors: {
-      serverUnavailable: 'Server is currently unavailable. Please reload the page and try again.',
+      serverUnavailable: 'Server is currently unavailable. Please reload the page and try again.'
     },
     signupForm: {
       title: 'Sign up',
