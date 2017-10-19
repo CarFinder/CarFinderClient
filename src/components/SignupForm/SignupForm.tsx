@@ -85,7 +85,8 @@ class SignupFrom extends React.Component<Props, State> {
                 <Grid item className="form-content">
                   {authError && (
                     <Typography type="subheading" component="p" color="accent">
-                      {lang.authErrors[authError.code.toString()]}
+                      {!authError.code && lang.searchErrors.serverUnavailable}
+                      {authError.code && lang.authErrors[authError.code.toString()]}
                     </Typography>
                   )}
                   {page === 1 && <FirstPage onSubmit={this.nextPage} language={language} />}

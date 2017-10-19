@@ -54,7 +54,8 @@ class SigninFrom extends React.Component<Props, object> {
                 <Grid item className="form-content">
                   {authError && (
                     <Typography type="body1" component="p" color="accent">
-                      {lang.authErrors[authError.code.toString()]}
+                      {!authError.code && lang.searchErrors.serverUnavailable}
+                      {authError.code && lang.authErrors[authError.code.toString()]}
                     </Typography>
                   )}
                   <Form onSubmit={this.handleSubmit} language={language} />
