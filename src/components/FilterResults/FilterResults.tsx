@@ -1,5 +1,6 @@
 import Grid from 'material-ui/Grid';
 import { CircularProgress } from 'material-ui/Progress';
+import Typography from 'material-ui/Typography';
 import * as React from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 import * as actions from '../../redux/actions/filterResultsActions';
@@ -22,7 +23,7 @@ class FilterResults extends React.Component<Props, State> {
     super();
     this.state = {
       allAdsAreLoaded: false,
-      items: <div className="choose-filters-message">Please choose filter options</div>
+      items: <Typography type="display1">Please choose filter options</Typography>
     };
   }
 
