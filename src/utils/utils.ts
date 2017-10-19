@@ -16,7 +16,7 @@ export const transformDataForSearch = (filtersData: any, sortingParams: any) => 
   const data: any = {
     filter: {},
     limit: '',
-    sort: '',
+    sort: {},
     skip: ''
   };
   data.filter.markId = filtersData.markId;

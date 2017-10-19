@@ -70,9 +70,7 @@ class NavBar extends React.Component<Props, State> {
       <div className="navbar">
         <AppBar position="fixed">
           <Toolbar>
-            <Typography type="title" color="inherit" className="title">
-              CarFinder
-            </Typography>
+            <Button color="inherit">CarFinder</Button>
             <div className="items-left">
               <Link to="/">
                 <Button color="contrast">{lang.navigation.homepage}</Button>

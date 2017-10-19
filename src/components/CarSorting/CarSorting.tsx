@@ -8,7 +8,10 @@ export interface Props {
   sortingParams: {
     limit: number;
     skip: number;
-    sort: string;
+    sort: {
+      field: string;
+      sort: number;
+    };
   };
   handeSetSortingParams: (payload: any) => void;
 }
@@ -17,7 +20,10 @@ export interface State {
   limit: number;
   skip: number;
   sortField: string;
-  sort: string;
+  sort: {
+    field: string;
+    sort: number;
+  };
   limitValues: any[];
   sortValues: any[];
 }
@@ -28,8 +34,11 @@ class CarSorting extends React.Component<Props, State> {
     this.state = {
       limit: 20,
       skip: 0,
-      sortField: 'price',
-      sort: 'Lowest',
+      sortField: 'year',
+      sort: {
+        field: 'year',
+        sort: -1
+      },
       limitValues: [
         {
           id: 20,
@@ -46,12 +55,12 @@ class CarSorting extends React.Component<Props, State> {
       ],
       sortValues: [
         {
-          id: 'Highest',
-          name: 'Highest'
+          id: -1,
+          name: 'Ascending'
         },
         {
-          id: 'Lowest',
-          name: 'Lowest'
+          id: 1,
+          name: 'Descending'
         }
       ]
     };
@@ -61,6 +70,16 @@ class CarSorting extends React.Component<Props, State> {
     this.setState({
       ...this.state,
       [name]: e.target.value
+    });
+  };
+
+  public onChangeSort = (name: string) => (e: any) => {
+    this.setState({
+      ...this.state,
+      sort: {
+        field: name,
+        sort: parseInt(e.target.value, 10)
+      }
     });
   };
 
@@ -88,11 +107,11 @@ class CarSorting extends React.Component<Props, State> {
             onBlur={this.updateSortingParams}
           />
           <SelectInput
-            field="sort"
-            label="Price"
-            value={sort}
+            field="year"
+            label="Year"
+            value={sort.sort}
             options={sortValues}
-            onChange={this.onChange}
+            onChange={this.onChangeSort}
             onBlur={this.updateSortingParams}
           />
         </form>
