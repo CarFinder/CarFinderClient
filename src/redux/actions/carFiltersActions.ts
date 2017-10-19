@@ -15,17 +15,7 @@ export interface SetFilterValues {
 
 export interface SetCurrentFilter {
   type: actionTypes.SET_CURRENT_FILTER;
-  payload: {
-    mark?: string;
-    model?: string;
-    bodyType?: string;
-    yearFrom?: number;
-    yearTo?: number;
-    priceForm?: number;
-    priceTo?: number;
-    kmsFrom?: number;
-    kmsTo?: number;
-  };
+  payload: any;
 }
 
 export interface FetchMarksValues {

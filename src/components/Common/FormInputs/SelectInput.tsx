@@ -13,6 +13,7 @@ interface Props {
   value: any;
   disabled?: boolean;
   options: any[];
+  multiple?: boolean;
   error?: string;
 }
 
@@ -22,6 +23,7 @@ const SelectInput = ({
   value,
   error,
   options,
+  multiple,
   onChange,
   onBlur,
   disabled
@@ -29,6 +31,7 @@ const SelectInput = ({
   <FormControl className="form-field" error={!!error}>
     <InputLabel htmlFor={field}>{label}</InputLabel>
     <Select
+      multiple={multiple}
       value={value}
       onChange={onChange(field)}
       onBlur={onBlur}
@@ -38,7 +41,7 @@ const SelectInput = ({
       {options.length !== 0 &&
         options.map((option: any) => {
           return (
-            <MenuItem key={option.id} value={option.id}>
+            <MenuItem key={option._id} value={option._id}>
               {option.name}
             </MenuItem>
           );

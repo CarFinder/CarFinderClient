@@ -12,7 +12,7 @@ export interface Props {
   handleFetchMarksValues: () => void;
   handleFetchBodyTypesValues: () => void;
   handleFetchModelsValues: (mark: string[]) => void;
-  handleSetCurrentFilter: (payload: any) => void;
+  handleSetCurrentFilter: (payload: any, sortingParams: any) => void;
   handeSetSortingParams: (payload: any) => void;
   handleUpdateAds: () => void;
   loading: boolean;
@@ -61,7 +61,7 @@ const Catalogue = (props: Props) => {
         sortingParams={carFilters.sortingParams}
         handeSetSortingParams={handeSetSortingParams}
       />
-      <FilterResults filterResults={filterResults} handleUpdateAds={handleUpdateAds}/>
+      <FilterResults filterResults={filterResults} handleUpdateAds={handleUpdateAds} />
     </div>
   );
 };

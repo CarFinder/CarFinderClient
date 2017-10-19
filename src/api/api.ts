@@ -13,7 +13,7 @@ export default {
   filters: {
     fetchMarks: () => axios.get('/api/filter/marks'),
     fetchBodyTypes: () => axios.get('/api/filter/bodytypes'),
-    fetchModels: (markId: any) => axios.post('/api/filter/models', markId),
+    fetchModels: (markId: any) => axios.post('/api/filter/models', { markId }),
     fetchResults: (data: any) => axios.post('/api/ad', data)
   }
 };

@@ -17,7 +17,7 @@ export const transformDataForSearch = (filtersData: any, sortingParams: any) => 
     filter: {},
     limit: '',
     sort: {},
-    skip: ''
+    skip: null
   };
   data.filter.markId = filtersData.markId;
   if (filtersData.modelId.length !== 0) {

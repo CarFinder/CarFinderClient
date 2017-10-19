@@ -12,7 +12,7 @@ interface PropsInterface {
   handleFetchMarksValues: () => void;
   handleFetchModelsValues: (mark: string[]) => void;
   handleFetchBodyTypesValues: () => void;
-  handleSetCurrentFilter: (payload: any) => void;
+  handleSetCurrentFilter: (payload: any, sortingParams: any) => void;
   handeSetSortingParams: (payload: any) => void;
   handleUpdateAds: () => void;
 }
@@ -43,7 +43,8 @@ const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
   handleFetchMarksValues: () => dispatch(carFiltersActions.fetchMarksValues()),
   handleFetchBodyTypesValues: () => dispatch(carFiltersActions.fetchBodyTypesValues()),
   handleFetchModelsValues: (mark: string[]) => dispatch(carFiltersActions.fetchModelsValues(mark)),
-  handleSetCurrentFilter: (payload: any) => dispatch(carFiltersActions.setCurrentFilter(payload)),
+  handleSetCurrentFilter: (payload: any, sortingParams: any) =>
+    dispatch(carFiltersActions.setCurrentFilter({ payload, sortingParams })),
   handeSetSortingParams: (payload: any) => dispatch(carFiltersActions.setSortingParams(payload)),
   handleUpdateAds: () => dispatch(carFiltersActions.updateCurrentFilter())
 });

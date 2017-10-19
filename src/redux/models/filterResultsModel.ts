@@ -8,7 +8,7 @@ export interface CarModel {
   description: string;
   images: string[];
   mark: string;
-  mileFrom: number;
+  kms: number;
   model: string;
   price: number;
   sourceName: string;

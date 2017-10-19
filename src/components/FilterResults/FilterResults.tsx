@@ -39,7 +39,7 @@ class FilterResults extends React.Component<Props, State> {
             price={value.price}
             year={value.year}
             images={value.images}
-            mileFrom={value.mileFrom}
+            kms={value.kms}
           />
         </Grid>
       );

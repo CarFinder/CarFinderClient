@@ -8,6 +8,7 @@ import Typography from 'material-ui/Typography';
 import * as React from 'react';
 import { validateForm, validateMark } from '../../utils/carFiltersValidation';
 import interfaceLanguage from '../../utils/interfaceLanguage';
+import SelectInput from '../Common/FormInputs/SelectInput';
 import MultipleSelectInput from '../Common/FormInputs/MultipleSelectInput';
 import TextInput from '../Common/FormInputs/TextInput';
 import './style.less';
@@ -18,7 +19,7 @@ export interface Props {
   handleFetchMarksValues: () => void;
   handleFetchBodyTypesValues: () => void;
   handleFetchModelsValues: (mark: string[]) => void;
-  handleSetCurrentFilter: (payload: any) => void;
+  handleSetCurrentFilter: (payload: any, sortingParams: any) => void;
   loading: boolean;
   searchError: any;
   language: string;
@@ -29,6 +30,7 @@ export interface Props {
       bodyTypes: any[];
     };
     currentFilter: any;
+    sortingParams: any;
   };
 }
 
@@ -97,14 +99,18 @@ class CarFilter extends React.Component<Props, State> {
       errors
     });
     if (Object.keys(errors).length === 0) {
-      this.props.handleSetCurrentFilter(this.state.data);
+      this.props.handleSetCurrentFilter(this.state.data, this.props.carFilters.sortingParams);
     }
   };
 
   public onSubmitMark = () => {
     const errors = validateMark(this.state.data.markId);
     this.setState({
-      errors
+      errors,
+      data: {
+        ...this.state.data,
+        modelId: []
+      }
     });
     if (Object.keys(errors).length === 0) {
       this.props.handleFetchModelsValues(this.state.data.markId);
@@ -130,7 +136,7 @@ class CarFilter extends React.Component<Props, State> {
                   )}
                   <form className="form" onSubmit={this.onSubmit}>
                     <div className="form-fullwidth-fields">
-                      <MultipleSelectInput
+                      <SelectInput
                         field="markId"
                         label={lang.carFilters.maker}
                         value={data.markId}
@@ -140,7 +146,8 @@ class CarFilter extends React.Component<Props, State> {
                         disabled={filterValues.marks.length === 0}
                         error={errors.markId}
                       />
-                      <MultipleSelectInput
+                      <SelectInput
+                        multiple
                         field="modelId"
                         label={lang.carFilters.model}
                         value={data.modelId}
@@ -151,7 +158,8 @@ class CarFilter extends React.Component<Props, State> {
                       />
                     </div>
                     <div className="form-fields">
-                      <MultipleSelectInput
+                      <SelectInput
+                        multiple
                         field="bodyTypeId"
                         label={lang.carFilters.bodyType}
                         value={data.bodyTypeId}
@@ -211,10 +219,10 @@ class CarFilter extends React.Component<Props, State> {
                     </div>
                     <div className="form-fields pull-right">
                       <Button color="primary" type="button" className="form-control">
-                      {lang.carFilters.saveFilters} <Save />
+                        {lang.carFilters.saveFilters} <Save />
                       </Button>
                       <Button raised color="primary" type="submit" className="form-control">
-                      {lang.carFilters.searchFilters} <Search />
+                        {lang.carFilters.searchFilters} <Search />
                       </Button>
                     </div>
                   </form>

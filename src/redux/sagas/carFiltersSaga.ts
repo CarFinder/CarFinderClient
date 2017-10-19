@@ -9,7 +9,7 @@ function* callFetchMarks(action: any) {
   yield put({ type: actionTypes.SET_SEARCH_ERROR, payload: '' });
   try {
     const response = yield call(api.filters.fetchMarks);
-    yield put({ type: actionTypes.SET_MARKS_VALUES, payload: response.data.marks });
+    yield put({ type: actionTypes.SET_MARKS_VALUES, payload: response.data });
     yield put({ type: actionTypes.SET_LOADING, payload: false });
   } catch (e) {
     yield put({ type: actionTypes.SET_SEARCH_ERROR, payload: 'Server-side error' });
@@ -23,7 +23,7 @@ function* callFetchModels(action: any) {
   yield put({ type: actionTypes.SET_SEARCH_ERROR, payload: '' });
   try {
     const response = yield call(api.filters.fetchModels, action.payload);
-    yield put({ type: actionTypes.SET_MODELS_VALUES, payload: response.data.models });
+    yield put({ type: actionTypes.SET_MODELS_VALUES, payload: response.data });
     yield put({ type: actionTypes.SET_LOADING, payload: false });
   } catch (e) {
     yield put({ type: actionTypes.SET_SEARCH_ERROR, payload: 'Server-side error' });
@@ -37,7 +37,7 @@ function* callFetchBodyTypes(action: any) {
   yield put({ type: actionTypes.SET_SEARCH_ERROR, payload: '' });
   try {
     const response = yield call(api.filters.fetchBodyTypes);
-    yield put({ type: actionTypes.SET_BODY_TYPES_VALUES, payload: response.data.bodyTypes });
+    yield put({ type: actionTypes.SET_BODY_TYPES_VALUES, payload: response.data });
     yield put({ type: actionTypes.SET_LOADING, payload: false });
   } catch (e) {
     yield put({ type: actionTypes.SET_SEARCH_ERROR, payload: 'Server-side error' });
@@ -50,10 +50,9 @@ function* callFetchFilterResults(action: any) {
   yield put({ type: actionTypes.SET_LOADING, payload: true });
   yield put({ type: actionTypes.SET_SEARCH_ERROR, payload: '' });
   try {
-    const sortingParams = select(getSortingParams);
-    const data = transformDataForSearch(action.payload, sortingParams);
+    const data = transformDataForSearch(action.payload.payload, action.payload.sortingParams);
     const response = yield call(api.filters.fetchResults, data);
-    yield put({ type: actionTypes.SET_FILTER_RESULTS, payload: response.data.ads });
+    yield put({ type: actionTypes.SET_FILTER_RESULTS, payload: response.data });
     yield put({ type: actionTypes.SET_LOADING, payload: false });
   } catch (e) {
     yield put({ type: actionTypes.SET_SEARCH_ERROR, payload: 'Server-side error' });
@@ -69,7 +68,7 @@ function* callUpdateFilterResults() {
     const sortingParams = select(getSortingParams);
     const data = transformDataForSearch(filterParams, sortingParams);
     const response = yield call(api.filters.fetchResults, data);
-    yield put({ type: actionTypes.SET_FILTER_RESULTS, payload: response.data.ads });
+    yield put({ type: actionTypes.SET_FILTER_RESULTS, payload: response.data });
     yield put({ type: actionTypes.SET_LOADING, payload: false });
   } catch (e) {
     yield put({ type: actionTypes.SET_SEARCH_ERROR, payload: 'Server-side error' });
@@ -82,7 +81,7 @@ export default function* watchCarFilters(): SagaIterator {
   yield takeEvery(actionTypes.FETCH_BODY_TYPES_VALUES, callFetchBodyTypes);
   yield takeEvery(actionTypes.FETCH_MODELS_VALUES, callFetchModels);
   yield takeEvery(actionTypes.SET_CURRENT_FILTER, callFetchFilterResults);
-  yield takeEvery(actionTypes.UPDATE_CURRENT_FILTER, callUpdateFilterResults);
+  // yield takeEvery(actionTypes.UPDATE_CURRENT_FILTER, callUpdateFilterResults);
 }
 
 export const getSortingParams = (state: any) => state.carFilters.sortingParams;

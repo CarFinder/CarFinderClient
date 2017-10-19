@@ -39,7 +39,7 @@ const MultipleSelectInput = ({
       {options.length !== 0 &&
         options.map((option: any) => {
           return (
-            <MenuItem key={option.id} value={option.id}>
+            <MenuItem key={option._id} value={option._id}>
               {option.name}
             </MenuItem>
           );

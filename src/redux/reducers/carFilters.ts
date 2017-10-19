@@ -55,7 +55,13 @@ export default function carFiltersReducer(
       };
     }
     case FETCH_MODELS_VALUES:
-      return state;
+      return {
+        ...state,
+        filterValues: {
+          ...state.filterValues,
+          models: []
+        }
+      };
     case SET_MODELS_VALUES: {
       return {
         ...state,

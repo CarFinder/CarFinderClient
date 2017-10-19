@@ -11,11 +11,11 @@ export interface Props {
   price: number;
   year: number;
   images: string[];
-  mileFrom: number;
+  kms: number;
 }
 
 const CarAd = (props: Props) => {
-  const { model, mark, description, price, year, images, mileFrom } = props;
+  const { model, mark, description, price, year, images, kms } = props;
   return (
     <Paper className="car-ad-container">
       <Grid item className="car-info">
@@ -35,7 +35,7 @@ const CarAd = (props: Props) => {
         </Grid>
         <Grid item className="car-ad-price">
           <Typography type="headline">{price}</Typography>
-          <Typography type="headline">{mileFrom}</Typography>
+          <Typography type="headline">{kms}</Typography>
         </Grid>
       </Grid>
     </Paper>
