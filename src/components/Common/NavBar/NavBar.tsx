@@ -89,7 +89,7 @@ class NavBar extends React.Component<Props, State> {
               </Button>
               <Button
                 color="contrast"
-                className={language === 'en' ? 'selected' : ''}
+                className={language !== 'ru' ? 'selected' : ''}
                 onClick={() => handleChangelanguage('en')}
               >
                 {lang.navigation.engLang}
