@@ -41,7 +41,7 @@ const SelectInput = ({
       {options.length !== 0 &&
         options.map((option: any, index: number) => {
           return (
-            <MenuItem key={index} value={option._id}>
+            <MenuItem key={index} value={option._id ? option._id : option.id}>
               {option.name}
             </MenuItem>
           );

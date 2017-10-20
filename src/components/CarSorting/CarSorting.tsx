@@ -66,10 +66,9 @@ class CarSorting extends React.Component<Props, State> {
     };
   }
 
-  public onChange = (name: string) => (e: any) => {
+  public onChangeLimit = (name: string) => (e: any) => {
     this.setState({
-      ...this.state,
-      [name]: e.target.value
+      limit: parseInt(e.target.value, 10)
     });
   };
 
@@ -103,7 +102,7 @@ class CarSorting extends React.Component<Props, State> {
             label="Ads per page"
             value={limit}
             options={limitValues}
-            onChange={this.onChange}
+            onChange={this.onChangeLimit}
             onBlur={this.updateSortingParams}
           />
           <SelectInput
