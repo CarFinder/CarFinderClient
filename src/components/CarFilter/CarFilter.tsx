@@ -6,6 +6,7 @@ import Paper from 'material-ui/Paper';
 import { CircularProgress } from 'material-ui/Progress';
 import Typography from 'material-ui/Typography';
 import * as React from 'react';
+import { CarModel } from '../../redux/models/filterResultsModel';
 import { validateForm, validateMark } from '../../utils/carFiltersValidation';
 import interfaceLanguage from '../../utils/interfaceLanguage';
 import SelectInput from '../Common/FormInputs/SelectInput';
@@ -19,6 +20,8 @@ export interface Props {
   handleFetchBodyTypesValues: () => void;
   handleFetchModelsValues: (mark: string[]) => void;
   handleSetCurrentFilter: (payload: any, sortingParams: any) => void;
+  handleSetAdsAsLoaded: (payload: boolean) => void;
+  handleSetAds: (ads: CarModel[]) => void;
   loading: boolean;
   searchError: any;
   language: string;
@@ -98,7 +101,9 @@ class CarFilter extends React.Component<Props, State> {
       errors
     });
     if (Object.keys(errors).length === 0) {
+      this.props.handleSetAds([]);
       this.props.handleSetCurrentFilter(this.state.data, this.props.carFilters.sortingParams);
+      this.props.handleSetAdsAsLoaded(false);
     }
   };
 

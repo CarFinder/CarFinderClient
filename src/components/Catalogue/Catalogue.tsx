@@ -28,53 +28,85 @@ export interface Props {
   };
 }
 
-const Catalogue = (props: Props) => {
-  const {
-    language,
-    loading,
-    searchError,
-    carFilters,
-    handleClearError,
-    handleClearFilters,
-    handleSetCurrentFilter,
-    handleFetchMarksValues,
-    handleFetchBodyTypesValues,
-    handleFetchModelsValues,
-    handeSetSortingParams,
-    handleUpdateAds,
-    filterResults,
-    adsAreLoaded,
-    handleSetAdsAsLoaded
-  } = props;
+interface State {
+  skip: number;
+  items: CarModel[];
+}
 
-  return (
-    <div>
-      <CarFilter
-        language={language}
-        handleClearError={handleClearError}
-        handleClearFilters={handleClearFilters}
-        handleFetchMarksValues={handleFetchMarksValues}
-        handleFetchModelsValues={handleFetchModelsValues}
-        handleSetCurrentFilter={handleSetCurrentFilter}
-        handleFetchBodyTypesValues={handleFetchBodyTypesValues}
-        carFilters={carFilters}
-        searchError={searchError}
-        loading={loading}
-      />
-      <CarSorting
-        sortingParams={carFilters.sortingParams}
-        handeSetSortingParams={handeSetSortingParams}
-      />
-      <FilterResults
-        filterResults={filterResults}
-        handleUpdateAds={handleUpdateAds}
-        loading={loading}
-        carFilters={carFilters}
-        adsAreLoaded={adsAreLoaded}
-        handleSetAdsAsLoaded={handleSetAdsAsLoaded}
-      />
-    </div>
-  );
-};
+class Catalogue extends React.PureComponent<Props, State> {
+  constructor() {
+    super();
+    this.state = {
+      skip: 0,
+      items: []
+    };
+  }
+
+  public handleSetAds = (ads: CarModel[]) => {
+    this.setState({
+      items: ads
+    });
+  };
+
+  public handleSetSkip = (skipAmount: number) => {
+    this.setState({
+      skip: skipAmount
+    });
+  };
+
+  public render() {
+    const {
+      language,
+      loading,
+      searchError,
+      carFilters,
+      handleClearError,
+      handleClearFilters,
+      handleSetCurrentFilter,
+      handleFetchMarksValues,
+      handleFetchBodyTypesValues,
+      handleFetchModelsValues,
+      handeSetSortingParams,
+      filterResults,
+      adsAreLoaded,
+      handleSetAdsAsLoaded
+    } = this.props;
+
+    return (
+      <div>
+        <CarFilter
+          language={language}
+          carFilters={carFilters}
+          searchError={searchError}
+          loading={loading}
+          handleSetAds={this.handleSetAds}
+          handleClearError={handleClearError}
+          handleClearFilters={handleClearFilters}
+          handleFetchMarksValues={handleFetchMarksValues}
+          handleFetchModelsValues={handleFetchModelsValues}
+          handleSetCurrentFilter={handleSetCurrentFilter}
+          handleFetchBodyTypesValues={handleFetchBodyTypesValues}
+          handleSetAdsAsLoaded={handleSetAdsAsLoaded}
+        />
+        <CarSorting
+          sortingParams={carFilters.sortingParams}
+          handeSetSortingParams={handeSetSortingParams}
+        />
+        <FilterResults
+          filterResults={filterResults}
+          items={this.state.items}
+          skip={this.state.skip}
+          loading={loading}
+          carFilters={carFilters}
+          adsAreLoaded={adsAreLoaded}
+          handleSetAds={this.handleSetAds}
+          handleSetCurrentFilter={handleSetCurrentFilter}
+          handleSetSkip={this.handleSetSkip}
+          handeSetSortingParams={handeSetSortingParams}
+        />
+      </div>
+    );
+  }
+}
 
 export default Catalogue;

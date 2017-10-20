@@ -1,6 +1,6 @@
 export interface FilterResults {
-  filterResults: CarModel[];
-  allAdsLoaded: boolean;
+  filterResults?: CarModel[];
+  allAdsLoaded?: boolean;
 }
 
 export interface CarModel {

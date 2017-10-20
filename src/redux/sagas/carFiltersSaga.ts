@@ -50,8 +50,11 @@ function* callFetchFilterResults(action: any) {
   yield put({ type: actionTypes.SET_LOADING, payload: true });
   yield put({ type: actionTypes.SET_SEARCH_ERROR, payload: '' });
   try {
-    const data = transformDataForSearch(action.payload.payload, action.payload.sortingParams);
+    const data = transformDataForSearch(action.payload, action.sortingParams);
     const response = yield call(api.filters.fetchResults, data);
+    if (!response.data.length) {
+      yield put({ type: actionTypes.SET_ADS_AS_LOADED, payload: true });
+    }
     yield put({ type: actionTypes.SET_FILTER_RESULTS, payload: response.data });
     yield put({ type: actionTypes.SET_LOADING, payload: false });
   } catch (e) {
