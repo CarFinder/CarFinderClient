@@ -7,12 +7,12 @@ import Typography from 'material-ui/Typography';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { UserData } from '../../containers/Signup';
+import interfaceLanguage from '../../utils/interfaceLanguage';
 import FirstPage from './WizardForm/FirstPage';
 import FormStepper from './WizardForm/FormStepper';
 import LastPage from './WizardForm/LastPage';
 import SecondPage from './WizardForm/SecondPage';
 import ThirdPage from './WizardForm/ThirdPage';
-import interfaceLanguage from '../../utils/interfaceLanguage';
 
 import './style.less';
 
@@ -29,7 +29,7 @@ export interface State {
   page: number;
 }
 
-class SignupFrom extends React.Component<Props, State> {
+class SignupFrom extends React.PureComponent<Props, State> {
   constructor() {
     super();
     this.state = {
@@ -49,7 +49,7 @@ class SignupFrom extends React.Component<Props, State> {
     }
   }
 
-  componentWillMount() {
+  public componentWillMount() {
     this.props.handleClearError();
   }
 
