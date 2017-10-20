@@ -1,9 +1,10 @@
-import { SET_FILTER_RESULTS } from '../actions/actionTypes';
+import { SET_ADS_AS_LOADED, SET_FILTER_RESULTS } from '../actions/actionTypes';
 import { FilterResultsAction } from '../actions/filterResultsActions';
 import { FilterResults, InitialState } from '../models/filterResultsModel';
 
 const initialState = {
-  filterResults: []
+  filterResults: [],
+  allAdsLoaded: false
 };
 
 export default function filterResultsReducer(
@@ -15,6 +16,11 @@ export default function filterResultsReducer(
       return {
         ...state,
         filterResults: action.payload
+      };
+    case SET_ADS_AS_LOADED:
+      return {
+        ...state,
+        allAdsLoaded: action.payload
       };
     default:
       return state;

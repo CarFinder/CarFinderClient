@@ -24,7 +24,7 @@ const CarAd = (props: Props) => {
         </Grid>
         <Grid item className="car-ad-description">
           <Typography type="display1">{mark + ' ' + model}</Typography>
-          <Typography type="body1" gutterBottom>
+          <Typography type="body1" className="description-text" gutterBottom>
             {description}
           </Typography>
         </Grid>

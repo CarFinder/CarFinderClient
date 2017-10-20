@@ -7,8 +7,7 @@ import {
   SET_CURRENT_FILTER,
   SET_MARKS_VALUES,
   SET_MODELS_VALUES,
-  SET_SORTING_PARAMS,
-  UPDATE_CURRENT_FILTER
+  SET_SORTING_PARAMS
 } from '../actions/actionTypes';
 import { InitialState } from '../models/carFiltersModel';
 
@@ -87,9 +86,6 @@ export default function carFiltersReducer(
         ...state,
         currentFilter: action.payload
       };
-    }
-    case UPDATE_CURRENT_FILTER: {
-      return state;
     }
     case SET_SORTING_PARAMS: {
       return {

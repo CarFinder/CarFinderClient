@@ -60,28 +60,11 @@ function* callFetchFilterResults(action: any) {
   }
 }
 
-function* callUpdateFilterResults() {
-  yield put({ type: actionTypes.SET_LOADING, payload: true });
-  yield put({ type: actionTypes.SET_SEARCH_ERROR, payload: '' });
-  try {
-    const filterParams = select(getFilterParams);
-    const sortingParams = select(getSortingParams);
-    const data = transformDataForSearch(filterParams, sortingParams);
-    const response = yield call(api.filters.fetchResults, data);
-    yield put({ type: actionTypes.SET_FILTER_RESULTS, payload: response.data });
-    yield put({ type: actionTypes.SET_LOADING, payload: false });
-  } catch (e) {
-    yield put({ type: actionTypes.SET_SEARCH_ERROR, payload: 'Server-side error' });
-    yield put({ type: actionTypes.SET_LOADING, payload: false });
-  }
-}
-
 export default function* watchCarFilters(): SagaIterator {
   yield takeEvery(actionTypes.FETCH_MARKS_VALUES, callFetchMarks);
   yield takeEvery(actionTypes.FETCH_BODY_TYPES_VALUES, callFetchBodyTypes);
   yield takeEvery(actionTypes.FETCH_MODELS_VALUES, callFetchModels);
   yield takeEvery(actionTypes.SET_CURRENT_FILTER, callFetchFilterResults);
-  // yield takeEvery(actionTypes.UPDATE_CURRENT_FILTER, callUpdateFilterResults);
 }
 
 export const getSortingParams = (state: any) => state.carFilters.sortingParams;

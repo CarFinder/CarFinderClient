@@ -13,9 +13,6 @@
 .car-info {
   display: flex;
   flex-direction: row;
-  & > * {
-    margin-right: 100px !important;
-  }
 }
 
 .infinite-scroll-container {
@@ -24,6 +21,20 @@
 
 .car-ad-image {
   & img {
-    height: 200px;
+    width: 200px;
+  }
+}
+
+.car-ad-description {
+  margin-left: 30px !important;
+}
+
+.car-ad-price {
+  margin-left: 15px !important;
+}
+
+.description-text {
+  @media screen and (max-width: 1700px) {
+    max-width: 35%;
   }
 }

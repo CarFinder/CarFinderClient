@@ -226,7 +226,6 @@ class CarFilter extends React.Component<Props, State> {
                     </div>
                   </form>
                 </Grid>
-                {loading && <CircularProgress size={50} />}
               </Paper>
             </Grid>
           </Grid>

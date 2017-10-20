@@ -9,25 +9,35 @@ import CarAd from './CarAd/CarAd';
 import './style.less';
 
 export interface Props {
+  adsAreLoaded: boolean;
   filterResults: CarModel[];
-  handleUpdateAds: () => void;
+  loading: boolean;
+  carFilters: {
+    currentFilter: any;
+    sortingParams: any;
+  };
+  handleUpdateAds: (payload: any, sortingParams: any) => void;
+  handleSetAdsAsLoaded: (payload: boolean) => void;
 }
 
 export interface State {
-  allAdsAreLoaded: boolean;
   items: any;
+  skipped: number;
 }
 
 class FilterResults extends React.Component<Props, State> {
   constructor() {
     super();
     this.state = {
-      allAdsAreLoaded: false,
+      skipped: 0,
       items: <Typography type="display1">Please choose filter options</Typography>
     };
   }
 
   public populateAds = () => {
+    if (this.props.filterResults.length % 20 !== 0) {
+      this.props.handleSetAdsAsLoaded(true);
+    }
     const carAds: any[] = [];
     this.props.filterResults.forEach((value: CarModel, index: number) => {
       carAds.push(
@@ -45,26 +55,37 @@ class FilterResults extends React.Component<Props, State> {
       );
     });
     this.setState({
-      items: carAds
+      items: carAds.length ? (
+        carAds
+      ) : (
+        <Typography type="display1">No ads to display, try another filter</Typography>
+      ),
+      skipped: this.state.skipped + carAds.length
     });
   };
 
   public loadFunc = () => {
-    this.props.handleUpdateAds();
+    this.props.handleUpdateAds(
+      this.props.carFilters.currentFilter,
+      this.props.carFilters.sortingParams
+    );
     this.populateAds();
   };
 
   public render() {
     return (
       <Grid container className="ads-container">
-        <InfiniteScroll
-          className="infinite-scroll-container"
-          loadMore={this.loadFunc}
-          hasMore={this.props.filterResults.length > 0 && !this.state.allAdsAreLoaded}
-          loader={this.state.items.length > 1 ? <CircularProgress size={50} /> : <div />}
-        >
-          {this.state.items}
-        </InfiniteScroll>
+        {this.props.loading && <CircularProgress size={50} />}
+        {!this.props.loading && (
+          <InfiniteScroll
+            className="infinite-scroll-container"
+            loadMore={this.loadFunc}
+            hasMore={this.props.filterResults.length > 0 && !this.props.adsAreLoaded}
+            loader={this.state.items.length > 1 ? <CircularProgress size={50} /> : <div />}
+          >
+            {this.state.items}
+          </InfiniteScroll>
+        )}
       </Grid>
     );
   }
