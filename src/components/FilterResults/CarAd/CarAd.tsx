@@ -35,7 +35,7 @@ const CarAd = (props: Props) => {
         </Grid>
         <Grid item className="car-ad-price">
           <Typography type="headline">{price}</Typography>
-          <Typography type="headline">{kms}</Typography>
+          <Typography type="headline">{kms !== 0 ? kms : 'New'}</Typography>
         </Grid>
       </Grid>
     </Paper>

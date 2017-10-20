@@ -12,11 +12,11 @@ export interface FormData {
   kmsTo: number;
 }
 
-const yearValidation = new RegExp('^(19[0-9][0-9]|200d|201[0-7])$');
+const yearValidation = new RegExp('^(19[0-9][0-9]|200[0-9]|201[0-7])$');
 const lang =
-localStorage.getItem('interfaceLanguage') === 'ru'
-  ? language.ru.validation
-  : language.en.validation;
+  localStorage.getItem('interfaceLanguage') === 'ru'
+    ? language.ru.validation
+    : language.en.validation;
 
 export const validateMark = (markId: string[]): any => {
   const errors: any = {};
