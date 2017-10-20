@@ -27,60 +27,49 @@ export interface State {
 }
 
 class FilterResults extends React.Component<Props, State> {
-  constructor() {
-    super();
-    this.state = {
-      skipped: 0,
-      items: <Typography type="display1">Please choose filter options</Typography>
-    };
-  }
-
-  public componentWillReceiveProps(nextProps: Props) {
-    if (this.props.filterResults) {
-      console.log(this.props.filterResults);
-      const carAds: any[] = [];
-      this.props.filterResults.forEach((value: CarModel, index: number) => {
-        carAds.push(
-          <Grid item className="ad" key={index}>
-            <CarAd
-              model={value.model}
-              mark={value.mark}
-              description={value.description}
-              price={value.price}
-              year={value.year}
-              images={value.images}
-              kms={value.kms}
-            />
-          </Grid>
-        );
-      });
-      this.setState({
-        items: carAds.length ? (
-          carAds
-        ) : (
-          <Typography type="display1">No ads to display, try another filter</Typography>
-        ),
-        skipped: this.state.skipped + carAds.length
-      });
-    }
-  }
-
   public render() {
+    const carAds: any[] = [];
+    this.props.filterResults.forEach((value: CarModel) => {
+      carAds.push(
+        <Grid item className="ad" key={value._id}>
+          <CarAd
+            model={value.model}
+            mark={value.mark}
+            description={value.description}
+            price={value.price}
+            year={value.year}
+            images={value.images}
+            kms={value.kms}
+          />
+        </Grid>
+      );
+    });
     return (
       <Grid container className="ads-container">
-        {this.props.loading && <CircularProgress size={50} />}
+        {this.props.loading && (
+          <div className="empty">
+            <CircularProgress size={50} />
+          </div>
+        )}
+        {this.props.filterResults.length === 0 && (
+          <div className="empty">Please choose filter options</div>
+        )}
         {!this.props.loading && (
           <div>
-            {this.state.items}
-            <Button
-              onClick={() =>
-                this.props.handleUpdateAds(
-                  this.props.carFilters.currentFilter,
-                  this.props.carFilters.sortingParams
-                )}
-            >
-              Load More
-            </Button>
+            {carAds}
+            {this.props.filterResults.length > 0 && (
+              <div className="empty">
+                <Button
+                  onClick={() =>
+                    this.props.handleUpdateAds(
+                      this.props.carFilters.currentFilter,
+                      this.props.carFilters.sortingParams
+                    )}
+                >
+                  Load More
+                </Button>
+              </div>
+            )}
           </div>
         )}
       </Grid>

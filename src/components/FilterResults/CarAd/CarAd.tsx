@@ -18,26 +18,26 @@ const CarAd = (props: Props) => {
   const { model, mark, description, price, year, images, kms } = props;
   return (
     <Paper className="car-ad-container">
-      <Grid item className="car-info">
-        <Grid item className="car-ad-image">
+      <div className="car-info_1">
+        <div className="car-ad-image">
           <img src={images[0]} />
-        </Grid>
-        <Grid item className="car-ad-description">
+        </div>
+        <div className="car-ad-description">
           <Typography type="display1">{mark + ' ' + model}</Typography>
-          <Typography type="body1" className="description-text" gutterBottom>
+          <Typography type="body1" className="description-text">
             {description}
           </Typography>
-        </Grid>
-      </Grid>
-      <Grid item className="car-info">
-        <Grid item className="car-ad-year">
-          <Typography type="headline">{year}</Typography>
-        </Grid>
-        <Grid item className="car-ad-price">
-          <Typography type="headline">{price}</Typography>
-          <Typography type="headline">{kms !== 0 ? kms : 'New'}</Typography>
-        </Grid>
-      </Grid>
+        </div>
+      </div>
+      <div className="car-info_2">
+        <div className="car-ad-year">
+          <Typography type="headline">Год выпуска: {year}</Typography>
+        </div>
+        <div className="car-ad-price">
+          <Typography type="headline">Цена: {price}$</Typography>
+          <Typography type="headline">Пробег: {kms !== 0 ? kms : 'New'}</Typography>
+        </div>
+      </div>
     </Paper>
   );
 };
