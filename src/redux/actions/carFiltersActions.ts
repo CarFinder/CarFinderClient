@@ -16,6 +16,7 @@ export interface SetFilterValues {
 export interface SetCurrentFilter {
   type: actionTypes.SET_CURRENT_FILTER;
   payload: any;
+  sortingParams: any;
 }
 
 export interface FetchMarksValues {
@@ -74,10 +75,11 @@ export function setFilterValues(payload: any): SetFilterValues {
   };
 }
 
-export function setCurrentFilter(payload: any): SetCurrentFilter {
+export function setCurrentFilter(payload: any, sortingParams: any): SetCurrentFilter {
   return {
     type: actionTypes.SET_CURRENT_FILTER,
-    payload
+    payload,
+    sortingParams
   };
 }
 
