@@ -85,7 +85,8 @@ class CarSorting extends React.Component<Props, State> {
   public updateSortingParams = () => {
     this.props.handeSetSortingParams({
       limit: this.state.limit,
-      sort: this.state.sort
+      sort: this.state.sort,
+      skip: 0
     });
   };
 

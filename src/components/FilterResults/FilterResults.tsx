@@ -34,14 +34,18 @@ class FilterResults extends React.Component<Props, State> {
     };
   }
 
+  public componentWillReceiveProps() {
+    this.populateAds();
+  }
+
   public populateAds = () => {
     if (this.props.filterResults.length % 20 !== 0) {
       this.props.handleSetAdsAsLoaded(true);
     }
     const carAds: any[] = [];
-    this.props.filterResults.forEach((value: CarModel, index: number) => {
+    this.props.filterResults.forEach((value: CarModel) => {
       carAds.push(
-        <Grid item className="ad" key={index}>
+        <Grid item className="ad" key={value._id}>
           <CarAd
             model={value.model}
             mark={value.mark}
