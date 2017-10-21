@@ -236,7 +236,7 @@ const interfaceLanguage: Language = {
     },
     emailConfirmation: {
       title: 'Email confirmation',
-      loadingMessage: 'Please waith while we confirm your email.',
+      loadingMessage: 'Please wait while we are confirming your email.',
       successMessage: 'Email confirmed. Thank you',
       errorMessage: 'Sorry, an error occured. We cannot confirm your email.'
     },
