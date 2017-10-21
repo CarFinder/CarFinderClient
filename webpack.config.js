@@ -27,7 +27,7 @@ module.exports = {
     }
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.jsx', 'less', 'css'],
+    extensions: ['.ts', '.tsx', '.js', '.jsx', 'less', 'sass', 'scss', 'css'],
     modules: ['src', 'node_modules']
   },
   module: {
@@ -38,10 +38,18 @@ module.exports = {
         include: path.resolve('src')
       },
       {
-        test: /.less$/,
+        test: /\.less$/,
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: 'css-loader!less-loader'
+        }),
+        include: path.resolve('src')
+      },
+      {
+        test: /\.(s?[ac]ss)$/,
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: 'css-loader!sass-loader'
         }),
         include: path.resolve('src')
       },

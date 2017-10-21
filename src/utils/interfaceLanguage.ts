@@ -96,6 +96,7 @@ const interfaceLanguage: Language = {
       firstStepTooltip: 'Личная информация',
       secondStepTooltip: 'Контактная информация',
       thirdStepTooltip: 'Безопасность',
+      fourthStepTooltip: 'Подтверждение',
       passwordTooltip:
         'Пароль должен быть не менее 8 символов, содержать как минимум 1 цифру и 1 специальный символ',
       nextButton: 'Далее',
@@ -130,7 +131,8 @@ const interfaceLanguage: Language = {
       title: 'Подтверждение е-мэйла',
       loadingMessage: 'Подтверждаем ваш е-мэйл. Пожалуйста, подождите.',
       successMessage: 'Е-мэйл подтвержден. Спасибо.',
-      errorMessage: 'Извините, произошла ошибка. Мы не можем подтвердить ваш е-мэйл.'
+      errorMessage:
+        'Извините, произошла ошибка. Мы не можем подтвердить ваш е-мэйл.'
     },
     changePassword: {
       title: 'Восстановление пароля',
@@ -193,13 +195,15 @@ const interfaceLanguage: Language = {
       11000: 'Account already exists'
     },
     searchErrors: {
-      serverUnavailable: 'Server is currently unavailable. Please reload the page and try again.'
+      serverUnavailable:
+        'Server is currently unavailable. Please reload the page and try again.'
     },
     signupForm: {
       title: 'Sign up',
       firstStepTooltip: 'Personal information',
       secondStepTooltip: 'Contact information',
       thirdStepTooltip: 'Security',
+      fourthStepTooltip: 'Confirmation',
       passwordTooltip:
         'Password should be no less than 8 symbols, contain at least 1 digit and one special character',
       nextButton: 'Next',
