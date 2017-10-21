@@ -105,6 +105,7 @@ class CarSorting extends React.Component<Props, State> {
             options={limitValues}
             onChange={this.onChangeLimit}
             onBlur={this.updateSortingParams}
+            icon="fa-sort"
           />
           <SelectInput
             field="year"
@@ -113,6 +114,7 @@ class CarSorting extends React.Component<Props, State> {
             options={sortValues}
             onChange={this.onChangeSort}
             onBlur={this.updateSortingParams}
+            icon="fa-sort"
           />
         </form>
       </Paper>

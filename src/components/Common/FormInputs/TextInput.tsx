@@ -1,5 +1,6 @@
 import classnames from 'classnames';
 import * as React from 'react';
+
 import './style.less';
 
 interface Props {
@@ -34,7 +35,10 @@ const TextInput = ({
         onChange={onChange(field)}
       />
       <div className="icon is-small is-left">
-        <i className={classnames('fa', { icon: !!icon })} aria-hidden="true" />
+        <i
+          className={classnames('fa', { [icon]: !!icon })}
+          aria-hidden="true"
+        />
       </div>
     </div>
     {error && <p className="help is-danger">{error}</p>}

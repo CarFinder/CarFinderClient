@@ -1,8 +1,6 @@
-import { FormControl, FormHelperText } from 'material-ui/Form';
-import Input, { InputLabel } from 'material-ui/Input';
-import { MenuItem } from 'material-ui/Menu';
-import Select from 'material-ui/Select';
+import classnames from 'classnames';
 import * as React from 'react';
+
 import './style.less';
 
 interface Props {
@@ -13,8 +11,8 @@ interface Props {
   value: any;
   disabled?: boolean;
   options: any[];
-  multiple?: boolean;
   error?: string;
+  icon: string;
 }
 
 const SelectInput = ({
@@ -23,33 +21,47 @@ const SelectInput = ({
   value,
   error,
   options,
-  multiple,
+  icon,
   onChange,
   onBlur,
   disabled
 }: Props) => (
-  <FormControl className="form-field" error={!!error}>
-    <InputLabel htmlFor={field}>{label}</InputLabel>
-    <Select
-      multiple={multiple}
-      value={value}
-      onChange={onChange(field)}
-      onBlur={onBlur}
-      disabled={disabled}
-      input={<Input id={field} name={field} className="form-control" />}
-    >
-      {options.length !== 0 &&
-        options.map((option: any, index: number) => {
-          return (
-            <MenuItem key={index} value={option._id ? option._id : option.id}>
-              {option.name}
-            </MenuItem>
-          );
-        })}
-      {!options && <MenuItem value={'default'}>Please choose maker first</MenuItem>})}
-    </Select>
-    {error && <FormHelperText>{error}</FormHelperText>}
-  </FormControl>
+  <div className="field">
+    <label htmlFor={field} className="label">
+      {label}
+    </label>
+    <div className="control has-icons-left">
+      <div className="select">
+        <select
+          name={field}
+          id={field}
+          value={value}
+          onChange={onChange(field)}
+          onBlur={onBlur}
+          disabled={disabled}
+        >
+          {options.length !== 0 &&
+            options.map((option: any, index: number) => {
+              return (
+                <option key={index} value={option._id ? option._id : option.id}>
+                  {option.name}
+                </option>
+              );
+            })}
+          {options.length === 0 && (
+            <option value={'default'}>Please choose maker first</option>
+          )})}
+        </select>
+      </div>
+      <div className="icon is-small is-left">
+        <i
+          className={classnames('fa', { [icon]: !!icon })}
+          aria-hidden="true"
+        />
+      </div>
+    </div>
+    {error && <p className="help is-danger">{error}</p>}
+  </div>
 );
 
 export default SelectInput;
