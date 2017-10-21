@@ -1,11 +1,4 @@
 import classnames from 'classnames';
-import Save from 'material-ui-icons/Save';
-import Search from 'material-ui-icons/Search';
-import Button from 'material-ui/Button';
-import Grid from 'material-ui/Grid';
-import Paper from 'material-ui/Paper';
-import { CircularProgress } from 'material-ui/Progress';
-import Typography from 'material-ui/Typography';
 import * as React from 'react';
 import { CarModel } from '../../redux/models/filterResultsModel';
 import { validateForm, validateMark } from '../../utils/carFiltersValidation';
