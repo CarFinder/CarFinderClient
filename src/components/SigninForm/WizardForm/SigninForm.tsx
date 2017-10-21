@@ -48,7 +48,7 @@ const SigninForm = (props: Props) => {
   return (
     <form onSubmit={props.handleSubmit}>
       <p className="help has-text-grey-light">
-        {lang.signupForm.passwordTooltip}
+        {lang.signinForm.passwordTooltip}
       </p>
       <div>
         <Field
@@ -74,7 +74,7 @@ const SigninForm = (props: Props) => {
             'is-loading': props.loading
           })}
         >
-          {lang.signupForm.submitButton} &nbsp;
+          {lang.signinForm.submitButton} &nbsp;
           <i className="fa fa-paper-plane-o" aria-hidden="true" />
         </button>
       </div>
