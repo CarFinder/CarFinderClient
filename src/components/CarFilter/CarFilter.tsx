@@ -102,7 +102,10 @@ class CarFilter extends React.Component<Props, State> {
     });
     if (Object.keys(errors).length === 0) {
       this.props.handleSetAds([]);
-      this.props.handleSetCurrentFilter(this.state.data, this.props.carFilters.sortingParams);
+      this.props.handleSetCurrentFilter(
+        this.state.data,
+        this.props.carFilters.sortingParams
+      );
       this.props.handleSetAdsAsLoaded(false);
     }
   };
@@ -125,7 +128,8 @@ class CarFilter extends React.Component<Props, State> {
     const { data, errors } = this.state;
     const { filterValues } = this.props.carFilters;
     const { searchError, loading, language } = this.props;
-    const lang = language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
+    const lang =
+      language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
     return (
       <div className="carfilters-form">
         <Grid container>
@@ -179,6 +183,7 @@ class CarFilter extends React.Component<Props, State> {
                         value={data.yearFrom}
                         onChange={this.onChangeNumber}
                         error={errors.yearFrom}
+                        icon="fa-clock-o"
                       />
                       <TextInput
                         field="yearTo"
@@ -187,6 +192,7 @@ class CarFilter extends React.Component<Props, State> {
                         value={data.yearTo}
                         onChange={this.onChangeNumber}
                         error={errors.yearTo}
+                        icon="fa-clock-o"
                       />
                       <TextInput
                         field="priceFrom"
@@ -195,6 +201,7 @@ class CarFilter extends React.Component<Props, State> {
                         value={data.priceFrom}
                         onChange={this.onChangeNumber}
                         error={errors.priceFrom}
+                        icon="fa-usd"
                       />
                       <TextInput
                         field="priceTo"
@@ -203,6 +210,7 @@ class CarFilter extends React.Component<Props, State> {
                         value={data.priceTo}
                         onChange={this.onChangeNumber}
                         error={errors.priceTo}
+                        icon="fa-usd"
                       />
                       <TextInput
                         field="kmsFrom"
@@ -211,6 +219,7 @@ class CarFilter extends React.Component<Props, State> {
                         value={data.kmsFrom}
                         onChange={this.onChangeNumber}
                         error={errors.kmsFrom}
+                        icon="fa-road"
                       />
                       <TextInput
                         field="kmsTo"
@@ -219,13 +228,23 @@ class CarFilter extends React.Component<Props, State> {
                         value={data.kmsTo}
                         onChange={this.onChangeNumber}
                         error={errors.kmsTo}
+                        icon="fa-road"
                       />
                     </div>
                     <div className="form-fields pull-right">
-                      <Button color="primary" type="button" className="form-control">
+                      <Button
+                        color="primary"
+                        type="button"
+                        className="form-control"
+                      >
                         {lang.carFilters.saveFilters} <Save />
                       </Button>
-                      <Button raised color="primary" type="submit" className="form-control">
+                      <Button
+                        raised
+                        color="primary"
+                        type="submit"
+                        className="form-control"
+                      >
                         {lang.carFilters.searchFilters} <Search />
                       </Button>
                     </div>

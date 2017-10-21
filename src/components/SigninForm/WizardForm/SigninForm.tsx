@@ -11,6 +11,7 @@ export interface Props {
   input?: HTMLInputElement;
   name?: string;
   title?: string;
+  type: string;
   meta?: any;
   custom?: object;
   handleSubmit: any;
@@ -22,6 +23,7 @@ export interface Props {
 const renderTextField = ({
   title,
   input,
+  type,
   meta: { touched, error },
   ...custom
 }: Props) => (
@@ -29,14 +31,20 @@ const renderTextField = ({
     <label htmlFor="title" className="label">
       {title}
     </label>
-    <div className="control">
+    <div className="control has-icons-left">
       <input
         className={classnames('input', { 'is-danger': touched && !!error })}
         name={name}
-        type="text"
+        type={type}
         {...input}
         {...custom}
       />
+      <div className="icon is-small is-left">
+        {type === 'email' && (
+          <i className="fa fa-envelope-o" aria-hidden="true" />
+        )}
+        {type === 'password' && <i className="fa fa-lock" aria-hidden="true" />}
+      </div>
     </div>
     <p className="help is-danger">{touched && error}</p>
   </div>

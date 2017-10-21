@@ -29,7 +29,7 @@ const renderTextField = ({
     <label htmlFor="title" className="label">
       {title}
     </label>
-    <div className="control">
+    <div className="control has-icons-left">
       <input
         className={classnames('input', { 'is-danger': touched && !!error })}
         name={name}
@@ -37,6 +37,9 @@ const renderTextField = ({
         {...input}
         {...custom}
       />
+      <div className="icon is-small is-left">
+        <i className="fa fa-envelope-o" aria-hidden="true" />
+      </div>
     </div>
     <p className="help is-danger">{touched && error}</p>
   </div>
