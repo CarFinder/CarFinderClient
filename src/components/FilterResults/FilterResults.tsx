@@ -79,11 +79,15 @@ const FilterResults = (props: Props) => {
           <div className="column is-centered">
             {items.length === 0 &&
               !adsAreLoaded && (
-                <div className="empty">Please choose filter options</div>
+                <div className="has-text-centered">
+                  Please choose filter options
+                </div>
               )}
             {items.length === 0 &&
               adsAreLoaded && (
-                <div className="empty">Search returned no results</div>
+                <div className="has-text-centered">
+                  Search returned no results
+                </div>
               )}
             {renderItems()}
             {!loading && renderWaypoint()}

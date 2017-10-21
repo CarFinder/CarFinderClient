@@ -6,6 +6,11 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { applyMiddleware, compose, createStore, Store } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import createSagaMiddleware from 'redux-saga';
+import * as actions from './redux/actions/userActions';
+import rootReducer from './redux/reducers';
+import rootSaga from './redux/sagas/index';
+import setAuthorizationHeader from './utils/axiosHeader';
+
 import NavBar from './components/Common/NavBar/NavBar';
 import NotFound from './components/Common/NotFound/NotFound';
 import RequireAuth from './components/Common/Routes/RequireAuth';
@@ -15,10 +20,7 @@ import ChangePassword from './containers/ChangePassword';
 import EmailConfirmation from './containers/EmailConfirmation';
 import Signin from './containers/Signin';
 import Signup from './containers/Signup';
-import * as actions from './redux/actions/userActions';
-import rootReducer from './redux/reducers';
-import rootSaga from './redux/sagas/index';
-import setAuthorizationHeader from './utils/axiosHeader';
+import Footer from './components/Common/Footer/Footer';
 
 import 'index.less';
 
@@ -42,6 +44,7 @@ const App = () => {
         <Route path="/confirmation" component={EmailConfirmation} />
         <Route path="*" component={NotFound} />
       </Switch>
+      <Footer />
     </div>
   );
 };
