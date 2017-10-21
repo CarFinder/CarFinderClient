@@ -1,47 +1,9 @@
-.car-ad-container {
+img {
+  max-width: 128px;
+  max-height: 128px;
+}
+
+.media-info {
   display: flex;
-  flex-grow: 1;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 10px;
-  margin-bottom: 10px;
-  & > * {
-    text-align: start;
-  }
-}
-
-.car-info_1 {
-  display: flex;
-  flex-direction: row;
-  width: 70%;
-}
-
-.car-info_2 {
-  display: flex;
-  flex-direction: row;
-}
-
-.infinite-scroll-container {
-  text-align: center;
-}
-
-.car-ad-image {
-  & img {
-    width: 200px;
-    height: 150px;
-  }
-}
-
-.car-ad-description {
-  margin-left: 30px !important;
-}
-
-.car-ad-price {
-  margin-left: 15px !important;
-}
-
-.description-text {
-  @media screen and (max-width: 1700px) {
-    max-width: 55%;
-  }
+  flex-direction: column;
 }
