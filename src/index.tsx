@@ -1,4 +1,3 @@
-import 'index.less';
 import jwt_decode from 'jwt-decode';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -20,6 +19,8 @@ import * as actions from './redux/actions/userActions';
 import rootReducer from './redux/reducers';
 import rootSaga from './redux/sagas/index';
 import setAuthorizationHeader from './utils/axiosHeader';
+
+import 'index.less';
 
 const App = () => {
   if (localStorage.jwt) {

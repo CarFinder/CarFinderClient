@@ -44,6 +44,14 @@ module.exports = {
           use: 'css-loader!less-loader'
         }),
         include: path.resolve('src')
+      },
+      {
+        test: /.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+        use: [
+          {
+            loader: 'url-loader'
+          }
+        ]
       }
     ]
   },
