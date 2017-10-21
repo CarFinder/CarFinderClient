@@ -53,7 +53,8 @@ const FirstPage = (props: Props) => {
       </div>
       <div className="is-clearfix">
         <button className="button is-warning is-pulled-right">
-          {lang.signupForm.nextButton}
+          {lang.signupForm.nextButton} &nbsp;
+          <i className="fa fa-angle-right" aria-hidden="true" />
         </button>
       </div>
     </form>

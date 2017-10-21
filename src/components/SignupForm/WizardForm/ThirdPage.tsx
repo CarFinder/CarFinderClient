@@ -63,16 +63,15 @@ const ThirdPage = (props: Props) => {
           title={lang.signupForm.confirmPasswordField}
         />
       </div>
-      <div className="button-group">
-        <div className="is-clearfix">
-          <button
-            className={classnames('button is-warning is-pulled-right', {
-              'is-loading': props.loading
-            })}
-          >
-            {lang.signupForm.submitButton}
-          </button>
-        </div>
+      <div className="is-clearfix">
+        <button
+          className={classnames('button is-warning is-pulled-right', {
+            'is-loading': props.loading
+          })}
+        >
+          {lang.signupForm.submitButton} &nbsp;
+          <i className="fa fa-paper-plane-o" aria-hidden="true" />
+        </button>
       </div>
     </form>
   );
