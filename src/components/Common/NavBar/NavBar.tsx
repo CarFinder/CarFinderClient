@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import * as React from 'react';
 import { connect, Dispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -48,18 +49,36 @@ class NavBar extends React.Component<Props, State> {
     this.setState({ open: false });
   };
 
+  public handleCollapseMenu = () => {
+    this.setState({
+      open: !this.state.open
+    });
+  };
+
   public render() {
     const { language, isAuthenticated, handleLogOut, handleChangelanguage } = this.props;
     const lang = language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
+    const collapsed = classNames({
+      'is-active': this.state.open
+    });
     return (
       <nav className="navbar is-warning">
         <div className="navbar-brand">
           <Link to="/" className="navbar-item">
             CarFinder
           </Link>
+          <div
+            className="navbar-burger burger"
+            data-target="nav-menu"
+            onClick={this.handleCollapseMenu}
+          >
+            <span />
+            <span />
+            <span />
+          </div>
         </div>
-        <div className="navbar-start">
-          <div className="navbar-menu is-active">
+        <div id="nav-menu" className={'navbar-menu ' + `${collapsed}`}>
+          <div className="navbar-start">
             <Link to="/" className="navbar-item">
               {lang.navigation.homepage}
             </Link>
@@ -67,42 +86,42 @@ class NavBar extends React.Component<Props, State> {
               {lang.navigation.catalog}
             </Link>
           </div>
-        </div>
-        <div className="navbar-end">
-          <a className="navbar-item" onClick={() => handleChangelanguage('ru')}>
-            {lang.navigation.ruLang}
-          </a>
-          <a className="navbar-item" onClick={() => handleChangelanguage('en')}>
-            {lang.navigation.engLang}
-          </a>
-          {!isAuthenticated && (
-            <div className="navbar-menu is-active">
-              <Link className="navbar-item" to="/signin">
-                {lang.navigation.signin}
-              </Link>
-              <Link className="navbar-item" to="/signup">
-                {lang.navigation.signup}
-              </Link>
-            </div>
-          )}
-          {isAuthenticated && (
-            <div className="navbar-item has-dropdown is-hoverable">
-              <a className="navbar-link">
-                <i className="fa fa-user-o" aria-hidden="true" /> &nbsp; User Account
-              </a>
-              <div className="navbar-dropdown">
-                <Link className="navbar-item" to="/profile">
-                  {lang.navigation.profile}
+          <div className="navbar-end">
+            <a className="navbar-item" onClick={() => handleChangelanguage('ru')}>
+              {lang.navigation.ruLang}
+            </a>
+            <a className="navbar-item" onClick={() => handleChangelanguage('en')}>
+              {lang.navigation.engLang}
+            </a>
+            {!isAuthenticated && (
+              <div className="navbar-menu">
+                <Link className="navbar-item" to="/signin">
+                  {lang.navigation.signin}
                 </Link>
-                <a
-                  className="navbar-item"
-                  onClick={(e: any) => this.handleRequestClose(e, 'logout')}
-                >
-                  {lang.navigation.signout}
-                </a>
+                <Link className="navbar-item" to="/signup">
+                  {lang.navigation.signup}
+                </Link>
               </div>
-            </div>
-          )}
+            )}
+            {isAuthenticated && (
+              <div className="navbar-item has-dropdown is-hoverable">
+                <a className="navbar-link">
+                  <i className="fa fa-user-o" aria-hidden="true" /> &nbsp; User Account
+                </a>
+                <div className="navbar-dropdown">
+                  <Link className="navbar-item" to="/profile">
+                    {lang.navigation.profile}
+                  </Link>
+                  <a
+                    className="navbar-item"
+                    onClick={(e: any) => this.handleRequestClose(e, 'logout')}
+                  >
+                    {lang.navigation.signout}
+                  </a>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </nav>
     );
