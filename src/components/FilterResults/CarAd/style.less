@@ -16,3 +16,36 @@ img {
 .ad-title {
   font-size: 1.3em;
 }
+
+.media {
+  @media screen and (max-width: 540px) {
+    flex-direction: column;
+    & .media-left {
+      margin: 0 auto;
+    }
+    & .media-right {
+      margin-left: 0;
+    }
+    & .image {
+      margin-right: 10px;
+      margin-bottom: 20px;
+      width: 230px !important;
+    }
+    & img {
+      max-height: auto;
+    }
+    & .ad-price {
+      font-size: 1rem;
+    }
+    & .ad-title {
+      margin: 0 !important;
+    }
+    & .media-info {
+      flex-direction: row;
+      vertical-align: text-bottom;
+      & > * {
+        margin-left: 5px;
+      }
+    }
+  }
+}
