@@ -30,7 +30,7 @@ export interface SetMarksValues {
 
 export interface FetchModelsValues {
   type: actionTypes.FETCH_MODELS_VALUES;
-  payload: string[];
+  payload: string;
 }
 
 export interface SetModelsValues {
@@ -96,7 +96,7 @@ export function setMarksValues(payload: any[]): SetMarksValues {
   };
 }
 
-export function fetchModelsValues(mark: string[]): FetchModelsValues {
+export function fetchModelsValues(mark: string): FetchModelsValues {
   return {
     type: actionTypes.FETCH_MODELS_VALUES,
     payload: mark

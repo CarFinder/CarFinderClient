@@ -13,7 +13,7 @@ export interface Props {
   handleClearFilters: () => void;
   handleFetchMarksValues: () => void;
   handleFetchBodyTypesValues: () => void;
-  handleFetchModelsValues: (mark: string[]) => void;
+  handleFetchModelsValues: (mark: string) => void;
   handleSetCurrentFilter: (payload: any, sortingParams: any) => void;
   handleSetAdsAsLoaded: (payload: boolean) => void;
   handleSetAds: (ads: CarModel[]) => void;
@@ -33,7 +33,7 @@ export interface Props {
 
 export interface State {
   data: {
-    markId: string[];
+    markId: string;
     modelId: string[];
     bodyTypeId: string[];
     yearFrom: number;
@@ -51,7 +51,7 @@ class CarFilter extends React.PureComponent<Props, State> {
     super();
     this.state = {
       data: {
-        markId: [],
+        markId: '',
         modelId: [],
         bodyTypeId: [],
         yearFrom: 0,
@@ -79,6 +79,7 @@ class CarFilter extends React.PureComponent<Props, State> {
           markId: props.carFilters.filterValues.marks[0]._id
         }
       });
+      this.props.handleFetchModelsValues(props.carFilters.filterValues.marks[0]._id);
     }
     if (props.carFilters.filterValues.models.length !== 0 && this.state.data.modelId.length === 0) {
       this.setState({
@@ -108,6 +109,9 @@ class CarFilter extends React.PureComponent<Props, State> {
         [name]: e.target.value
       }
     });
+    if (name === 'markId') {
+      this.onSubmitMark(e.target.value);
+    }
   };
 
   public onChangeNumber = (name: string) => (e: any) => {
@@ -132,17 +136,13 @@ class CarFilter extends React.PureComponent<Props, State> {
     }
   };
 
-  public onSubmitMark = () => {
+  public onSubmitMark = (markId: string) => {
     const errors = validateMark(this.state.data.markId);
     this.setState({
-      errors,
-      data: {
-        ...this.state.data,
-        modelId: []
-      }
+      errors
     });
     if (Object.keys(errors).length === 0) {
-      this.props.handleFetchModelsValues(this.state.data.markId);
+      this.props.handleFetchModelsValues(markId);
     }
   };
 
@@ -168,7 +168,6 @@ class CarFilter extends React.PureComponent<Props, State> {
                       value={data.markId}
                       options={filterValues.marks}
                       onChange={this.onChange}
-                      onBlur={this.onSubmitMark}
                       disabled={filterValues.marks.length === 0}
                       error={errors.markId}
                       icon="fa-car"
