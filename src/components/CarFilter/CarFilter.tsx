@@ -72,11 +72,30 @@ class CarFilter extends React.Component<Props, State> {
   }
 
   public componentWillReceiveProps(props: Props) {
-    if (props.carFilters.filterValues.marks.length !== 0) {
+    if (props.carFilters.filterValues.marks.length !== 0 && this.state.data.markId.length === 0) {
       this.setState({
         data: {
           ...this.state.data,
           markId: props.carFilters.filterValues.marks[0]
+        }
+      });
+    }
+    if (props.carFilters.filterValues.models.length !== 0 && this.state.data.modelId.length === 0) {
+      this.setState({
+        data: {
+          ...this.state.data,
+          markId: props.carFilters.filterValues.models[0]
+        }
+      });
+    }
+    if (
+      props.carFilters.filterValues.bodyTypes.length !== 0 &&
+      this.state.data.bodyTypeId.length === 0
+    ) {
+      this.setState({
+        data: {
+          ...this.state.data,
+          markId: props.carFilters.filterValues.bodyTypes[0]
         }
       });
     }
