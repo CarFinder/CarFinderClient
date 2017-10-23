@@ -11,6 +11,7 @@ import rootReducer from './redux/reducers';
 import rootSaga from './redux/sagas/index';
 import setAuthorizationHeader from './utils/axiosHeader';
 
+import Footer from './components/Common/Footer/Footer';
 import NavBar from './components/Common/NavBar/NavBar';
 import NotFound from './components/Common/NotFound/NotFound';
 import RequireAuth from './components/Common/Routes/RequireAuth';
@@ -20,7 +21,6 @@ import ChangePassword from './containers/ChangePassword';
 import EmailConfirmation from './containers/EmailConfirmation';
 import Signin from './containers/Signin';
 import Signup from './containers/Signup';
-import Footer from './components/Common/Footer/Footer';
 
 import 'index.less';
 

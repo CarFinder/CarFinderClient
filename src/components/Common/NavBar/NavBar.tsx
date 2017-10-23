@@ -24,8 +24,7 @@ function mapStateToProps(state: any) {
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<actions.UserAction>) => ({
-  handleChangelanguage: (lang: string) =>
-    dispatch(actions.userChangeLanguage(lang)),
+  handleChangelanguage: (lang: string) => dispatch(actions.userChangeLanguage(lang)),
   handleLogOut: () => dispatch(actions.userLoggedOut())
 });
 
@@ -38,9 +37,7 @@ class NavBar extends React.Component<Props, State> {
   }
   public componentWillMount() {
     if (localStorage.getItem('interfaceLanguage')) {
-      this.props.handleChangelanguage(
-        localStorage.getItem('interfaceLanguage')
-      );
+      this.props.handleChangelanguage(localStorage.getItem('interfaceLanguage'));
     }
   }
 
@@ -52,14 +49,8 @@ class NavBar extends React.Component<Props, State> {
   };
 
   public render() {
-    const {
-      language,
-      isAuthenticated,
-      handleLogOut,
-      handleChangelanguage
-    } = this.props;
-    const lang =
-      language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
+    const { language, isAuthenticated, handleLogOut, handleChangelanguage } = this.props;
+    const lang = language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
     return (
       <nav className="navbar is-warning">
         <div className="navbar-brand">
@@ -68,7 +59,7 @@ class NavBar extends React.Component<Props, State> {
           </Link>
         </div>
         <div className="navbar-start">
-          <div className="navbar-menu">
+          <div className="navbar-menu is-active">
             <Link to="/" className="navbar-item">
               {lang.navigation.homepage}
             </Link>
@@ -85,20 +76,19 @@ class NavBar extends React.Component<Props, State> {
             {lang.navigation.engLang}
           </a>
           {!isAuthenticated && (
-            <Link className="navbar-item" to="/signin">
-              {lang.navigation.signin}
-            </Link>
-          )}
-          {!isAuthenticated && (
-            <Link className="navbar-item" to="/signup">
-              {lang.navigation.signup}
-            </Link>
+            <div className="navbar-menu is-active">
+              <Link className="navbar-item" to="/signin">
+                {lang.navigation.signin}
+              </Link>
+              <Link className="navbar-item" to="/signup">
+                {lang.navigation.signup}
+              </Link>
+            </div>
           )}
           {isAuthenticated && (
             <div className="navbar-item has-dropdown is-hoverable">
               <a className="navbar-link">
-                <i className="fa fa-user-o" aria-hidden="true" /> &nbsp; User
-                Account
+                <i className="fa fa-user-o" aria-hidden="true" /> &nbsp; User Account
               </a>
               <div className="navbar-dropdown">
                 <Link className="navbar-item" to="/profile">
