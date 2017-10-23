@@ -1,9 +1,4 @@
-import HelpOutline from 'material-ui-icons/HelpOutline';
-import KeyboardArrowLeft from 'material-ui-icons/KeyboardArrowLeft';
-import Send from 'material-ui-icons/Send';
-import Button from 'material-ui/Button';
-import TextField from 'material-ui/TextField';
-import Tooltip from 'material-ui/Tooltip';
+import classnames from 'classnames';
 import * as React from 'react';
 import { Field, FormSubmitHandler, reduxForm } from 'redux-form';
 import { validateForm as validate } from '../../../utils/formValidation';
@@ -15,59 +10,71 @@ export interface Props {
   name?: string;
   title?: string;
   meta?: any;
-  pristine: boolean;
-  submitting: boolean;
   handleSubmit: any;
   language?: string;
+  loading?: boolean;
 }
 
-const renderTextField = ({ input, name, title, meta: { touched, error }, ...custom }: Props) => (
-  <TextField
-    name={name}
-    type="password"
-    label={title}
-    helperText={touched && error}
-    error={touched && !!error}
-    {...input}
-    {...custom}
-  />
+const renderTextField = ({
+  input,
+  name,
+  title,
+  meta: { touched, error },
+  ...custom
+}: Props) => (
+  <div className="field">
+    <label htmlFor="title" className="label">
+      {title}
+    </label>
+    <div className="control has-icons-left">
+      <input
+        className={classnames('input', { 'is-danger': touched && !!error })}
+        name={name}
+        type="password"
+        {...input}
+        {...custom}
+      />
+      <div className="icon is-small is-left">
+        <i className="fa fa-lock" aria-hidden="true" />
+      </div>
+    </div>
+    <p className="help is-danger">{touched && error}</p>
+  </div>
 );
 
 const ThirdPage = (props: Props) => {
-  const lang = props.language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
+  const lang =
+    props.language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
   return (
     <form onSubmit={props.handleSubmit}>
-      <div className="form-control">
+      <p className="help has-text-grey-light">
+        {lang.signupForm.passwordTooltip}
+      </p>
+      <div>
         <Field
           name="password"
           placeholder={lang.signupForm.passwordFieldPlaceholder}
           component={renderTextField}
           title={lang.signupForm.passwordField}
-          className="form-field"
         />
-        <Tooltip id="tooltip-pass" title={lang.signupForm.passwordTooltip} placement="top-start">
-          <HelpOutline className="hint" color="grey" />
-        </Tooltip>
       </div>
-      <div className="form-control">
+      <div>
         <Field
           name="passwordConfirmation"
           placeholder={lang.signupForm.confirmPasswordFieldPlaceholder}
           component={renderTextField}
           title={lang.signupForm.confirmPasswordField}
-          className="form-field"
         />
       </div>
-      <div className="button-group">
-        <Button
-          dense
-          color="primary"
-          disabled={props.pristine || props.submitting}
-          type="submit"
-          className="next"
+      <div className="is-clearfix">
+        <button
+          className={classnames('button is-warning is-pulled-right', {
+            'is-loading': props.loading
+          })}
         >
-          {lang.signupForm.submitButton} <Send className="submit-icon" />
-        </Button>
+          {lang.signupForm.submitButton} &nbsp;
+          <i className="fa fa-paper-plane-o" aria-hidden="true" />
+        </button>
       </div>
     </form>
   );

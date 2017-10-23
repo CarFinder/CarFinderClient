@@ -1,5 +1,3 @@
-import Divider from 'material-ui/Divider';
-import Paper from 'material-ui/Paper';
 import * as React from 'react';
 import SelectInput from '../Common/FormInputs/SelectInput';
 import './style.less';
@@ -96,26 +94,40 @@ class CarSorting extends React.Component<Props, State> {
   public render() {
     const { limit, sort, limitValues, sortValues } = this.state;
     return (
-      <Paper className="car-sorting-form">
-        <form className="sorting-form">
-          <SelectInput
-            field="limit"
-            label="Ads per page"
-            value={limit}
-            options={limitValues}
-            onChange={this.onChangeLimit}
-            onBlur={this.updateSortingParams}
-          />
-          <SelectInput
-            field="year"
-            label="Year"
-            value={sort.sort}
-            options={sortValues}
-            onChange={this.onChangeSort}
-            onBlur={this.updateSortingParams}
-          />
-        </form>
-      </Paper>
+      <div className="section">
+        <div className="container is-fluid">
+          <div className="columns">
+            <div className="column is-centered">
+              <form className="box">
+                <div className="columns">
+                  <div className="column">
+                    <SelectInput
+                      field="limit"
+                      label="Ads per page"
+                      value={limit}
+                      options={limitValues}
+                      onChange={this.onChangeLimit}
+                      onBlur={this.updateSortingParams}
+                      icon="fa-sort"
+                    />
+                  </div>
+                  <div className="column">
+                    <SelectInput
+                      field="year"
+                      label="Year"
+                      value={sort.sort}
+                      options={sortValues}
+                      onChange={this.onChangeSort}
+                      onBlur={this.updateSortingParams}
+                      icon="fa-sort"
+                    />
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
 }

@@ -1,6 +1,6 @@
-import { FormControl, FormHelperText } from 'material-ui/Form';
-import Input, { InputLabel } from 'material-ui/Input';
+import classnames from 'classnames';
 import * as React from 'react';
+
 import './style.less';
 
 interface Props {
@@ -9,21 +9,40 @@ interface Props {
   label: string;
   value: any;
   type: string;
+  icon: string;
   error?: string;
 }
 
-const TextInput = ({ field, label, value, type, error, onChange }: Props) => (
-  <FormControl className="form-field" error={!!error}>
-    <InputLabel htmlFor={field}>{label}</InputLabel>
-    <Input
-      id={field}
-      name={field}
-      type={type}
-      className="form-control"
-      onChange={onChange(field)}
-    />
-    {error && <FormHelperText>{error}</FormHelperText>}
-  </FormControl>
+const TextInput = ({
+  field,
+  label,
+  value,
+  type,
+  error,
+  icon,
+  onChange
+}: Props) => (
+  <div className="field">
+    <label htmlFor={field} className="label">
+      {label}
+    </label>
+    <div className="control has-icons-left">
+      <input
+        className={classnames('input', { 'is-danger': !!error })}
+        id={label}
+        name={label}
+        type={type}
+        onChange={onChange(field)}
+      />
+      <div className="icon is-small is-left">
+        <i
+          className={classnames('fa', { [icon]: !!icon })}
+          aria-hidden="true"
+        />
+      </div>
+    </div>
+    {error && <p className="help is-danger">{error}</p>}
+  </div>
 );
 
 export default TextInput;

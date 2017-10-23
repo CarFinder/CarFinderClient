@@ -11,7 +11,7 @@ interface PropsInterface {
   handleClearError: () => void;
   handleClearFilters: () => void;
   handleFetchMarksValues: () => void;
-  handleFetchModelsValues: (mark: string[]) => void;
+  handleFetchModelsValues: (mark: string) => void;
   handleFetchBodyTypesValues: () => void;
   handleSetCurrentFilter: (payload: any, sortingParams: any) => void;
   handeSetSortingParams: (payload: any) => void;
@@ -44,7 +44,7 @@ const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
   handleClearFilters: () => dispatch(carFiltersActions.clearFilters()),
   handleFetchMarksValues: () => dispatch(carFiltersActions.fetchMarksValues()),
   handleFetchBodyTypesValues: () => dispatch(carFiltersActions.fetchBodyTypesValues()),
-  handleFetchModelsValues: (mark: string[]) => dispatch(carFiltersActions.fetchModelsValues(mark)),
+  handleFetchModelsValues: (mark: string) => dispatch(carFiltersActions.fetchModelsValues(mark)),
   handleSetCurrentFilter: (payload: any, sortingParams: any) =>
     dispatch(carFiltersActions.setCurrentFilter(payload, sortingParams)),
   handeSetSortingParams: (payload: any) => dispatch(carFiltersActions.setSortingParams(payload)),

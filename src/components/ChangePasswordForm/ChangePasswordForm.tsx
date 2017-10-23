@@ -1,16 +1,12 @@
+import queryString from 'query-string';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import queryString from 'query-string';
-import Grid from 'material-ui/Grid';
-import Divider from 'material-ui/Divider';
-import Button from 'material-ui/Button';
-import Paper from 'material-ui/Paper';
-import Typography from 'material-ui/Typography';
-import { CircularProgress } from 'material-ui/Progress';
-import EmailForm from './WizardForm/EnterEmail';
-import PasswordForm from './WizardForm/EnterPassword';
 import { UserData } from '../../containers/Signin';
 import interfaceLanguage from '../../utils/interfaceLanguage';
+import Notification from '../Common/Notification/Notifiation';
+import EmailForm from './WizardForm/EnterEmail';
+import PasswordForm from './WizardForm/EnterPassword';
+
 import './style.less';
 
 export interface Props {
@@ -72,48 +68,52 @@ class ChangePasswordForm extends React.Component<Props, State> {
   public handlePasswordSubmit = (userData: UserData) => {
     this.props.handleChangePassword(userData, this.state.token);
   };
-  render() {
+
+  public render() {
     const { loading, authError, successMessage, language } = this.props;
     const { token } = this.state;
-    const lang = this.props.language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
+    const lang =
+      this.props.language === 'ru'
+        ? interfaceLanguage.ru
+        : interfaceLanguage.en;
+    const errorMessage = !authError.code
+      ? lang.searchErrors.serverUnavailable
+      : lang.authErrors[authError.code.toString()];
     return (
-      <div className="signup-form">
-        <Grid container>
-          <Grid item xs={12}>
-            <Grid container align="center" direction="column" justify="center">
-              <Paper className="form-container">
-                <Grid item className="form-title">
-                  <Typography type="display1">{lang.changePassword.title}</Typography>
-                </Grid>
-                <Grid item className="form-content">
-                  {authError && (
-                    <Typography type="body1" component="p" color="accent">
-                      {lang.authErrors[authError.code.toString()]}
-                    </Typography>
-                  )}
-                  {!token && <EmailForm onSubmit={this.handleEmailSubmit} language={language} />}
-                  {token && (
-                    <PasswordForm onSubmit={this.handlePasswordSubmit} language={language} />
-                  )}
-                  {loading && <CircularProgress size={50} />}
-                  {successMessage && (
-                    <Typography type="body1" component="p" color="primary">
-                      {successMessage}
-                    </Typography>
-                  )}
-                </Grid>
-                <Divider />
-                <Grid item className="form-links">
-                  <Link to="/signin">
-                    <Button dense color="accent">
-                      {lang.changePassword.signinLink}
-                    </Button>
-                  </Link>
-                </Grid>
-              </Paper>
-            </Grid>
-          </Grid>
-        </Grid>
+      <div className="section">
+        <div className="container">
+          <div className="columns">
+            <div className="column is-centered">
+              {authError && <Notification type="danger" text={errorMessage} />}
+              {successMessage && (
+                <Notification type="success" text={successMessage} />
+              )}
+              <div className="box">
+                <h1 className="is-size-3 has-text-centered">
+                  {lang.changePassword.title}
+                </h1>
+                {!token && (
+                  <EmailForm
+                    onSubmit={this.handleEmailSubmit}
+                    language={language}
+                    loading={loading}
+                  />
+                )}
+                {token && (
+                  <PasswordForm
+                    onSubmit={this.handlePasswordSubmit}
+                    language={language}
+                    loading={loading}
+                  />
+                )}
+                <hr />
+                <div className="has-text-centered">
+                  <Link to="/signin">{lang.changePassword.signinLink}</Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

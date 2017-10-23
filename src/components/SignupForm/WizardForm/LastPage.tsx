@@ -1,4 +1,3 @@
-import Typography from 'material-ui/Typography';
 import * as React from 'react';
 import { reduxForm } from 'redux-form';
 import interfaceLanguage from '../../../utils/interfaceLanguage';
@@ -9,15 +8,12 @@ interface Props {
 }
 
 const LastPage = (props: Props) => {
-  const lang = props.language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
+  const lang =
+    props.language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
   return (
-    <div>
-      <Typography type="display1" component="h3" className="form-title">
-        {lang.signupForm.signupConfirmation}
-      </Typography>
-      <Typography type="body1" component="p">
-        {lang.signupForm.signupConfirmationMessage}
-      </Typography>
+    <div className="has-text-centered">
+      <h1 className="is-size-3">{lang.signupForm.signupConfirmation}</h1>
+      <p>{lang.signupForm.signupConfirmationMessage}</p>
     </div>
   );
 };

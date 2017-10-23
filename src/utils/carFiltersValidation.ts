@@ -1,7 +1,7 @@
 import language from './interfaceLanguage';
 
 export interface FormData {
-  markId: string[];
+  markId: string;
   modelId: string[];
   bodyTypeId: string[];
   yearFrom: number;
@@ -18,9 +18,9 @@ const lang =
     ? language.ru.validation
     : language.en.validation;
 
-export const validateMark = (markId: string[]): any => {
+export const validateMark = (markId: string): any => {
   const errors: any = {};
-  if (markId.length === 0) {
+  if (markId === '') {
     errors.markId = lang.required;
   }
   return errors;
@@ -46,7 +46,7 @@ export const validatePairValues = (from: number, to: number): boolean => {
 
 export const validateForm = (values: FormData): any => {
   const errors: any = {};
-  if (values.markId.length === 0) {
+  if (values.markId === '') {
     errors.markId = lang.required;
   }
   if (values.yearFrom && !validateYears(values.yearFrom)) {

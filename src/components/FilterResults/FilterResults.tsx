@@ -1,7 +1,3 @@
-import Button from 'material-ui/Button';
-import Grid from 'material-ui/Grid';
-import { CircularProgress } from 'material-ui/Progress';
-import Typography from 'material-ui/Typography';
 import * as React from 'react';
 import Waypoint from 'react-waypoint';
 import * as actions from '../../redux/actions/filterResultsActions';
@@ -55,7 +51,7 @@ const FilterResults = (props: Props) => {
   function renderItems() {
     return items.map((value: CarModel) => {
       return (
-        <Grid item className="ad" key={value._id}>
+        <article className="box" key={value._id}>
           <CarAd
             model={value.model}
             mark={value.mark}
@@ -65,7 +61,7 @@ const FilterResults = (props: Props) => {
             images={value.images}
             kms={value.kms}
           />
-        </Grid>
+        </article>
       );
     });
   }
@@ -77,21 +73,29 @@ const FilterResults = (props: Props) => {
   }
 
   return (
-    <Grid container className="ads-container">
-      {items.length === 0 &&
-        !adsAreLoaded && <div className="empty">Please choose filter options</div>}
-      {items.length === 0 &&
-        adsAreLoaded && <div className="empty">Search returned no results</div>}
-      <div>
-        {renderItems()}
-        {!loading && renderWaypoint()}
-        {loading && (
-          <div className="empty">
-            <CircularProgress size={50} />
+    <div className="section">
+      <div className="container is-fluid">
+        <div className="columns">
+          <div className="column is-centered">
+            {items.length === 0 &&
+              !adsAreLoaded && (
+                <div className="has-text-centered">
+                  Please choose filter options
+                </div>
+              )}
+            {items.length === 0 &&
+              adsAreLoaded && (
+                <div className="has-text-centered">
+                  Search returned no results
+                </div>
+              )}
+            {renderItems()}
+            {!loading && renderWaypoint()}
+            <div />
           </div>
-        )}
+        </div>
       </div>
-    </Grid>
+    </div>
   );
 };
 

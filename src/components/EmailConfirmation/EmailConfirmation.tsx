@@ -1,12 +1,8 @@
-import Done from 'material-ui-icons/Done';
-import Error from 'material-ui-icons/Error';
-import Grid from 'material-ui/Grid';
-import Paper from 'material-ui/Paper';
-import { CircularProgress } from 'material-ui/Progress';
-import Typography from 'material-ui/Typography';
 import queryString from 'query-string';
 import * as React from 'react';
 import interfaceLanguage from '../../utils/interfaceLanguage';
+import Notification from '../Common/Notification/Notifiation';
+
 import './style.less';
 
 export interface Props {
@@ -52,46 +48,38 @@ class EmailConfirmation extends React.Component<Props, State> {
   }
   public render() {
     const { loading, hasError } = this.state;
-    const lang = this.props.language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
+    const lang =
+      this.props.language === 'ru'
+        ? interfaceLanguage.ru
+        : interfaceLanguage.en;
     return (
-      <div className="email-confirmation">
-        <Grid container>
-          <Grid item xs={12}>
-            <Grid container align="center" direction="column" justify="center">
-              <Paper className="form-container">
-                <Grid item className="form-title">
-                  <Typography type="display1">{lang.emailConfirmation.title}</Typography>
-                </Grid>
-                <Grid item className="form-content">
-                  {loading && (
-                    <div>
-                      <CircularProgress className="loader" />
-                      <Typography type="subheading" component="p">
-                        {lang.emailConfirmation.loadingMessage}
-                      </Typography>
-                    </div>
-                  )}
-                  {!loading &&
-                    !hasError && (
-                      <div className="success-message">
-                        <Typography type="subheading" component="p" color="inherit">
-                          <Done className="message-icon" /> {lang.emailConfirmation.successMessage}
-                        </Typography>
-                      </div>
-                    )}
-                  {!loading &&
-                    hasError && (
-                      <div className="error-message">
-                        <Typography type="subheading" component="p" color="inherit">
-                          <Error className="message-icon" /> {lang.emailConfirmation.errorMessage}
-                        </Typography>
-                      </div>
-                    )}
-                </Grid>
-              </Paper>
-            </Grid>
-          </Grid>
-        </Grid>
+      <div className="section">
+        <div className="container">
+          <div className="columns">
+            <div className="column is-centered">
+              {loading && (
+                <Notification
+                  type="default"
+                  text={lang.emailConfirmation.loadingMessage}
+                />
+              )}
+              {!loading &&
+                !hasError && (
+                  <Notification
+                    type="success"
+                    text={lang.emailConfirmation.successMessage}
+                  />
+                )}
+              {!loading &&
+                hasError && (
+                  <Notification
+                    type="danger"
+                    text={lang.emailConfirmation.errorMessage}
+                  />
+                )}
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
