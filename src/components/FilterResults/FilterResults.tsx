@@ -2,6 +2,7 @@ import * as React from 'react';
 import Waypoint from 'react-waypoint';
 import * as actions from '../../redux/actions/filterResultsActions';
 import { CarModel } from '../../redux/models/filterResultsModel';
+import interfaceLanguage from '../../utils/interfaceLanguage';
 import CarAd from './CarAd/CarAd';
 import './style.less';
 
@@ -9,6 +10,7 @@ export interface Props {
   adsAreLoaded: boolean;
   filterResults: CarModel[];
   loading: boolean;
+  language: string;
   skip: number;
   items: CarModel[];
   carFilters: {
@@ -34,6 +36,8 @@ const FilterResults = (props: Props) => {
     handleSetSkip,
     handeSetSortingParams
   } = props;
+  const { language } = props;
+  const lang = language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
 
   function loadMoreItems() {
     const carAds = items;
@@ -79,10 +83,12 @@ const FilterResults = (props: Props) => {
           <div className="column is-centered">
             {items.length === 0 &&
               !adsAreLoaded && (
-                <div className="has-text-centered">Please choose filter options</div>
+                <div className="has-text-centered">{lang.carFilterResults.chooseFilters}</div>
               )}
             {items.length === 0 &&
-              adsAreLoaded && <div className="has-text-centered">Search returned no results</div>}
+              adsAreLoaded && (
+                <div className="has-text-centered">{lang.carFilterResults.nothingFound}</div>
+              )}
             {renderItems()}
             {!loading && renderWaypoint()}
             <div />

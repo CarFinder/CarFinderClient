@@ -1,4 +1,5 @@
 import * as React from 'react';
+import interfaceLanguage from '../../utils/interfaceLanguage';
 import SelectInput from '../Common/FormInputs/SelectInput';
 import './style.less';
 
@@ -11,6 +12,7 @@ export interface Props {
       sort: number;
     };
   };
+  language: string;
   handeSetSortingParams: (payload: any) => void;
 }
 
@@ -93,6 +95,8 @@ class CarSorting extends React.Component<Props, State> {
   }
   public render() {
     const { limit, sort, limitValues, sortValues } = this.state;
+    const { language } = this.props;
+    const lang = language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
     return (
       <div className="section">
         <div className="container is-fluid">
@@ -103,23 +107,25 @@ class CarSorting extends React.Component<Props, State> {
                   <div className="column">
                     <SelectInput
                       field="limit"
-                      label="Ads per page"
+                      label={lang.carFilters.adsPerPage}
                       value={limit}
                       options={limitValues}
                       onChange={this.onChangeLimit}
                       onBlur={this.updateSortingParams}
                       icon="fa-sort"
+                      language={language}
                     />
                   </div>
                   <div className="column">
                     <SelectInput
                       field="year"
-                      label="Year"
+                      label={lang.carFilterResults.year}
                       value={sort.sort}
                       options={sortValues}
                       onChange={this.onChangeSort}
                       onBlur={this.updateSortingParams}
                       icon="fa-sort"
+                      language={language}
                     />
                   </div>
                 </div>

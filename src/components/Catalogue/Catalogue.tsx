@@ -90,10 +90,12 @@ class Catalogue extends React.PureComponent<Props, State> {
           handleSetAdsAsLoaded={handleSetAdsAsLoaded}
         />
         <CarSorting
+          language={language}
           sortingParams={carFilters.sortingParams}
           handeSetSortingParams={handeSetSortingParams}
         />
         <FilterResults
+          language={language}
           filterResults={filterResults}
           items={this.state.items}
           skip={this.state.skip}

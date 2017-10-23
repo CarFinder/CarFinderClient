@@ -27,6 +27,12 @@ export interface Language {
     carFilters: {
       [key: string]: string;
     };
+    carFilterResults: {
+      [key: string]: string;
+    };
+    selectInputs: {
+      [key: string]: string;
+    };
   };
   en: {
     validation: {
@@ -54,6 +60,12 @@ export interface Language {
       [key: string]: string;
     };
     carFilters: {
+      [key: string]: string;
+    };
+    carFilterResults: {
+      [key: string]: string;
+    };
+    selectInputs: {
       [key: string]: string;
     };
   };
@@ -131,8 +143,7 @@ const interfaceLanguage: Language = {
       title: 'Подтверждение е-мэйла',
       loadingMessage: 'Подтверждаем ваш е-мэйл. Пожалуйста, подождите.',
       successMessage: 'Е-мэйл подтвержден. Спасибо.',
-      errorMessage:
-        'Извините, произошла ошибка. Мы не можем подтвердить ваш е-мэйл.'
+      errorMessage: 'Извините, произошла ошибка. Мы не можем подтвердить ваш е-мэйл.'
     },
     changePassword: {
       title: 'Восстановление пароля',
@@ -160,11 +171,21 @@ const interfaceLanguage: Language = {
       kmTo: 'Пробег до, км.',
       saveFilters: 'Сохранить',
       searchFilters: 'Поиск',
-      chooseFilters: 'Пожалуйста выберите параметры поиска',
       adsPerPage: 'Количество объявлений на странице',
+      price: 'Цена'
+    },
+    carFilterResults: {
+      year: 'Год выпуска',
       price: 'Цена',
+      kms: 'Пробег',
+      chooseFilters: 'Пожалуйста выберите параметры поиска',
+      nothingFound: 'По вашему запросу ничего не найдено'
+    },
+    selectInputs: {
       lowestPrice: 'Сначала дешевые',
-      highestPrice: 'Сначала дорогие'
+      highestPrice: 'Сначала дорогие',
+      Ascending: 'По возрастанию',
+      Descending: 'По убыванию'
     }
   },
   en: {
@@ -195,8 +216,7 @@ const interfaceLanguage: Language = {
       11000: 'Account already exists'
     },
     searchErrors: {
-      serverUnavailable:
-        'Server is currently unavailable. Please reload the page and try again.'
+      serverUnavailable: 'Server is currently unavailable. Please reload the page and try again.'
     },
     signupForm: {
       title: 'Sign up',
@@ -268,7 +288,18 @@ const interfaceLanguage: Language = {
       searchFilters: 'Search',
       chooseFilters: 'Please choose search options',
       adsPerPage: 'Ads per page',
+      price: 'Price'
+    },
+    carFilterResults: {
+      year: 'Year',
       price: 'Price',
+      kms: 'Kms Ran',
+      chooseFilters: 'Please choose filter options',
+      nothingFound: 'Search returned no results'
+    },
+    selectInputs: {
+      Ascending: 'Ascending',
+      Descending: 'Descending',
       lowestPrice: 'Lowest',
       highestPrice: 'Highest'
     }
