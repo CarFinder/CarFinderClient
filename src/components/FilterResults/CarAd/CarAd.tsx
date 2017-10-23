@@ -29,8 +29,9 @@ const CarAd = (props: Props) => {
       <figure className="media-right">
         <div className="media-info">
           <span className="has-text-warning">
-            <i className="fa fa-usd" aria-hidden="true" />&nbsp;{' '}
-            <strong className="ad-price">{price}</strong>
+            <strong className="ad-price">
+              <i className="fa fa-usd" aria-hidden="true" />&nbsp;{price}
+            </strong>
           </span>
           <span className="has-text-grey">
             <i className="fa fa-clock-o" aria-hidden="true" />&nbsp;{year}
