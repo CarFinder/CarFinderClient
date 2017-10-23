@@ -137,7 +137,7 @@ class CarFilter extends React.PureComponent<Props, State> {
   };
 
   public onSubmitMark = (markId: string) => {
-    const errors = validateMark(this.state.data.markId);
+    const errors = validateMark(markId);
     this.setState({
       errors
     });
