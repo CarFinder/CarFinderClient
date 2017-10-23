@@ -71,6 +71,17 @@ class CarFilter extends React.Component<Props, State> {
     this.props.handleFetchBodyTypesValues();
   }
 
+  public componentWillReceiveProps(props: Props) {
+    if (props.carFilters.filterValues.marks.length !== 0) {
+      this.setState({
+        data: {
+          ...this.state.data,
+          markId: props.carFilters.filterValues.marks[0]
+        }
+      });
+    }
+  }
+
   public onChange = (name: string) => (e: any) => {
     this.setState({
       data: {
@@ -97,10 +108,7 @@ class CarFilter extends React.Component<Props, State> {
     });
     if (Object.keys(errors).length === 0) {
       this.props.handleSetAds([]);
-      this.props.handleSetCurrentFilter(
-        this.state.data,
-        this.props.carFilters.sortingParams
-      );
+      this.props.handleSetCurrentFilter(this.state.data, this.props.carFilters.sortingParams);
       this.props.handleSetAdsAsLoaded(false);
     }
   };
@@ -123,18 +131,14 @@ class CarFilter extends React.Component<Props, State> {
     const { data, errors } = this.state;
     const { filterValues } = this.props.carFilters;
     const { searchError, loading, language } = this.props;
-    const lang =
-      language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
+    const lang = language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
     return (
       <div className="section">
         <div className="container is-fluid">
           <div className="columns">
             <div className="column is-centered">
               {searchError && (
-                <Notification
-                  type="danger"
-                  text={lang.searchErrors.serverUnavailable}
-                />
+                <Notification type="danger" text={lang.searchErrors.serverUnavailable} />
               )}
               <form className="box" onSubmit={this.onSubmit}>
                 <div className="columns">
