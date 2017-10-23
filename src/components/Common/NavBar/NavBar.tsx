@@ -94,7 +94,7 @@ class NavBar extends React.Component<Props, State> {
               {lang.navigation.engLang}
             </a>
             {!isAuthenticated && (
-              <div className="navbar-menu">
+              <div className={'navbar-menu ' + `${collapsed}`}>
                 <Link className="navbar-item" to="/signin">
                   {lang.navigation.signin}
                 </Link>
@@ -106,7 +106,7 @@ class NavBar extends React.Component<Props, State> {
             {isAuthenticated && (
               <div className="navbar-item has-dropdown is-hoverable">
                 <a className="navbar-link">
-                  <i className="fa fa-user-o" aria-hidden="true" /> &nbsp; User Account
+                  <i className="fa fa-user-o" aria-hidden="true" /> &nbsp; {lang.navigation.profile}
                 </a>
                 <div className="navbar-dropdown">
                   <Link className="navbar-item" to="/profile">
