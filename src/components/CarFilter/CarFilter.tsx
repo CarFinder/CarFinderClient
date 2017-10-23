@@ -46,7 +46,7 @@ export interface State {
   errors: any;
 }
 
-class CarFilter extends React.Component<Props, State> {
+class CarFilter extends React.PureComponent<Props, State> {
   constructor() {
     super();
     this.state = {
@@ -76,7 +76,7 @@ class CarFilter extends React.Component<Props, State> {
       this.setState({
         data: {
           ...this.state.data,
-          markId: props.carFilters.filterValues.marks[0]
+          markId: props.carFilters.filterValues.marks[0]._id
         }
       });
     }
@@ -84,7 +84,7 @@ class CarFilter extends React.Component<Props, State> {
       this.setState({
         data: {
           ...this.state.data,
-          markId: props.carFilters.filterValues.models[0]
+          modelId: props.carFilters.filterValues.models[0]._id
         }
       });
     }
@@ -95,7 +95,7 @@ class CarFilter extends React.Component<Props, State> {
       this.setState({
         data: {
           ...this.state.data,
-          markId: props.carFilters.filterValues.bodyTypes[0]
+          bodyTypeId: props.carFilters.filterValues.bodyTypes[0]._id
         }
       });
     }
