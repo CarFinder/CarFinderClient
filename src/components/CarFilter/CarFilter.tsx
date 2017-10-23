@@ -103,13 +103,22 @@ class CarFilter extends React.PureComponent<Props, State> {
   }
 
   public onChange = (name: string) => (e: any) => {
-    this.setState({
-      data: {
-        ...this.state.data,
-        [name]: e.target.value
-      }
-    });
+    if (name !== 'markId') {
+      this.setState({
+        data: {
+          ...this.state.data,
+          [name]: e.target.value
+        }
+      });
+    }
     if (name === 'markId') {
+      this.setState({
+        data: {
+          ...this.state.data,
+          [name]: e.target.value,
+          modelId: []
+        }
+      });
       this.onSubmitMark(e.target.value);
     }
   };
