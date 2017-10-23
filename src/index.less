@@ -5,9 +5,21 @@ html {
   // background-color: #4c5769;
   // background-color: #f9f9f9;
   background-color: #282834;
+  height: 100vh;
 }
 
 body {
   color: #95989a;
-  min-height: 100vh;
+  height: 100vh;
+}
+
+#app,
+.wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-content {
+  flex: 1 0 auto;
 }

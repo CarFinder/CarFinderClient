@@ -32,18 +32,20 @@ const App = () => {
   }
 
   return (
-    <div>
-      <NavBar />
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/home" component={RequireAuth(Home)} />
-        <Route path="/catalog" component={RequireAuth(Catalogue)} />
-        <Route path="/signup" component={Signup} />
-        <Route path="/signin" component={Signin} />
-        <Route path="/restore" component={ChangePassword} />
-        <Route path="/confirmation" component={EmailConfirmation} />
-        <Route path="*" component={NotFound} />
-      </Switch>
+    <div className="wrapper">
+      <div className="page-content">
+        <NavBar />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/home" component={RequireAuth(Home)} />
+          <Route path="/catalog" component={RequireAuth(Catalogue)} />
+          <Route path="/signup" component={Signup} />
+          <Route path="/signin" component={Signin} />
+          <Route path="/restore" component={ChangePassword} />
+          <Route path="/confirmation" component={EmailConfirmation} />
+          <Route path="*" component={NotFound} />
+        </Switch>
+      </div>
       <Footer />
     </div>
   );
