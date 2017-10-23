@@ -22,7 +22,7 @@ const CarAd = (props: Props) => {
       </figure>
       <figure className="media-content">
         <div className="content">
-          <p>{mark + ' ' + model}</p>
+          <p className="ad-title">{mark + ' ' + model}</p>
           <p>{description}</p>
         </div>
       </figure>
