@@ -79,6 +79,7 @@ class Catalogue extends React.PureComponent<Props, State> {
           carFilters={carFilters}
           searchError={searchError}
           loading={loading}
+          handleSetSkip={this.handleSetSkip}
           handleSetAds={this.handleSetAds}
           handleClearError={handleClearError}
           handleClearFilters={handleClearFilters}

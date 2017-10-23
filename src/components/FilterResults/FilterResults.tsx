@@ -44,7 +44,7 @@ const FilterResults = (props: Props) => {
     handeSetSortingParams(data);
     handleSetCurrentFilter(carFilters.currentFilter, data);
     filterResults.forEach((value: CarModel) => carAds.push(value));
-    handleSetSkip(skip + carFilters.sortingParams.limit);
+    handleSetSkip(skip + items.length);
     handleSetAds(carAds);
   }
 
@@ -79,16 +79,10 @@ const FilterResults = (props: Props) => {
           <div className="column is-centered">
             {items.length === 0 &&
               !adsAreLoaded && (
-                <div className="has-text-centered">
-                  Please choose filter options
-                </div>
+                <div className="has-text-centered">Please choose filter options</div>
               )}
             {items.length === 0 &&
-              adsAreLoaded && (
-                <div className="has-text-centered">
-                  Search returned no results
-                </div>
-              )}
+              adsAreLoaded && <div className="has-text-centered">Search returned no results</div>}
             {renderItems()}
             {!loading && renderWaypoint()}
             <div />

@@ -9,6 +9,7 @@ import Notification from '../Common/Notification/Notifiation';
 import './style.less';
 
 export interface Props {
+  handleSetSkip: (skipAmount: number) => void;
   handleClearError: () => void;
   handleClearFilters: () => void;
   handleFetchMarksValues: () => void;
@@ -140,7 +141,11 @@ class CarFilter extends React.PureComponent<Props, State> {
     });
     if (Object.keys(errors).length === 0) {
       this.props.handleSetAds([]);
-      this.props.handleSetCurrentFilter(this.state.data, this.props.carFilters.sortingParams);
+      this.props.handleSetSkip(0);
+      this.props.handleSetCurrentFilter(this.state.data, {
+        ...this.props.carFilters.sortingParams,
+        skip: 0
+      });
       this.props.handleSetAdsAsLoaded(false);
     }
   };
