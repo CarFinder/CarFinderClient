@@ -16,8 +16,8 @@ const CarAd = (props: Props) => {
   return (
     <div className="media">
       <figure className="media-left">
-        <p className="image is-128x128">
-          <img src={images[0]} />
+        <p className="ad-image">
+          <img className="image is-128x128" src={images[0]} />
         </p>
       </figure>
       <figure className="media-content">
