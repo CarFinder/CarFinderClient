@@ -82,25 +82,6 @@ class CarFilter extends React.PureComponent<Props, State> {
       });
       this.props.handleFetchModelsValues(props.carFilters.filterValues.marks[0].value);
     }
-    // if (props.carFilters.filterValues.models.length !== 0 && this.state.data.modelId.length === 0) {
-    //   this.setState({
-    //     data: {
-    //       ...this.state.data,
-    //       modelId: props.carFilters.filterValues.models[0].value
-    //     }
-    //   });
-    // }
-    // if (
-    //   props.carFilters.filterValues.bodyTypes.length !== 0 &&
-    //   this.state.data.bodyTypeId.length === 0
-    // ) {
-    //   this.setState({
-    //     data: {
-    //       ...this.state.data,
-    //       bodyTypeId: props.carFilters.filterValues.bodyTypes[0].value
-    //     }
-    //   });
-    // }
   }
 
   public onChange = (value: any, field: string) => {
