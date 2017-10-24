@@ -14,7 +14,7 @@ module.exports = {
   devServer: {
     port: 3001,
     proxy: {
-      '/api': 'http://localhost:2999'
+      '/api': 'http://13.59.75.154:3000'
     },
     historyApiFallback: true,
     inline: true,
