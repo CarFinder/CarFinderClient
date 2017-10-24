@@ -1,19 +1,20 @@
 import classnames from 'classnames';
 import * as React from 'react';
+import Select from 'react-select';
 import interfaceLanguage from '../../../utils/interfaceLanguage';
 
 import './style.less';
 
 interface Props {
-  onChange: (name: string) => any;
-  onBlur?: () => any;
+  onChange: (value: any, field: string) => void;
+  onBlur?: () => void;
   field: string;
   label: string;
   value: any;
   disabled?: boolean;
   options: any[];
   error?: string;
-  icon: string;
+  multiple?: boolean;
   language?: string;
 }
 
@@ -23,10 +24,10 @@ const SelectInput = ({
   value,
   error,
   options,
-  icon,
   onChange,
   onBlur,
   disabled,
+  multiple,
   language
 }: Props) => {
   const lang = language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
@@ -35,32 +36,15 @@ const SelectInput = ({
       <label htmlFor={field} className="label">
         {label}
       </label>
-      <div className="control has-icons-left">
-        <div className="select">
-          <select
-            name={field}
-            id={field}
-            value={value}
-            onChange={onChange(field)}
-            onBlur={onBlur}
-            disabled={disabled}
-          >
-            {options.length !== 0 &&
-              options.map((option: any, index: number) => {
-                return (
-                  <option key={index} value={option.value ? option.value : option.id}>
-                    {lang.selectInputs[option.label]
-                      ? lang.selectInputs[option.label]
-                      : option.label}
-                  </option>
-                );
-              })}
-            {options.length === 0 && <option value={'default'}>Please choose maker first</option>})}
-          </select>
-        </div>
-        <div className="icon is-small is-left">
-          <i className={classnames('fa', { [icon]: !!icon })} aria-hidden="true" />
-        </div>
+      <div className="control">
+        <Select
+          multi={multiple}
+          name={field}
+          value={value}
+          options={options}
+          onChange={(val: any) => onChange(val, field)}
+          onBlur={onBlur}
+        />
       </div>
       {error && <p className="help is-danger">{error}</p>}
     </div>

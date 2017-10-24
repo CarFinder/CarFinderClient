@@ -31,10 +31,10 @@ export const transformDataForSearch = (filtersData: any, sortingParams: any) => 
   };
   data.filter.markId = filtersData.markId;
   if (filtersData.modelId.length !== 0) {
-    data.filter.modelId = filtersData.modelId;
+    data.filter.modelId = filtersData.modelId.map((pair: any) => pair.value);
   }
   if (filtersData.bodyTypeId.length !== 0) {
-    data.filter.bodyTypeId = filtersData.bodyTypeId;
+    data.filter.bodyTypeId = filtersData.bodyTypeId.map((pair: any) => pair.value);
   }
   if (filtersData.yearFrom) {
     data.filter.yearFrom = filtersData.yearFrom;

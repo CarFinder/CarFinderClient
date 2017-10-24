@@ -66,18 +66,18 @@ class CarSorting extends React.Component<Props, State> {
     };
   }
 
-  public onChangeLimit = (name: string) => (e: any) => {
+  public onChangeLimit = (value: any, field: string) => {
     this.setState({
-      limit: parseInt(e.target.value, 10)
+      limit: parseInt(value.value, 10)
     });
   };
 
-  public onChangeSort = (name: string) => (e: any) => {
+  public onChangeSort = (value: any, field: string) => {
     this.setState({
       ...this.state,
       sort: {
-        field: name,
-        sort: parseInt(e.target.value, 10)
+        field,
+        sort: parseInt(value.value, 10)
       }
     });
   };
@@ -112,7 +112,6 @@ class CarSorting extends React.Component<Props, State> {
                       options={limitValues}
                       onChange={this.onChangeLimit}
                       onBlur={this.updateSortingParams}
-                      icon="fa-sort"
                       language={language}
                     />
                   </div>
@@ -124,7 +123,6 @@ class CarSorting extends React.Component<Props, State> {
                       options={sortValues}
                       onChange={this.onChangeSort}
                       onBlur={this.updateSortingParams}
-                      icon="fa-sort"
                       language={language}
                     />
                   </div>

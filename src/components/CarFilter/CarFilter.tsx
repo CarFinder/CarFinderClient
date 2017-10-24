@@ -82,45 +82,45 @@ class CarFilter extends React.PureComponent<Props, State> {
       });
       this.props.handleFetchModelsValues(props.carFilters.filterValues.marks[0].value);
     }
-    if (props.carFilters.filterValues.models.length !== 0 && this.state.data.modelId.length === 0) {
-      this.setState({
-        data: {
-          ...this.state.data,
-          modelId: props.carFilters.filterValues.models[0].value
-        }
-      });
-    }
-    if (
-      props.carFilters.filterValues.bodyTypes.length !== 0 &&
-      this.state.data.bodyTypeId.length === 0
-    ) {
-      this.setState({
-        data: {
-          ...this.state.data,
-          bodyTypeId: props.carFilters.filterValues.bodyTypes[0].value
-        }
-      });
-    }
+    // if (props.carFilters.filterValues.models.length !== 0 && this.state.data.modelId.length === 0) {
+    //   this.setState({
+    //     data: {
+    //       ...this.state.data,
+    //       modelId: props.carFilters.filterValues.models[0].value
+    //     }
+    //   });
+    // }
+    // if (
+    //   props.carFilters.filterValues.bodyTypes.length !== 0 &&
+    //   this.state.data.bodyTypeId.length === 0
+    // ) {
+    //   this.setState({
+    //     data: {
+    //       ...this.state.data,
+    //       bodyTypeId: props.carFilters.filterValues.bodyTypes[0].value
+    //     }
+    //   });
+    // }
   }
 
-  public onChange = (name: string) => (e: any) => {
-    if (name !== 'markId') {
+  public onChange = (value: any, field: string) => {
+    if (field !== 'markId') {
       this.setState({
         data: {
           ...this.state.data,
-          [name]: e.target.value
+          [field]: value
         }
       });
     }
-    if (name === 'markId') {
+    if (field === 'markId') {
       this.setState({
         data: {
           ...this.state.data,
-          [name]: e.target.value,
+          [field]: value.value,
           modelId: []
         }
       });
-      this.onSubmitMark(e.target.value);
+      this.onSubmitMark(value.value);
     }
   };
 
@@ -184,11 +184,11 @@ class CarFilter extends React.PureComponent<Props, State> {
                       onChange={this.onChange}
                       disabled={filterValues.marks.length === 0}
                       error={errors.markId}
-                      icon="fa-car"
                     />
                   </div>
                   <div className="column">
                     <SelectInput
+                      multiple
                       field="modelId"
                       label={lang.carFilters.model}
                       value={data.modelId}
@@ -196,11 +196,11 @@ class CarFilter extends React.PureComponent<Props, State> {
                       onChange={this.onChange}
                       disabled={filterValues.models.length === 0}
                       error={errors.modelId}
-                      icon="fa-car"
                     />
                   </div>
                   <div className="column">
                     <SelectInput
+                      multiple
                       field="bodyTypeId"
                       label={lang.carFilters.bodyType}
                       value={data.bodyTypeId}
@@ -208,7 +208,6 @@ class CarFilter extends React.PureComponent<Props, State> {
                       onChange={this.onChange}
                       disabled={filterValues.bodyTypes.length === 0}
                       error={errors.bodyTypeId}
-                      icon="fa-car"
                     />
                   </div>
                 </div>
@@ -221,7 +220,7 @@ class CarFilter extends React.PureComponent<Props, State> {
                       value={data.yearFrom}
                       onChange={this.onChangeNumber}
                       error={errors.yearFrom}
-                      icon="fa-clock-o"
+                      placeholder="Fill in a min. year"
                     />
                   </div>
                   <div className="column">
@@ -232,7 +231,7 @@ class CarFilter extends React.PureComponent<Props, State> {
                       value={data.yearTo}
                       onChange={this.onChangeNumber}
                       error={errors.yearTo}
-                      icon="fa-clock-o"
+                      placeholder="Fill in a max. year"
                     />
                   </div>
                   <div className="column">
@@ -243,7 +242,7 @@ class CarFilter extends React.PureComponent<Props, State> {
                       value={data.priceFrom}
                       onChange={this.onChangeNumber}
                       error={errors.priceFrom}
-                      icon="fa-usd"
+                      placeholder="Fill in a min. price"
                     />
                   </div>
                   <div className="column">
@@ -254,7 +253,7 @@ class CarFilter extends React.PureComponent<Props, State> {
                       value={data.priceTo}
                       onChange={this.onChangeNumber}
                       error={errors.priceTo}
-                      icon="fa-usd"
+                      placeholder="Fill in a max. price"
                     />
                   </div>
                   <div className="column">
@@ -265,7 +264,7 @@ class CarFilter extends React.PureComponent<Props, State> {
                       value={data.kmsFrom}
                       onChange={this.onChangeNumber}
                       error={errors.kmsFrom}
-                      icon="fa-road"
+                      placeholder="Fill in a min. kms"
                     />
                   </div>
                   <div className="column">
@@ -276,7 +275,7 @@ class CarFilter extends React.PureComponent<Props, State> {
                       value={data.kmsTo}
                       onChange={this.onChangeNumber}
                       error={errors.kmsTo}
-                      icon="fa-road"
+                      placeholder="Fill in a max. kms"
                     />
                   </div>
                 </div>
