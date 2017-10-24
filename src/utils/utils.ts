@@ -12,6 +12,16 @@ export const transformDataForSignup = (userData: UserDataForSignup) => {
   };
 };
 
+export const transformDataForFilters = (values: any[]) => {
+  const data: any[] = values.map(value => {
+    return {
+      label: value.name,
+      value: value._id
+    };
+  });
+  return data;
+};
+
 export const transformDataForSearch = (filtersData: any, sortingParams: any) => {
   const data: any = {
     filter: {},

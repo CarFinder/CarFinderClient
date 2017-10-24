@@ -1,7 +1,7 @@
 import { SagaIterator } from 'redux-saga';
 import { call, put, select, takeEvery } from 'redux-saga/effects';
 import api from '../../api/api';
-import { transformDataForSearch } from '../../utils/utils';
+import { transformDataForFilters, transformDataForSearch } from '../../utils/utils';
 import * as actionTypes from '../actions/actionTypes';
 
 function* callFetchMarks(action: any) {
@@ -9,7 +9,8 @@ function* callFetchMarks(action: any) {
   yield put({ type: actionTypes.SET_SEARCH_ERROR, payload: '' });
   try {
     const response = yield call(api.filters.fetchMarks);
-    yield put({ type: actionTypes.SET_MARKS_VALUES, payload: response.data });
+    const data = transformDataForFilters(response.data);
+    yield put({ type: actionTypes.SET_MARKS_VALUES, payload: data });
     yield put({ type: actionTypes.SET_LOADING, payload: false });
   } catch (e) {
     yield put({ type: actionTypes.SET_SEARCH_ERROR, payload: 'Server-side error' });
@@ -23,7 +24,8 @@ function* callFetchModels(action: any) {
   yield put({ type: actionTypes.SET_SEARCH_ERROR, payload: '' });
   try {
     const response = yield call(api.filters.fetchModels, action.payload);
-    yield put({ type: actionTypes.SET_MODELS_VALUES, payload: response.data });
+    const data = transformDataForFilters(response.data);
+    yield put({ type: actionTypes.SET_MODELS_VALUES, payload: data });
     yield put({ type: actionTypes.SET_LOADING, payload: false });
   } catch (e) {
     yield put({ type: actionTypes.SET_SEARCH_ERROR, payload: 'Server-side error' });
@@ -37,7 +39,8 @@ function* callFetchBodyTypes(action: any) {
   yield put({ type: actionTypes.SET_SEARCH_ERROR, payload: '' });
   try {
     const response = yield call(api.filters.fetchBodyTypes);
-    yield put({ type: actionTypes.SET_BODY_TYPES_VALUES, payload: response.data });
+    const data = transformDataForFilters(response.data);
+    yield put({ type: actionTypes.SET_BODY_TYPES_VALUES, payload: data });
     yield put({ type: actionTypes.SET_LOADING, payload: false });
   } catch (e) {
     yield put({ type: actionTypes.SET_SEARCH_ERROR, payload: 'Server-side error' });

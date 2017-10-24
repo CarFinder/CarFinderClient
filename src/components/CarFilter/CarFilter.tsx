@@ -77,16 +77,16 @@ class CarFilter extends React.PureComponent<Props, State> {
       this.setState({
         data: {
           ...this.state.data,
-          markId: props.carFilters.filterValues.marks[0]._id
+          markId: props.carFilters.filterValues.marks[0].value
         }
       });
-      this.props.handleFetchModelsValues(props.carFilters.filterValues.marks[0]._id);
+      this.props.handleFetchModelsValues(props.carFilters.filterValues.marks[0].value);
     }
     if (props.carFilters.filterValues.models.length !== 0 && this.state.data.modelId.length === 0) {
       this.setState({
         data: {
           ...this.state.data,
-          modelId: props.carFilters.filterValues.models[0]._id
+          modelId: props.carFilters.filterValues.models[0].value
         }
       });
     }
@@ -97,7 +97,7 @@ class CarFilter extends React.PureComponent<Props, State> {
       this.setState({
         data: {
           ...this.state.data,
-          bodyTypeId: props.carFilters.filterValues.bodyTypes[0]._id
+          bodyTypeId: props.carFilters.filterValues.bodyTypes[0].value
         }
       });
     }

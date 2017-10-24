@@ -48,8 +48,10 @@ const SelectInput = ({
             {options.length !== 0 &&
               options.map((option: any, index: number) => {
                 return (
-                  <option key={index} value={option._id ? option._id : option.id}>
-                    {lang.selectInputs[option.name] ? lang.selectInputs[option.name] : option.name}
+                  <option key={index} value={option.value ? option.value : option.id}>
+                    {lang.selectInputs[option.label]
+                      ? lang.selectInputs[option.label]
+                      : option.label}
                   </option>
                 );
               })}

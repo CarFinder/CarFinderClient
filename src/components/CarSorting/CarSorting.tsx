@@ -41,26 +41,26 @@ class CarSorting extends React.Component<Props, State> {
       },
       limitValues: [
         {
-          id: 20,
-          name: 20
+          value: 20,
+          label: 20
         },
         {
-          id: 30,
-          name: 30
+          value: 30,
+          label: 30
         },
         {
-          id: 50,
-          name: 50
+          value: 50,
+          label: 50
         }
       ],
       sortValues: [
         {
-          id: -1,
-          name: 'Ascending'
+          value: -1,
+          label: 'Ascending'
         },
         {
-          id: 1,
-          name: 'Descending'
+          value: 1,
+          label: 'Descending'
         }
       ]
     };
