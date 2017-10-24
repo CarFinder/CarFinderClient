@@ -1,5 +1,6 @@
 export interface Filter {
   _id: string;
+  name: string;
   markId?: string;
   modelId?: string[];
   bodyTypeId?: string[];

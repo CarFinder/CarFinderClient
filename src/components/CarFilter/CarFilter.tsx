@@ -1,11 +1,13 @@
 import classnames from 'classnames';
+import Tooltip from 'rc-tooltip';
 import * as React from 'react';
 import { CarModel } from '../../redux/models/filterResultsModel';
-import { validateForm, validateMark } from '../../utils/carFiltersValidation';
+import { validateForm, validateFormForSave, validateMark } from '../../utils/carFiltersValidation';
 import interfaceLanguage from '../../utils/interfaceLanguage';
 import SelectInput from '../Common/FormInputs/SelectInput';
 import TextInput from '../Common/FormInputs/TextInput';
 import Notification from '../Common/Notification/Notifiation';
+
 import './style.less';
 
 export interface Props {
@@ -36,6 +38,7 @@ export interface Props {
 
 export interface State {
   data: {
+    name: string;
     markId: string;
     modelId: string[];
     bodyTypeId: string[];
@@ -54,6 +57,7 @@ class CarFilter extends React.PureComponent<Props, State> {
     super();
     this.state = {
       data: {
+        name: '',
         markId: '',
         modelId: [],
         bodyTypeId: [],
@@ -72,6 +76,7 @@ class CarFilter extends React.PureComponent<Props, State> {
     this.props.handleClearFilters();
     this.props.handleFetchMarksValues();
     this.props.handleFetchBodyTypesValues();
+    this.setFilterName();
   }
 
   public componentWillReceiveProps(props: Props) {
@@ -86,7 +91,7 @@ class CarFilter extends React.PureComponent<Props, State> {
     }
   }
 
-  public onChange = (value: any, field: string) => {
+  public onChangeSelect = (value: any, field: string) => {
     if (field !== 'markId') {
       this.setState({
         data: {
@@ -108,10 +113,23 @@ class CarFilter extends React.PureComponent<Props, State> {
   };
 
   public onChangeNumber = (name: string) => (e: any) => {
+    let value = e.target.value;
+    if (value === '') {
+      value = 0;
+    }
     this.setState({
       data: {
         ...this.state.data,
-        [name]: parseInt(e.target.value, 10)
+        [name]: parseInt(value, 10)
+      }
+    });
+  };
+
+  public onChange = (name: string) => (e: any) => {
+    this.setState({
+      data: {
+        ...this.state.data,
+        [name]: e.target.value
       }
     });
   };
@@ -143,8 +161,20 @@ class CarFilter extends React.PureComponent<Props, State> {
     }
   };
 
-  public onSaveFilter = () => {
-    const errors = validateForm(this.state.data);
+  public setFilterName = () => {
+    const date: Date = new Date();
+    const newName = `Filter ${date.getFullYear()}-${date.getMonth()}-${date.getDay()}`;
+    this.setState({
+      data: {
+        ...this.state.data,
+        name: newName
+      }
+    });
+  };
+
+  public onSaveFilter = (e: any) => {
+    e.preventDefault();
+    const errors = validateFormForSave(this.state.data);
     this.setState({
       errors
     });
@@ -175,7 +205,7 @@ class CarFilter extends React.PureComponent<Props, State> {
                       label={lang.carFilters.maker}
                       value={data.markId}
                       options={filterValues.marks}
-                      onChange={this.onChange}
+                      onChange={this.onChangeSelect}
                       disabled={filterValues.marks.length === 0}
                       error={errors.markId}
                     />
@@ -187,7 +217,7 @@ class CarFilter extends React.PureComponent<Props, State> {
                       label={lang.carFilters.model}
                       value={data.modelId}
                       options={filterValues.models}
-                      onChange={this.onChange}
+                      onChange={this.onChangeSelect}
                       disabled={filterValues.models.length === 0}
                       error={errors.modelId}
                     />
@@ -199,7 +229,7 @@ class CarFilter extends React.PureComponent<Props, State> {
                       label={lang.carFilters.bodyType}
                       value={data.bodyTypeId}
                       options={filterValues.bodyTypes}
-                      onChange={this.onChange}
+                      onChange={this.onChangeSelect}
                       disabled={filterValues.bodyTypes.length === 0}
                       error={errors.bodyTypeId}
                     />
@@ -283,16 +313,32 @@ class CarFilter extends React.PureComponent<Props, State> {
                     {lang.carFilters.searchFilters} &nbsp;
                     <i className="fa fa-search" aria-hidden="true" />
                   </button>
-                  <button
-                    type="button"
-                    onClick={this.onSaveFilter}
-                    className={classnames('button is-default is-pulled-right', {
-                      'is-loading': loading
-                    })}
+                  <Tooltip
+                    placement="left"
+                    trigger={['hover']}
+                    overlay={
+                      <TextInput
+                        type="text"
+                        field="name"
+                        label=""
+                        placeholder="Enter filter name here"
+                        onChange={this.onChange}
+                        value={data.name}
+                        error={errors.name}
+                      />
+                    }
                   >
-                    {lang.carFilters.saveFilters} &nbsp;
-                    <i className="fa fa-floppy-o" aria-hidden="true" />
-                  </button>
+                    <button
+                      type="button"
+                      onClick={e => this.onSaveFilter(e)}
+                      className={classnames('button is-default is-pulled-right', {
+                        'is-loading': loading
+                      })}
+                    >
+                      {lang.carFilters.saveFilters} &nbsp;
+                      <i className="fa fa-floppy-o" aria-hidden="true" />
+                    </button>
+                  </Tooltip>
                 </div>
               </form>
             </div>
