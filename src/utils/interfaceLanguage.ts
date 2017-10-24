@@ -33,6 +33,9 @@ export interface Language {
     selectInputs: {
       [key: string]: string;
     };
+    userProfile: {
+      [key: string]: string;
+    };
   };
   en: {
     validation: {
@@ -66,6 +69,9 @@ export interface Language {
       [key: string]: string;
     };
     selectInputs: {
+      [key: string]: string;
+    };
+    userProfile: {
       [key: string]: string;
     };
   };
@@ -186,6 +192,14 @@ const interfaceLanguage: Language = {
       highestPrice: 'Сначала дорогие',
       Ascending: 'По возрастанию',
       Descending: 'По убыванию'
+    },
+    userProfile: {
+      title: 'Профиль пользователя',
+      nameField: 'Ваше Имя',
+      nameFieldPlaceholder: 'Введите ваше Имя',
+      emailField: 'Ваш е-мэйл',
+      emailFieldPlaceholder: 'Введите ваш е-мейл',
+      submitButton: 'Сохранить'
     }
   },
   en: {
@@ -302,6 +316,14 @@ const interfaceLanguage: Language = {
       Descending: 'Descending',
       lowestPrice: 'Lowest',
       highestPrice: 'Highest'
+    },
+    userProfile: {
+      title: 'User profile',
+      nameField: 'Your name',
+      nameFieldPlaceholder: 'Enter your name',
+      emailField: 'Your email',
+      emailFieldPlaceholder: 'Enter your email',
+      submitButton: 'Save'
     }
   }
 };

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { UserData as RestorePasswordUserData } from '../containers/ChangePassword';
 import { UserData } from '../containers/Signin';
+import { User } from '../redux/models/userModel';
 
 export default {
   user: {
@@ -8,7 +9,8 @@ export default {
     signup: (data: UserData) => axios.post('/api/user/register', data),
     confirmEmail: (token: string) => axios.post('/api/user/confirm', { token }),
     submitEmail: (data: RestorePasswordUserData) => axios.post('/api/user/forgot', data),
-    changePassword: (data: RestorePasswordUserData) => axios.post('/api/user/restore', { data })
+    changePassword: (data: RestorePasswordUserData) => axios.post('/api/user/restore', { data }),
+    changeUserData: (data: User) => axios.post('api/user/changedata', data)
   },
   filters: {
     fetchMarks: () => axios.get('/api/filter/marks'),

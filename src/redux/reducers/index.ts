@@ -1,7 +1,7 @@
 import { Action, combineReducers, Reducer } from 'redux';
 import { reducer as reduxFormReducer } from 'redux-form';
-import filterResultsReducer from './filterResults';
 import carFiltersReducer from './carFilters';
+import filterResultsReducer from './filterResults';
 import formStateReducer from './formState';
 import userReducer from './user';
 
