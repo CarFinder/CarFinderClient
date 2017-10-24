@@ -1,4 +1,3 @@
-// import { FormStateAction } from '../actions/formStateActions';
 import {
   SET_AUTH_ERROR,
   SET_LOADING,
