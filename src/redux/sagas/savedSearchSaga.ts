@@ -38,5 +38,5 @@ function* callSubmitSavedSearchFilters(action: Action) {
 
 export default function* watchSavedSearch(): SagaIterator {
   yield takeEvery(actionTypes.FETCH_SAVED_FILTERS, callFetchSavedSearchFilters);
-  yield takeEvery(actionTypes.SET_SAVED_SEARCH_FILTERS, callSubmitSavedSearchFilters);
+  yield takeEvery(actionTypes.SUBMIT_SAVED_FILTERS, callSubmitSavedSearchFilters);
 }

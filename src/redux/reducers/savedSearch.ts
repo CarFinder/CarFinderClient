@@ -1,4 +1,8 @@
-import { FETCH_SAVED_FILTERS, SET_SAVED_SEARCH_FILTERS } from '../actions/actionTypes';
+import {
+  FETCH_SAVED_FILTERS,
+  SET_SAVED_SEARCH_FILTERS,
+  SUBMIT_SAVED_FILTERS
+} from '../actions/actionTypes';
 import { SavedSearchAction } from '../actions/savedSearchActions';
 import { SavedSearch } from '../models/savedSearchModel';
 
@@ -13,8 +17,12 @@ export default function savedSearchReducer(
   switch (action.type) {
     case FETCH_SAVED_FILTERS:
       return state;
-    case SET_SAVED_SEARCH_FILTERS:
+    case SUBMIT_SAVED_FILTERS:
       return state;
+    case SET_SAVED_SEARCH_FILTERS:
+      return {
+        savedFilters: action.payload
+      };
     default:
       return state;
   }

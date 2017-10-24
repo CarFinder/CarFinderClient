@@ -10,7 +10,12 @@ export interface SetSavedSearchFilters {
   payload: Filter[];
 }
 
-export type SavedSearchAction = FetchSavedFilters | SetSavedSearchFilters;
+export interface SubmitSavedFilters {
+  type: actionTypes.SUBMIT_SAVED_FILTERS;
+  payload: any;
+}
+
+export type SavedSearchAction = FetchSavedFilters | SetSavedSearchFilters | SubmitSavedFilters;
 
 export function fetchSavedFilters(): FetchSavedFilters {
   return {
@@ -21,6 +26,13 @@ export function fetchSavedFilters(): FetchSavedFilters {
 export function setSavedSearchFilters(payload: Filter[]): SetSavedSearchFilters {
   return {
     type: actionTypes.SET_SAVED_SEARCH_FILTERS,
+    payload
+  };
+}
+
+export function submitSavedFilters(payload: any): SubmitSavedFilters {
+  return {
+    type: actionTypes.SUBMIT_SAVED_FILTERS,
     payload
   };
 }
