@@ -32,13 +32,6 @@ function* callSubmitSavedSearchFilters(action: Action) {
         'We have successfully saved your filter options. You can find more about it on your Home Page'
     });
     yield put({ type: actionTypes.SET_LOADING, payload: false });
-    setTimeout(
-      yield put({
-        type: actionTypes.SET_SUCCESS_MESSAGE,
-        payload: ''
-      }),
-      1500
-    );
   } catch (e) {
     yield put({ type: actionTypes.SET_SEARCH_ERROR, payload: 'Server-side error' });
     yield put({ type: actionTypes.SET_LOADING, payload: false });
