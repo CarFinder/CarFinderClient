@@ -15,5 +15,9 @@ export default {
     fetchBodyTypes: () => axios.get('/api/filter/bodytypes'),
     fetchModels: (markId: any) => axios.post('/api/filter/models', { markId }),
     fetchResults: (data: any) => axios.post('/api/ad', data)
+  },
+  savedSearch: {
+    fetchFilters: () => axios.get('/api/filter/saved'),
+    submitSavedFilter: (data: any) => axios.post('/api/filter/saved')
   }
 };

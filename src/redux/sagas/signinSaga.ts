@@ -4,8 +4,9 @@ import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
 import API from '../../api/api';
 import { UserData } from '../../containers/Signin';
 import setAuthorizationHeader from '../../utils/axiosHeader';
+import { Action } from './index';
 
-function* callSignin(action: any) {
+function* callSignin(action: Action) {
   yield put({ type: 'SET_LOADING', payload: true });
   try {
     const response = yield call(API.user.getUser, action.payload);

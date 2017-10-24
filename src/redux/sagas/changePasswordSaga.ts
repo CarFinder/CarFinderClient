@@ -3,8 +3,9 @@ import { SagaIterator } from 'redux-saga';
 import { call, put, takeEvery } from 'redux-saga/effects';
 import API from '../../api/api';
 import { UserData } from '../../containers/Signin';
+import { Action } from './index';
 
-function* callSubmitEmail(action: any) {
+function* callSubmitEmail(action: Action) {
   yield put({ type: 'SET_LOADING', payload: true });
   yield put({ type: 'SET_AUTH_ERROR', payload: '' });
   try {
