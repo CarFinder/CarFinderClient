@@ -18,7 +18,9 @@ export interface Props {
   handleSetCurrentFilter: (payload: any, sortingParams: any) => void;
   handleSetAdsAsLoaded: (payload: boolean) => void;
   handleSetAds: (ads: CarModel[]) => void;
+  handleSubmitSavedFilters: (data: any) => void;
   loading: boolean;
+  successMessage: string;
   searchError: any;
   language: string;
   carFilters: {
@@ -141,10 +143,20 @@ class CarFilter extends React.PureComponent<Props, State> {
     }
   };
 
+  public onSaveFilter = () => {
+    const errors = validateForm(this.state.data);
+    this.setState({
+      errors
+    });
+    if (Object.keys(errors).length === 0) {
+      this.props.handleSubmitSavedFilters(this.state.data);
+    }
+  };
+
   public render() {
     const { data, errors } = this.state;
     const { filterValues } = this.props.carFilters;
-    const { searchError, loading, language } = this.props;
+    const { searchError, loading, language, successMessage } = this.props;
     const lang = language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
     return (
       <div className="section">
@@ -154,6 +166,7 @@ class CarFilter extends React.PureComponent<Props, State> {
               {searchError && (
                 <Notification type="danger" text={lang.searchErrors.serverUnavailable} />
               )}
+              {successMessage && <Notification type="success" text={successMessage} />}
               <form className="box" onSubmit={this.onSubmit}>
                 <div className="columns">
                   <div className="column">
@@ -262,6 +275,7 @@ class CarFilter extends React.PureComponent<Props, State> {
                 </div>
                 <div className="is-clearfix">
                   <button
+                    type="submit"
                     className={classnames('button is-warning is-pulled-right', {
                       'is-loading': loading
                     })}
@@ -269,7 +283,13 @@ class CarFilter extends React.PureComponent<Props, State> {
                     {lang.carFilters.searchFilters} &nbsp;
                     <i className="fa fa-search" aria-hidden="true" />
                   </button>
-                  <button className="button is-default is-pulled-right">
+                  <button
+                    type="button"
+                    onClick={this.onSaveFilter}
+                    className={classnames('button is-default is-pulled-right', {
+                      'is-loading': loading
+                    })}
+                  >
                     {lang.carFilters.saveFilters} &nbsp;
                     <i className="fa fa-floppy-o" aria-hidden="true" />
                   </button>

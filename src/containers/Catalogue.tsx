@@ -3,11 +3,12 @@ import Catalogue from '../components/Catalogue/Catalogue';
 import * as carFiltersActions from '../redux/actions/carFiltersActions';
 import * as filterResultsActions from '../redux/actions/filterResultsActions';
 import * as formStateActions from '../redux/actions/formStateActions';
-import * as actions from '../redux/actions/userActions';
+import * as savedSearchActions from '../redux/actions/savedSearchActions';
 import { CarModel } from '../redux/models/filterResultsModel';
 import { InitialState } from '../redux/models/userModel';
 
 interface PropsInterface {
+  handleSubmitSavedFilters: (data: any) => void;
   handleClearError: () => void;
   handleClearFilters: () => void;
   handleFetchMarksValues: () => void;
@@ -19,6 +20,7 @@ interface PropsInterface {
 }
 
 interface StateInterface {
+  successMessage: string;
   searchError: any;
   loading: boolean;
   language: string;
@@ -31,6 +33,7 @@ interface StateInterface {
 }
 
 const mapStateToProps = (state: any) => ({
+  successMessage: state.formState.successMessage,
   loading: state.formState.loading,
   searchError: state.formState.searchError,
   language: state.user.interfaceLanguage,
@@ -48,7 +51,9 @@ const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
   handleSetCurrentFilter: (payload: any, sortingParams: any) =>
     dispatch(carFiltersActions.setCurrentFilter(payload, sortingParams)),
   handeSetSortingParams: (payload: any) => dispatch(carFiltersActions.setSortingParams(payload)),
-  handleSetAdsAsLoaded: (payload: boolean) => dispatch(filterResultsActions.setAdsAsLoaded(payload))
+  handleSetAdsAsLoaded: (payload: boolean) =>
+    dispatch(filterResultsActions.setAdsAsLoaded(payload)),
+  handleSubmitSavedFilters: (data: any) => dispatch(savedSearchActions.submitSavedFilters(data))
 });
 
 export default connect<any, PropsInterface>(mapStateToProps, mapDispatchToProps)(Catalogue);

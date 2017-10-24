@@ -18,6 +18,6 @@ export default {
   },
   savedSearch: {
     fetchFilters: () => axios.get('/api/filter/saved'),
-    submitSavedFilter: (data: any) => axios.post('/api/filter/saved')
+    submitSavedFilter: (data: any) => axios.post('/api/filter/saved', { data })
   }
 };

@@ -9,7 +9,8 @@ import { FormState, InitialState } from '../models/formStateModel';
 const initialState = {
   loading: false,
   authError: '',
-  searchError: ''
+  searchError: '',
+  successMessage: ''
 };
 
 // FIXME: fix type of action;
