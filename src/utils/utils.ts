@@ -25,6 +25,7 @@ export const transformDataForFilters = (values: any[]) => {
 export const transformDataForSave = (values: any) => {
   const data: any = {};
   data.markId = values.markId;
+  data.name = values.name;
   if (values.modelId.length !== 0) {
     data.modelId = values.modelId.map((pair: any) => pair.value);
   }

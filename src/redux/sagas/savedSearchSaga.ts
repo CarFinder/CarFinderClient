@@ -1,4 +1,4 @@
-import { SagaIterator } from 'redux-saga';
+import { delay, SagaIterator } from 'redux-saga';
 import { call, put, takeEvery } from 'redux-saga/effects';
 import api from '../../api/api';
 import { transformDataForSave } from '../../utils/utils';
@@ -32,6 +32,11 @@ function* callSubmitSavedSearchFilters(action: Action) {
         'We have successfully saved your filter options. You can find more about it on your Home Page'
     });
     yield put({ type: actionTypes.SET_LOADING, payload: false });
+    yield call(delay, 1500);
+    yield put({
+      type: actionTypes.SET_SUCCESS_MESSAGE,
+      payload: ''
+    });
   } catch (e) {
     yield put({ type: actionTypes.SET_SEARCH_ERROR, payload: 'Server-side error' });
     yield put({ type: actionTypes.SET_LOADING, payload: false });
