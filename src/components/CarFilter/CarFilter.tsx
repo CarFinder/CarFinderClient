@@ -316,7 +316,7 @@ class CarFilter extends React.PureComponent<Props, State> {
                     <i className="fa fa-search" aria-hidden="true" />
                   </button>
                   <Tooltip
-                    placement="left"
+                    placement="bottom"
                     trigger={['hover']}
                     overlay={
                       <TextInput
