@@ -18,6 +18,7 @@ const mapStateToProps = (state: any) => ({
   language: state.user.interfaceLanguage,
   loading: state.formState.loading,
   changeUserDataError: state.formState.changeUserDataError,
+  successMessage: state.formState.successMessage,
   initialValues: {
     email: state.user.email,
     name: state.user.name

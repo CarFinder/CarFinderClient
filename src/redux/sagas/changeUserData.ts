@@ -1,5 +1,5 @@
 import jwt_decode from 'jwt-decode';
-import { SagaIterator } from 'redux-saga';
+import { delay, SagaIterator } from 'redux-saga';
 import { call, put, takeEvery } from 'redux-saga/effects';
 import API from '../../api/api';
 import setAuthorizationHeader from '../../utils/axiosHeader';
@@ -13,6 +13,16 @@ function* callChangeUserData(action: any) {
     localStorage.setItem('jwt', response.data.token);
     setAuthorizationHeader(response.data.token);
     yield put({ type: 'SET_LOADING', payload: false });
+    yield put({
+      type: 'SET_SUCCESS_MESSAGE',
+      payload: 'We have successfully saved your data.'
+    });
+    yield put({ type: 'CHANGE_USER_DATA_SUCCESS', payload: decodedData });
+    yield call(delay, 1500);
+    yield put({
+      type: 'SET_SUCCESS_MESSAGE',
+      payload: ''
+    });
   } catch (e) {
     yield put({ type: 'SET_LOADING', payload: false });
     yield put({
@@ -32,7 +42,20 @@ function* callChangeUserAvatar(action: any) {
       type: action.payload.type
     };
     const response = yield call(API.user.changeUserAvatar, data);
+    const decodedData = jwt_decode(response.data.token);
+    localStorage.setItem('jwt', response.data.token);
+    setAuthorizationHeader(response.data.token);
     yield put({ type: 'SET_LOADING', payload: false });
+    yield put({
+      type: 'SET_SUCCESS_MESSAGE',
+      payload: 'We have successfully saved your photo.'
+    });
+    yield put({ type: 'CHANGE_USER_DATA_SUCCESS', payload: decodedData });
+    yield call(delay, 1500);
+    yield put({
+      type: 'SET_SUCCESS_MESSAGE',
+      payload: ''
+    });
   } catch (e) {
     yield put({ type: 'SET_LOADING', payload: false });
     yield put({

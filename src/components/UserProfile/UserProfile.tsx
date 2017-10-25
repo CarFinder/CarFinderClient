@@ -17,6 +17,7 @@ export interface Props {
   initialValues: object;
   language: string;
   loading: boolean;
+  successMessage: string;
 }
 export interface State {}
 
@@ -43,7 +44,8 @@ export default class UserProfile extends React.PureComponent<Props, State> {
       initialValues,
       language,
       loading,
-      handleChangeUserData
+      handleChangeUserData,
+      successMessage
     } = this.props;
     const lang = language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
     const errorMessage = !changeUserDataError.code
@@ -55,6 +57,7 @@ export default class UserProfile extends React.PureComponent<Props, State> {
           <div className="columns">
             <div className="column is-centered">
               {changeUserDataError && <Notification type="danger" text={errorMessage} />}
+              {successMessage && <Notification type="success" text={successMessage} />}
               <div className="box">
                 <div className="columns">
                   <div className="column is-one-quarter">

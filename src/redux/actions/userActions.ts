@@ -59,6 +59,11 @@ export interface UserChangeUserData {
   payload: ChangeUserDataData;
 }
 
+export interface UserChangedUserData {
+  type: actionTypes.CHANGE_USER_DATA_SUCCESS;
+  payload: User;
+}
+
 export interface UserChangeUserAvatar {
   type: actionTypes.CHANGE_USER_AVATAR;
   payload: any;
@@ -76,6 +81,7 @@ export type UserAction =
   | UserChangePassword
   | UserChangeLanguage
   | UserChangeUserData
+  | UserChangedUserData
   | UserChangeUserAvatar;
 
 export function userLoggedIn(user: User): UserLoggedIn {
@@ -141,7 +147,7 @@ export function userChangePassword(
   return {
     type: actionTypes.USER_CHANGE_PASSWORD,
     payload: userData,
-    token: token
+    token
   };
 }
 
@@ -157,6 +163,13 @@ export function userChangeUserData(userData: ChangeUserDataData): UserChangeUser
   return {
     type: actionTypes.CHANGE_USER_DATA,
     payload: userData
+  };
+}
+
+export function userChangedUserData(user: User): UserChangedUserData {
+  return {
+    type: actionTypes.CHANGE_USER_DATA_SUCCESS,
+    payload: user
   };
 }
 

@@ -5,23 +5,24 @@ import './style.less';
 
 export interface Props {
   changeAvatar: (avatar: any) => any;
+  image?: string;
 }
 
 export interface State {
-  file: any;
+  image: any;
 }
 
 export default class DropPhoto extends React.Component<Props, State> {
   constructor() {
     super();
     this.state = {
-      file: null
+      image: null
     };
   }
 
   public onDrop = (files: any) => {
     this.props.changeAvatar(files[0]);
-    this.setState({ file: files[0] });
+    this.setState({ image: files[0] });
   };
 
   public render() {
@@ -36,7 +37,7 @@ export default class DropPhoto extends React.Component<Props, State> {
           rejectClassName="is-reject"
         >
           <figure className="image">
-            {this.state.file && <img src={this.state.file.preview} />}
+            {<img src={this.state.image ? this.state.image.preview : this.props.image} />}
           </figure>
         </Dropzone>
       </div>
