@@ -18,6 +18,7 @@ export interface Props {
   language: string;
   loading: boolean;
   successMessage: string;
+  image: string;
 }
 export interface State {}
 
@@ -45,7 +46,8 @@ export default class UserProfile extends React.PureComponent<Props, State> {
       language,
       loading,
       handleChangeUserData,
-      successMessage
+      successMessage,
+      image
     } = this.props;
     const lang = language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
     const errorMessage = !changeUserDataError.code
@@ -61,7 +63,7 @@ export default class UserProfile extends React.PureComponent<Props, State> {
               <div className="box">
                 <div className="columns">
                   <div className="column is-one-quarter">
-                    <DropPhoto changeAvatar={this.handleSetAvatar} />
+                    <DropPhoto image={image} changeAvatar={this.handleSetAvatar} />
                   </div>
                   <div className="column">
                     <h1 className="is-size-3 has-text-centered">{lang.userProfile.title}</h1>

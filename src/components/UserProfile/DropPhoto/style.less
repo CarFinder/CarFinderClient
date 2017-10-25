@@ -3,27 +3,24 @@
   justify-content: center;
 
   .field {
-    border: 2px dashed grey;
-    border-radius: 100px;
-    height: 200px;
-    width: 200px;
-  }
+    border-radius: 102px;
+    height: 204px;
+    width: 204px;
 
-  .is-active {
-    border-style: solid;
-    border-color: green;
-  }
-
-  .is-reject {
-    border-style: solid;
-    border-color: red;
+    &:hover {
+      border: 2px dashed grey;
+    }
   }
 
   img {
-    position: absolute;
     clip-path: circle(100px at 100px 100px);
     object-fit: cover;
     min-height: 200px;
     min-width: 200px;
+  }
+
+  .error {
+    color: #ff3860;
+    text-align: center;
   }
 }

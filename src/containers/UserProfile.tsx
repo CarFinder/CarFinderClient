@@ -22,7 +22,8 @@ const mapStateToProps = (state: any) => ({
   initialValues: {
     email: state.user.email,
     name: state.user.name
-  }
+  },
+  image: state.user.image
 });
 
 const mapDispatchToProps = (
