@@ -17,6 +17,7 @@ interface PropsInterface {
   handleSetCurrentFilter: (payload: any, sortingParams: any) => void;
   handeSetSortingParams: (payload: any) => void;
   handleSetAdsAsLoaded: (payloab: boolean) => void;
+  clearFilterResults: () => void;
 }
 
 interface StateInterface {
@@ -53,7 +54,8 @@ const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
   handeSetSortingParams: (payload: any) => dispatch(carFiltersActions.setSortingParams(payload)),
   handleSetAdsAsLoaded: (payload: boolean) =>
     dispatch(filterResultsActions.setAdsAsLoaded(payload)),
-  handleSubmitSavedFilters: (data: any) => dispatch(savedSearchActions.submitSavedFilters(data))
+  handleSubmitSavedFilters: (data: any) => dispatch(savedSearchActions.submitSavedFilters(data)),
+  clearFilterResults: () => dispatch(filterResultsActions.clearFilterResults())
 });
 
 export default connect<any, PropsInterface>(mapStateToProps, mapDispatchToProps)(Catalogue);

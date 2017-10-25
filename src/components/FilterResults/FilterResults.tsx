@@ -71,7 +71,7 @@ const FilterResults = (props: Props) => {
   }
 
   function renderWaypoint() {
-    if (filterResults && !adsAreLoaded) {
+    if (filterResults.length !== 0 && !adsAreLoaded) {
       return <Waypoint onEnter={loadMoreItems} />;
     }
   }

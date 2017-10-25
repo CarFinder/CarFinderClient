@@ -17,6 +17,7 @@ export interface Props {
   handleSetAdsAsLoaded: (payload: boolean) => void;
   handleUpdateAds: (payload: any, sortingParams: any) => void;
   handleSubmitSavedFilters: (payload: any) => void;
+  clearFilterResults: () => void;
   adsAreLoaded: boolean;
   successMessage: string;
   loading: boolean;
@@ -71,6 +72,7 @@ class Catalogue extends React.PureComponent<Props, State> {
       handleFetchModelsValues,
       handeSetSortingParams,
       handleSubmitSavedFilters,
+      clearFilterResults,
       filterResults,
       adsAreLoaded,
       handleSetAdsAsLoaded
@@ -94,6 +96,7 @@ class Catalogue extends React.PureComponent<Props, State> {
           handleFetchBodyTypesValues={handleFetchBodyTypesValues}
           handleSetAdsAsLoaded={handleSetAdsAsLoaded}
           handleSubmitSavedFilters={handleSubmitSavedFilters}
+          clearFilterResults={clearFilterResults}
         />
         <CarSorting
           language={language}

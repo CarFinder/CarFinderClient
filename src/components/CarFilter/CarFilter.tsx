@@ -21,6 +21,7 @@ export interface Props {
   handleSetAdsAsLoaded: (payload: boolean) => void;
   handleSetAds: (ads: CarModel[]) => void;
   handleSubmitSavedFilters: (data: any) => void;
+  clearFilterResults: () => void;
   loading: boolean;
   successMessage: string;
   searchError: any;
@@ -135,6 +136,7 @@ class CarFilter extends React.PureComponent<Props, State> {
   };
 
   public onSubmit = (e: any) => {
+    this.props.clearFilterResults();
     e.preventDefault();
     const errors = validateForm(this.state.data);
     this.setState({

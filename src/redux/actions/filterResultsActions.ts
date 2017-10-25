@@ -11,7 +11,11 @@ export interface SetAdsAsLoaded {
   payload: boolean;
 }
 
-export type FilterResultsAction = SetFilterResults | SetAdsAsLoaded;
+export interface ClearFilterResults {
+  type: actionTypes.CLEAR_FILTER_RESULTS;
+}
+
+export type FilterResultsAction = SetFilterResults | SetAdsAsLoaded | ClearFilterResults;
 
 export function setFilterResults(filterResults: CarModel[]): SetFilterResults {
   return {
@@ -24,5 +28,11 @@ export function setAdsAsLoaded(loaded: boolean): SetAdsAsLoaded {
   return {
     type: actionTypes.SET_ADS_AS_LOADED,
     payload: loaded
+  };
+}
+
+export function clearFilterResults(): ClearFilterResults {
+  return {
+    type: actionTypes.CLEAR_FILTER_RESULTS
   };
 }
