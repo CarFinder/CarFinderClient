@@ -22,6 +22,37 @@ export const transformDataForFilters = (values: any[]) => {
   return data;
 };
 
+export const transformDataForSave = (values: any) => {
+  const data: any = {};
+  data.markId = values.markId;
+  data.name = values.name;
+  if (values.modelId.length !== 0) {
+    data.modelId = values.modelId.map((pair: any) => pair.value);
+  }
+  if (values.bodyTypeId.length !== 0) {
+    data.bodyTypeId = values.bodyTypeId.map((pair: any) => pair.value);
+  }
+  if (values.yearFrom) {
+    data.yearFrom = values.yearFrom;
+  }
+  if (values.yearTo) {
+    data.yearTo = values.yearTo;
+  }
+  if (values.priceFrom) {
+    data.priceFrom = values.priceFrom;
+  }
+  if (values.priceTo) {
+    data.priceTo = values.priceTo;
+  }
+  if (values.kmsFrom) {
+    data.kmsFrom = values.kmsFrom;
+  }
+  if (values.kmsTo) {
+    data.kmsTo = values.kmsTo;
+  }
+  return data;
+};
+
 export const transformDataForSearch = (filtersData: any, sortingParams: any) => {
   const data: any = {
     filter: {},

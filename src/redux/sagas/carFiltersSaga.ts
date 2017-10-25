@@ -1,10 +1,11 @@
 import { SagaIterator } from 'redux-saga';
-import { call, put, select, takeEvery } from 'redux-saga/effects';
+import { call, put, takeEvery } from 'redux-saga/effects';
 import api from '../../api/api';
 import { transformDataForFilters, transformDataForSearch } from '../../utils/utils';
 import * as actionTypes from '../actions/actionTypes';
+import { Action } from './index';
 
-function* callFetchMarks(action: any) {
+function* callFetchMarks(action: Action) {
   yield put({ type: actionTypes.SET_LOADING, payload: true });
   yield put({ type: actionTypes.SET_SEARCH_ERROR, payload: '' });
   try {
@@ -19,7 +20,7 @@ function* callFetchMarks(action: any) {
   }
 }
 
-function* callFetchModels(action: any) {
+function* callFetchModels(action: Action) {
   yield put({ type: actionTypes.SET_LOADING, payload: true });
   yield put({ type: actionTypes.SET_SEARCH_ERROR, payload: '' });
   try {
@@ -34,7 +35,7 @@ function* callFetchModels(action: any) {
   }
 }
 
-function* callFetchBodyTypes(action: any) {
+function* callFetchBodyTypes(action: Action) {
   yield put({ type: actionTypes.SET_LOADING, payload: true });
   yield put({ type: actionTypes.SET_SEARCH_ERROR, payload: '' });
   try {
@@ -72,6 +73,3 @@ export default function* watchCarFilters(): SagaIterator {
   yield takeEvery(actionTypes.FETCH_MODELS_VALUES, callFetchModels);
   yield takeEvery(actionTypes.SET_CURRENT_FILTER, callFetchFilterResults);
 }
-
-export const getSortingParams = (state: any) => state.carFilters.sortingParams;
-export const getFilterParams = (state: any) => state.carFilters.currentFilter;

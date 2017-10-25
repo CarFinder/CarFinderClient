@@ -1,8 +1,8 @@
-import ChangePasswordForm from '../components/ChangePasswordForm/ChangePasswordForm';
-import * as actions from '../redux/actions/userActions';
-import * as formStateActions from '../redux/actions/formStateActions';
-import { InitialState } from '../redux/models/userModel';
 import { connect, Dispatch } from 'react-redux';
+import ChangePasswordForm from '../components/ChangePasswordForm/ChangePasswordForm';
+import * as formStateActions from '../redux/actions/formStateActions';
+import * as actions from '../redux/actions/userActions';
+import { InitialState } from '../redux/models/userModel';
 
 export interface UserData {
   email?: string;
@@ -29,7 +29,7 @@ const mapStateToProps = (state: any) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch<actions.UserAction>) => ({
   handleClearError: () => dispatch(formStateActions.setAuthError('')),
-  handleClearSuccessMessage: () => dispatch(formStateActions.SetSuccessMessage('')),
+  handleClearSuccessMessage: () => dispatch(formStateActions.setSuccessMessage('')),
   handleSubmitEmail: (userData: UserData) => dispatch(actions.userSubmitEmail(userData)),
   handleChangePassword: (userData: UserData, token: string) =>
     dispatch(actions.userChangePassword(userData, token))
