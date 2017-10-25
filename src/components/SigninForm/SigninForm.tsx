@@ -25,7 +25,7 @@ class SigninFrom extends React.Component<Props, object> {
     }
   }
 
-  public componentWillMount() {
+  public componentDidMount() {
     this.props.handleClearError();
   }
 

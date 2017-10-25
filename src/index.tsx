@@ -44,7 +44,7 @@ const App = () => {
           <Route path="/signin" component={Signin} />
           <Route path="/restore" component={ChangePassword} />
           <Route path="/confirmation" component={EmailConfirmation} />
-          <Route path="/profile" component={UserProfile} />
+          <Route path="/profile" component={RequireAuth(UserProfile)} />
           <Route path="*" component={NotFound} />
         </Switch>
       </div>

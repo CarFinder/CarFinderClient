@@ -2,6 +2,7 @@ import * as React from 'react';
 import interfaceLanguage from '../../utils/interfaceLanguage';
 
 import Notification from '../Common/Notification/Notifiation';
+import DropPhoto from './DropPhoto/DropPhoto';
 import ChangeForm from './UserData/UserData';
 
 import { UserData } from '../../containers/UserProfile';
@@ -11,6 +12,7 @@ import './style.less';
 export interface Props {
   handleClearError: () => any;
   handleChangeUserData: (userData: UserData) => any;
+  handleChangeUserAvatar: (avatar: any) => any;
   changeUserDataError?: any;
   initialValues: object;
   language: string;
@@ -18,18 +20,21 @@ export interface Props {
 }
 export interface State {}
 
-export default class UserProfile extends React.Component<Props, State> {
+export default class UserProfile extends React.PureComponent<Props, State> {
   constructor() {
     super();
-    this.state = {};
   }
 
   public componentDidMount() {
     this.props.handleClearError();
   }
 
-  public handleSubmit = (userData: UserData) => {
+  public handleSubmitData = (userData: UserData) => {
     this.props.handleChangeUserData(userData);
+  };
+
+  public handleSetAvatar = (avatar: any) => {
+    this.props.handleChangeUserAvatar(avatar);
   };
 
   public render() {
@@ -53,9 +58,7 @@ export default class UserProfile extends React.Component<Props, State> {
               <div className="box">
                 <div className="columns">
                   <div className="column is-one-quarter">
-                    <figure className="image">
-                      <img src="http://via.placeholder.com/200x200" />
-                    </figure>
+                    <DropPhoto changeAvatar={this.handleSetAvatar} />
                   </div>
                   <div className="column">
                     <h1 className="is-size-3 has-text-centered">{lang.userProfile.title}</h1>
@@ -63,7 +66,7 @@ export default class UserProfile extends React.Component<Props, State> {
                       language={language}
                       loading={loading}
                       initialValues={initialValues}
-                      onSubmit={this.handleSubmit}
+                      onSubmit={this.handleSubmitData}
                     />
                   </div>
                 </div>

@@ -1,0 +1,29 @@
+.dropzone {
+  display: flex;
+  justify-content: center;
+
+  .field {
+    border: 2px dashed grey;
+    border-radius: 100px;
+    height: 200px;
+    width: 200px;
+  }
+
+  .is-active {
+    border-style: solid;
+    border-color: green;
+  }
+
+  .is-reject {
+    border-style: solid;
+    border-color: red;
+  }
+
+  img {
+    position: absolute;
+    clip-path: circle(100px at 100px 100px);
+    object-fit: cover;
+    min-height: 200px;
+    min-width: 200px;
+  }
+}

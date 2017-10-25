@@ -65,3 +65,22 @@ export const transformDataForSearch = (filtersData: any, sortingParams: any) => 
   }
   return data;
 };
+
+export interface FileReaderEventTarget extends EventTarget {
+  result: string;
+}
+
+export interface FileReaderEvent extends Event {
+  target: FileReaderEventTarget;
+  getMessage(): string;
+}
+
+export const toBase64 = async (file: any) => {
+  return new Promise<any>((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = (event: FileReaderEvent) => {
+      resolve(event.target.result);
+    };
+    reader.readAsDataURL(file);
+  });
+};

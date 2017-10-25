@@ -10,7 +10,8 @@ export default {
     confirmEmail: (token: string) => axios.post('/api/user/confirm', { token }),
     submitEmail: (data: RestorePasswordUserData) => axios.post('/api/user/forgot', data),
     changePassword: (data: RestorePasswordUserData) => axios.post('/api/user/restore', { data }),
-    changeUserData: (data: User) => axios.post('api/user/changedata', data)
+    changeUserData: (data: User) => axios.post('api/user/update-user-data', data),
+    changeUserAvatar: (data: any) => axios.post('api/user/update-user-image', data)
   },
   filters: {
     fetchMarks: () => axios.get('/api/filter/marks'),

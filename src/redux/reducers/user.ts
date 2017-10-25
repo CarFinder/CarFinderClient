@@ -1,4 +1,5 @@
 import {
+  CHANGE_USER_AVATAR,
   CHANGE_USER_DATA,
   SET_LANGUAGE,
   USER_CHANGE_PASSWORD,
@@ -40,6 +41,8 @@ export default function userReducer(state: InitialState = {}, action: UserAction
         interfaceLanguage: action.payload
       };
     case CHANGE_USER_DATA:
+      return state;
+    case CHANGE_USER_AVATAR:
       return state;
     default:
       return state;

@@ -11,6 +11,7 @@ export interface UserData {
 interface DispatchFromProps {
   handleClearError: () => any;
   handleChangeUserData: (userData: UserData) => any;
+  handleChangeUserAvatar: (avatar: any) => any;
 }
 
 const mapStateToProps = (state: any) => ({
@@ -26,8 +27,9 @@ const mapStateToProps = (state: any) => ({
 const mapDispatchToProps = (
   dispatch: Dispatch<userActions.UserAction | formStateActions.FormStateAction>
 ) => ({
-  handleClearError: () => dispatch(formStateActions.setAuthError('')),
-  handleChangeUserData: (userData: UserData) => dispatch(userActions.userChangeUserData(userData))
+  handleClearError: () => dispatch(formStateActions.setChangeUserDataError('')),
+  handleChangeUserData: (userData: UserData) => dispatch(userActions.userChangeUserData(userData)),
+  handleChangeUserAvatar: (avatar: any) => dispatch(userActions.userChangeUserAvatar(avatar))
 });
 
 export default connect<any, DispatchFromProps>(mapStateToProps, mapDispatchToProps)(UserProfile);
