@@ -199,7 +199,10 @@ const interfaceLanguage: Language = {
       nameFieldPlaceholder: 'Введите ваше Имя',
       emailField: 'Ваш е-мэйл',
       emailFieldPlaceholder: 'Введите ваш е-мейл',
-      submitButton: 'Сохранить'
+      submitButton: 'Сохранить',
+      interfaceLanguage: 'Язык интерфейса',
+      subscription: 'Использовать е-мейл для рассылки обновлений',
+      typeError: 'Неподдерживаемый тип файла'
     }
   },
   en: {
@@ -323,7 +326,10 @@ const interfaceLanguage: Language = {
       nameFieldPlaceholder: 'Enter your name',
       emailField: 'Your email',
       emailFieldPlaceholder: 'Enter your email',
-      submitButton: 'Save'
+      submitButton: 'Save',
+      interfaceLanguage: 'Interface language',
+      subscription: 'Use email for updates',
+      typeError: 'Unsupported type'
     }
   }
 };

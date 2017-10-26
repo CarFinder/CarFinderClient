@@ -4,14 +4,18 @@ import * as formStateActions from '../redux/actions/formStateActions';
 import * as userActions from '../redux/actions/userActions';
 
 export interface UserData {
-  name: string;
-  email: string;
+  name?: string;
+  email?: string;
+  interfaceLanguage?: string;
+  subscription?: boolean;
 }
 
 interface DispatchFromProps {
   handleClearError: () => any;
   handleChangeUserData: (userData: UserData) => any;
   handleChangeUserAvatar: (avatar: any) => any;
+  handleChangeLanguage: (lang: string | null) => any;
+  handleChangeUserSettings: (userSettings: UserData) => any;
 }
 
 const mapStateToProps = (state: any) => ({
@@ -23,7 +27,8 @@ const mapStateToProps = (state: any) => ({
     email: state.user.email,
     name: state.user.name
   },
-  image: state.user.image
+  image: state.user.image,
+  subscription: state.user.subscription
 });
 
 const mapDispatchToProps = (
@@ -31,7 +36,10 @@ const mapDispatchToProps = (
 ) => ({
   handleClearError: () => dispatch(formStateActions.setChangeUserDataError('')),
   handleChangeUserData: (userData: UserData) => dispatch(userActions.userChangeUserData(userData)),
-  handleChangeUserAvatar: (avatar: any) => dispatch(userActions.userChangeUserAvatar(avatar))
+  handleChangeUserAvatar: (avatar: any) => dispatch(userActions.userChangeUserAvatar(avatar)),
+  handleChangeLanguage: (lang: string) => dispatch(userActions.userChangeLanguage(lang)),
+  handleChangeUserSettings: (userSettings: UserData) =>
+    dispatch(userActions.userChangeUserSettings(userSettings))
 });
 
 export default connect<any, DispatchFromProps>(mapStateToProps, mapDispatchToProps)(UserProfile);

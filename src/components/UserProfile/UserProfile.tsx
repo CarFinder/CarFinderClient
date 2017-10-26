@@ -1,9 +1,10 @@
 import * as React from 'react';
-import interfaceLanguage from '../../utils/interfaceLanguage';
+import interfaceLang from '../../utils/interfaceLanguage';
 
 import Notification from '../Common/Notification/Notifiation';
 import DropPhoto from './DropPhoto/DropPhoto';
 import ChangeForm from './UserData/UserData';
+import UserSettings from './UserSettings/UserSettings';
 
 import { UserData } from '../../containers/UserProfile';
 
@@ -13,12 +14,15 @@ export interface Props {
   handleClearError: () => any;
   handleChangeUserData: (userData: UserData) => any;
   handleChangeUserAvatar: (avatar: any) => any;
+  handleChangeLanguage: (lang: string | null) => any;
+  handleChangeUserSettings: (userSettings: UserData) => any;
   changeUserDataError?: any;
   initialValues: object;
   language: string;
   loading: boolean;
   successMessage: string;
   image: string;
+  subscription: boolean;
 }
 export interface State {}
 
@@ -39,6 +43,10 @@ export default class UserProfile extends React.PureComponent<Props, State> {
     this.props.handleChangeUserAvatar(avatar);
   };
 
+  public handleChangeUserSettings = (userSettings: UserData) => {
+    this.props.handleChangeUserSettings(userSettings);
+  };
+
   public render() {
     const {
       changeUserDataError,
@@ -46,10 +54,12 @@ export default class UserProfile extends React.PureComponent<Props, State> {
       language,
       loading,
       handleChangeUserData,
+      handleChangeLanguage,
       successMessage,
-      image
+      image,
+      subscription
     } = this.props;
-    const lang = language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
+    const lang = language === 'ru' ? interfaceLang.ru : interfaceLang.en;
     const errorMessage = !changeUserDataError.code
       ? lang.searchErrors.serverUnavailable
       : lang.authErrors[changeUserDataError.code.toString()];
@@ -63,7 +73,11 @@ export default class UserProfile extends React.PureComponent<Props, State> {
               <div className="box">
                 <div className="columns">
                   <div className="column is-one-quarter">
-                    <DropPhoto image={image} changeAvatar={this.handleSetAvatar} />
+                    <DropPhoto
+                      interfaceLanguage={language}
+                      image={image}
+                      changeAvatar={this.handleSetAvatar}
+                    />
                   </div>
                   <div className="column">
                     <h1 className="is-size-3 has-text-centered">{lang.userProfile.title}</h1>
@@ -72,6 +86,16 @@ export default class UserProfile extends React.PureComponent<Props, State> {
                       loading={loading}
                       initialValues={initialValues}
                       onSubmit={this.handleSubmitData}
+                    />
+                  </div>
+                </div>
+                <div className="columns is-centered">
+                  <div className="column is-half">
+                    <UserSettings
+                      handleChangeLanguage={handleChangeLanguage}
+                      handleChangeUserSettings={this.handleChangeUserSettings}
+                      subscription={subscription}
+                      interfaceLanguage={language}
                     />
                   </div>
                 </div>

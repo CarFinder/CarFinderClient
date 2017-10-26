@@ -69,6 +69,11 @@ export interface UserChangeUserAvatar {
   payload: any;
 }
 
+export interface UserChangeUserSettings {
+  type: actionTypes.CHANGE_USER_SETTINGS;
+  payload: ChangeUserDataData;
+}
+
 export type UserAction =
   | UserLoggedIn
   | UserLoggedOut
@@ -82,7 +87,8 @@ export type UserAction =
   | UserChangeLanguage
   | UserChangeUserData
   | UserChangedUserData
-  | UserChangeUserAvatar;
+  | UserChangeUserAvatar
+  | UserChangeUserSettings;
 
 export function userLoggedIn(user: User): UserLoggedIn {
   user.interfaceLanguage = localStorage.getItem('interfaceLanguage') || user.interfaceLanguage;
@@ -177,5 +183,12 @@ export function userChangeUserAvatar(avatar: any): UserChangeUserAvatar {
   return {
     type: actionTypes.CHANGE_USER_AVATAR,
     payload: avatar
+  };
+}
+
+export function userChangeUserSettings(userSettings: ChangeUserDataData): UserChangeUserSettings {
+  return {
+    type: actionTypes.CHANGE_USER_SETTINGS,
+    payload: userSettings
   };
 }

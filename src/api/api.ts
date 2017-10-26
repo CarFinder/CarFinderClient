@@ -11,7 +11,8 @@ export default {
     submitEmail: (data: RestorePasswordUserData) => axios.post('/api/user/forgot', data),
     changePassword: (data: RestorePasswordUserData) => axios.post('/api/user/restore', { data }),
     changeUserData: (data: User) => axios.post('api/user/update-user-data', data),
-    changeUserAvatar: (data: any) => axios.post('api/user/update-user-image', data)
+    changeUserAvatar: (data: any) => axios.post('api/user/update-user-image', data),
+    changeUserSettings: (data: any) => axios.post('api/user/update-user-settings', data)
   },
   filters: {
     fetchMarks: () => axios.get('/api/filter/marks'),

@@ -1,16 +1,18 @@
 import * as React from 'react';
 import Dropzone from 'react-dropzone';
+import interfaceLang from '../../../utils/interfaceLanguage';
 import { toBase64 } from '../../../utils/utils';
 import './style.less';
 
 export interface Props {
   changeAvatar: (avatar: any) => any;
   image: string;
+  interfaceLanguage: string;
 }
 
 export interface State {
   image: any;
-  errorMessage: string;
+  typeError: boolean;
 }
 
 export default class DropPhoto extends React.Component<Props, State> {
@@ -18,21 +20,23 @@ export default class DropPhoto extends React.Component<Props, State> {
     super();
     this.state = {
       image: null,
-      errorMessage: ''
+      typeError: false
     };
   }
 
   public onDrop = (acceptedFiles: any, rejectedFiles: any) => {
     if (acceptedFiles.length) {
       this.props.changeAvatar(acceptedFiles[0]);
-      this.setState({ image: acceptedFiles[0], errorMessage: '' });
+      this.setState({ image: acceptedFiles[0], typeError: false });
     }
     if (rejectedFiles.length) {
-      this.setState({ errorMessage: 'Unsupported type' });
+      this.setState({ typeError: true });
     }
   };
 
   public render() {
+    const lang = this.props.interfaceLanguage === 'ru' ? interfaceLang.ru : interfaceLang.en;
+
     const image = this.state.image
       ? this.state.image.preview
       : this.props.image
@@ -47,7 +51,7 @@ export default class DropPhoto extends React.Component<Props, State> {
           className="field"
         >
           <figure className="image">{<img src={image} />}</figure>
-          {this.state.errorMessage && <p className="error">{this.state.errorMessage}</p>}
+          {this.state.typeError && <p className="error">{lang.userProfile.typeError}</p>}
         </Dropzone>
       </div>
     );
