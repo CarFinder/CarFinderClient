@@ -38,7 +38,6 @@ function* callChangeUserAvatar(action: any) {
     const encodedImage = yield call(toBase64, action.payload);
     const data = {
       image: encodedImage,
-      imageKey: action.payload.lastModified,
       type: action.payload.type
     };
     const response = yield call(API.user.changeUserAvatar, data);

@@ -29,14 +29,14 @@ export default class UserSettings extends React.Component<Props, State> {
     this.props.handleChangeLanguage(e.target.value);
     this.props.handleChangeUserSettings({
       subscription: this.state.subscription,
-      interfaceLanguage: this.state.interfaceLanguage
+      interfaceLanguage: e.target.value
     });
     this.setState({ interfaceLanguage: e.target.value });
   };
 
   public handleСheckingSubscription = (e: any) => {
     this.props.handleChangeUserSettings({
-      subscription: this.state.subscription,
+      subscription: e.target.checked,
       interfaceLanguage: this.state.interfaceLanguage
     });
     this.setState({ subscription: e.target.checked });
