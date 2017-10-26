@@ -1,5 +1,6 @@
 import classnames from 'classnames';
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 import { validateForm as validate } from '../../../utils/formValidation';
 import interfaceLanguage from '../../../utils/interfaceLanguage';
@@ -67,6 +68,7 @@ const UserData = (props: Props) => {
         />
       </div>
       <div className="is-clearfix">
+        <Link to="/restore">{lang.userProfile.changePassword}</Link>
         <button
           className={classnames('button is-warning is-pulled-right', {
             'is-loading': props.loading

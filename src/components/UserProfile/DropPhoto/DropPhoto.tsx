@@ -43,16 +43,35 @@ export default class DropPhoto extends React.Component<Props, State> {
         ? this.props.image
         : 'http://s3.amazonaws.com/37assets/svn/765-default-avatar.png';
     return (
-      <div className="dropzone">
-        <Dropzone
-          accept="image/jpeg, image/png"
-          multiple={false}
-          onDrop={this.onDrop}
-          className="field"
-        >
-          <figure className="image">{<img src={image} />}</figure>
-          {this.state.typeError && <p className="error">{lang.userProfile.typeError}</p>}
-        </Dropzone>
+      <div>
+        <div className="dropzone">
+          <Dropzone
+            accept="image/jpeg, image/png"
+            multiple={false}
+            onDrop={this.onDrop}
+            className="field"
+          >
+            <figure className="image">{<img src={image} />}</figure>
+            {this.state.typeError && <p className="error">{lang.userProfile.typeError}</p>}
+          </Dropzone>
+        </div>
+        {!this.props.image &&
+          !this.state.image && (
+            <p
+              className="help has-text-grey-light has-text-centered"
+              dangerouslySetInnerHTML={{
+                __html: lang.userProfile.dndHint
+              }}
+            />
+          )}
+        {this.state.image && (
+          <p
+            className="help has-text-grey-light has-text-centered"
+            dangerouslySetInnerHTML={{
+              __html: lang.userProfile.dndUpdateHint
+            }}
+          />
+        )}
       </div>
     );
   }
