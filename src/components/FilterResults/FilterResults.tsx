@@ -40,16 +40,14 @@ const FilterResults = (props: Props) => {
   const lang = language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
 
   function loadMoreItems() {
-    const carAds = items;
     const data = {
       ...carFilters.sortingParams,
       skip: skip + carFilters.sortingParams.limit
     };
     handeSetSortingParams(data);
     handleSetCurrentFilter(carFilters.currentFilter, data);
-    filterResults.forEach((value: CarModel) => carAds.push(value));
-    handleSetSkip(skip + items.length);
-    handleSetAds(carAds);
+    handleSetSkip(skip + filterResults.length);
+    handleSetAds(filterResults);
   }
 
   function renderItems() {
@@ -71,7 +69,7 @@ const FilterResults = (props: Props) => {
   }
 
   function renderWaypoint() {
-    if (filterResults && !adsAreLoaded) {
+    if (filterResults.length !== 0 && !adsAreLoaded) {
       return <Waypoint onEnter={loadMoreItems} />;
     }
   }

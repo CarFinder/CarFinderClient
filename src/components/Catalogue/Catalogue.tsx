@@ -16,7 +16,10 @@ export interface Props {
   handeSetSortingParams: (payload: any) => void;
   handleSetAdsAsLoaded: (payload: boolean) => void;
   handleUpdateAds: (payload: any, sortingParams: any) => void;
+  handleSubmitSavedFilters: (payload: any) => void;
+  clearFilterResults: () => void;
   adsAreLoaded: boolean;
+  successMessage: string;
   loading: boolean;
   searchError?: any;
   language: string;
@@ -58,6 +61,7 @@ class Catalogue extends React.PureComponent<Props, State> {
     const {
       language,
       loading,
+      successMessage,
       searchError,
       carFilters,
       handleClearError,
@@ -67,6 +71,8 @@ class Catalogue extends React.PureComponent<Props, State> {
       handleFetchBodyTypesValues,
       handleFetchModelsValues,
       handeSetSortingParams,
+      handleSubmitSavedFilters,
+      clearFilterResults,
       filterResults,
       adsAreLoaded,
       handleSetAdsAsLoaded
@@ -79,6 +85,7 @@ class Catalogue extends React.PureComponent<Props, State> {
           carFilters={carFilters}
           searchError={searchError}
           loading={loading}
+          successMessage={successMessage}
           handleSetSkip={this.handleSetSkip}
           handleSetAds={this.handleSetAds}
           handleClearError={handleClearError}
@@ -88,6 +95,8 @@ class Catalogue extends React.PureComponent<Props, State> {
           handleSetCurrentFilter={handleSetCurrentFilter}
           handleFetchBodyTypesValues={handleFetchBodyTypesValues}
           handleSetAdsAsLoaded={handleSetAdsAsLoaded}
+          handleSubmitSavedFilters={handleSubmitSavedFilters}
+          clearFilterResults={clearFilterResults}
         />
         <CarSorting
           language={language}

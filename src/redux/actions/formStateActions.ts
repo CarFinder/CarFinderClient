@@ -48,7 +48,7 @@ export function setSearchError(error: any): SetSearchError {
   };
 }
 
-export function SetSuccessMessage(message: string): SetSuccessMessage {
+export function setSuccessMessage(message: string): SetSuccessMessage {
   return {
     type: actionTypes.SET_SUCCESS_MESSAGE,
     payload: message

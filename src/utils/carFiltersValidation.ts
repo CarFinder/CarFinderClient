@@ -1,6 +1,7 @@
 import language from './interfaceLanguage';
 
 export interface FormData {
+  name: string;
   markId: string;
   modelId: string[];
   bodyTypeId: string[];
@@ -46,6 +47,34 @@ export const validatePairValues = (from: number, to: number): boolean => {
 
 export const validateForm = (values: FormData): any => {
   const errors: any = {};
+  if (values.markId === '') {
+    errors.markId = lang.required;
+  }
+  if (values.yearFrom && !validateYears(values.yearFrom)) {
+    errors.yearFrom = lang.invalidYear;
+  }
+  if (values.yearTo && !validateYears(values.yearTo)) {
+    errors.yearTo = lang.invalidYear;
+  }
+  if (values.yearFrom && values.yearTo && !validatePairValues(values.yearFrom, values.yearTo)) {
+    errors.yearFrom = lang.invalidParameters;
+    errors.yearTo = lang.invalidParameters;
+  }
+  if (values.priceFrom && values.priceTo && !validatePairValues(values.priceFrom, values.priceTo)) {
+    errors.priceFrom = lang.invalidParameters;
+    errors.priceTo = lang.invalidParameters;
+  }
+  if (values.kmsFrom && values.kmsTo && !validatePairValues(values.kmsFrom, values.kmsTo)) {
+    errors.kmsTo = lang.invalidParameters;
+  }
+  return errors;
+};
+
+export const validateFormForSave = (values: FormData): any => {
+  const errors: any = {};
+  if (values.name === '') {
+    errors.name = lang.required;
+  }
   if (values.markId === '') {
     errors.markId = lang.required;
   }

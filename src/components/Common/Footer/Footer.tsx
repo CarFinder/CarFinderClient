@@ -8,7 +8,7 @@ const Footer = () => (
         <p>
           <strong>CarFinder</strong> by&nbsp;
           <a href="https://github.com/CarFinder">CarFinder Inc.</a>&nbsp; The source code is
-          licensed&nbsp;
+          licensed under&nbsp;
           <a href="http://opensource.org/licenses/mit-license.php">MIT</a>.
         </p>
       </div>
