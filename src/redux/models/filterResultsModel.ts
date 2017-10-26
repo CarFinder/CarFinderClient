@@ -1,5 +1,5 @@
 export interface FilterResults {
-  filterResults?: CarModel[];
+  filterResults: CarModel[];
   allAdsLoaded?: boolean;
 }
 

@@ -18,9 +18,9 @@ const initialState = {
     bodyTypes: []
   },
   currentFilter: {
-    mark: '',
-    model: '',
-    bodyType: '',
+    markId: '',
+    modelId: '',
+    bodyTypeId: '',
     yearFrom: 0,
     yearTo: 0,
     priceForm: 0,

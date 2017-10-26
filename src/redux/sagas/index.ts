@@ -3,6 +3,7 @@ import carFiltersSaga from './carFiltersSaga';
 import changePasswordSaga from './changePasswordSaga';
 import changeUserDataSaga from './changeUserData';
 import emailConfrimationSaga from './emailConfirmationSaga';
+import savedSearchSaga from './savedSearchSaga';
 import signinSaga from './signinSaga';
 import signupSaga from './signupSaga';
 
@@ -13,8 +14,14 @@ function* rootSaga() {
     fork(emailConfrimationSaga),
     fork(changePasswordSaga),
     fork(carFiltersSaga),
-    fork(changeUserDataSaga)
+    fork(changeUserDataSaga),
+    fork(savedSearchSaga)
   ];
 }
 
 export default rootSaga;
+
+export interface Action {
+  type: string;
+  payload?: any;
+}

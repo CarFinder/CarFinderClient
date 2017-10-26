@@ -1,9 +1,10 @@
 import { SagaIterator } from 'redux-saga';
-import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
+import { call, put, takeEvery } from 'redux-saga/effects';
 import api from '../../api/api';
 import * as actionTypes from '../actions/actionTypes';
+import { Action } from './index';
 
-function* callConfrimEmail(action: any) {
+function* callConfrimEmail(action: Action) {
   yield put({ type: actionTypes.SET_LOADING, payload: true });
   yield put({ type: actionTypes.SET_AUTH_ERROR, payload: '' });
   try {

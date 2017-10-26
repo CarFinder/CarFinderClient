@@ -25,6 +25,7 @@ const TextInput = ({ field, label, placeholder, value, type, error, onChange }: 
         name={label}
         placeholder={placeholder}
         type={type}
+        value={value === 0 ? '' : value}
         onChange={onChange(field)}
       />
     </div>

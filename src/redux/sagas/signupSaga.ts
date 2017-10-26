@@ -3,8 +3,9 @@ import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
 import api from '../../api/api';
 import { transformDataForSignup } from '../../utils/utils';
 import * as actionTypes from '../actions/actionTypes';
+import { Action } from './index';
 
-function* callSignup(action: any) {
+function* callSignup(action: Action) {
   yield put({ type: actionTypes.SET_LOADING, payload: true });
   yield put({ type: actionTypes.SET_AUTH_ERROR, payload: '' });
   try {
