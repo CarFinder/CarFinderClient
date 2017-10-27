@@ -9,12 +9,14 @@ export interface Props {
   year: number;
   images: string[];
   kms: number;
+  handleShowAdPreview: (id: number) => void;
 }
 
 const CarAd = (props: Props) => {
-  const { model, mark, description, price, year, images, kms } = props;
+  const { model, mark, description, price, year, images, kms, handleShowAdPreview } = props;
   return (
-    <div className="media">
+    // tslint:disable-next-line:jsx-no-bind
+    <div className="media" onClick={handleShowAdPreview.bind(this)}>
       <figure className="media-left">
         <p className="ad-image">
           <img className="image is-128x128" src={images[0]} />

@@ -17,6 +17,7 @@ export interface Props {
   handleSetAdsAsLoaded: (payload: boolean) => void;
   handleUpdateAds: (payload: any, sortingParams: any) => void;
   handleSubmitSavedFilters: (payload: any) => void;
+  handleShowAdPreview: (id: number) => void;
   clearFilterResults: () => void;
   adsAreLoaded: boolean;
   successMessage: string;
@@ -72,6 +73,7 @@ class Catalogue extends React.PureComponent<Props, State> {
       handleFetchModelsValues,
       handeSetSortingParams,
       handleSubmitSavedFilters,
+      handleShowAdPreview,
       clearFilterResults,
       filterResults,
       adsAreLoaded,
@@ -115,6 +117,7 @@ class Catalogue extends React.PureComponent<Props, State> {
           handleSetCurrentFilter={handleSetCurrentFilter}
           handleSetSkip={this.handleSetSkip}
           handeSetSortingParams={handeSetSortingParams}
+          handleShowAdPreview={handleShowAdPreview}
         />
       </div>
     );

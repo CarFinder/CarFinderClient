@@ -18,6 +18,7 @@ interface PropsInterface {
   handeSetSortingParams: (payload: any) => void;
   handleSetAdsAsLoaded: (payloab: boolean) => void;
   clearFilterResults: () => void;
+  handleShowAdPreview: (id:number) => void;
 }
 
 interface StateInterface {
@@ -54,6 +55,7 @@ const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
   handeSetSortingParams: (payload: any) => dispatch(carFiltersActions.setSortingParams(payload)),
   handleSetAdsAsLoaded: (payload: boolean) =>
     dispatch(filterResultsActions.setAdsAsLoaded(payload)),
+  handleShowAdPreview:(id:number) => console.log(id),
   handleSubmitSavedFilters: (data: any) => dispatch(savedSearchActions.submitSavedFilters(data)),
   clearFilterResults: () => dispatch(filterResultsActions.clearFilterResults())
 });

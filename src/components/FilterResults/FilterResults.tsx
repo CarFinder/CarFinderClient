@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import * as React from 'react';
 import Waypoint from 'react-waypoint';
 import * as actions from '../../redux/actions/filterResultsActions';
@@ -21,6 +22,7 @@ export interface Props {
   handeSetSortingParams: (payload: any) => void;
   handleSetSkip: (skipAmount: number) => void;
   handleSetAds: (ads: CarModel[]) => void;
+  handleShowAdPreview: (id: number) => void;
 }
 
 const FilterResults = (props: Props) => {
@@ -34,11 +36,14 @@ const FilterResults = (props: Props) => {
     handleSetAds,
     handleSetCurrentFilter,
     handleSetSkip,
-    handeSetSortingParams
+    handeSetSortingParams,
+    handleShowAdPreview
   } = props;
   const { language } = props;
   const lang = language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
-
+  const modal = classNames('modal', {
+    'is-active': false
+  });
   function loadMoreItems() {
     const data = {
       ...carFilters.sortingParams,
@@ -62,7 +67,13 @@ const FilterResults = (props: Props) => {
             year={value.year}
             images={value.images}
             kms={value.kms}
+            handleShowAdPreview={handleShowAdPreview}
           />
+          <div className={modal}>
+            <div className="modal-background" />
+            <div className="modal-content" />
+            <button className="modal-close is-large" aria-label="close" />
+          </div>
         </article>
       );
     });
