@@ -26,7 +26,7 @@ class CarSorting extends React.Component<Props, State> {
       limit: 20,
       skip: 0,
       sort: {
-        year: 1,
+        year: -1,
         price: 1,
         kms: 1
       }
@@ -103,11 +103,11 @@ class CarSorting extends React.Component<Props, State> {
     const sortYearValues = [
       {
         value: 1,
-        label: lang.selectInputs.Ascending
+        label: lang.selectInputs.Oldest
       },
       {
         value: -1,
-        label: lang.selectInputs.Descending
+        label: lang.selectInputs.Newest
       }
     ];
 
@@ -125,11 +125,11 @@ class CarSorting extends React.Component<Props, State> {
     const sortPriceValues = [
       {
         value: 1,
-        label: lang.selectInputs.Ascending
+        label: lang.selectInputs.lowestPrice
       },
       {
         value: -1,
-        label: lang.selectInputs.Descending
+        label: lang.selectInputs.highestPrice
       }
     ];
 
