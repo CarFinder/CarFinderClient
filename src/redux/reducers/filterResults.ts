@@ -8,7 +8,8 @@ import { FilterResults, InitialState } from '../models/filterResultsModel';
 
 const initialState = {
   filterResults: [],
-  allAdsLoaded: false
+  allAdsLoaded: false,
+  isPreviewOpen:true
 };
 
 export default function filterResultsReducer(

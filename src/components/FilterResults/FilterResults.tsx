@@ -12,6 +12,7 @@ export interface Props {
   filterResults: CarModel[];
   loading: boolean;
   language: string;
+  isPreviewOpen: boolean;
   skip: number;
   items: CarModel[];
   carFilters: {
@@ -37,12 +38,13 @@ const FilterResults = (props: Props) => {
     handleSetCurrentFilter,
     handleSetSkip,
     handeSetSortingParams,
-    handleShowAdPreview
+    handleShowAdPreview,
+    isPreviewOpen
   } = props;
   const { language } = props;
   const lang = language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
   const modal = classNames('modal', {
-    'is-active': false
+    'is-active': isPreviewOpen
   });
   function loadMoreItems() {
     const data = {
@@ -71,8 +73,13 @@ const FilterResults = (props: Props) => {
           />
           <div className={modal}>
             <div className="modal-background" />
-            <div className="modal-content" />
-            <button className="modal-close is-large" aria-label="close" />
+            <div className="modal-card">
+              <header className="modal-card-head">
+                <p className="modal-card-title">Modal title</p>
+                <button className="delete" aria-label="close" />
+              </header>
+              <section className="modal-card-body" />
+            </div>
           </div>
         </article>
       );

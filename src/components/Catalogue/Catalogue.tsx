@@ -22,6 +22,7 @@ export interface Props {
   adsAreLoaded: boolean;
   successMessage: string;
   loading: boolean;
+  isPreviewOpen: boolean;
   searchError?: any;
   language: string;
   filterResults: CarModel[];
@@ -77,7 +78,8 @@ class Catalogue extends React.PureComponent<Props, State> {
       clearFilterResults,
       filterResults,
       adsAreLoaded,
-      handleSetAdsAsLoaded
+      handleSetAdsAsLoaded,
+      isPreviewOpen
     } = this.props;
 
     return (
@@ -112,6 +114,7 @@ class Catalogue extends React.PureComponent<Props, State> {
           skip={this.state.skip}
           loading={loading}
           carFilters={carFilters}
+          isPreviewOpen={isPreviewOpen}
           adsAreLoaded={adsAreLoaded}
           handleSetAds={this.handleSetAds}
           handleSetCurrentFilter={handleSetCurrentFilter}

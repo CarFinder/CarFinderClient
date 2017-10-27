@@ -32,6 +32,7 @@ interface StateInterface {
     currentFilter: any;
     sortingParams: any;
   };
+  isPreviewOpen:boolean;
 }
 
 const mapStateToProps = (state: any) => ({
@@ -41,7 +42,8 @@ const mapStateToProps = (state: any) => ({
   language: state.user.interfaceLanguage,
   filterResults: state.filterResults.filterResults,
   carFilters: state.carFilters,
-  adsAreLoaded: state.filterResults.allAdsLoaded
+  adsAreLoaded: state.filterResults.allAdsLoaded,
+  isPreviewOpen:state.filterResults.isPreviewOpen
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
