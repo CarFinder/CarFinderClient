@@ -3,6 +3,7 @@ export type FormState = {
   searchError?: any;
   loading?: boolean;
   successMessage?: string;
+  changeUserDataError?: string;
 };
 
 export type InitialState = FormState;

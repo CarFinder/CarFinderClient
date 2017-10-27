@@ -35,10 +35,7 @@ class SigninFrom extends React.Component<Props, object> {
 
   public render() {
     const { loading, authError, language } = this.props;
-    const lang =
-      this.props.language === 'ru'
-        ? interfaceLanguage.ru
-        : interfaceLanguage.en;
+    const lang = this.props.language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
     const errorMessage = !authError.code
       ? lang.searchErrors.serverUnavailable
       : lang.authErrors[authError.code.toString()];
@@ -49,14 +46,8 @@ class SigninFrom extends React.Component<Props, object> {
             <div className="column is-centered">
               {authError && <Notification type="danger" text={errorMessage} />}
               <div className="box">
-                <h1 className="is-size-3 has-text-centered">
-                  {lang.signinForm.title}
-                </h1>
-                <Form
-                  onSubmit={this.handleSubmit}
-                  language={language}
-                  loading={loading}
-                />
+                <h1 className="is-size-3 has-text-centered">{lang.signinForm.title}</h1>
+                <Form onSubmit={this.handleSubmit} language={language} loading={loading} />
                 <hr />
                 <div className="form-links has-text-centered">
                   <Link to="/restore">{lang.signinForm.changePassword}</Link>

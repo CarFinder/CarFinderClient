@@ -1,5 +1,6 @@
 import {
   SET_AUTH_ERROR,
+  SET_CHANGE_USER_DATA_ERROR,
   SET_LOADING,
   SET_SEARCH_ERROR,
   SET_SUCCESS_MESSAGE
@@ -10,6 +11,7 @@ const initialState = {
   loading: false,
   authError: '',
   searchError: '',
+  changeUserDataError: '',
   successMessage: ''
 };
 
@@ -35,6 +37,11 @@ export default function userReducer(state: InitialState = initialState, action: 
       return {
         ...state,
         successMessage: action.payload
+      };
+    case SET_CHANGE_USER_DATA_ERROR:
+      return {
+        ...state,
+        changeUserDataError: action.payload
       };
     default:
       return state;

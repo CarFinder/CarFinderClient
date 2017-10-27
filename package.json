@@ -47,6 +47,7 @@
   },
   "dependencies": {
     "@types/query-string": "^5.0.0",
+    "@types/react-dropzone": "^4.1.0",
     "@types/redux": "3.6.0",
     "axios": "^0.16.2",
     "bulma": "^0.6.0",
@@ -60,6 +61,7 @@
     "rc-tooltip": "^3.5.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-dropzone": "^4.2.1",
     "react-redux": "^5.0.6",
     "react-router": "4.x",
     "react-router-dom": "4.x",
