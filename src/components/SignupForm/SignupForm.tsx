@@ -1,18 +1,13 @@
-import Button from 'material-ui/Button';
-import Divider from 'material-ui/Divider';
-import Grid from 'material-ui/Grid';
-import Paper from 'material-ui/Paper';
-import { CircularProgress } from 'material-ui/Progress';
-import Typography from 'material-ui/Typography';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { UserData } from '../../containers/Signup';
+import interfaceLanguage from '../../utils/interfaceLanguage';
+import Notification from '../Common/Notification/Notifiation';
 import FirstPage from './WizardForm/FirstPage';
 import FormStepper from './WizardForm/FormStepper';
 import LastPage from './WizardForm/LastPage';
 import SecondPage from './WizardForm/SecondPage';
 import ThirdPage from './WizardForm/ThirdPage';
-import interfaceLanguage from '../../utils/interfaceLanguage';
 
 import './style.less';
 
@@ -29,7 +24,7 @@ export interface State {
   page: number;
 }
 
-class SignupFrom extends React.Component<Props, State> {
+class SignupFrom extends React.PureComponent<Props, State> {
   constructor() {
     super();
     this.state = {
@@ -49,7 +44,7 @@ class SignupFrom extends React.Component<Props, State> {
     }
   }
 
-  componentWillMount() {
+  public componentWillMount() {
     this.props.handleClearError();
   }
 
@@ -64,46 +59,52 @@ class SignupFrom extends React.Component<Props, State> {
   public render() {
     const { page } = this.state;
     const { loading, authError, language } = this.props;
-    const lang = this.props.language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
-
+    const lang =
+      this.props.language === 'ru'
+        ? interfaceLanguage.ru
+        : interfaceLanguage.en;
+    const errorMessage = !authError.code
+      ? lang.searchErrors.serverUnavailable
+      : lang.authErrors[authError.code.toString()];
     return (
-      <div className="signup-form">
-        <Grid container>
-          <Grid item xs={12}>
-            <Grid container align="center" direction="column" justify="center">
-              <Paper className="form-container">
+      <div className="section">
+        <div className="container">
+          <div className="columns">
+            <div className="column is-centered">
+              {authError && <Notification type="danger" text={errorMessage} />}
+              <div className="box">
                 {page !== 4 && (
-                  <Grid item className="form-title">
-                    <Typography type="display1">{lang.signupForm.title}</Typography>
-                  </Grid>
+                  <h1 className="is-size-3 has-text-centered">
+                    {lang.signupForm.title}
+                  </h1>
                 )}
-                {page !== 4 && (
-                  <Grid item className="form-stepper">
-                    <FormStepper page={page} language={language} />
-                  </Grid>
-                )}
-                <Grid item className="form-content">
-                  {authError && (
-                    <Typography type="subheading" component="p" color="accent">
-                      {lang.authErrors[authError.code.toString()]}
-                    </Typography>
+                <div className="form-stepper">
+                  <FormStepper page={page} language={language} />
+                </div>
+                <div className="signup-form">
+                  {page === 1 && (
+                    <FirstPage onSubmit={this.nextPage} language={language} />
                   )}
-                  {page === 1 && <FirstPage onSubmit={this.nextPage} language={language} />}
-                  {page === 2 && <SecondPage onSubmit={this.nextPage} language={language} />}
-                  {page === 3 && <ThirdPage onSubmit={this.handleSubmit} language={language} />}
+                  {page === 2 && (
+                    <SecondPage onSubmit={this.nextPage} language={language} />
+                  )}
+                  {page === 3 && (
+                    <ThirdPage
+                      onSubmit={this.handleSubmit}
+                      language={language}
+                      loading={loading}
+                    />
+                  )}
                   {page === 4 && <LastPage language={language} />}
-                  {loading && <CircularProgress size={50} />}
-                </Grid>
-                <Divider />
-                <Grid item className="form-links">
-                  <Button dense color="accent">
+                  <hr />
+                  <div className="has-text-centered">
                     <Link to="/signin">{lang.signupForm.signinLink}</Link>
-                  </Button>
-                </Grid>
-              </Paper>
-            </Grid>
-          </Grid>
-        </Grid>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

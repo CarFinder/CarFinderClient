@@ -1,11 +1,8 @@
-import KeyboardArrowRight from 'material-ui-icons/KeyboardArrowRight';
-import Button from 'material-ui/Button';
-import TextField from 'material-ui/TextField';
+import classnames from 'classnames';
 import * as React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { validateForm as validate } from '../../../utils/formValidation';
 import interfaceLanguage from '../../../utils/interfaceLanguage';
-import '../style.less';
 
 export interface Props {
   input?: HTMLInputElement;
@@ -17,36 +14,51 @@ export interface Props {
   language: string;
 }
 
-const renderTextField = ({ input, name, title, meta: { touched, error }, ...custom }: Props) => (
-  <TextField
-    name={name}
-    type="text"
-    label={title}
-    helperText={touched && error}
-    error={touched && !!error}
-    {...input}
-    {...custom}
-  />
+const renderTextField = ({
+  input,
+  name,
+  title,
+  meta: { touched, error },
+  ...custom
+}: Props) => (
+  <div className="field">
+    <label htmlFor="title" className="label">
+      {title}
+    </label>
+    <div className="control has-icons-left">
+      <input
+        className={classnames('input', { 'is-danger': touched && !!error })}
+        name={name}
+        type="text"
+        {...input}
+        {...custom}
+      />
+      <div className="icon is-small is-left">
+        <i className="fa fa-user-o" aria-hidden="true" />
+      </div>
+    </div>
+    <p className="help is-danger">{touched && error}</p>
+  </div>
 );
 
 const FirstPage = (props: Props) => {
-  const lang = props.language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
+  const lang =
+    props.language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
   return (
     <form onSubmit={props.handleSubmit}>
-      <div className="form-control">
+      <div>
         <Field
           name="name"
           placeholder={lang.signupForm.nameFieldPlaceholder}
           component={renderTextField}
           title={lang.signupForm.nameField}
-          className="form-field"
         />
       </div>
-      <div className="button-group">
-        <Button dense color="primary" type="submit" className="next">
-          {lang.signupForm.nextButton}
-          <KeyboardArrowRight />
-        </Button>
+      <div className="is-clearfix">
+        <button className="button is-warning is-pulled-right">
+          {lang.signupForm.nextButton} &nbsp;
+          <i className="fa fa-angle-right" aria-hidden="true" />
+        </button>
       </div>
     </form>
   );

@@ -1,4 +1,3 @@
-// import { FormStateAction } from '../actions/formStateActions';
 import {
   SET_AUTH_ERROR,
   SET_LOADING,
@@ -10,7 +9,8 @@ import { FormState, InitialState } from '../models/formStateModel';
 const initialState = {
   loading: false,
   authError: '',
-  searchError: ''
+  searchError: '',
+  successMessage: ''
 };
 
 // FIXME: fix type of action;

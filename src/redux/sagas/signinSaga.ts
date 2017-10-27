@@ -4,8 +4,9 @@ import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
 import API from '../../api/api';
 import { UserData } from '../../containers/Signin';
 import setAuthorizationHeader from '../../utils/axiosHeader';
+import { Action } from './index';
 
-function* callSignin(action: any) {
+function* callSignin(action: Action) {
   yield put({ type: 'SET_LOADING', payload: true });
   try {
     const response = yield call(API.user.getUser, action.payload);
@@ -16,7 +17,10 @@ function* callSignin(action: any) {
     yield put({ type: 'USER_SIGN_IN_SUCCESS', payload: decodedData });
   } catch (e) {
     yield put({ type: 'SET_LOADING', payload: false });
-    yield put({ type: 'SET_AUTH_ERROR', payload: e.response.data.error });
+    yield put({
+      type: 'SET_AUTH_ERROR',
+      payload: e.response.data.error ? e.response.data.error : 'Server-side error'
+    });
   }
 }
 

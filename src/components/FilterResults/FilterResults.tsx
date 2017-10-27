@@ -1,15 +1,100 @@
 import * as React from 'react';
+import Waypoint from 'react-waypoint';
+import * as actions from '../../redux/actions/filterResultsActions';
+import { CarModel } from '../../redux/models/filterResultsModel';
 import interfaceLanguage from '../../utils/interfaceLanguage';
+import CarAd from './CarAd/CarAd';
 import './style.less';
 
 export interface Props {
+  adsAreLoaded: boolean;
+  filterResults: CarModel[];
+  loading: boolean;
   language: string;
+  skip: number;
+  items: CarModel[];
+  carFilters: {
+    currentFilter: any;
+    sortingParams: any;
+  };
+  handleSetCurrentFilter: (payload: any, sortingParams: any) => void;
+  handeSetSortingParams: (payload: any) => void;
+  handleSetSkip: (skipAmount: number) => void;
+  handleSetAds: (ads: CarModel[]) => void;
 }
 
-class CarFilter extends React.Component<Props, any> {
-  public render() {
-    return <div />;
+const FilterResults = (props: Props) => {
+  const {
+    filterResults,
+    items,
+    skip,
+    loading,
+    carFilters,
+    adsAreLoaded,
+    handleSetAds,
+    handleSetCurrentFilter,
+    handleSetSkip,
+    handeSetSortingParams
+  } = props;
+  const { language } = props;
+  const lang = language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
+
+  function loadMoreItems() {
+    const data = {
+      ...carFilters.sortingParams,
+      skip: skip + carFilters.sortingParams.limit
+    };
+    handeSetSortingParams(data);
+    handleSetCurrentFilter(carFilters.currentFilter, data);
+    handleSetSkip(skip + filterResults.length);
+    handleSetAds(filterResults);
   }
-}
 
-export default CarFilter;
+  function renderItems() {
+    return items.map((value: CarModel) => {
+      return (
+        <article className="box" key={value._id}>
+          <CarAd
+            model={value.model}
+            mark={value.mark}
+            description={value.description}
+            price={value.price}
+            year={value.year}
+            images={value.images}
+            kms={value.kms}
+          />
+        </article>
+      );
+    });
+  }
+
+  function renderWaypoint() {
+    if (filterResults.length !== 0 && !adsAreLoaded) {
+      return <Waypoint onEnter={loadMoreItems} />;
+    }
+  }
+
+  return (
+    <div className="section">
+      <div className="container is-fluid">
+        <div className="columns">
+          <div className="column is-centered">
+            {items.length === 0 &&
+              !adsAreLoaded && (
+                <div className="has-text-centered">{lang.carFilterResults.chooseFilters}</div>
+              )}
+            {items.length === 0 &&
+              adsAreLoaded && (
+                <div className="has-text-centered">{lang.carFilterResults.nothingFound}</div>
+              )}
+            {renderItems()}
+            {!loading && renderWaypoint()}
+            <div />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default FilterResults;

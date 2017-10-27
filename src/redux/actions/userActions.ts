@@ -1,6 +1,6 @@
+import { UserData as ChangePasswordData } from '../../containers/ChangePassword';
 import { UserData as SigninUserData } from '../../containers/Signin';
 import { UserData } from '../../containers/Signup';
-import { UserData as ChangePasswordData } from '../../containers/ChangePassword';
 import setAuthorizationHeader from '../../utils/axiosHeader';
 import { User } from '../models/userModel';
 import * as actionTypes from './actionTypes';
@@ -66,6 +66,7 @@ export type UserAction =
   | UserChangeLanguage;
 
 export function userLoggedIn(user: User): UserLoggedIn {
+  user.interfaceLanguage = localStorage.getItem('interfaceLanguage') || user.interfaceLanguage;
   return {
     type: actionTypes.USER_SIGN_IN_SUCCESS,
     payload: user

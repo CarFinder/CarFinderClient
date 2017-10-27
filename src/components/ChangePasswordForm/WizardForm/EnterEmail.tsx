@@ -1,10 +1,4 @@
-import HelpOutline from 'material-ui-icons/HelpOutline';
-import Send from 'material-ui-icons/Send';
-import Button from 'material-ui/Button';
-import Paper from 'material-ui/Paper';
-import CircularProgress from 'material-ui/Progress/CircularProgress';
-import TextField from 'material-ui/TextField';
-import Tooltip from 'material-ui/Tooltip';
+import classnames from 'classnames';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
@@ -22,38 +16,58 @@ export interface Props {
   history?: any;
   invalid?: boolean;
   language: string;
+  loading: boolean;
 }
 
-const renderTextField = ({ title, input, meta: { touched, error }, ...custom }: Props) => (
-  <TextField
-    name={name}
-    label={title}
-    className="form-input"
-    helperText={touched && error}
-    error={touched && !!error}
-    {...input}
-    {...custom}
-  />
+const renderTextField = ({
+  title,
+  input,
+  meta: { touched, error },
+  ...custom
+}: Props) => (
+  <div className="field">
+    <label htmlFor="title" className="label">
+      {title}
+    </label>
+    <div className="control has-icons-left">
+      <input
+        className={classnames('input', { 'is-danger': touched && !!error })}
+        name={name}
+        type="text"
+        {...input}
+        {...custom}
+      />
+      <div className="icon is-small is-left">
+        <i className="fa fa-envelope-o" aria-hidden="true" />
+      </div>
+    </div>
+    <p className="help is-danger">{touched && error}</p>
+  </div>
 );
 
 const EnterEmail = (props: Props) => {
-  const lang = props.language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
+  const lang =
+    props.language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
   return (
     <form onSubmit={props.handleSubmit}>
-      <div className="form-control">
+      <div>
         <Field
           name="email"
           type="email"
           component={renderTextField}
           placeholder={lang.changePassword.emailFieldPlaceholder}
           title={lang.changePassword.emailField}
-          className="form-field"
         />
       </div>
-      <div className="button">
-        <Button dense color="primary" type="submit" className="next" disabled={props.invalid}>
-          {lang.changePassword.submitEmail} <Send className="submit-icon" />
-        </Button>
+      <div className="is-clearfix">
+        <button
+          className={classnames('button is-warning is-pulled-right', {
+            'is-loading': props.loading
+          })}
+        >
+          {lang.changePassword.submitEmail} &nbsp;
+          <i className="fa fa-paper-plane-o" aria-hidden="true" />
+        </button>
       </div>
     </form>
   );

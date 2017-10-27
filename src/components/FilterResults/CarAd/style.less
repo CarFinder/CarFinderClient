@@ -1,0 +1,53 @@
+.ad-image > img {
+  max-width: 128px;
+  max-height: 128px;
+  object-fit: cover;
+}
+
+.media-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.ad-price {
+  color: inherit;
+  font-size: 1.5em;
+}
+
+.ad-title {
+  font-size: 1.3em;
+}
+
+.media {
+  @media screen and (max-width: 540px) {
+    flex-direction: column;
+    & .media-left {
+      margin: 0 auto;
+    }
+    & .media-right {
+      margin-left: 0;
+    }
+    & .image {
+      margin-right: 10px;
+      margin-bottom: 20px;
+      width: 230px !important;
+    }
+    & .ad-image > img {
+      max-height: auto;
+      object-fit: cover;
+    }
+    & .ad-price {
+      font-size: 1rem;
+    }
+    & .ad-title {
+      margin: 0 !important;
+    }
+    & .media-info {
+      flex-direction: row;
+      vertical-align: text-bottom;
+      & > * {
+        margin-left: 5px;
+      }
+    }
+  }
+}

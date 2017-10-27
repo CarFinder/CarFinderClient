@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { UserData } from '../containers/Signin';
 import { UserData as RestorePasswordUserData } from '../containers/ChangePassword';
+import { UserData } from '../containers/Signin';
 
 export default {
   user: {
@@ -9,5 +9,15 @@ export default {
     confirmEmail: (token: string) => axios.post('/api/user/confirm', { token }),
     submitEmail: (data: RestorePasswordUserData) => axios.post('/api/user/forgot', data),
     changePassword: (data: RestorePasswordUserData) => axios.post('/api/user/restore', { data })
+  },
+  filters: {
+    fetchMarks: () => axios.get('/api/filter/marks'),
+    fetchBodyTypes: () => axios.get('/api/filter/bodytypes'),
+    fetchModels: (markId: any) => axios.post('/api/filter/models', { markId }),
+    fetchResults: (data: any) => axios.post('/api/ad', data)
+  },
+  savedSearch: {
+    fetchFilters: () => axios.get('/api/filter/saved'),
+    submitSavedFilter: (data: any) => axios.post('/api/filter/saved', { data })
   }
 };

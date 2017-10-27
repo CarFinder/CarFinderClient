@@ -1,7 +1,7 @@
 import { connect, Dispatch } from 'react-redux';
 import SigninForm from '../components/SigninForm/SigninForm';
-import * as actions from '../redux/actions/userActions';
 import * as formStateActions from '../redux/actions/formStateActions';
+import * as actions from '../redux/actions/userActions';
 import { InitialState, User } from '../redux/models/userModel';
 
 export interface UserData {
