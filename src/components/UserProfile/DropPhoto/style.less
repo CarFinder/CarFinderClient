@@ -1,0 +1,26 @@
+.dropzone {
+  display: flex;
+  justify-content: center;
+
+  .field {
+    border-radius: 102px;
+    height: 204px;
+    width: 204px;
+
+    &:hover {
+      border: 2px dashed grey;
+    }
+  }
+
+  img {
+    clip-path: circle(100px at 100px 100px);
+    object-fit: cover;
+    min-height: 200px;
+    min-width: 200px;
+  }
+
+  .error {
+    color: #ff3860;
+    text-align: center;
+  }
+}

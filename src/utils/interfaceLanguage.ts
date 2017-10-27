@@ -33,6 +33,9 @@ export interface Language {
     selectInputs: {
       [key: string]: string;
     };
+    userProfile: {
+      [key: string]: string;
+    };
   };
   en: {
     validation: {
@@ -66,6 +69,9 @@ export interface Language {
       [key: string]: string;
     };
     selectInputs: {
+      [key: string]: string;
+    };
+    userProfile: {
       [key: string]: string;
     };
   };
@@ -186,6 +192,22 @@ const interfaceLanguage: Language = {
       highestPrice: 'Сначала дорогие',
       Ascending: 'По возрастанию',
       Descending: 'По убыванию'
+    },
+    userProfile: {
+      title: 'Профиль пользователя',
+      nameField: 'Ваше Имя',
+      nameFieldPlaceholder: 'Введите ваше Имя',
+      emailField: 'Ваш е-мэйл',
+      emailFieldPlaceholder: 'Введите ваш е-мейл',
+      submitButton: 'Сохранить',
+      interfaceLanguage: 'Язык интерфейса',
+      subscription: 'Использовать е-мейл для рассылки обновлений',
+      typeError: 'Неподдерживаемый тип файла',
+      changePassword: 'Сбросить пароль',
+      dndHint:
+        '<strong>Перетащите</strong> вашу аватарку сюда или <strong>нажмите</strong> для выбора аватара',
+      dndUpdateHint:
+        'Для обновления <strong>перетащите</strong> вашу аватарку сюда или <strong>нажмите</strong> для выбора аватара'
     }
   },
   en: {
@@ -302,6 +324,21 @@ const interfaceLanguage: Language = {
       Descending: 'Descending',
       lowestPrice: 'Lowest',
       highestPrice: 'Highest'
+    },
+    userProfile: {
+      title: 'User profile',
+      nameField: 'Your name',
+      nameFieldPlaceholder: 'Enter your name',
+      emailField: 'Your email',
+      emailFieldPlaceholder: 'Enter your email',
+      submitButton: 'Save',
+      interfaceLanguage: 'Interface language',
+      subscription: 'Use email for updates',
+      typeError: 'Unsupported type',
+      changePassword: 'Restore password',
+      dndHint: '<strong>Drag</strong> your avatar here or <strong>click</strong> to browse avatar',
+      dndUpdateHint:
+        'For update <strong>drag</strong> your avatar here or <strong>click</strong> to browse avatar'
     }
   }
 };

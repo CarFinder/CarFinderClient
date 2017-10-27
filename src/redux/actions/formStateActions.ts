@@ -20,6 +20,11 @@ export interface SetSuccessMessage {
   payload: string;
 }
 
+export interface SetChangeUserDataError {
+  type: actionTypes.SET_CHANGE_USER_DATA_ERROR;
+  payload: any;
+}
+
 export type FormStateAction = SetLoading | SetAuthError | SetSearchError | SetSuccessMessage;
 
 export function setLoading(loadingState: boolean): SetLoading {
@@ -47,5 +52,12 @@ export function setSuccessMessage(message: string): SetSuccessMessage {
   return {
     type: actionTypes.SET_SUCCESS_MESSAGE,
     payload: message
+  };
+}
+
+export function setChangeUserDataError(error: any): SetChangeUserDataError {
+  return {
+    type: actionTypes.SET_CHANGE_USER_DATA_ERROR,
+    payload: error
   };
 }

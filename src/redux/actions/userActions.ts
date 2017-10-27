@@ -1,6 +1,7 @@
 import { UserData as ChangePasswordData } from '../../containers/ChangePassword';
 import { UserData as SigninUserData } from '../../containers/Signin';
 import { UserData } from '../../containers/Signup';
+import { UserData as ChangeUserDataData } from '../../containers/UserProfile';
 import setAuthorizationHeader from '../../utils/axiosHeader';
 import { User } from '../models/userModel';
 import * as actionTypes from './actionTypes';
@@ -53,6 +54,26 @@ export interface UserChangeLanguage {
   payload: string;
 }
 
+export interface UserChangeUserData {
+  type: actionTypes.CHANGE_USER_DATA;
+  payload: ChangeUserDataData;
+}
+
+export interface UserChangedUserData {
+  type: actionTypes.CHANGE_USER_DATA_SUCCESS;
+  payload: User;
+}
+
+export interface UserChangeUserAvatar {
+  type: actionTypes.CHANGE_USER_AVATAR;
+  payload: any;
+}
+
+export interface UserChangeUserSettings {
+  type: actionTypes.CHANGE_USER_SETTINGS;
+  payload: ChangeUserDataData;
+}
+
 export type UserAction =
   | UserLoggedIn
   | UserLoggedOut
@@ -63,7 +84,11 @@ export type UserAction =
   | UserConfirmedEmail
   | UserSubmitEmail
   | UserChangePassword
-  | UserChangeLanguage;
+  | UserChangeLanguage
+  | UserChangeUserData
+  | UserChangedUserData
+  | UserChangeUserAvatar
+  | UserChangeUserSettings;
 
 export function userLoggedIn(user: User): UserLoggedIn {
   user.interfaceLanguage = localStorage.getItem('interfaceLanguage') || user.interfaceLanguage;
@@ -128,7 +153,7 @@ export function userChangePassword(
   return {
     type: actionTypes.USER_CHANGE_PASSWORD,
     payload: userData,
-    token: token
+    token
   };
 }
 
@@ -137,5 +162,33 @@ export function userChangeLanguage(language: string): UserChangeLanguage {
   return {
     type: actionTypes.SET_LANGUAGE,
     payload: language
+  };
+}
+
+export function userChangeUserData(userData: ChangeUserDataData): UserChangeUserData {
+  return {
+    type: actionTypes.CHANGE_USER_DATA,
+    payload: userData
+  };
+}
+
+export function userChangedUserData(user: User): UserChangedUserData {
+  return {
+    type: actionTypes.CHANGE_USER_DATA_SUCCESS,
+    payload: user
+  };
+}
+
+export function userChangeUserAvatar(avatar: any): UserChangeUserAvatar {
+  return {
+    type: actionTypes.CHANGE_USER_AVATAR,
+    payload: avatar
+  };
+}
+
+export function userChangeUserSettings(userSettings: ChangeUserDataData): UserChangeUserSettings {
+  return {
+    type: actionTypes.CHANGE_USER_SETTINGS,
+    payload: userSettings
   };
 }
