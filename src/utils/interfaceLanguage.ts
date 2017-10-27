@@ -177,7 +177,7 @@ const interfaceLanguage: Language = {
       kmTo: 'Пробег до, км.',
       saveFilters: 'Сохранить',
       searchFilters: 'Поиск',
-      adsPerPage: 'Количество объявлений на странице',
+      adsPerPage: 'Объявлений на странице',
       price: 'Цена'
     },
     carFilterResults: {
