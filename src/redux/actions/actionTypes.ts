@@ -4,6 +4,12 @@ export type USER_LOGGED_OUT = typeof USER_LOGGED_OUT;
 export const USER_SIGN_IN = 'USER_SIGN_IN';
 export type USER_SIGN_IN = typeof USER_SIGN_IN;
 
+export const SELECT_AD = 'SELECT_AD';
+export type SELECT_AD = typeof SELECT_AD;
+
+export const CLEAR_SELECTED_AD = 'CLEAR_SELECTED_AD';
+export type CLEAR_SELECTED_AD = typeof CLEAR_SELECTED_AD;
+
 export const USER_SIGN_IN_SUCCESS = 'USER_SIGN_IN_SUCCESS';
 export type USER_SIGN_IN_SUCCESS = typeof USER_SIGN_IN_SUCCESS;
 

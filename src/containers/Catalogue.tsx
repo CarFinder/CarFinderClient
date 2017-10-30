@@ -18,7 +18,8 @@ interface PropsInterface {
   handeSetSortingParams: (payload: any) => void;
   handleSetAdsAsLoaded: (payloab: boolean) => void;
   clearFilterResults: () => void;
-  handleShowAdPreview: (id:number) => void;
+  handleShowAdPreview: (id:string) => void;
+  handleCloseModal:()=>void;
 }
 
 interface StateInterface {
@@ -32,7 +33,7 @@ interface StateInterface {
     currentFilter: any;
     sortingParams: any;
   };
-  isPreviewOpen:boolean;
+  selectedAd:string;
 }
 
 const mapStateToProps = (state: any) => ({
@@ -43,7 +44,7 @@ const mapStateToProps = (state: any) => ({
   filterResults: state.filterResults.filterResults,
   carFilters: state.carFilters,
   adsAreLoaded: state.filterResults.allAdsLoaded,
-  isPreviewOpen:state.filterResults.isPreviewOpen
+  selectedAd:state.filterResults.selectedAd
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
@@ -57,7 +58,8 @@ const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
   handeSetSortingParams: (payload: any) => dispatch(carFiltersActions.setSortingParams(payload)),
   handleSetAdsAsLoaded: (payload: boolean) =>
     dispatch(filterResultsActions.setAdsAsLoaded(payload)),
-  handleShowAdPreview:(id:number) => console.log(id),
+  handleShowAdPreview:(id:string) => dispatch(filterResultsActions.selectAd(id)),
+  handleCloseModal:()=> dispatch(filterResultsActions.clearSelectedAd()),
   handleSubmitSavedFilters: (data: any) => dispatch(savedSearchActions.submitSavedFilters(data)),
   clearFilterResults: () => dispatch(filterResultsActions.clearFilterResults())
 });

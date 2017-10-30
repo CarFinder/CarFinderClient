@@ -4,6 +4,7 @@ import Waypoint from 'react-waypoint';
 import * as actions from '../../redux/actions/filterResultsActions';
 import { CarModel } from '../../redux/models/filterResultsModel';
 import interfaceLanguage from '../../utils/interfaceLanguage';
+import AdPreview from './AdPreview/AdPreview';
 import CarAd from './CarAd/CarAd';
 import './style.less';
 
@@ -12,7 +13,7 @@ export interface Props {
   filterResults: CarModel[];
   loading: boolean;
   language: string;
-  isPreviewOpen: boolean;
+  selectedAd: string;
   skip: number;
   items: CarModel[];
   carFilters: {
@@ -23,7 +24,8 @@ export interface Props {
   handeSetSortingParams: (payload: any) => void;
   handleSetSkip: (skipAmount: number) => void;
   handleSetAds: (ads: CarModel[]) => void;
-  handleShowAdPreview: (id: number) => void;
+  handleShowAdPreview: (id: string) => void;
+  handleCloseModal: () => void;
 }
 
 const FilterResults = (props: Props) => {
@@ -39,12 +41,13 @@ const FilterResults = (props: Props) => {
     handleSetSkip,
     handeSetSortingParams,
     handleShowAdPreview,
-    isPreviewOpen
+    selectedAd,
+    handleCloseModal
   } = props;
   const { language } = props;
   const lang = language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
   const modal = classNames('modal', {
-    'is-active': isPreviewOpen
+    'is-active': selectedAd !== ''
   });
   function loadMoreItems() {
     const data = {
@@ -69,18 +72,10 @@ const FilterResults = (props: Props) => {
             year={value.year}
             images={value.images}
             kms={value.kms}
-            handleShowAdPreview={handleShowAdPreview}
+            showAdPreview={() => {
+              handleShowAdPreview(value._id);
+            }}
           />
-          <div className={modal}>
-            <div className="modal-background" />
-            <div className="modal-card">
-              <header className="modal-card-head">
-                <p className="modal-card-title">Modal title</p>
-                <button className="delete" aria-label="close" />
-              </header>
-              <section className="modal-card-body" />
-            </div>
-          </div>
         </article>
       );
     });
@@ -108,6 +103,32 @@ const FilterResults = (props: Props) => {
             {renderItems()}
             {!loading && renderWaypoint()}
             <div />
+          </div>
+          <div className={modal}>
+            <div className="modal-background" />
+            <div className="modal-card">
+              <header className="modal-card-head">
+                <p className="modal-card-title">Подробнее</p>
+                <button className="delete" aria-label="close" onClick={handleCloseModal} />
+              </header>
+              <section className="modal-card-body">
+                {items.map((value: CarModel) => {
+                  if (value._id === selectedAd) {
+                    return (
+                      <AdPreview
+                        model={value.model}
+                        mark={value.mark}
+                        description={value.description}
+                        price={value.price}
+                        year={value.year}
+                        images={value.images}
+                        kms={value.kms}
+                      />
+                    );
+                  }
+                })}
+              </section>
+            </div>
           </div>
         </div>
       </div>

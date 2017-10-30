@@ -17,12 +17,13 @@ export interface Props {
   handleSetAdsAsLoaded: (payload: boolean) => void;
   handleUpdateAds: (payload: any, sortingParams: any) => void;
   handleSubmitSavedFilters: (payload: any) => void;
-  handleShowAdPreview: (id: number) => void;
+  handleShowAdPreview: (id: string) => void;
   clearFilterResults: () => void;
+  handleCloseModal: () => void;
   adsAreLoaded: boolean;
   successMessage: string;
   loading: boolean;
-  isPreviewOpen: boolean;
+  selectedAd: string;
   searchError?: any;
   language: string;
   filterResults: CarModel[];
@@ -79,7 +80,8 @@ class Catalogue extends React.PureComponent<Props, State> {
       filterResults,
       adsAreLoaded,
       handleSetAdsAsLoaded,
-      isPreviewOpen
+      selectedAd,
+      handleCloseModal
     } = this.props;
 
     return (
@@ -114,13 +116,14 @@ class Catalogue extends React.PureComponent<Props, State> {
           skip={this.state.skip}
           loading={loading}
           carFilters={carFilters}
-          isPreviewOpen={isPreviewOpen}
+          selectedAd={selectedAd}
           adsAreLoaded={adsAreLoaded}
           handleSetAds={this.handleSetAds}
           handleSetCurrentFilter={handleSetCurrentFilter}
           handleSetSkip={this.handleSetSkip}
           handeSetSortingParams={handeSetSortingParams}
           handleShowAdPreview={handleShowAdPreview}
+          handleCloseModal={handleCloseModal}
         />
       </div>
     );
