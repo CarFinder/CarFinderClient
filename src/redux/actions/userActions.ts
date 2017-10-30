@@ -1,7 +1,4 @@
-import { UserData as ChangePasswordData } from '../../containers/ChangePassword';
-import { UserData as SigninUserData } from '../../containers/Signin';
-import { UserData } from '../../containers/Signup';
-import { UserData as ChangeUserDataData } from '../../containers/UserProfile';
+import * as interfaces from '../../interfaces';
 import setAuthorizationHeader from '../../utils/axiosHeader';
 import { User } from '../models/userModel';
 import * as actionTypes from './actionTypes';
@@ -17,12 +14,12 @@ export interface UserLoggedOut {
 
 export interface UserSignIn {
   type: actionTypes.USER_SIGN_IN;
-  payload: SigninUserData;
+  payload: interfaces.SigninUserData;
 }
 
 export interface UserSignUp {
   type: actionTypes.USER_SIGN_UP;
-  payload: UserData;
+  payload: interfaces.SignupUserData;
 }
 
 export interface UserSignedUp {
@@ -40,12 +37,12 @@ export interface UserConfirmedEmail {
 
 export interface UserSubmitEmail {
   type: actionTypes.USER_SUBMIT_EMAIL;
-  payload: ChangePasswordData;
+  payload: interfaces.RestorePasswordUserData;
 }
 
 export interface UserChangePassword {
   type: actionTypes.USER_CHANGE_PASSWORD;
-  payload: ChangePasswordData;
+  payload: interfaces.RestorePasswordUserData;
   token: string;
 }
 
@@ -56,7 +53,7 @@ export interface UserChangeLanguage {
 
 export interface UserChangeUserData {
   type: actionTypes.CHANGE_USER_DATA;
-  payload: ChangeUserDataData;
+  payload: interfaces.ChangeUserSettings;
 }
 
 export interface UserChangedUserData {
@@ -66,12 +63,12 @@ export interface UserChangedUserData {
 
 export interface UserChangeUserAvatar {
   type: actionTypes.CHANGE_USER_AVATAR;
-  payload: any;
+  payload: interfaces.ChangeUserAvatar;
 }
 
 export interface UserChangeUserSettings {
   type: actionTypes.CHANGE_USER_SETTINGS;
-  payload: ChangeUserDataData;
+  payload: interfaces.ChangeUserSettings;
 }
 
 export type UserAction =
@@ -106,14 +103,14 @@ export function userLoggedOut(): UserLoggedOut {
   };
 }
 
-export function userSignIn(userData: SigninUserData): UserSignIn {
+export function userSignIn(userData: interfaces.SigninUserData): UserSignIn {
   return {
     type: actionTypes.USER_SIGN_IN,
     payload: userData
   };
 }
 
-export function userSignup(user: UserData): UserSignUp {
+export function userSignup(user: interfaces.SignupUserData): UserSignUp {
   return {
     type: actionTypes.USER_SIGN_UP,
     payload: user
@@ -139,7 +136,7 @@ export function userConfirmedEmail(): UserConfirmedEmail {
   };
 }
 
-export function userSubmitEmail(userData: ChangePasswordData): UserSubmitEmail {
+export function userSubmitEmail(userData: interfaces.RestorePasswordUserData): UserSubmitEmail {
   return {
     type: actionTypes.USER_SUBMIT_EMAIL,
     payload: userData
@@ -147,7 +144,7 @@ export function userSubmitEmail(userData: ChangePasswordData): UserSubmitEmail {
 }
 
 export function userChangePassword(
-  userData: ChangePasswordData,
+  userData: interfaces.RestorePasswordUserData,
   token: string
 ): UserChangePassword {
   return {
@@ -165,7 +162,7 @@ export function userChangeLanguage(language: string): UserChangeLanguage {
   };
 }
 
-export function userChangeUserData(userData: ChangeUserDataData): UserChangeUserData {
+export function userChangeUserData(userData: interfaces.ChangeUserSettings): UserChangeUserData {
   return {
     type: actionTypes.CHANGE_USER_DATA,
     payload: userData
@@ -186,7 +183,9 @@ export function userChangeUserAvatar(avatar: any): UserChangeUserAvatar {
   };
 }
 
-export function userChangeUserSettings(userSettings: ChangeUserDataData): UserChangeUserSettings {
+export function userChangeUserSettings(
+  userSettings: interfaces.ChangeUserSettings
+): UserChangeUserSettings {
   return {
     type: actionTypes.CHANGE_USER_SETTINGS,
     payload: userSettings

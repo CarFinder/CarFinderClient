@@ -6,18 +6,21 @@ import DropPhoto from './DropPhoto/DropPhoto';
 import ChangeForm from './UserData/UserData';
 import UserSettings from './UserSettings/UserSettings';
 
-import { UserData } from '../../containers/UserProfile';
+import * as interfaces from '../../interfaces';
 
 import './style.less';
 
 export interface Props {
-  handleClearError: () => any;
-  handleChangeUserData: (userData: UserData) => any;
-  handleChangeUserAvatar: (avatar: any) => any;
-  handleChangeLanguage: (lang: string | null) => any;
-  handleChangeUserSettings: (userSettings: UserData) => any;
-  changeUserDataError?: any;
-  initialValues: object;
+  handleClearError: () => void;
+  handleChangeUserData: (userData: interfaces.ChangeUserSettings) => void;
+  handleChangeUserAvatar: (avatar: any) => void;
+  handleChangeLanguage: (lang: string | null) => void;
+  handleChangeUserSettings: (userSettings: interfaces.ChangeUserSettings) => void;
+  changeUserDataError: any;
+  initialValues: {
+    name: string;
+    email: string;
+  };
   language: string;
   loading: boolean;
   successMessage: string;
@@ -35,15 +38,15 @@ export default class UserProfile extends React.PureComponent<Props, State> {
     this.props.handleClearError();
   }
 
-  public handleSubmitData = (userData: UserData) => {
+  public handleSubmitData = (userData: interfaces.ChangeUserSettings) => {
     this.props.handleChangeUserData(userData);
   };
 
-  public handleSetAvatar = (avatar: any) => {
+  public handleSetAvatar = (avatar: File) => {
     this.props.handleChangeUserAvatar(avatar);
   };
 
-  public handleChangeUserSettings = (userSettings: UserData) => {
+  public handleChangeUserSettings = (userSettings: interfaces.ChangeUserSettings) => {
     this.props.handleChangeUserSettings(userSettings);
   };
 

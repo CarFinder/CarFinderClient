@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { UserData } from '../../containers/Signin';
+import * as interfaces from '../../interfaces';
 import { User } from '../../redux/models/userModel';
 import interfaceLanguage from '../../utils/interfaceLanguage';
 import Notification from '../Common/Notification/Notifiation';
@@ -9,16 +9,18 @@ import Form from './WizardForm/SigninForm';
 import './style.less';
 
 export interface Props {
-  handleClearError: () => any;
-  handleLogIn: (userData: UserData) => any;
+  handleClearError: () => void;
+  handleLogIn: (userData: interfaces.SigninUserData) => void;
   loading: boolean;
   authError?: any;
-  history: any;
+  history: {
+    push: (url: string) => void;
+  };
   user: User;
   language: string;
 }
 
-class SigninFrom extends React.Component<Props, object> {
+class SigninFrom extends React.PureComponent<Props, {}> {
   public componentWillReceiveProps(nextProps: Props) {
     if (nextProps.user.email) {
       this.props.history.push('/home');
@@ -29,7 +31,7 @@ class SigninFrom extends React.Component<Props, object> {
     this.props.handleClearError();
   }
 
-  public handleSubmit = (userData: UserData) => {
+  public handleSubmit = (userData: interfaces.SigninUserData) => {
     this.props.handleLogIn(userData);
   };
 

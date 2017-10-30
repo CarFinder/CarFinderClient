@@ -4,12 +4,11 @@ import interfaceLanguage from '../../../utils/interfaceLanguage';
 import '../style.less';
 
 interface Props {
-  language?: string;
+  language: string;
 }
 
 const LastPage = (props: Props) => {
-  const lang =
-    props.language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
+  const lang = props.language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
   return (
     <div className="has-text-centered">
       <h1 className="is-size-3">{lang.signupForm.signupConfirmation}</h1>

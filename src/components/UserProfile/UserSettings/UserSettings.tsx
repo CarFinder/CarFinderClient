@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { UserData } from '../../../containers/UserProfile';
+import * as interfaces from '../../../interfaces';
 import interfaceLang from '../../../utils/interfaceLanguage';
 
 import './style.less';
 
 export interface Props {
-  handleChangeLanguage: (lang: string | null) => any;
-  handleChangeUserSettings: (userSettings: UserData) => any;
+  handleChangeLanguage: (lang: string | null) => void;
+  handleChangeUserSettings: (userSettings: interfaces.ChangeUserSettings) => void;
   subscription: boolean;
   interfaceLanguage: string;
 }
@@ -16,7 +16,7 @@ export interface State {
   interfaceLanguage: string;
 }
 
-export default class UserSettings extends React.Component<Props, State> {
+export default class UserSettings extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super();
     this.state = {
@@ -26,12 +26,12 @@ export default class UserSettings extends React.Component<Props, State> {
   }
 
   public handleChangeLanguage = (e: any) => {
-    this.props.handleChangeLanguage(e.target.value);
+    this.props.handleChangeLanguage(e.currentTarget.value);
     this.props.handleChangeUserSettings({
       subscription: this.state.subscription,
-      interfaceLanguage: e.target.value
+      interfaceLanguage: e.currentTarget.value
     });
-    this.setState({ interfaceLanguage: e.target.value });
+    this.setState({ interfaceLanguage: e.currentTarget.value });
   };
 
   public handleСheckingSubscription = (e: any) => {

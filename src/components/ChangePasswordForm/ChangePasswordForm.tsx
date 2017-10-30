@@ -1,7 +1,7 @@
 import queryString from 'query-string';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { UserData } from '../../containers/Signin';
+import * as interfaces from '../../interfaces';
 import interfaceLanguage from '../../utils/interfaceLanguage';
 import Notification from '../Common/Notification/Notifiation';
 import EmailForm from './WizardForm/EnterEmail';
@@ -10,8 +10,8 @@ import PasswordForm from './WizardForm/EnterPassword';
 import './style.less';
 
 export interface Props {
-  handleSubmitEmail: (userData: UserData) => void;
-  handleChangePassword: (userData: UserData, token: string) => void;
+  handleSubmitEmail: (userData: interfaces.RestorePasswordUserData) => void;
+  handleChangePassword: (userData: interfaces.RestorePasswordUserData, token: string) => void;
   handleClearSuccessMessage: () => void;
   handleClearError: () => void;
   successMessage: string;
@@ -33,7 +33,7 @@ export interface State {
   token: string;
 }
 
-class ChangePasswordForm extends React.Component<Props, State> {
+class ChangePasswordForm extends React.PureComponent<Props, State> {
   constructor() {
     super();
     this.state = {
@@ -55,27 +55,24 @@ class ChangePasswordForm extends React.Component<Props, State> {
     }
   }
 
-  public componentDidUpdate(nextProps: any) {
+  public componentDidUpdate(nextProps: Props) {
     if (this.state.token && this.props.successMessage) {
       this.props.history.push('/signin');
     }
   }
 
-  public handleEmailSubmit = (userData: UserData) => {
+  public handleEmailSubmit = (userData: interfaces.RestorePasswordUserData) => {
     this.props.handleSubmitEmail(userData);
   };
 
-  public handlePasswordSubmit = (userData: UserData) => {
+  public handlePasswordSubmit = (userData: interfaces.RestorePasswordUserData) => {
     this.props.handleChangePassword(userData, this.state.token);
   };
 
   public render() {
     const { loading, authError, successMessage, language } = this.props;
     const { token } = this.state;
-    const lang =
-      this.props.language === 'ru'
-        ? interfaceLanguage.ru
-        : interfaceLanguage.en;
+    const lang = this.props.language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
     const errorMessage = !authError.code
       ? lang.searchErrors.serverUnavailable
       : lang.authErrors[authError.code.toString()];
@@ -85,13 +82,9 @@ class ChangePasswordForm extends React.Component<Props, State> {
           <div className="columns">
             <div className="column is-centered">
               {authError && <Notification type="danger" text={errorMessage} />}
-              {successMessage && (
-                <Notification type="success" text={successMessage} />
-              )}
+              {successMessage && <Notification type="success" text={successMessage} />}
               <div className="box">
-                <h1 className="is-size-3 has-text-centered">
-                  {lang.changePassword.title}
-                </h1>
+                <h1 className="is-size-3 has-text-centered">{lang.changePassword.title}</h1>
                 {!token && (
                   <EmailForm
                     onSubmit={this.handleEmailSubmit}

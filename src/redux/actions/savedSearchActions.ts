@@ -1,3 +1,4 @@
+import * as interfaces from '../../interfaces';
 import { Filter } from '../models/savedSearchModel';
 import * as actionTypes from './actionTypes';
 
@@ -12,7 +13,7 @@ export interface SetSavedSearchFilters {
 
 export interface SubmitSavedFilters {
   type: actionTypes.SUBMIT_SAVED_FILTERS;
-  payload: any;
+  payload: interfaces.SavedFilter;
 }
 
 export type SavedSearchAction = FetchSavedFilters | SetSavedSearchFilters | SubmitSavedFilters;
@@ -30,7 +31,7 @@ export function setSavedSearchFilters(payload: Filter[]): SetSavedSearchFilters 
   };
 }
 
-export function submitSavedFilters(payload: any): SubmitSavedFilters {
+export function submitSavedFilters(payload: interfaces.SavedFilter): SubmitSavedFilters {
   return {
     type: actionTypes.SUBMIT_SAVED_FILTERS,
     payload

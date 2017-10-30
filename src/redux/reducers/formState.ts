@@ -5,9 +5,9 @@ import {
   SET_SEARCH_ERROR,
   SET_SUCCESS_MESSAGE
 } from '../actions/actionTypes';
-import { FormState, InitialState } from '../models/formStateModel';
+import { InitialState } from '../models/formStateModel';
 
-const initialState = {
+const initialState: InitialState = {
   loading: false,
   authError: '',
   searchError: '',
@@ -16,7 +16,10 @@ const initialState = {
 };
 
 // FIXME: fix type of action;
-export default function userReducer(state: InitialState = initialState, action: any): InitialState {
+export default function formStateReducer(
+  state: InitialState = initialState,
+  action: any
+): InitialState {
   switch (action.type) {
     case SET_LOADING:
       return {

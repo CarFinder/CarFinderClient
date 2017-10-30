@@ -1,5 +1,5 @@
 import { SagaIterator } from 'redux-saga';
-import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
+import { call, put, takeEvery } from 'redux-saga/effects';
 import api from '../../api/api';
 import { transformDataForSignup } from '../../utils/utils';
 import * as actionTypes from '../actions/actionTypes';

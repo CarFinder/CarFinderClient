@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as interfaces from '../../interfaces';
 import { CarModel } from '../../redux/models/filterResultsModel';
 import CarFilter from '../CarFilter/CarFilter';
 import CarSorting from '../CarSorting/CarSorting';
@@ -12,11 +13,11 @@ export interface Props {
   handleFetchMarksValues: () => void;
   handleFetchBodyTypesValues: () => void;
   handleFetchModelsValues: (mark: string) => void;
-  handleSetCurrentFilter: (payload: any, sortingParams: any) => void;
-  handeSetSortingParams: (payload: any) => void;
+  handleSetCurrentFilter: (payload: any, sortingParams: interfaces.SortingParams) => void;
+  handeSetSortingParams: (payload: interfaces.SortingParams) => void;
   handleSetAdsAsLoaded: (payload: boolean) => void;
-  handleUpdateAds: (payload: any, sortingParams: any) => void;
-  handleSubmitSavedFilters: (payload: any) => void;
+  handleUpdateAds: (payload: interfaces.CarFilter, sortingParams: interfaces.SortingParams) => void;
+  handleSubmitSavedFilters: (payload: interfaces.SavedFilter) => void;
   clearFilterResults: () => void;
   adsAreLoaded: boolean;
   successMessage: string;
@@ -25,9 +26,9 @@ export interface Props {
   language: string;
   filterResults: CarModel[];
   carFilters: {
-    filterValues: any;
-    currentFilter: any;
-    sortingParams: any;
+    filterValues: interfaces.FilterValues;
+    currentFilter: interfaces.CarFilter;
+    sortingParams: interfaces.SortingParams;
   };
 }
 

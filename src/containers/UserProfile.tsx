@@ -1,21 +1,28 @@
 import { connect, Dispatch } from 'react-redux';
 import UserProfile from '../components/UserProfile/UserProfile';
+import * as interfaces from '../interfaces';
 import * as formStateActions from '../redux/actions/formStateActions';
 import * as userActions from '../redux/actions/userActions';
 
-export interface UserData {
-  name?: string;
-  email?: string;
-  interfaceLanguage?: string;
-  subscription?: boolean;
+interface StateToProps {
+  language: string;
+  loading: boolean;
+  changeUserDataError: any;
+  successMessage: string;
+  initialValues: {
+    email: string;
+    name: string;
+  };
+  image: string;
+  subscription: boolean;
 }
 
 interface DispatchFromProps {
-  handleClearError: () => any;
-  handleChangeUserData: (userData: UserData) => any;
-  handleChangeUserAvatar: (avatar: any) => any;
-  handleChangeLanguage: (lang: string | null) => any;
-  handleChangeUserSettings: (userSettings: UserData) => any;
+  handleClearError: () => void;
+  handleChangeUserData: (userData: interfaces.ChangeUserSettings) => void;
+  handleChangeUserAvatar: (avatar: File) => void;
+  handleChangeLanguage: (lang: string | null) => void;
+  handleChangeUserSettings: (userSettings: interfaces.ChangeUserSettings) => void;
 }
 
 const mapStateToProps = (state: any) => ({
@@ -35,11 +42,14 @@ const mapDispatchToProps = (
   dispatch: Dispatch<userActions.UserAction | formStateActions.FormStateAction>
 ) => ({
   handleClearError: () => dispatch(formStateActions.setChangeUserDataError('')),
-  handleChangeUserData: (userData: UserData) => dispatch(userActions.userChangeUserData(userData)),
-  handleChangeUserAvatar: (avatar: any) => dispatch(userActions.userChangeUserAvatar(avatar)),
+  handleChangeUserData: (userData: interfaces.ChangeUserSettings) =>
+    dispatch(userActions.userChangeUserData(userData)),
+  handleChangeUserAvatar: (avatar: File) => dispatch(userActions.userChangeUserAvatar(avatar)),
   handleChangeLanguage: (lang: string) => dispatch(userActions.userChangeLanguage(lang)),
-  handleChangeUserSettings: (userSettings: UserData) =>
+  handleChangeUserSettings: (userSettings: interfaces.ChangeUserSettings) =>
     dispatch(userActions.userChangeUserSettings(userSettings))
 });
 
-export default connect<any, DispatchFromProps>(mapStateToProps, mapDispatchToProps)(UserProfile);
+export default connect<StateToProps, DispatchFromProps>(mapStateToProps, mapDispatchToProps)(
+  UserProfile
+);

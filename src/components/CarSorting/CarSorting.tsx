@@ -6,7 +6,7 @@ import './style.less';
 export interface Props {
   sortingParams: {
     limit: number;
-    skip: number;
+    skip: number | null;
     sort: {
       field: string;
       sort: number;
@@ -28,7 +28,7 @@ export interface State {
   sortValues: any[];
 }
 
-class CarSorting extends React.Component<Props, State> {
+class CarSorting extends React.PureComponent<Props, State> {
   constructor() {
     super();
     this.state = {

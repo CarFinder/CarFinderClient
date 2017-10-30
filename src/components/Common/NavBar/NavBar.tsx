@@ -29,7 +29,7 @@ const mapDispatchToProps = (dispatch: Dispatch<actions.UserAction>) => ({
   handleLogOut: () => dispatch(actions.userLoggedOut())
 });
 
-class NavBar extends React.Component<Props, State> {
+class NavBar extends React.PureComponent<Props, State> {
   constructor() {
     super();
     this.state = {

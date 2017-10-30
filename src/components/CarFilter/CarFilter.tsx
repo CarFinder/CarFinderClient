@@ -1,6 +1,7 @@
 import classnames from 'classnames';
 import Tooltip from 'rc-tooltip';
 import * as React from 'react';
+import * as interfaces from '../../interfaces';
 import { CarModel } from '../../redux/models/filterResultsModel';
 import { validateForm, validateFormForSave, validateMark } from '../../utils/carFiltersValidation';
 import interfaceLanguage from '../../utils/interfaceLanguage';
@@ -17,23 +18,19 @@ export interface Props {
   handleFetchMarksValues: () => void;
   handleFetchBodyTypesValues: () => void;
   handleFetchModelsValues: (mark: string) => void;
-  handleSetCurrentFilter: (payload: any, sortingParams: any) => void;
+  handleSetCurrentFilter: (payload: any, sortingParams: interfaces.SortingParams) => void;
   handleSetAdsAsLoaded: (payload: boolean) => void;
   handleSetAds: (ads: CarModel[]) => void;
-  handleSubmitSavedFilters: (data: any) => void;
+  handleSubmitSavedFilters: (data: interfaces.SavedFilter) => void;
   clearFilterResults: () => void;
   loading: boolean;
   successMessage: string;
   searchError: any;
   language: string;
   carFilters: {
-    filterValues: {
-      marks: any[];
-      models: any[];
-      bodyTypes: any[];
-    };
-    currentFilter: any;
-    sortingParams: any;
+    filterValues: interfaces.FilterValues;
+    currentFilter: interfaces.CarFilter;
+    sortingParams: interfaces.SortingParams;
   };
 }
 

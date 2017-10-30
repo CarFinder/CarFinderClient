@@ -1,14 +1,15 @@
 import jwt_decode from 'jwt-decode';
 import { delay, SagaIterator } from 'redux-saga';
 import { call, put, takeEvery } from 'redux-saga/effects';
-import API from '../../api/api';
+import api from '../../api/api';
 import setAuthorizationHeader from '../../utils/axiosHeader';
 import { toBase64 } from '../../utils/utils';
+import { Action } from './index';
 
-function* callChangeUserData(action: any) {
+function* callChangeUserData(action: Action) {
   yield put({ type: 'SET_LOADING', payload: true });
   try {
-    const response = yield call(API.user.changeUserData, action.payload);
+    const response = yield call(api.user.changeUserData, action.payload);
     const decodedData = jwt_decode(response.data.token);
     localStorage.setItem('jwt', response.data.token);
     setAuthorizationHeader(response.data.token);
@@ -32,7 +33,7 @@ function* callChangeUserData(action: any) {
   }
 }
 
-function* callChangeUserAvatar(action: any) {
+function* callChangeUserAvatar(action: Action) {
   yield put({ type: 'SET_LOADING', payload: true });
   try {
     const encodedImage = yield call(toBase64, action.payload);
@@ -40,7 +41,7 @@ function* callChangeUserAvatar(action: any) {
       image: encodedImage,
       type: action.payload.type
     };
-    const response = yield call(API.user.changeUserAvatar, data);
+    const response = yield call(api.user.changeUserAvatar, data);
     const decodedData = jwt_decode(response.data.token);
     localStorage.setItem('jwt', response.data.token);
     setAuthorizationHeader(response.data.token);
@@ -64,10 +65,10 @@ function* callChangeUserAvatar(action: any) {
   }
 }
 
-function* callChangeUserSettings(action: any) {
+function* callChangeUserSettings(action: Action) {
   yield put({ type: 'SET_LOADING', payload: true });
   try {
-    const response = yield call(API.user.changeUserSettings, action.payload);
+    const response = yield call(api.user.changeUserSettings, action.payload);
     const decodedData = jwt_decode(response.data.token);
     localStorage.setItem('jwt', response.data.token);
     setAuthorizationHeader(response.data.token);
