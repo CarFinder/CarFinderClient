@@ -179,7 +179,9 @@ const interfaceLanguage: Language = {
       price: 'Цена',
       kms: 'Пробег',
       chooseFilters: 'Пожалуйста выберите параметры поиска',
-      nothingFound: 'По вашему запросу ничего не найдено'
+      nothingFound: 'По вашему запросу ничего не найдено',
+      previewTitle: 'Подробная информация',
+      adSource: 'Источник'
     },
     selectInputs: {
       lowestPrice: 'Сначала дешевые',
@@ -295,7 +297,9 @@ const interfaceLanguage: Language = {
       price: 'Price',
       kms: 'Kms Ran',
       chooseFilters: 'Please choose filter options',
-      nothingFound: 'Search returned no results'
+      nothingFound: 'Search returned no results',
+      previewTitle: 'More about car',
+      adSource: 'Source'
     },
     selectInputs: {
       Ascending: 'Ascending',

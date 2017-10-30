@@ -108,11 +108,11 @@ const FilterResults = (props: Props) => {
             <div className="modal-background" />
             <div className="modal-card">
               <header className="modal-card-head">
-                <p className="modal-card-title">Подробнее</p>
+                <p className="modal-card-title">{lang.carFilterResults.previewTitle}</p>
                 <button className="delete" aria-label="close" onClick={handleCloseModal} />
               </header>
               <section className="modal-card-body">
-                {items.map((value: CarModel) => {
+                {items.map((value: CarModel, index) => {
                   if (value._id === selectedAd) {
                     return (
                       <AdPreview
@@ -123,6 +123,9 @@ const FilterResults = (props: Props) => {
                         year={value.year}
                         images={value.images}
                         kms={value.kms}
+                        sourceUrl={value.sourceUrl}
+                        source={lang.carFilterResults.adSource}
+                        key={'preview' + index}
                       />
                     );
                   }

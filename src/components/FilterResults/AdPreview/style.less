@@ -1,0 +1,34 @@
+.preview-images {
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  .preview-image {
+    object-fit: cover;
+    height: 128px;
+    width: 128px;
+    margin: 5px;
+  }
+}
+.preview-media {
+  flex-direction: column;
+  & .media-left {
+    margin: 0 auto;
+  }
+  & .media-right {
+    margin-left: 0;
+  }
+
+  & .ad-price {
+    font-size: 2rem;
+  }
+  & .ad-title {
+    margin: 0 !important;
+  }
+  & .preview-info {
+    flex-direction: row;
+    vertical-align: text-bottom;
+    & > * {
+      margin-left: 10px;
+    }
+  }
+}
