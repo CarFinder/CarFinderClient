@@ -105,7 +105,7 @@ CarFinder project is a system which aggregates car sale ads from different platf
   <li>Redux</li>
   <li>Redux Form</li>
   <li>Redux Saga</li>
-  <li>Material UI</li>
+  <li>Bulma CSS Framework</li>
  </ul>
 <h1  id="authors">Authors</h1>
 <a href="https://github.com/BobriK502">Ilya Bobr</a><br>
