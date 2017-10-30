@@ -74,3 +74,23 @@ export interface SavedFilter {
   kmsFrom?: number;
   kmsTo?: number;
 }
+
+interface CarModel {
+  _id: string;
+  bodyType: string;
+  description: string;
+  images: string[];
+  mark: string;
+  kms: number;
+  model: string;
+  price: number;
+  sourceName: string;
+  sourceUrl: string;
+  year: number;
+}
+
+export interface SavedFilterResults {
+  filterId: string;
+  filterName: string;
+  ads: CarModel[];
+}
