@@ -3,6 +3,7 @@ import * as interfaces from '../../interfaces';
 import { CarModel } from '../../redux/models/filterResultsModel';
 import CarFilter from '../CarFilter/CarFilter';
 import CarSorting from '../CarSorting/CarSorting';
+import ScrollToTop from '../Common/ScrollToTop/ScrollToTop';
 import FilterResults from '../FilterResults/FilterResults';
 
 import './style.less';
@@ -117,6 +118,7 @@ class Catalogue extends React.PureComponent<Props, State> {
           handleSetSkip={this.handleSetSkip}
           handeSetSortingParams={handeSetSortingParams}
         />
+        <ScrollToTop scrollStepInPx={50} delayInMs={10} />
       </div>
     );
   }
