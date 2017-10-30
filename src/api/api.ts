@@ -24,6 +24,7 @@ export default {
   },
   savedSearch: {
     fetchFilters: () => axios.get('/api/filter/saved'),
-    submitSavedFilter: (data: interfaces.SavedFilter) => axios.post('/api/filter/saved', { data })
+    submitSavedFilter: (data: interfaces.SavedFilter) => axios.post('/api/filter/saved', { data }),
+    fetchSavedSearchResults: () => axios.get('/api/ad/saved')
   }
 };
