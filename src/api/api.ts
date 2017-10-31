@@ -25,6 +25,8 @@ export default {
   savedSearch: {
     fetchFilters: () => axios.get('/api/filter/saved'),
     submitSavedFilter: (data: interfaces.SavedFilter) => axios.post('/api/filter/saved', { data }),
-    fetchSavedSearchResults: () => axios.get('/api/ad/saved')
+    fetchSavedSearchResults: () => axios.get('/api/ad/saved'),
+    removeAllSavedFilters: () => axios.delete('/api/filter/saved/all'),
+    removeSavedFilterById: (id: string) => axios.delete(`/api/filter/saved/${id}`)
   }
 };
