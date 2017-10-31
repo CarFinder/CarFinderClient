@@ -1,16 +1,21 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { CarModel } from '../../../redux/models/filterResultsModel';
+import interfaceLanguage from '../../../utils/interfaceLanguage';
 import CarAd from '../../FilterResults/CarAd/CarAd';
 import './style.less';
 
 export interface Props {
+  language: string;
   name: string;
+  id: string;
   ads: CarModel[];
+  handleRemoveFilter: (id: string) => void;
 }
 
 const SavedSearchResult = (props: Props) => {
-  const { name, ads } = props;
+  const { name, ads, id, handleRemoveFilter, language } = props;
+  const lang = language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
 
   const renderItems = (
     <div>
@@ -27,18 +32,24 @@ const SavedSearchResult = (props: Props) => {
           />
         </article>
       ))}
+      {ads.length === 0 && lang.savedSearch.noAdsToDisplay}
     </div>
   );
 
   return (
-    <div className="container is-fluid">
-      <div className="columns">
-        <div className="column is-centered">
-          <Link to="/">Сохраненные запросы по фильтру {name}</Link>
-          {renderItems}
-          <hr />
-        </div>
+    <div className="saved-search-results">
+      <div className="saved-search-name">
+        <Link to="">
+          {lang.savedSearch.savedSearchResults}&nbsp;{name}
+        </Link>&nbsp;
+        <i
+          className="fa fa-trash delete-filter"
+          aria-hidden="true"
+          onClick={() => handleRemoveFilter(id)}
+        />
       </div>
+      {renderItems}
+      <hr />
     </div>
   );
 };
