@@ -1,4 +1,9 @@
-import { FETCH_SAVED_SEARCH_RESULTS, SET_SAVED_SEARCH_RESULTS } from '../actions/actionTypes';
+import {
+  FETCH_SAVED_SEARCH_RESULTS,
+  REMOVE_ALL_SAVED_FILTERS,
+  REMOVE_SAVED_FILTER,
+  SET_SAVED_SEARCH_RESULTS
+} from '../actions/actionTypes';
 import { SavedSearchResultsAction } from '../actions/savedSearchResultsActions';
 import { InitialState } from '../models/savedSearchResultsModel';
 
@@ -15,6 +20,10 @@ export default function savedSearchResultsReducer(
       return state;
     case SET_SAVED_SEARCH_RESULTS:
       return action.payload;
+    case REMOVE_SAVED_FILTER:
+      return state;
+    case REMOVE_ALL_SAVED_FILTERS:
+      return state;
     default:
       return state;
   }
