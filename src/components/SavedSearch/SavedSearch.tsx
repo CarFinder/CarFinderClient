@@ -8,6 +8,8 @@ import './style.less';
 
 export interface Props {
   handleFetchSavedSearchResults: () => void;
+  handleRemoveAllFilters: () => void;
+  handleRemoveFilterById: (id: string) => void;
   loading: boolean;
   language: string;
   savedSearchResults: interfaces.SavedFilterResults[];
@@ -30,22 +32,41 @@ class SavedSearch extends React.PureComponent<Props, State> {
     this.props.handleFetchSavedSearchResults();
   }
 
-  public handleClearFilter = () => {
-    return 0;
+  public handleRemoveFilter = (id: string) => {
+    this.props.handleRemoveFilterById(id);
+  };
+
+  public handleRemoveAll = () => {
+    this.props.handleRemoveAllFilters();
+    this.setState({
+      displayModal: false
+    });
+  };
+
+  public handleDeclineAction = () => {
+    this.setState({
+      displayModal: false
+    });
   };
 
   public render() {
-    const { language, loading, savedSearchResults } = this.props;
-    const { filtersToDisplay } = this.state;
+    const { language, loading, savedSearchResults, handleRemoveFilterById } = this.props;
+    const { filtersToDisplay, displayModal } = this.state;
     const lang = language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
 
     const renderFilters = (
       <div>
-        {savedSearchResults.length &&
+        {savedSearchResults.length > 0 &&
           savedSearchResults
             .map((value: interfaces.SavedFilterResults) => (
               <article key={value.filterId}>
-                <SavedSearchResult name={value.filterName} ads={value.ads} />
+                <SavedSearchResult
+                  language={language}
+                  name={value.filterName}
+                  id={value.filterId}
+                  ads={value.ads}
+                  handleRemoveFilter={this.handleRemoveFilter}
+                />
               </article>
             ))
             .filter((val, index) => index <= filtersToDisplay)}
@@ -54,7 +75,10 @@ class SavedSearch extends React.PureComponent<Props, State> {
 
     return (
       <div className="section">
-        <div className="container is-fluid">
+        <div className="container saved-search-container is-fluid">
+          <header className="saved-search-container-head">
+            <p className="container-title">{lang.savedSearch.savedFilters}</p>
+          </header>
           <div className="columns">
             <div className="column is-centered">
               <button
@@ -68,21 +92,24 @@ class SavedSearch extends React.PureComponent<Props, State> {
                   'is-loading': loading
                 })}
               >
-                Очистить фильтры &nbsp;
+                {savedSearchResults.length > 0
+                  ? lang.savedSearch.clearFilters
+                  : lang.savedSearch.noSavedFilters}
+                &nbsp;
                 <i className="fa fa-trash" aria-hidden="true" />
               </button>
-              <hr />
               {renderFilters}
             </div>
           </div>
           {filtersToDisplay < savedSearchResults.length && (
             <div
+              className="display-saved-filters"
               onClick={() =>
                 this.setState({
                   filtersToDisplay: savedSearchResults.length
                 })}
             >
-              Смотреть все
+              {lang.savedSearch.seeAllFilters}
             </div>
           )}
         </div>

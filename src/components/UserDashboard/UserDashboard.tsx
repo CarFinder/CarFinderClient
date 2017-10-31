@@ -6,7 +6,8 @@ import './style.less';
 
 export interface Props {
   handleFetchSavedSearchResults: () => void;
-  handleDeleteSavedSearch: (data: any) => void;
+  handleRemoveAllFilters: () => void;
+  handleRemoveFilterById: (id: string) => void;
   searchError?: any;
   loading: boolean;
   language: string;
@@ -19,7 +20,9 @@ const UserDashboard = (props: Props) => {
     loading,
     searchError,
     savedSearchResults,
-    handleFetchSavedSearchResults
+    handleFetchSavedSearchResults,
+    handleRemoveAllFilters,
+    handleRemoveFilterById
   } = props;
   return (
     <div>
@@ -27,6 +30,8 @@ const UserDashboard = (props: Props) => {
         language={language}
         loading={loading}
         handleFetchSavedSearchResults={handleFetchSavedSearchResults}
+        handleRemoveAllFilters={handleRemoveAllFilters}
+        handleRemoveFilterById={handleRemoveFilterById}
         savedSearchResults={savedSearchResults}
       />
     </div>

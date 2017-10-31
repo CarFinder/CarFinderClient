@@ -6,7 +6,8 @@ import * as savedSearchResultsActions from '../redux/actions/savedSearchResultsA
 
 interface DispatchFromProps {
   handleFetchSavedSearchResults: () => void;
-  handleDeleteSavedSearch: (data: any) => void;
+  handleRemoveAllFilters: () => void;
+  handleRemoveFilterById: (id: string) => void;
 }
 
 interface StateToProps {
@@ -24,8 +25,11 @@ const mapStateToProps = (state: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
-  handleDeleteSavedSearch: (data: any) => dispatch(savedSearchActions.submitSavedFilters(data)),
-  handleFetchSavedSearchResults: () => dispatch(savedSearchResultsActions.fetchSavedSearchResults())
+  handleRemoveAllFilters: () => dispatch(savedSearchResultsActions.removeAllSavedFilters()),
+  handleFetchSavedSearchResults: () =>
+    dispatch(savedSearchResultsActions.fetchSavedSearchResults()),
+  handleRemoveFilterById: (id: string) =>
+    dispatch(savedSearchResultsActions.removeSavedFilterById(id))
 });
 
 export default connect<StateToProps, DispatchFromProps>(mapStateToProps, mapDispatchToProps)(
