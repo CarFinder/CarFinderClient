@@ -20,6 +20,7 @@ import RequireAuth from './components/Common/Routes/RequireAuth';
 import Home from './components/HomePage/HomePage';
 import Catalogue from './containers/Catalogue';
 import ChangePassword from './containers/ChangePassword';
+import Dashboard from './containers/Dashboard';
 import EmailConfirmation from './containers/EmailConfirmation';
 import Signin from './containers/Signin';
 import Signup from './containers/Signup';
@@ -37,8 +38,8 @@ const App = () => {
       <div className="page-content">
         <NavBar />
         <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/home" component={RequireAuth(Home)} />
+          <Route exact path="/" component={Dashboard} />
+          <Route exact path="/home" component={RequireAuth(Dashboard)} />
           <Route path="/catalog" component={RequireAuth(Catalogue)} />
           <Route path="/signup" component={Signup} />
           <Route path="/signin" component={Signin} />
