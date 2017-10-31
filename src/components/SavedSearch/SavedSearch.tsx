@@ -2,6 +2,7 @@ import classnames from 'classnames';
 import * as React from 'react';
 import * as interfaces from '../../interfaces';
 import interfaceLanguage from '../../utils/interfaceLanguage';
+import Modal from '../Common/Modal/Modal';
 import SavedSearchResult from './SavedSearchResult/SavedSearchResult';
 import './style.less';
 
@@ -14,13 +15,15 @@ export interface Props {
 
 export interface State {
   filtersToDisplay: number;
+  displayModal: boolean;
 }
 
 class SavedSearch extends React.PureComponent<Props, State> {
   constructor() {
     super();
     this.state = {
-      filtersToDisplay: 1
+      filtersToDisplay: 1,
+      displayModal: false
     };
   }
   public componentWillMount() {
@@ -56,7 +59,11 @@ class SavedSearch extends React.PureComponent<Props, State> {
             <div className="column is-centered">
               <button
                 type="button"
-                onClick={this.handleClearFilter}
+                disabled={savedSearchResults.length === 0}
+                onClick={() =>
+                  this.setState({
+                    displayModal: true
+                  })}
                 className={classnames('button is-default', {
                   'is-loading': loading
                 })}
@@ -79,6 +86,15 @@ class SavedSearch extends React.PureComponent<Props, State> {
             </div>
           )}
         </div>
+        {displayModal && (
+          <Modal
+            type="deleteFilters"
+            language={language}
+            isActive={true}
+            handleConfirmAction={this.handleRemoveAll}
+            handleDeclineAction={this.handleDeclineAction}
+          />
+        )}
       </div>
     );
   }
