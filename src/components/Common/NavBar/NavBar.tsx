@@ -64,7 +64,14 @@ class NavBar extends React.PureComponent<Props, State> {
     return (
       <nav className="navbar is-warning">
         <div className="navbar-brand">
-          <Link to="/" className="navbar-item">
+          <Link
+            to="/"
+            className="navbar-item"
+            onClick={() =>
+              this.setState({
+                open: false
+              })}
+          >
             CarFinder
           </Link>
           <div
@@ -79,10 +86,24 @@ class NavBar extends React.PureComponent<Props, State> {
         </div>
         <div id="nav-menu" className={'navbar-menu ' + `${collapsed}`}>
           <div className="navbar-start">
-            <Link to="/" className="navbar-item">
+            <Link
+              to="/"
+              className="navbar-item"
+              onClick={() =>
+                this.setState({
+                  open: false
+                })}
+            >
               {lang.navigation.homepage}
             </Link>
-            <Link to="/catalog" className="navbar-item">
+            <Link
+              to="/catalog"
+              className="navbar-item"
+              onClick={() =>
+                this.setState({
+                  open: false
+                })}
+            >
               {lang.navigation.catalog}
             </Link>
           </div>
@@ -95,10 +116,24 @@ class NavBar extends React.PureComponent<Props, State> {
             </a>
             {!isAuthenticated && (
               <div className={'navbar-menu ' + `${collapsed}`}>
-                <Link className="navbar-item" to="/signin">
+                <Link
+                  className="navbar-item"
+                  to="/signin"
+                  onClick={() =>
+                    this.setState({
+                      open: false
+                    })}
+                >
                   {lang.navigation.signin}
                 </Link>
-                <Link className="navbar-item" to="/signup">
+                <Link
+                  className="navbar-item"
+                  to="/signup"
+                  onClick={() =>
+                    this.setState({
+                      open: false
+                    })}
+                >
                   {lang.navigation.signup}
                 </Link>
               </div>
@@ -109,7 +144,14 @@ class NavBar extends React.PureComponent<Props, State> {
                   <i className="fa fa-user-o" aria-hidden="true" /> &nbsp; {lang.navigation.profile}
                 </a>
                 <div className="navbar-dropdown">
-                  <Link className="navbar-item" to="/profile">
+                  <Link
+                    className="navbar-item"
+                    to="/profile"
+                    onClick={() =>
+                      this.setState({
+                        open: false
+                      })}
+                  >
                     {lang.navigation.profile}
                   </Link>
                   <a
