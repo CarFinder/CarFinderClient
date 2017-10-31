@@ -19,7 +19,7 @@ export interface State {
   sort: any;
 }
 
-class CarSorting extends React.Component<Props, State> {
+class CarSorting extends React.PureComponent<Props, State> {
   constructor() {
     super();
     this.state = {
@@ -39,32 +39,11 @@ class CarSorting extends React.Component<Props, State> {
     });
   };
 
-  public onChangeYearSort = (value: any, field: string) => {
+  public onChangeSort = (value: any, field: string) => {
     this.setState({
-      ...this.state,
       sort: {
         ...this.state.sort,
-        year: parseInt(value.value, 10)
-      }
-    });
-  };
-
-  public onChangeKmsSort = (value: any, field: string) => {
-    this.setState({
-      ...this.state,
-      sort: {
-        ...this.state.sort,
-        kms: parseInt(value.value, 10)
-      }
-    });
-  };
-
-  public onChangePriceSort = (value: any, field: string) => {
-    this.setState({
-      ...this.state,
-      sort: {
-        ...this.state.sort,
-        price: parseInt(value.value, 10)
+        [field]: parseInt(value.value, 10)
       }
     });
   };
@@ -80,6 +59,7 @@ class CarSorting extends React.Component<Props, State> {
   public componentDidMount() {
     this.updateSortingParams();
   }
+
   public render() {
     const { limit, sort } = this.state;
     const { language } = this.props;
@@ -133,6 +113,8 @@ class CarSorting extends React.Component<Props, State> {
       }
     ];
 
+    console.log(this.state.sort);
+
     return (
       <div className="section">
         <div className="container is-fluid">
@@ -157,7 +139,7 @@ class CarSorting extends React.Component<Props, State> {
                       label={lang.carFilterResults.year}
                       value={sort.year}
                       options={sortYearValues}
-                      onChange={this.onChangeYearSort}
+                      onChange={this.onChangeSort}
                       onBlur={this.updateSortingParams}
                       language={language}
                     />
@@ -168,7 +150,7 @@ class CarSorting extends React.Component<Props, State> {
                       label={lang.carFilterResults.kms}
                       value={sort.kms}
                       options={sortKmsValues}
-                      onChange={this.onChangeKmsSort}
+                      onChange={this.onChangeSort}
                       onBlur={this.updateSortingParams}
                       language={language}
                     />
@@ -179,7 +161,7 @@ class CarSorting extends React.Component<Props, State> {
                       label={lang.carFilterResults.price}
                       value={sort.price}
                       options={sortPriceValues}
-                      onChange={this.onChangePriceSort}
+                      onChange={this.onChangeSort}
                       onBlur={this.updateSortingParams}
                       language={language}
                     />
