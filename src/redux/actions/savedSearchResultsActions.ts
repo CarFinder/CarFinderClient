@@ -10,7 +10,20 @@ export interface SetSavedSearchResults {
   payload: SavedSearchResults;
 }
 
-export type SavedSearchResultsAction = FetchSavedSearchResults | SetSavedSearchResults;
+export interface RemoveAllSavedFilters {
+  type: actionTypes.REMOVE_ALL_SAVED_FILTERS;
+}
+
+export interface RemoveSavedFilterById {
+  type: actionTypes.REMOVE_SAVED_FILTER;
+  payload: string;
+}
+
+export type SavedSearchResultsAction =
+  | FetchSavedSearchResults
+  | SetSavedSearchResults
+  | RemoveAllSavedFilters
+  | RemoveSavedFilterById;
 
 export function fetchSavedSearchResults(): FetchSavedSearchResults {
   return {
@@ -24,5 +37,18 @@ export function setSavedSearchResults(
   return {
     type: actionTypes.SET_SAVED_SEARCH_RESULTS,
     payload: savedSearchResults
+  };
+}
+
+export function removeAllSavedFilters(): RemoveAllSavedFilters {
+  return {
+    type: actionTypes.REMOVE_ALL_SAVED_FILTERS
+  };
+}
+
+export function removeSavedFilterById(filterId: string): RemoveSavedFilterById {
+  return {
+    type: actionTypes.REMOVE_SAVED_FILTER,
+    payload: filterId
   };
 }
