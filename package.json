@@ -61,6 +61,7 @@
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-redux": "^5.0.6",
+    "react-responsive-carousel": "^3.1.28",
     "react-router": "4.x",
     "react-router-dom": "4.x",
     "react-select": "^1.0.0-rc.10",

@@ -1,4 +1,7 @@
 import * as React from 'react';
+declare var require: any;
+import Slider from '../../Common/Slider/Slider';
+// tslint:disable-next-line:no-var-requires
 import './style.less';
 
 export interface Props {
@@ -18,11 +21,7 @@ const AdPreview = (props: Props) => {
   return (
     <div>
       <div>
-        <p className="preview-images">
-          {images.map((image: string, index) => {
-            return <img className="preview-image" src={image} key={'image' + index} />;
-          })}
-        </p>
+        <Slider images={images} />
       </div>
       <div className="preview-media">
         <div className="preview-info">
