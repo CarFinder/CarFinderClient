@@ -101,7 +101,7 @@ class SavedSearch extends React.PureComponent<Props, State> {
               {renderFilters}
             </div>
           </div>
-          {filtersToDisplay < savedSearchResults.length && (
+          {filtersToDisplay < savedSearchResults.length - 1 && (
             <div
               className="display-saved-filters"
               onClick={() =>
