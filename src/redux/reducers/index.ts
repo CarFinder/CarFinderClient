@@ -4,6 +4,7 @@ import carFiltersReducer from './carFilters';
 import filterResultsReducer from './filterResults';
 import formStateReducer from './formState';
 import savedSearchReducer from './savedSearch';
+import savedSearchResultsReducer from './savedSearchResults';
 import userReducer from './user';
 
 const rootReducer: Reducer<any> = combineReducers({
@@ -12,7 +13,8 @@ const rootReducer: Reducer<any> = combineReducers({
   user: userReducer,
   filterResults: filterResultsReducer,
   carFilters: carFiltersReducer,
-  savedSearch: savedSearchReducer
+  savedSearch: savedSearchReducer,
+  savedSearchResults: savedSearchResultsReducer
 });
 
 export default rootReducer;

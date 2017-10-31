@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { UserData } from '../../containers/Signup';
+import * as interfaces from '../../interfaces';
 import interfaceLanguage from '../../utils/interfaceLanguage';
 import Notification from '../Common/Notification/Notifiation';
 import FirstPage from './WizardForm/FirstPage';
@@ -12,8 +12,8 @@ import ThirdPage from './WizardForm/ThirdPage';
 import './style.less';
 
 export interface Props {
-  handleClearError: () => any;
-  handleSignup: (userData: UserData) => any;
+  handleClearError: () => void;
+  handleSignup: (userData: interfaces.SignupUserData) => void;
   loading: boolean;
   signedup: boolean;
   authError?: any;
@@ -48,7 +48,7 @@ class SignupFrom extends React.PureComponent<Props, State> {
     this.props.handleClearError();
   }
 
-  public handleSubmit = (userData: UserData) => {
+  public handleSubmit = (userData: interfaces.SignupUserData) => {
     this.props.handleSignup(userData);
   };
 

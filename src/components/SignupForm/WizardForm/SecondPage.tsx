@@ -7,20 +7,14 @@ import '../style.less';
 
 export interface Props {
   input?: HTMLInputElement;
-  name?: string;
-  title?: string;
+  name: string;
+  title: string;
   meta?: any;
-  handleSubmit?: React.FormEventHandler<any>;
-  language?: string;
+  handleSubmit: React.FormEventHandler<any>;
+  language: string;
 }
 
-const renderTextField = ({
-  input,
-  name,
-  title,
-  meta: { touched, error },
-  ...custom
-}: Props) => (
+const renderTextField = ({ input, name, title, meta: { touched, error }, ...custom }: Props) => (
   <div className="field">
     <label htmlFor="title" className="label">
       {title}
@@ -42,8 +36,7 @@ const renderTextField = ({
 );
 
 const SecondPage = (props: Props) => {
-  const lang =
-    props.language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
+  const lang = props.language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
   return (
     <form onSubmit={props.handleSubmit}>
       <div>

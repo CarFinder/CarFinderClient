@@ -13,7 +13,7 @@ export interface Props {
   custom?: object;
   type?: string;
   language: string;
-  handleSubmit: any;
+  handleSubmit: React.FormEventHandler<any>;
   loading?: boolean;
 }
 

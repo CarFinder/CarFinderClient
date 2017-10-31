@@ -1,7 +1,9 @@
 import * as React from 'react';
+import * as interfaces from '../../interfaces';
 import { CarModel } from '../../redux/models/filterResultsModel';
 import CarFilter from '../CarFilter/CarFilter';
 import CarSorting from '../CarSorting/CarSorting';
+import ScrollToTop from '../Common/ScrollToTop/ScrollToTop';
 import FilterResults from '../FilterResults/FilterResults';
 
 import './style.less';
@@ -12,11 +14,11 @@ export interface Props {
   handleFetchMarksValues: () => void;
   handleFetchBodyTypesValues: () => void;
   handleFetchModelsValues: (mark: string) => void;
-  handleSetCurrentFilter: (payload: any, sortingParams: any) => void;
-  handeSetSortingParams: (payload: any) => void;
+  handleSetCurrentFilter: (payload: any, sortingParams: interfaces.SortingParams) => void;
+  handeSetSortingParams: (payload: interfaces.SortingParams) => void;
   handleSetAdsAsLoaded: (payload: boolean) => void;
-  handleUpdateAds: (payload: any, sortingParams: any) => void;
-  handleSubmitSavedFilters: (payload: any) => void;
+  handleUpdateAds: (payload: interfaces.CarFilter, sortingParams: interfaces.SortingParams) => void;
+  handleSubmitSavedFilters: (payload: interfaces.SavedFilter) => void;
   clearFilterResults: () => void;
   adsAreLoaded: boolean;
   successMessage: string;
@@ -25,9 +27,9 @@ export interface Props {
   language: string;
   filterResults: CarModel[];
   carFilters: {
-    filterValues: any;
-    currentFilter: any;
-    sortingParams: any;
+    filterValues: interfaces.FilterValues;
+    currentFilter: interfaces.CarFilter;
+    sortingParams: interfaces.SortingParams;
   };
 }
 
@@ -116,6 +118,7 @@ class Catalogue extends React.PureComponent<Props, State> {
           handleSetSkip={this.handleSetSkip}
           handeSetSortingParams={handeSetSortingParams}
         />
+        <ScrollToTop scrollStepInPx={50} delayInMs={10} />
       </div>
     );
   }

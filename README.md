@@ -59,14 +59,14 @@ CarFinder project is a system which aggregates car sale ads from different platf
     <tr>
     <td>Manage user profile</td>
     <td></td>
-    <td>Planning</td>
+    <td>&#10004;</td>
     <td></td>
   </tr>
   </tr>
     <tr>
     <td>Manage user settings</td>
     <td></td>
-    <td>Planning</td>
+    <td>&#10004;</td>
     <td></td>
   </tr>
   </tr>
@@ -80,8 +80,8 @@ CarFinder project is a system which aggregates car sale ads from different platf
     <tr>
     <td>Receive newsletter with user-defined filter results</td>
     <td></td>
-    <td>Planning</td>
     <td></td>
+    <td>Planning</td>
   </tr>
   </tr>
     <tr>
@@ -105,7 +105,7 @@ CarFinder project is a system which aggregates car sale ads from different platf
   <li>Redux</li>
   <li>Redux Form</li>
   <li>Redux Saga</li>
-  <li>Material UI</li>
+  <li>Bulma CSS Framework</li>
  </ul>
 <h1  id="authors">Authors</h1>
 <a href="https://github.com/BobriK502">Ilya Bobr</a><br>

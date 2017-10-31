@@ -25,7 +25,12 @@ export interface SetChangeUserDataError {
   payload: any;
 }
 
-export type FormStateAction = SetLoading | SetAuthError | SetSearchError | SetSuccessMessage;
+export type FormStateAction =
+  | SetLoading
+  | SetAuthError
+  | SetSearchError
+  | SetSuccessMessage
+  | SetChangeUserDataError;
 
 export function setLoading(loadingState: boolean): SetLoading {
   return {

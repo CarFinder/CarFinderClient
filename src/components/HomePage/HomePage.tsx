@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-class HomePage extends React.Component<object, object> {
+class HomePage extends React.PureComponent<any, any> {
   public render() {
     return (
       <div>

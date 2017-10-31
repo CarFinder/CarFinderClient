@@ -9,9 +9,10 @@ import {
   SET_MODELS_VALUES,
   SET_SORTING_PARAMS
 } from '../actions/actionTypes';
+import { CarFiltersActions } from '../actions/carFiltersActions';
 import { InitialState } from '../models/carFiltersModel';
 
-const initialState = {
+const initialState: InitialState = {
   filterValues: {
     marks: [],
     models: [],
@@ -37,7 +38,7 @@ const initialState = {
 
 export default function carFiltersReducer(
   state: InitialState = initialState,
-  action: any
+  action: CarFiltersActions
 ): InitialState {
   switch (action.type) {
     case CLEAR_CAR_FILTERS:

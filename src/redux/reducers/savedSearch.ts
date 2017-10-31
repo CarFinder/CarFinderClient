@@ -6,7 +6,7 @@ import {
 import { SavedSearchAction } from '../actions/savedSearchActions';
 import { SavedSearch } from '../models/savedSearchModel';
 
-const initialState = {
+const initialState: SavedSearch = {
   savedFilters: []
 };
 

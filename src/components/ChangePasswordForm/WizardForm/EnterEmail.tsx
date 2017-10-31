@@ -8,23 +8,16 @@ import '../style.less';
 
 export interface Props {
   input?: HTMLInputElement;
-  name?: string;
-  title?: string;
+  name: string;
+  title: string;
   meta?: any;
   custom?: object;
-  handleSubmit: any;
-  history?: any;
-  invalid?: boolean;
+  handleSubmit: React.FormEventHandler<any>;
   language: string;
   loading: boolean;
 }
 
-const renderTextField = ({
-  title,
-  input,
-  meta: { touched, error },
-  ...custom
-}: Props) => (
+const renderTextField = ({ title, input, meta: { touched, error }, ...custom }: Props) => (
   <div className="field">
     <label htmlFor="title" className="label">
       {title}
@@ -46,8 +39,7 @@ const renderTextField = ({
 );
 
 const EnterEmail = (props: Props) => {
-  const lang =
-    props.language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
+  const lang = props.language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
   return (
     <form onSubmit={props.handleSubmit}>
       <div>

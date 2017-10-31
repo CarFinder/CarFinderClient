@@ -5,7 +5,7 @@ import { toBase64 } from '../../../utils/utils';
 import './style.less';
 
 export interface Props {
-  changeAvatar: (avatar: any) => any;
+  changeAvatar: (avatar: File) => void;
   image: string;
   interfaceLanguage: string;
 }
@@ -15,7 +15,7 @@ export interface State {
   typeError: boolean;
 }
 
-export default class DropPhoto extends React.Component<Props, State> {
+export default class DropPhoto extends React.PureComponent<Props, State> {
   constructor() {
     super();
     this.state = {
@@ -24,7 +24,7 @@ export default class DropPhoto extends React.Component<Props, State> {
     };
   }
 
-  public onDrop = (acceptedFiles: any, rejectedFiles: any) => {
+  public onDrop = (acceptedFiles: File[], rejectedFiles: File[]) => {
     if (acceptedFiles.length) {
       this.props.changeAvatar(acceptedFiles[0]);
       this.setState({ image: acceptedFiles[0], typeError: false });

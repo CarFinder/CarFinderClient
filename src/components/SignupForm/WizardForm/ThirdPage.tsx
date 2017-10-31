@@ -7,21 +7,15 @@ import '../style.less';
 
 export interface Props {
   input?: HTMLInputElement;
-  name?: string;
-  title?: string;
+  name: string;
+  title: string;
   meta?: any;
-  handleSubmit: any;
-  language?: string;
-  loading?: boolean;
+  handleSubmit: React.FormEventHandler<any>;
+  language: string;
+  loading: boolean;
 }
 
-const renderTextField = ({
-  input,
-  name,
-  title,
-  meta: { touched, error },
-  ...custom
-}: Props) => (
+const renderTextField = ({ input, name, title, meta: { touched, error }, ...custom }: Props) => (
   <div className="field">
     <label htmlFor="title" className="label">
       {title}
@@ -43,13 +37,10 @@ const renderTextField = ({
 );
 
 const ThirdPage = (props: Props) => {
-  const lang =
-    props.language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
+  const lang = props.language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
   return (
     <form onSubmit={props.handleSubmit}>
-      <p className="help has-text-grey-light">
-        {lang.signupForm.passwordTooltip}
-      </p>
+      <p className="help has-text-grey-light">{lang.signupForm.passwordTooltip}</p>
       <div>
         <Field
           name="password"
