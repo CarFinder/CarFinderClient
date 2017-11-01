@@ -40,7 +40,7 @@ export interface FilterValues {
 
 export interface SortingParams {
   limit: number;
-  skip: number | null;
+  skip: any;
   sort: any;
 }
 
@@ -57,7 +57,7 @@ export interface CarFilter {
     kmsTo?: number;
   };
   limit: number;
-  skip: number | null;
+  skip: any;
   sort: any;
 }
 
