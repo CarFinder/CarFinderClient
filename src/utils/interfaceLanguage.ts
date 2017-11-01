@@ -36,6 +36,14 @@ export interface Language {
     userProfile: {
       [key: string]: string;
     };
+    savedSearch: {
+      [key: string]: string;
+    };
+    modal: {
+      [key: string]: {
+        [key: string]: string;
+      };
+    };
   };
   en: {
     validation: {
@@ -73,6 +81,14 @@ export interface Language {
     };
     userProfile: {
       [key: string]: string;
+    };
+    savedSearch: {
+      [key: string]: string;
+    };
+    modal: {
+      [key: string]: {
+        [key: string]: string;
+      };
     };
   };
 }
@@ -177,7 +193,7 @@ const interfaceLanguage: Language = {
       kmTo: 'Пробег до, км.',
       saveFilters: 'Сохранить',
       searchFilters: 'Поиск',
-      adsPerPage: 'Количество объявлений на странице',
+      adsPerPage: 'Объявлений на странице',
       price: 'Цена'
     },
     carFilterResults: {
@@ -188,6 +204,8 @@ const interfaceLanguage: Language = {
       nothingFound: 'По вашему запросу ничего не найдено'
     },
     selectInputs: {
+      Newest: 'Сначала новые',
+      Oldest: 'Сначала старые',
       lowestPrice: 'Сначала дешевые',
       highestPrice: 'Сначала дорогие',
       Ascending: 'По возрастанию',
@@ -208,6 +226,22 @@ const interfaceLanguage: Language = {
         '<strong>Перетащите</strong> вашу аватарку сюда или <strong>нажмите</strong> для выбора аватара',
       dndUpdateHint:
         'Для обновления <strong>перетащите</strong> вашу аватарку сюда или <strong>нажмите</strong> для выбора аватара'
+    },
+    savedSearch: {
+      savedFilters: 'Сохраненные фильтры',
+      clearFilters: 'Очистить фильтры',
+      noSavedFilters: 'У вас нет сохраненных фильтров',
+      seeAllFilters: 'Смотреть все',
+      noAdsToDisplay: 'По запрашиваему фильтру нет объявлений',
+      savedSearchResults: 'Сохраненные запросы по фильтру'
+    },
+    modal: {
+      deleteFilters: {
+        title: 'Удалить сохраненные фильтры',
+        content: 'Вы уверены, что хотите удалить все сохраненные фильтры?',
+        cancel: 'Отмена',
+        confirm: 'Удалить все'
+      }
     }
   },
   en: {
@@ -323,7 +357,9 @@ const interfaceLanguage: Language = {
       Ascending: 'Ascending',
       Descending: 'Descending',
       lowestPrice: 'Lowest',
-      highestPrice: 'Highest'
+      highestPrice: 'Highest',
+      Newest: 'Newest',
+      Oldest: 'Oldest'
     },
     userProfile: {
       title: 'User profile',
@@ -339,6 +375,22 @@ const interfaceLanguage: Language = {
       dndHint: '<strong>Drag</strong> your avatar here or <strong>click</strong> to browse avatar',
       dndUpdateHint:
         'For update <strong>drag</strong> your avatar here or <strong>click</strong> to browse avatar'
+    },
+    savedSearch: {
+      savedFilters: 'Saved filters',
+      clearFilters: 'Clear all filters',
+      noSavedFilters: 'You have no filters saved',
+      seeAllFilters: 'See all saved filters',
+      noAdsToDisplay: 'There are no ads to display for this filter',
+      savedSearchResults: 'Search results for'
+    },
+    modal: {
+      deleteFilters: {
+        title: 'Remove saved filters',
+        content: 'Are you sure you want to remove all save filters?',
+        cancel: 'Cancel',
+        confirm: 'Remove all'
+      }
     }
   }
 };

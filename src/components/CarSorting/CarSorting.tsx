@@ -6,11 +6,8 @@ import './style.less';
 export interface Props {
   sortingParams: {
     limit: number;
-    skip: number | null;
-    sort: {
-      field: string;
-      sort: number;
-    };
+    skip: number;
+    sort: any;
   };
   language: string;
   handeSetSortingParams: (payload: any) => void;
@@ -19,13 +16,7 @@ export interface Props {
 export interface State {
   limit: number;
   skip: number;
-  sortField: string;
-  sort: {
-    field: string;
-    sort: number;
-  };
-  limitValues: any[];
-  sortValues: any[];
+  sort: any;
 }
 
 class CarSorting extends React.PureComponent<Props, State> {
@@ -34,35 +25,11 @@ class CarSorting extends React.PureComponent<Props, State> {
     this.state = {
       limit: 20,
       skip: 0,
-      sortField: 'year',
       sort: {
-        field: 'year',
-        sort: -1
-      },
-      limitValues: [
-        {
-          value: 20,
-          label: 20
-        },
-        {
-          value: 30,
-          label: 30
-        },
-        {
-          value: 50,
-          label: 50
-        }
-      ],
-      sortValues: [
-        {
-          value: -1,
-          label: 'Ascending'
-        },
-        {
-          value: 1,
-          label: 'Descending'
-        }
-      ]
+        year: -1,
+        price: 1,
+        kms: 1
+      }
     };
   }
 
@@ -74,10 +41,9 @@ class CarSorting extends React.PureComponent<Props, State> {
 
   public onChangeSort = (value: any, field: string) => {
     this.setState({
-      ...this.state,
       sort: {
-        field,
-        sort: parseInt(value.value, 10)
+        ...this.state.sort,
+        [field]: parseInt(value.value, 10)
       }
     });
   };
@@ -93,10 +59,62 @@ class CarSorting extends React.PureComponent<Props, State> {
   public componentDidMount() {
     this.updateSortingParams();
   }
+
   public render() {
-    const { limit, sort, limitValues, sortValues } = this.state;
+    const { limit, sort } = this.state;
     const { language } = this.props;
     const lang = language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
+
+    const limitValues = [
+      {
+        value: 20,
+        label: 20
+      },
+      {
+        value: 30,
+        label: 30
+      },
+      {
+        value: 50,
+        label: 50
+      }
+    ];
+
+    const sortYearValues = [
+      {
+        value: 1,
+        label: lang.selectInputs.Oldest
+      },
+      {
+        value: -1,
+        label: lang.selectInputs.Newest
+      }
+    ];
+
+    const sortKmsValues = [
+      {
+        value: 1,
+        label: lang.selectInputs.Ascending
+      },
+      {
+        value: -1,
+        label: lang.selectInputs.Descending
+      }
+    ];
+
+    const sortPriceValues = [
+      {
+        value: 1,
+        label: lang.selectInputs.lowestPrice
+      },
+      {
+        value: -1,
+        label: lang.selectInputs.highestPrice
+      }
+    ];
+
+    console.log(this.state.sort);
+
     return (
       <div className="section">
         <div className="container is-fluid">
@@ -119,8 +137,30 @@ class CarSorting extends React.PureComponent<Props, State> {
                     <SelectInput
                       field="year"
                       label={lang.carFilterResults.year}
-                      value={sort.sort}
-                      options={sortValues}
+                      value={sort.year}
+                      options={sortYearValues}
+                      onChange={this.onChangeSort}
+                      onBlur={this.updateSortingParams}
+                      language={language}
+                    />
+                  </div>
+                  <div className="column">
+                    <SelectInput
+                      field="kms"
+                      label={lang.carFilterResults.kms}
+                      value={sort.kms}
+                      options={sortKmsValues}
+                      onChange={this.onChangeSort}
+                      onBlur={this.updateSortingParams}
+                      language={language}
+                    />
+                  </div>
+                  <div className="column">
+                    <SelectInput
+                      field="price"
+                      label={lang.carFilterResults.price}
+                      value={sort.price}
+                      options={sortPriceValues}
                       onChange={this.onChangeSort}
                       onBlur={this.updateSortingParams}
                       language={language}
