@@ -52,7 +52,7 @@ CarFinder project is a system which aggregates car sale ads from different platf
     <tr>
     <td>View an advertisement info</td>
     <td></td>
-    <td>Planning</td>
+    <td>&#10004;</td>
     <td></td>
   </tr>
   </tr>
@@ -73,7 +73,7 @@ CarFinder project is a system which aggregates car sale ads from different platf
     <tr>
     <td>Save and manage user-defined filter options</td>
     <td></td>
-    <td>Planning</td>
+    <td>&#10004;</td>
     <td></td>
   </tr>
   </tr>
