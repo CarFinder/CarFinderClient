@@ -60,7 +60,7 @@ const FilterResults = (props: Props) => {
   function renderItems() {
     return items.map((value: CarModel) => {
       return (
-        <article className="box" key={value._id}>
+        <article className="box car-ad-box" key={value._id}>
           <CarAd
             model={value.model}
             mark={value.mark}
