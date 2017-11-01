@@ -113,8 +113,6 @@ class CarSorting extends React.PureComponent<Props, State> {
       }
     ];
 
-    console.log(this.state.sort);
-
     return (
       <div className="section">
         <div className="container is-fluid">
