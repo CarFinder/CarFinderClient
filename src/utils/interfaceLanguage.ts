@@ -193,7 +193,7 @@ const interfaceLanguage: Language = {
       kmTo: 'Пробег до, км.',
       saveFilters: 'Сохранить',
       searchFilters: 'Поиск',
-      adsPerPage: 'Количество объявлений на странице',
+      adsPerPage: 'Объявлений на странице',
       price: 'Цена'
     },
     carFilterResults: {
@@ -204,6 +204,8 @@ const interfaceLanguage: Language = {
       nothingFound: 'По вашему запросу ничего не найдено'
     },
     selectInputs: {
+      Newest: 'Сначала новые',
+      Oldest: 'Сначала старые',
       lowestPrice: 'Сначала дешевые',
       highestPrice: 'Сначала дорогие',
       Ascending: 'По возрастанию',
@@ -355,7 +357,9 @@ const interfaceLanguage: Language = {
       Ascending: 'Ascending',
       Descending: 'Descending',
       lowestPrice: 'Lowest',
-      highestPrice: 'Highest'
+      highestPrice: 'Highest',
+      Newest: 'Newest',
+      Oldest: 'Oldest'
     },
     userProfile: {
       title: 'User profile',

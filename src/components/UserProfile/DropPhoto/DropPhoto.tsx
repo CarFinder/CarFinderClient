@@ -64,7 +64,7 @@ export default class DropPhoto extends React.PureComponent<Props, State> {
               }}
             />
           )}
-        {(this.state.image || this.state) && (
+        {(this.state.image || this.props.image) && (
           <p
             className="help has-text-grey-light has-text-centered"
             dangerouslySetInnerHTML={{
