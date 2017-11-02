@@ -24,6 +24,10 @@ const AdPreview = (props: Props) => {
         <Slider images={images} />
       </div>
       <div className="preview-media">
+        <div className="content">
+          <p className="ad-title is-size-3">{mark + ' ' + model}</p>
+          <p>{description}</p>
+        </div>
         <div className="preview-info">
           <span className="has-text-warning">
             <strong className="ad-price">
@@ -37,20 +41,16 @@ const AdPreview = (props: Props) => {
             <i className="fa fa-road" aria-hidden="true" />&nbsp;{kms !== 0 ? kms : 'New'}
           </span>
         </div>
-        <div className="content">
-          <p className="ad-title">{mark + ' ' + model}</p>
-          <p>{description}</p>
-        </div>
-        <div className="ad-link-container">
-          <label htmlFor="source">{source}</label>
-          <input
-            className="has-icons-right input"
-            value={sourceUrl}
-            id="has-icons-right"
-            onClick={(e: any) => e.target.select()}
-            readOnly={true}
-          />
-        </div>
+      </div>
+      <div className="ad-link-container">
+        <label htmlFor="source">{source}</label>
+        <input
+          className="has-icons-right input"
+          value={sourceUrl}
+          id="has-icons-right"
+          onClick={(e: any) => e.target.select()}
+          readOnly={true}
+        />
       </div>
     </div>
   );

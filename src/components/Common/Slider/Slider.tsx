@@ -1,5 +1,4 @@
-import axios from 'axios';
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Dots from './Dots';
 import LeftArrow from './LeftArrow';
 import RightArrow from './RightArrow';
@@ -20,7 +19,7 @@ interface State {
   ready: boolean;
 }
 
-export default class Slider extends Component<Props, State> {
+export default class Slider extends PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
 

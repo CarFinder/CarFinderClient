@@ -21,22 +21,26 @@ export interface ClearFilterResults {
 }
 
 export interface ClearSelectedAd {
-  type:actionTypes.CLEAR_SELECTED_AD;
+  type: actionTypes.CLEAR_SELECTED_AD;
 }
 
-export type FilterResultsAction = SetFilterResults|ClearSelectedAd |SelectAd| SetAdsAsLoaded | ClearFilterResults;
+export type FilterResultsAction =
+  | SetFilterResults
+  | ClearSelectedAd
+  | SelectAd
+  | SetAdsAsLoaded
+  | ClearFilterResults;
 
-
-export function selectAd(id:string):SelectAd {
+export function selectAd(id: string): SelectAd {
   return {
-    type:actionTypes.SELECT_AD,
-    payload:id
+    type: actionTypes.SELECT_AD,
+    payload: id
   };
 }
 
-export function clearSelectedAd():ClearSelectedAd{
+export function clearSelectedAd(): ClearSelectedAd {
   return {
-    type:actionTypes.CLEAR_SELECTED_AD
+    type: actionTypes.CLEAR_SELECTED_AD
   };
 }
 
