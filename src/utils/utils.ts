@@ -1,5 +1,4 @@
 import queryString from 'query-string';
-import { store } from '../index';
 import * as interfaces from '../interfaces/index';
 
 export const transformDataForSignup = (userData: interfaces.SignupUserData) => {
