@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 interface PropTypes {
-  background: any;
+  background: any[];
   current: any;
 }
 

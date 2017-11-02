@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Dot from './Dot';
 
 /*
@@ -11,7 +11,7 @@ import Dot from './Dot';
 interface PropTypes {
   numberOfDots: number;
   isCurrent: number;
-  dotClick: any;
+  dotClick: (index: number) => void;
 }
 
 const Dots = (props: PropTypes) => {

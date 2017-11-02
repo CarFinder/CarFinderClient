@@ -6,22 +6,22 @@ import RightArrow from './RightArrow';
 import Slide from './Slide';
 import './style.less';
 
-interface SliderInterface {
-  previousSlide?: any;
-  nextSlide?: any;
-  dotClick?: any;
-  preloadNextImage?: any;
+interface Props {
+  previousSlide?: () => void;
+  nextSlide?: () => void;
+  dotClick?: (index: number) => void;
+  preloadNextImage?: () => void;
   images: string[];
 }
 
 interface State {
-  background: any;
+  background: any[];
   current: any;
-  ready: any;
+  ready: boolean;
 }
 
-export default class Slider extends Component<SliderInterface, State> {
-  constructor(props: any) {
+export default class Slider extends Component<Props, State> {
+  constructor(props: Props) {
     super(props);
 
     this.state = {
@@ -58,7 +58,7 @@ export default class Slider extends Component<SliderInterface, State> {
     }
   }
 
-  public dotClick(dotIndex: any) {
+  public dotClick(dotIndex: number) {
     this.setState({ current: dotIndex });
   }
 
