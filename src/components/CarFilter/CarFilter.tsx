@@ -54,6 +54,7 @@ export interface State {
     priceTo: number;
     kmsFrom: number;
     kmsTo: number;
+    url: string;
   };
   errors: any;
 }
@@ -72,7 +73,8 @@ class CarFilter extends React.PureComponent<Props, State> {
         priceFrom: 0,
         priceTo: 0,
         kmsFrom: 0,
-        kmsTo: 0
+        kmsTo: 0,
+        url: ''
       },
       errors: {}
     };
@@ -127,7 +129,8 @@ class CarFilter extends React.PureComponent<Props, State> {
         priceFrom: stateFromPath.priceFrom,
         priceTo: stateFromPath.priceTo,
         kmsFrom: stateFromPath.kmsFrom,
-        kmsTo: stateFromPath.kmsTo
+        kmsTo: stateFromPath.kmsTo,
+        url: location
       }
     });
   }
