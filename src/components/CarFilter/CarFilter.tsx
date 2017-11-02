@@ -137,7 +137,7 @@ class CarFilter extends React.PureComponent<Props, State> {
 
   public setUrlParams = () => {
     const path = getPathFromFilters(this.state.data);
-    this.props.history.replace(path);
+    this.props.history.replace(`/catalog/${path}`);
   };
 
   public onChangeSelect = (value: any, field: string) => {
@@ -223,7 +223,8 @@ class CarFilter extends React.PureComponent<Props, State> {
       errors
     });
     if (Object.keys(errors).length === 0) {
-      this.props.handleSubmitSavedFilters(this.state.data);
+      const filterUrl = getPathFromFilters(this.state.data);
+      this.props.handleSubmitSavedFilters({ ...this.state.data, url: filterUrl });
     }
   };
 

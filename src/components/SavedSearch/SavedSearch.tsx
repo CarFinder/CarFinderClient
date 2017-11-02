@@ -65,6 +65,7 @@ class SavedSearch extends React.PureComponent<Props, State> {
                   name={value.filterName}
                   id={value.filterId}
                   ads={value.ads}
+                  url={value.filterUrl}
                   handleRemoveFilter={this.handleRemoveFilter}
                 />
               </article>

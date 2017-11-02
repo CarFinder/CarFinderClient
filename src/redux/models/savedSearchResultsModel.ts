@@ -7,6 +7,7 @@ export interface SavedSearchResults {
 export interface SavedFilter {
   filterId: string;
   filterName: string;
+  filterUrl: string;
   ads: CarModel[];
 }
 

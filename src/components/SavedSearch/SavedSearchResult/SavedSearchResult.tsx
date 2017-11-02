@@ -9,12 +9,13 @@ export interface Props {
   language: string;
   name: string;
   id: string;
+  url: string;
   ads: CarModel[];
   handleRemoveFilter: (id: string) => void;
 }
 
 const SavedSearchResult = (props: Props) => {
-  const { name, ads, id, handleRemoveFilter, language } = props;
+  const { name, ads, id, handleRemoveFilter, language, url } = props;
   const lang = language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
 
   const renderItems = (
@@ -39,7 +40,7 @@ const SavedSearchResult = (props: Props) => {
   return (
     <div className="saved-search-results">
       <div className="saved-search-name">
-        <Link to="">
+        <Link to={'/catalog' + url}>
           {lang.savedSearch.savedSearchResults}&nbsp;{name}
         </Link>&nbsp;
         <i
