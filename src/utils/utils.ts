@@ -1,4 +1,6 @@
-import * as interfaces from '../interfaces';
+import queryString from 'query-string';
+import { store } from '../index';
+import * as interfaces from '../interfaces/index';
 
 export const transformDataForSignup = (userData: interfaces.SignupUserData) => {
   return {
@@ -25,6 +27,7 @@ export const transformDataForFilters = (values: ValuesFromApi[]): interfaces.Sel
 
 export const transformDataForSave = (values: any): interfaces.SavedFilter => {
   const data: interfaces.SavedFilter = {
+    url: values.url,
     name: values.name,
     markId: values.markId
   };
@@ -69,12 +72,16 @@ export const transformDataForSearch = (
   };
   data.filter.markId = filtersData.markId;
   if (filtersData.modelId.length !== 0) {
-    data.filter.modelId = filtersData.modelId.map((pair: interfaces.SelectOptions) => pair.value);
+    data.filter.modelId =
+      typeof filtersData.modelId[0] === 'object'
+        ? filtersData.modelId.map((pair: interfaces.SelectOptions) => pair.value)
+        : filtersData.modelId;
   }
   if (filtersData.bodyTypeId.length !== 0) {
-    data.filter.bodyTypeId = filtersData.bodyTypeId.map(
-      (pair: interfaces.SelectOptions) => pair.value
-    );
+    data.filter.bodyTypeId =
+      typeof filtersData.bodyTypeId[0] === 'object'
+        ? filtersData.bodyTypeId.map((pair: interfaces.SelectOptions) => pair.value)
+        : filtersData.bodyTypeId;
   }
   if (filtersData.yearFrom) {
     data.filter.yearFrom = filtersData.yearFrom;
@@ -123,4 +130,51 @@ export const toBase64 = async (file: File): Promise<string> => {
     };
     reader.readAsDataURL(file);
   });
+};
+
+export const getPathFromFilters = (filters: any) => {
+  const markPath = `?mark=${filters.markId}`;
+  const modelPath = filters.modelId.length
+    ? `&model=${filters.modelId.map((model: any) => model.value)}`
+    : '';
+  const bodyPath = filters.bodyTypeId.length
+    ? `&body=${filters.bodyTypeId.map((body: any) => body.value)}`
+    : '';
+  const yearFromPath = filters.yearFrom ? `&yearFrom=${filters.yearFrom}` : '';
+  const yearToPath = filters.yearTo ? `&yearTo=${filters.yearTo}` : '';
+  const priceFromPath = filters.priceFrom ? `&priceFrom=${filters.priceFrom}` : '';
+  const priceToPath = filters.priceTo ? `&priceTo=${filters.priceTo}` : '';
+  const kmFromPath = filters.kmsFrom ? `&kmsFrom=${filters.kmsFrom}` : '';
+  const kmToPath = filters.kmsTo ? `&kmsTo=${filters.kmsTo}` : '';
+
+  const path =
+    `/catalog/${markPath}${modelPath}${bodyPath}${yearFromPath}` +
+    `${yearToPath}${priceFromPath}${priceToPath}${kmFromPath}${kmToPath}`;
+
+  return path;
+};
+
+export const getStateFromPath = (path: string) => {
+  const url = path.replace('/catalog/', '');
+  const mark = queryString.parse(path).mark;
+  const model = queryString.parse(path).model;
+  const bodyType = queryString.parse(path).body;
+  const yearFromVal = queryString.parse(path).yearFrom;
+  const yearToVal = queryString.parse(path).yearTo;
+  const priceFromVal = queryString.parse(path).priceFrom;
+  const priceToVal = queryString.parse(path).priceTo;
+  const kmsFromVal = queryString.parse(path).kmsFrom;
+  const kmsToVal = queryString.parse(path).kmsTo;
+
+  return {
+    markId: mark,
+    modelId: model ? model.split(',') : [],
+    bodyTypeId: bodyType ? bodyType.split(',') : [],
+    yearFrom: yearFromVal ? parseInt(yearFromVal, 10) : 0,
+    yearTo: yearToVal ? parseInt(yearToVal, 10) : 0,
+    priceFrom: priceFromVal ? parseInt(priceFromVal, 10) : 0,
+    priceTo: priceToVal ? parseInt(priceToVal, 10) : 0,
+    kmsFrom: kmsFromVal ? parseInt(kmsFromVal, 10) : 0,
+    kmsTo: kmsToVal ? parseInt(kmsToVal, 10) : 0
+  };
 };

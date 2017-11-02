@@ -20,6 +20,12 @@ export interface Props {
   handleUpdateAds: (payload: interfaces.CarFilter, sortingParams: interfaces.SortingParams) => void;
   handleSubmitSavedFilters: (payload: interfaces.SavedFilter) => void;
   clearFilterResults: () => void;
+  history: {
+    replace: (url: string) => void;
+  };
+  location: {
+    search: any;
+  };
   adsAreLoaded: boolean;
   successMessage: string;
   loading: boolean;
@@ -61,7 +67,9 @@ class Catalogue extends React.PureComponent<Props, State> {
 
   public render() {
     const {
+      history,
       language,
+      location,
       loading,
       successMessage,
       searchError,
@@ -83,6 +91,8 @@ class Catalogue extends React.PureComponent<Props, State> {
     return (
       <div>
         <CarFilter
+          location={location}
+          history={history}
           language={language}
           carFilters={carFilters}
           searchError={searchError}

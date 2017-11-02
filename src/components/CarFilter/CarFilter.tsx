@@ -1,10 +1,12 @@
 import classnames from 'classnames';
+import queryString from 'query-string';
 import Tooltip from 'rc-tooltip';
 import * as React from 'react';
 import * as interfaces from '../../interfaces';
 import { CarModel } from '../../redux/models/filterResultsModel';
 import { validateForm, validateFormForSave, validateMark } from '../../utils/carFiltersValidation';
 import interfaceLanguage from '../../utils/interfaceLanguage';
+import { getPathFromFilters, getStateFromPath } from '../../utils/utils';
 import SelectInput from '../Common/FormInputs/SelectInput';
 import TextInput from '../Common/FormInputs/TextInput';
 import Notification from '../Common/Notification/Notifiation';
@@ -23,6 +25,12 @@ export interface Props {
   handleSetAds: (ads: CarModel[]) => void;
   handleSubmitSavedFilters: (data: interfaces.SavedFilter) => void;
   clearFilterResults: () => void;
+  history: {
+    replace: (url: string) => void;
+  };
+  location: {
+    search: any;
+  };
   loading: boolean;
   successMessage: string;
   searchError: any;
@@ -69,12 +77,29 @@ class CarFilter extends React.PureComponent<Props, State> {
       errors: {}
     };
   }
-  public componentDidMount() {
-    this.props.handleClearError();
+
+  public componentWillMount() {
     this.props.handleClearFilters();
+    this.props.handleClearError();
     this.props.handleFetchMarksValues();
     this.props.handleFetchBodyTypesValues();
     this.setFilterName();
+  }
+
+  public async componentDidMount() {
+    if (queryString.parse(this.props.location.search).mark) {
+      this.props.handleFetchModelsValues(queryString.parse(this.props.location.search).mark);
+      this.props.clearFilterResults();
+      this.props.handleSetAds([]);
+      this.props.handleSetSkip(0);
+
+      await this.setStateData(this.props.location.search);
+      this.props.handleSetCurrentFilter(this.state.data, {
+        ...this.props.carFilters.sortingParams,
+        skip: 0
+      });
+      this.props.handleSetAdsAsLoaded(false);
+    }
   }
 
   public componentWillReceiveProps(props: Props) {
@@ -88,6 +113,29 @@ class CarFilter extends React.PureComponent<Props, State> {
       this.props.handleFetchModelsValues(props.carFilters.filterValues.marks[0].value);
     }
   }
+
+  public async setStateData(location: string) {
+    const stateFromPath = getStateFromPath(location);
+    this.setState({
+      data: {
+        ...this.state.data,
+        markId: stateFromPath.markId,
+        modelId: stateFromPath.modelId,
+        bodyTypeId: stateFromPath.bodyTypeId,
+        yearFrom: stateFromPath.yearFrom,
+        yearTo: stateFromPath.yearTo,
+        priceFrom: stateFromPath.priceFrom,
+        priceTo: stateFromPath.priceTo,
+        kmsFrom: stateFromPath.kmsFrom,
+        kmsTo: stateFromPath.kmsTo
+      }
+    });
+  }
+
+  public setUrlParams = () => {
+    const path = getPathFromFilters(this.state.data);
+    this.props.history.replace(path);
+  };
 
   public onChangeSelect = (value: any, field: string) => {
     if (field !== 'markId') {
@@ -140,13 +188,7 @@ class CarFilter extends React.PureComponent<Props, State> {
       errors
     });
     if (Object.keys(errors).length === 0) {
-      this.props.handleSetAds([]);
-      this.props.handleSetSkip(0);
-      this.props.handleSetCurrentFilter(this.state.data, {
-        ...this.props.carFilters.sortingParams,
-        skip: 0
-      });
-      this.props.handleSetAdsAsLoaded(false);
+      this.setUrlParams();
     }
   };
 

@@ -73,6 +73,7 @@ export interface SavedFilter {
   priceTo?: number;
   kmsFrom?: number;
   kmsTo?: number;
+  url?: string;
 }
 
 interface CarModel {
