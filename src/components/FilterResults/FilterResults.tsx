@@ -1,12 +1,19 @@
 import classNames from 'classnames';
 import * as React from 'react';
 import Waypoint from 'react-waypoint';
+import * as interfaces from '../../interfaces';
 import * as actions from '../../redux/actions/filterResultsActions';
 import { CarModel } from '../../redux/models/filterResultsModel';
 import interfaceLanguage from '../../utils/interfaceLanguage';
 import AdPreview from './AdPreview/AdPreview';
 import CarAd from './CarAd/CarAd';
 import './style.less';
+
+interface SortingParams {
+  limit: number;
+  skip: number | null;
+  sort: any;
+}
 
 export interface Props {
   adsAreLoaded: boolean;
@@ -17,11 +24,11 @@ export interface Props {
   skip: number;
   items: CarModel[];
   carFilters: {
-    currentFilter: any;
-    sortingParams: any;
+    currentFilter: interfaces.CarFilter;
+    sortingParams: SortingParams;
   };
-  handleSetCurrentFilter: (payload: any, sortingParams: any) => void;
-  handeSetSortingParams: (payload: any) => void;
+  handleSetCurrentFilter: (payload: interfaces.CarFilter, sortingParams: SortingParams) => void;
+  handeSetSortingParams: (payload: SortingParams) => void;
   handleSetSkip: (skipAmount: number) => void;
   handleSetAds: (ads: CarModel[]) => void;
   handleShowAdPreview: (id: string) => void;
@@ -63,7 +70,7 @@ const FilterResults = (props: Props) => {
   function renderItems() {
     return items.map((value: CarModel) => {
       return (
-        <article className="box" key={value._id}>
+        <article className="box car-ad-box" key={value._id}>
           <CarAd
             model={value.model}
             mark={value.mark}

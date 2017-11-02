@@ -5,9 +5,9 @@ export type CarFilter = {
     bodyTypes?: any[];
   };
   currentFilter?: {
-    mark?: string;
-    model?: string;
-    bodyType?: string;
+    markId?: string;
+    modelId?: string;
+    bodyTypeId?: string;
     yearFrom?: number;
     yearTo?: number;
     priceForm?: number;

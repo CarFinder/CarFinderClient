@@ -11,6 +11,8 @@ import rootReducer from './redux/reducers';
 import rootSaga from './redux/sagas/index';
 import setAuthorizationHeader from './utils/axiosHeader';
 
+import 'index.less';
+
 import Footer from './components/Common/Footer/Footer';
 import NavBar from './components/Common/NavBar/NavBar';
 import NotFound from './components/Common/NotFound/NotFound';
@@ -18,11 +20,11 @@ import RequireAuth from './components/Common/Routes/RequireAuth';
 import Home from './components/HomePage/HomePage';
 import Catalogue from './containers/Catalogue';
 import ChangePassword from './containers/ChangePassword';
+import Dashboard from './containers/Dashboard';
 import EmailConfirmation from './containers/EmailConfirmation';
 import Signin from './containers/Signin';
 import Signup from './containers/Signup';
-
-import 'index.less';
+import UserProfile from './containers/UserProfile';
 
 const App = () => {
   if (localStorage.jwt) {
@@ -36,13 +38,14 @@ const App = () => {
       <div className="page-content">
         <NavBar />
         <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/home" component={RequireAuth(Home)} />
+          <Route exact path="/" component={Dashboard} />
+          <Route exact path="/home" component={RequireAuth(Dashboard)} />
           <Route path="/catalog" component={RequireAuth(Catalogue)} />
           <Route path="/signup" component={Signup} />
           <Route path="/signin" component={Signin} />
           <Route path="/restore" component={ChangePassword} />
           <Route path="/confirmation" component={EmailConfirmation} />
+          <Route path="/profile" component={RequireAuth(UserProfile)} />
           <Route path="*" component={NotFound} />
         </Switch>
       </div>

@@ -17,7 +17,7 @@ export interface Props {
       token: string;
     };
   };
-  handleEmailConfirmation: (token: string) => any;
+  handleEmailConfirmation: (token: string) => void;
 }
 
 export interface State {
@@ -25,7 +25,7 @@ export interface State {
   hasError: boolean;
 }
 
-class EmailConfirmation extends React.Component<Props, State> {
+class EmailConfirmation extends React.PureComponent<Props, State> {
   constructor() {
     super();
     this.state = {
@@ -48,34 +48,22 @@ class EmailConfirmation extends React.Component<Props, State> {
   }
   public render() {
     const { loading, hasError } = this.state;
-    const lang =
-      this.props.language === 'ru'
-        ? interfaceLanguage.ru
-        : interfaceLanguage.en;
+    const lang = this.props.language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
     return (
       <div className="section">
         <div className="container">
           <div className="columns">
             <div className="column is-centered">
               {loading && (
-                <Notification
-                  type="default"
-                  text={lang.emailConfirmation.loadingMessage}
-                />
+                <Notification type="default" text={lang.emailConfirmation.loadingMessage} />
               )}
               {!loading &&
                 !hasError && (
-                  <Notification
-                    type="success"
-                    text={lang.emailConfirmation.successMessage}
-                  />
+                  <Notification type="success" text={lang.emailConfirmation.successMessage} />
                 )}
               {!loading &&
                 hasError && (
-                  <Notification
-                    type="danger"
-                    text={lang.emailConfirmation.errorMessage}
-                  />
+                  <Notification type="danger" text={lang.emailConfirmation.errorMessage} />
                 )}
             </div>
           </div>

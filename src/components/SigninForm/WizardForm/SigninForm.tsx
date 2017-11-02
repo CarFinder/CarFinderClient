@@ -9,24 +9,18 @@ import '../style.less';
 
 export interface Props {
   input?: HTMLInputElement;
-  name?: string;
-  title?: string;
+  name: string;
+  title: string;
   type: string;
   meta?: any;
   custom?: object;
-  handleSubmit: any;
+  handleSubmit: React.FormEventHandler<any>;
   invalid?: boolean;
   language: string;
   loading: boolean;
 }
 
-const renderTextField = ({
-  title,
-  input,
-  type,
-  meta: { touched, error },
-  ...custom
-}: Props) => (
+const renderTextField = ({ title, input, type, meta: { touched, error }, ...custom }: Props) => (
   <div className="field">
     <label htmlFor="title" className="label">
       {title}
@@ -40,9 +34,7 @@ const renderTextField = ({
         {...custom}
       />
       <div className="icon is-small is-left">
-        {type === 'email' && (
-          <i className="fa fa-envelope-o" aria-hidden="true" />
-        )}
+        {type === 'email' && <i className="fa fa-envelope-o" aria-hidden="true" />}
         {type === 'password' && <i className="fa fa-lock" aria-hidden="true" />}
       </div>
     </div>
@@ -51,13 +43,10 @@ const renderTextField = ({
 );
 
 const SigninForm = (props: Props) => {
-  const lang =
-    props.language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
+  const lang = props.language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
   return (
     <form onSubmit={props.handleSubmit}>
-      <p className="help has-text-grey-light">
-        {lang.signinForm.passwordTooltip}
-      </p>
+      <p className="help has-text-grey-light">{lang.signinForm.passwordTooltip}</p>
       <div>
         <Field
           name="email"

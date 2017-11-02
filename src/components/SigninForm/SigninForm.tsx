@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { UserData } from '../../containers/Signin';
+import * as interfaces from '../../interfaces';
 import { User } from '../../redux/models/userModel';
 import interfaceLanguage from '../../utils/interfaceLanguage';
 import Notification from '../Common/Notification/Notifiation';
@@ -9,16 +9,18 @@ import Form from './WizardForm/SigninForm';
 import './style.less';
 
 export interface Props {
-  handleClearError: () => any;
-  handleLogIn: (userData: UserData) => any;
+  handleClearError: () => void;
+  handleLogIn: (userData: interfaces.SigninUserData) => void;
   loading: boolean;
   authError?: any;
-  history: any;
+  history: {
+    push: (url: string) => void;
+  };
   user: User;
   language: string;
 }
 
-class SigninFrom extends React.Component<Props, object> {
+class SigninFrom extends React.PureComponent<Props, {}> {
   public componentWillReceiveProps(nextProps: Props) {
     if (nextProps.user.email) {
       this.props.history.push('/home');
@@ -29,16 +31,13 @@ class SigninFrom extends React.Component<Props, object> {
     this.props.handleClearError();
   }
 
-  public handleSubmit = (userData: UserData) => {
+  public handleSubmit = (userData: interfaces.SigninUserData) => {
     this.props.handleLogIn(userData);
   };
 
   public render() {
     const { loading, authError, language } = this.props;
-    const lang =
-      this.props.language === 'ru'
-        ? interfaceLanguage.ru
-        : interfaceLanguage.en;
+    const lang = this.props.language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
     const errorMessage = !authError.code
       ? lang.searchErrors.serverUnavailable
       : lang.authErrors[authError.code.toString()];
@@ -49,14 +48,8 @@ class SigninFrom extends React.Component<Props, object> {
             <div className="column is-centered">
               {authError && <Notification type="danger" text={errorMessage} />}
               <div className="box">
-                <h1 className="is-size-3 has-text-centered">
-                  {lang.signinForm.title}
-                </h1>
-                <Form
-                  onSubmit={this.handleSubmit}
-                  language={language}
-                  loading={loading}
-                />
+                <h1 className="is-size-3 has-text-centered">{lang.signinForm.title}</h1>
+                <Form onSubmit={this.handleSubmit} language={language} loading={loading} />
                 <hr />
                 <div className="form-links has-text-centered">
                   <Link to="/restore">{lang.signinForm.changePassword}</Link>

@@ -39,15 +39,63 @@ CarFinder project is a system which aggregates car sale ads from different platf
   </tr>
   <tr>
     <td>Filter cars</td>
-    <td>In progress</td>
+    <td>&#10004;</td>
     <td></td>
     <td></td>
   </tr>
   <tr>
     <td>View filter results</td>
-    <td>In progress</td>
+    <td>&#10004;</td>
     <td></td>
     <td></td>
+  </tr>
+    <tr>
+    <td>View an advertisement info</td>
+    <td></td>
+    <td>&#10004;</td>
+    <td></td>
+  </tr>
+  </tr>
+    <tr>
+    <td>Manage user profile</td>
+    <td></td>
+    <td>&#10004;</td>
+    <td></td>
+  </tr>
+  </tr>
+    <tr>
+    <td>Manage user settings</td>
+    <td></td>
+    <td>&#10004;</td>
+    <td></td>
+  </tr>
+  </tr>
+    <tr>
+    <td>Save and manage user-defined filter options</td>
+    <td></td>
+    <td>&#10004;</td>
+    <td></td>
+  </tr>
+  </tr>
+    <tr>
+    <td>Receive newsletter with user-defined filter results</td>
+    <td></td>
+    <td></td>
+    <td>Planning</td>
+  </tr>
+  </tr>
+    <tr>
+    <td>View most liquid marks and models</td>
+    <td></td>
+    <td></td>
+    <td>Planning</td>
+  </tr>
+  </tr>
+    <tr>
+    <td>Calculate liquidity for cars with user-defined parameters</td>
+    <td></td>
+    <td></td>
+    <td>Planning</td>
   </tr>
  </table>
 <h1  id="technologies">Technologies</h1>
@@ -57,7 +105,7 @@ CarFinder project is a system which aggregates car sale ads from different platf
   <li>Redux</li>
   <li>Redux Form</li>
   <li>Redux Saga</li>
-  <li>Material UI</li>
+  <li>Bulma CSS Framework</li>
  </ul>
 <h1  id="authors">Authors</h1>
 <a href="https://github.com/BobriK502">Ilya Bobr</a><br>

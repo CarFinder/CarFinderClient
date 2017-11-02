@@ -1,20 +1,16 @@
 import { connect, Dispatch } from 'react-redux';
 import SigninForm from '../components/SigninForm/SigninForm';
+import * as interfaces from '../interfaces';
 import * as formStateActions from '../redux/actions/formStateActions';
 import * as actions from '../redux/actions/userActions';
-import { InitialState, User } from '../redux/models/userModel';
+import { User } from '../redux/models/userModel';
 
-export interface UserData {
-  email: string;
-  password: string;
+interface DispatchFromProps {
+  handleClearError: () => void;
+  handleLogIn: (userData: interfaces.SigninUserData) => void;
 }
 
-interface PropsInterface {
-  handleClearError: () => any;
-  handleLogIn: (userData: UserData) => any;
-}
-
-interface StateInterface {
+interface StateToProps {
   authError: any;
   loading: boolean;
   user: User;
@@ -32,7 +28,7 @@ const mapDispatchToProps = (
   dispatch: Dispatch<actions.UserAction | formStateActions.FormStateAction>
 ) => ({
   handleClearError: () => dispatch(formStateActions.setAuthError('')),
-  handleLogIn: (userData: UserData) => dispatch(actions.userSignIn(userData))
+  handleLogIn: (userData: interfaces.SigninUserData) => dispatch(actions.userSignIn(userData))
 });
 
-export default connect<StateInterface, any>(mapStateToProps, mapDispatchToProps)(SigninForm);
+export default connect<StateToProps, any>(mapStateToProps, mapDispatchToProps)(SigninForm);

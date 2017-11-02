@@ -1,20 +1,18 @@
 import { connect, Dispatch } from 'react-redux';
 import ChangePasswordForm from '../components/ChangePasswordForm/ChangePasswordForm';
+import * as interfaces from '../interfaces';
 import * as formStateActions from '../redux/actions/formStateActions';
 import * as actions from '../redux/actions/userActions';
 import { InitialState } from '../redux/models/userModel';
 
-export interface UserData {
-  email?: string;
-  password?: string;
+interface DispatchFromProps {
+  handleSubmitEmail: (userData: interfaces.RestorePasswordUserData) => void;
+  handleClearError: () => void;
+  handleClearSuccessMessage: () => void;
+  handleChangePassword: (userData: interfaces.RestorePasswordUserData, token: string) => void;
 }
 
-interface PropsInterface {
-  handleSubmitEmail: (userData: UserData) => void;
-  handleChangePassword: (userData: UserData, token: string) => void;
-}
-
-interface StateInterface {
+interface StateToProps {
   authError: any;
   loading: boolean;
   language: string;
@@ -27,14 +25,13 @@ const mapStateToProps = (state: any) => ({
   language: state.user.interfaceLanguage
 });
 
-const mapDispatchToProps = (dispatch: Dispatch<actions.UserAction>) => ({
+const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
   handleClearError: () => dispatch(formStateActions.setAuthError('')),
   handleClearSuccessMessage: () => dispatch(formStateActions.setSuccessMessage('')),
-  handleSubmitEmail: (userData: UserData) => dispatch(actions.userSubmitEmail(userData)),
-  handleChangePassword: (userData: UserData, token: string) =>
+  handleSubmitEmail: (userData: interfaces.RestorePasswordUserData) =>
+    dispatch(actions.userSubmitEmail(userData)),
+  handleChangePassword: (userData: interfaces.RestorePasswordUserData, token: string) =>
     dispatch(actions.userChangePassword(userData, token))
 });
 
-export default connect<StateInterface, any>(mapStateToProps, mapDispatchToProps)(
-  ChangePasswordForm
-);
+export default connect<StateToProps, any>(mapStateToProps, mapDispatchToProps)(ChangePasswordForm);

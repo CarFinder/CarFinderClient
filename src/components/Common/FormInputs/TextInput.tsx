@@ -7,7 +7,7 @@ interface Props {
   onChange: (name: string) => any;
   field: string;
   label: string;
-  placeholder?: string;
+  placeholder: string;
   value: any;
   type: string;
   error?: string;

@@ -6,9 +6,9 @@ import {
   SET_FILTER_RESULTS
 } from '../actions/actionTypes';
 import { FilterResultsAction } from '../actions/filterResultsActions';
-import { FilterResults, InitialState } from '../models/filterResultsModel';
+import { InitialState } from '../models/filterResultsModel';
 
-const initialState = {
+const initialState: InitialState = {
   filterResults: [],
   allAdsLoaded: false,
   selectedAd:''
@@ -16,7 +16,7 @@ const initialState = {
 
 export default function filterResultsReducer(
   state: InitialState = initialState,
-  action: any
+  action: FilterResultsAction
 ): InitialState {
   switch (action.type) {
     case SET_FILTER_RESULTS:

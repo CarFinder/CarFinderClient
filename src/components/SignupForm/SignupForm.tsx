@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { UserData } from '../../containers/Signup';
+import * as interfaces from '../../interfaces';
 import interfaceLanguage from '../../utils/interfaceLanguage';
 import Notification from '../Common/Notification/Notifiation';
 import FirstPage from './WizardForm/FirstPage';
@@ -12,8 +12,8 @@ import ThirdPage from './WizardForm/ThirdPage';
 import './style.less';
 
 export interface Props {
-  handleClearError: () => any;
-  handleSignup: (userData: UserData) => any;
+  handleClearError: () => void;
+  handleSignup: (userData: interfaces.SignupUserData) => void;
   loading: boolean;
   signedup: boolean;
   authError?: any;
@@ -48,7 +48,7 @@ class SignupFrom extends React.PureComponent<Props, State> {
     this.props.handleClearError();
   }
 
-  public handleSubmit = (userData: UserData) => {
+  public handleSubmit = (userData: interfaces.SignupUserData) => {
     this.props.handleSignup(userData);
   };
 
@@ -59,10 +59,7 @@ class SignupFrom extends React.PureComponent<Props, State> {
   public render() {
     const { page } = this.state;
     const { loading, authError, language } = this.props;
-    const lang =
-      this.props.language === 'ru'
-        ? interfaceLanguage.ru
-        : interfaceLanguage.en;
+    const lang = this.props.language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
     const errorMessage = !authError.code
       ? lang.searchErrors.serverUnavailable
       : lang.authErrors[authError.code.toString()];
@@ -74,26 +71,16 @@ class SignupFrom extends React.PureComponent<Props, State> {
               {authError && <Notification type="danger" text={errorMessage} />}
               <div className="box">
                 {page !== 4 && (
-                  <h1 className="is-size-3 has-text-centered">
-                    {lang.signupForm.title}
-                  </h1>
+                  <h1 className="is-size-3 has-text-centered">{lang.signupForm.title}</h1>
                 )}
                 <div className="form-stepper">
                   <FormStepper page={page} language={language} />
                 </div>
                 <div className="signup-form">
-                  {page === 1 && (
-                    <FirstPage onSubmit={this.nextPage} language={language} />
-                  )}
-                  {page === 2 && (
-                    <SecondPage onSubmit={this.nextPage} language={language} />
-                  )}
+                  {page === 1 && <FirstPage onSubmit={this.nextPage} language={language} />}
+                  {page === 2 && <SecondPage onSubmit={this.nextPage} language={language} />}
                   {page === 3 && (
-                    <ThirdPage
-                      onSubmit={this.handleSubmit}
-                      language={language}
-                      loading={loading}
-                    />
+                    <ThirdPage onSubmit={this.handleSubmit} language={language} loading={loading} />
                   )}
                   {page === 4 && <LastPage language={language} />}
                   <hr />

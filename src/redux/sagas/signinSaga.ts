@@ -1,15 +1,14 @@
 import jwt_decode from 'jwt-decode';
 import { SagaIterator } from 'redux-saga';
-import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
-import API from '../../api/api';
-import { UserData } from '../../containers/Signin';
+import { call, put, takeEvery } from 'redux-saga/effects';
+import api from '../../api/api';
 import setAuthorizationHeader from '../../utils/axiosHeader';
 import { Action } from './index';
 
 function* callSignin(action: Action) {
   yield put({ type: 'SET_LOADING', payload: true });
   try {
-    const response = yield call(API.user.getUser, action.payload);
+    const response = yield call(api.user.getUser, action.payload);
     const decodedData = jwt_decode(response.data.token);
     localStorage.setItem('jwt', response.data.token);
     setAuthorizationHeader(response.data.token);

@@ -1,15 +1,14 @@
 import jwt_decode from 'jwt-decode';
 import { SagaIterator } from 'redux-saga';
 import { call, put, takeEvery } from 'redux-saga/effects';
-import API from '../../api/api';
-import { UserData } from '../../containers/Signin';
+import api from '../../api/api';
 import { Action } from './index';
 
 function* callSubmitEmail(action: Action) {
   yield put({ type: 'SET_LOADING', payload: true });
   yield put({ type: 'SET_AUTH_ERROR', payload: '' });
   try {
-    const response = yield call(API.user.submitEmail, action.payload);
+    const response = yield call(api.user.submitEmail, action.payload);
     yield put({
       type: 'SET_SUCCESS_MESSAGE',
       payload: 'Мы отправили вам письмо. Пожалуйста, перейдите по ссылке чтобы изменить пароль'
@@ -29,7 +28,7 @@ function* callChangePassword(action: any) {
       password: action.payload.password,
       token: action.token
     };
-    const response = yield call(API.user.changePassword, payload);
+    const response = yield call(api.user.changePassword, payload);
     yield put({
       type: 'SET_SUCCESS_MESSAGE',
       payload: 'Пароль изменен успешно. Перенаправляем на страницу входа'
