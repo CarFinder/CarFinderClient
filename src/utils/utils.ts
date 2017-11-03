@@ -31,10 +31,16 @@ export const transformDataForSave = (values: any): interfaces.SavedFilter => {
     markId: values.markId
   };
   if (values.modelId.length !== 0) {
-    data.modelId = values.modelId.map((pair: interfaces.SelectOptions) => pair.value);
+    data.modelId =
+      typeof values.modelId[0] === 'object'
+        ? values.modelId.map((pair: interfaces.SelectOptions) => pair.value)
+        : values.modelId;
   }
   if (values.bodyTypeId.length !== 0) {
-    data.bodyTypeId = values.bodyTypeId.map((pair: interfaces.SelectOptions) => pair.value);
+    data.bodyTypeId =
+      typeof values.bodyTypeId[0] === 'object'
+        ? values.bodyTypeId.map((pair: interfaces.SelectOptions) => pair.value)
+        : values.bodyTypeId;
   }
   if (values.yearFrom) {
     data.yearFrom = values.yearFrom;
@@ -134,10 +140,10 @@ export const toBase64 = async (file: File): Promise<string> => {
 export const getPathFromFilters = (filters: any) => {
   const markPath = `?mark=${filters.markId}`;
   const modelPath = filters.modelId.length
-    ? `&model=${filters.modelId.map((model: any) => model.value)}`
+    ? `&model=${filters.modelId.map((model: any) => (model.value ? model.value : model))}`
     : '';
   const bodyPath = filters.bodyTypeId.length
-    ? `&body=${filters.bodyTypeId.map((body: any) => body.value)}`
+    ? `&body=${filters.bodyTypeId.map((body: any) => (body.value ? body.value : body))}`
     : '';
   const yearFromPath = filters.yearFrom ? `&yearFrom=${filters.yearFrom}` : '';
   const yearToPath = filters.yearTo ? `&yearTo=${filters.yearTo}` : '';
@@ -147,14 +153,13 @@ export const getPathFromFilters = (filters: any) => {
   const kmToPath = filters.kmsTo ? `&kmsTo=${filters.kmsTo}` : '';
 
   const path =
-    `/catalog/${markPath}${modelPath}${bodyPath}${yearFromPath}` +
+    `${markPath}${modelPath}${bodyPath}${yearFromPath}` +
     `${yearToPath}${priceFromPath}${priceToPath}${kmFromPath}${kmToPath}`;
 
   return path;
 };
 
 export const getStateFromPath = (path: string) => {
-  const url = path.replace('/catalog/', '');
   const mark = queryString.parse(path).mark;
   const model = queryString.parse(path).model;
   const bodyType = queryString.parse(path).body;
