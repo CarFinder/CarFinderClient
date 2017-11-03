@@ -4,7 +4,7 @@
   "jsRules": {},
   "rules": {
     "quotemark": [true, "single", "jsx-double"],
-    "semicolon": [true, "always"],
+    "semicolon": [true, "always", "ignore-bound-class-methods"],
     "interface-name": [true, "never-prefix"],
     "object-literal-sort-keys": false,
     "no-submodule-imports": false,

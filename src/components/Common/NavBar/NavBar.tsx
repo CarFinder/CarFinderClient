@@ -87,7 +87,7 @@ class NavBar extends React.PureComponent<Props, State> {
         <div id="nav-menu" className={'navbar-menu ' + `${collapsed}`}>
           <div className="navbar-start">
             <Link
-              to="/"
+              to="/home"
               className="navbar-item"
               onClick={() =>
                 this.setState({
