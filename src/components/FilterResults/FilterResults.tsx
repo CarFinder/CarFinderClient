@@ -70,7 +70,13 @@ const FilterResults = (props: Props) => {
   function renderItems() {
     return items.map((value: CarModel) => {
       return (
-        <article className="box car-ad-box" key={value._id}>
+        <article
+          className="box car-ad-box"
+          key={value._id}
+          onClick={() => {
+            handleShowAdPreview(value._id);
+          }}
+        >
           <CarAd
             model={value.model}
             mark={value.mark}
@@ -79,9 +85,6 @@ const FilterResults = (props: Props) => {
             year={value.year}
             images={value.images}
             kms={value.kms}
-            showAdPreview={() => {
-              handleShowAdPreview(value._id);
-            }}
           />
         </article>
       );
