@@ -17,18 +17,23 @@ export interface Props {
   handleSetCurrentFilter: (payload: any, sortingParams: interfaces.SortingParams) => void;
   handeSetSortingParams: (payload: interfaces.SortingParams) => void;
   handleSetAdsAsLoaded: (payload: boolean) => void;
-  handleUpdateAds: (payload: interfaces.CarFilter, sortingParams: interfaces.SortingParams) => void;
-  handleSubmitSavedFilters: (payload: interfaces.SavedFilter) => void;
+  handleUpdateAds: (payload: any, sortingParams: any) => void;
+  handleSubmitSavedFilters: (payload: any) => void;
+  handleShowAdPreview: (id: string) => void;
   clearFilterResults: () => void;
+  handleCloseModal: () => void;
+
   history: {
     replace: (url: string) => void;
   };
   location: {
     search: any;
   };
+
   adsAreLoaded: boolean;
   successMessage: string;
   loading: boolean;
+  selectedAd: string;
   searchError?: any;
   language: string;
   filterResults: CarModel[];
@@ -82,10 +87,13 @@ class Catalogue extends React.PureComponent<Props, State> {
       handleFetchModelsValues,
       handeSetSortingParams,
       handleSubmitSavedFilters,
+      handleShowAdPreview,
       clearFilterResults,
       filterResults,
       adsAreLoaded,
-      handleSetAdsAsLoaded
+      handleSetAdsAsLoaded,
+      selectedAd,
+      handleCloseModal
     } = this.props;
 
     return (
@@ -122,11 +130,14 @@ class Catalogue extends React.PureComponent<Props, State> {
           skip={this.state.skip}
           loading={loading}
           carFilters={carFilters}
+          selectedAd={selectedAd}
           adsAreLoaded={adsAreLoaded}
           handleSetAds={this.handleSetAds}
           handleSetCurrentFilter={handleSetCurrentFilter}
           handleSetSkip={this.handleSetSkip}
           handeSetSortingParams={handeSetSortingParams}
+          handleShowAdPreview={handleShowAdPreview}
+          handleCloseModal={handleCloseModal}
         />
         <ScrollToTop scrollStepInPx={50} delayInMs={10} />
       </div>

@@ -19,6 +19,8 @@ interface DispatchFromProps {
   handeSetSortingParams: (payload: interfaces.SortingParams) => void;
   handleSetAdsAsLoaded: (payloab: boolean) => void;
   clearFilterResults: () => void;
+  handleShowAdPreview: (id:string) => void;
+  handleCloseModal:()=>void;
 }
 
 interface StateToProps {
@@ -33,6 +35,7 @@ interface StateToProps {
     currentFilter: interfaces.CarFilter;
     sortingParams: interfaces.SortingParams;
   };
+  selectedAd:string;
 }
 
 const mapStateToProps = (state: any) => ({
@@ -42,7 +45,8 @@ const mapStateToProps = (state: any) => ({
   language: state.user.interfaceLanguage,
   filterResults: state.filterResults.filterResults,
   carFilters: state.carFilters,
-  adsAreLoaded: state.filterResults.allAdsLoaded
+  adsAreLoaded: state.filterResults.allAdsLoaded,
+  selectedAd:state.filterResults.selectedAd
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
@@ -57,6 +61,8 @@ const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
     dispatch(carFiltersActions.setSortingParams(payload)),
   handleSetAdsAsLoaded: (payload: boolean) =>
     dispatch(filterResultsActions.setAdsAsLoaded(payload)),
+  handleShowAdPreview:(id:string) => dispatch(filterResultsActions.selectAd(id)),
+  handleCloseModal:()=> dispatch(filterResultsActions.clearSelectedAd()),
   handleSubmitSavedFilters: (data: interfaces.SavedFilter) =>
     dispatch(savedSearchActions.submitSavedFilters(data)),
   clearFilterResults: () => dispatch(filterResultsActions.clearFilterResults())

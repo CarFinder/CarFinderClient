@@ -94,5 +94,6 @@ export interface SavedFilterResults {
   filterId: string;
   filterUrl: string;
   filterName: string;
+  filterUrl: string;
   ads: CarModel[];
 }

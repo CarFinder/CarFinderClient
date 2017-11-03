@@ -1,9 +1,11 @@
+import classNames from 'classnames';
 import * as React from 'react';
 import Waypoint from 'react-waypoint';
 import * as interfaces from '../../interfaces';
 import * as actions from '../../redux/actions/filterResultsActions';
 import { CarModel } from '../../redux/models/filterResultsModel';
 import interfaceLanguage from '../../utils/interfaceLanguage';
+import AdPreview from './AdPreview/AdPreview';
 import CarAd from './CarAd/CarAd';
 import './style.less';
 
@@ -18,6 +20,7 @@ export interface Props {
   filterResults: CarModel[];
   loading: boolean;
   language: string;
+  selectedAd: string;
   skip: number;
   items: CarModel[];
   carFilters: {
@@ -28,6 +31,8 @@ export interface Props {
   handeSetSortingParams: (payload: SortingParams) => void;
   handleSetSkip: (skipAmount: number) => void;
   handleSetAds: (ads: CarModel[]) => void;
+  handleShowAdPreview: (id: string) => void;
+  handleCloseModal: () => void;
 }
 
 const FilterResults = (props: Props) => {
@@ -41,11 +46,16 @@ const FilterResults = (props: Props) => {
     handleSetAds,
     handleSetCurrentFilter,
     handleSetSkip,
-    handeSetSortingParams
+    handeSetSortingParams,
+    handleShowAdPreview,
+    selectedAd,
+    handleCloseModal
   } = props;
   const { language } = props;
   const lang = language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
-
+  const modal = classNames('modal', {
+    'is-active': selectedAd !== ''
+  });
   function loadMoreItems() {
     const data = {
       ...carFilters.sortingParams,
@@ -69,6 +79,9 @@ const FilterResults = (props: Props) => {
             year={value.year}
             images={value.images}
             kms={value.kms}
+            showAdPreview={() => {
+              handleShowAdPreview(value._id);
+            }}
           />
         </article>
       );
@@ -97,6 +110,35 @@ const FilterResults = (props: Props) => {
             {renderItems()}
             {!loading && renderWaypoint()}
             <div />
+          </div>
+          <div className={modal}>
+            <div className="modal-background" />
+            <div className="modal-card">
+              <header className="modal-card-head">
+                <p className="modal-card-title">{lang.carFilterResults.previewTitle}</p>
+                <button className="delete" aria-label="close" onClick={handleCloseModal} />
+              </header>
+              <section className="modal-card-body">
+                {items.map((value: CarModel, index) => {
+                  if (value._id === selectedAd) {
+                    return (
+                      <AdPreview
+                        model={value.model}
+                        mark={value.mark}
+                        description={value.description}
+                        price={value.price}
+                        year={value.year}
+                        images={value.images}
+                        kms={value.kms}
+                        sourceUrl={value.sourceUrl}
+                        source={lang.carFilterResults.adSource}
+                        key={'preview' + index}
+                      />
+                    );
+                  }
+                })}
+              </section>
+            </div>
           </div>
         </div>
       </div>

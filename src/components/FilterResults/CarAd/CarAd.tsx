@@ -9,12 +9,13 @@ export interface Props {
   year: number;
   images: string[];
   kms: number;
+  showAdPreview?: () => void;
 }
 
 const CarAd = (props: Props) => {
-  const { model, mark, description, price, year, images, kms } = props;
+  const { model, mark, description, price, year, images, kms, showAdPreview } = props;
   return (
-    <div className="media">
+    <div className="media" onClick={showAdPreview}>
       <figure className="media-left">
         <p className="ad-image">
           <img className="image is-128x128" src={images[0]} />

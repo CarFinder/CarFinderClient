@@ -11,11 +11,38 @@ export interface SetAdsAsLoaded {
   payload: boolean;
 }
 
+export interface SelectAd {
+  type: actionTypes.SELECT_AD;
+  payload: string;
+}
+
 export interface ClearFilterResults {
   type: actionTypes.CLEAR_FILTER_RESULTS;
 }
 
-export type FilterResultsAction = SetFilterResults | SetAdsAsLoaded | ClearFilterResults;
+export interface ClearSelectedAd {
+  type: actionTypes.CLEAR_SELECTED_AD;
+}
+
+export type FilterResultsAction =
+  | SetFilterResults
+  | ClearSelectedAd
+  | SelectAd
+  | SetAdsAsLoaded
+  | ClearFilterResults;
+
+export function selectAd(id: string): SelectAd {
+  return {
+    type: actionTypes.SELECT_AD,
+    payload: id
+  };
+}
+
+export function clearSelectedAd(): ClearSelectedAd {
+  return {
+    type: actionTypes.CLEAR_SELECTED_AD
+  };
+}
 
 export function setFilterResults(filterResults: CarModel[]): SetFilterResults {
   return {
