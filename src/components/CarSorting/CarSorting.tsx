@@ -48,16 +48,21 @@ class CarSorting extends React.PureComponent<Props, State> {
     });
   };
 
-  public updateSortingParams = () => {
+  public updateSortingParams = (params: State) => {
     this.props.handeSetSortingParams({
-      limit: this.state.limit,
-      sort: this.state.sort,
+      limit: params.limit,
+      sort: params.sort,
       skip: 0
     });
   };
 
   public componentDidMount() {
-    this.updateSortingParams();
+    if (this.props.sortingParams.sort !== '') {
+      this.updateSortingParams(this.props.sortingParams);
+      this.setState(this.props.sortingParams);
+    } else {
+      this.updateSortingParams(this.state);
+    }
   }
 
   public render() {
@@ -127,7 +132,7 @@ class CarSorting extends React.PureComponent<Props, State> {
                       value={limit}
                       options={limitValues}
                       onChange={this.onChangeLimit}
-                      onBlur={this.updateSortingParams}
+                      onBlur={() => this.updateSortingParams(this.state)}
                       language={language}
                     />
                   </div>
@@ -138,7 +143,7 @@ class CarSorting extends React.PureComponent<Props, State> {
                       value={sort.year}
                       options={sortYearValues}
                       onChange={this.onChangeSort}
-                      onBlur={this.updateSortingParams}
+                      onBlur={() => this.updateSortingParams(this.state)}
                       language={language}
                     />
                   </div>
@@ -149,7 +154,7 @@ class CarSorting extends React.PureComponent<Props, State> {
                       value={sort.kms}
                       options={sortKmsValues}
                       onChange={this.onChangeSort}
-                      onBlur={this.updateSortingParams}
+                      onBlur={() => this.updateSortingParams(this.state)}
                       language={language}
                     />
                   </div>
@@ -160,7 +165,7 @@ class CarSorting extends React.PureComponent<Props, State> {
                       value={sort.price}
                       options={sortPriceValues}
                       onChange={this.onChangeSort}
-                      onBlur={this.updateSortingParams}
+                      onBlur={() => this.updateSortingParams(this.state)}
                       language={language}
                     />
                   </div>
