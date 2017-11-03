@@ -38,7 +38,7 @@ const App = () => {
       <div className="page-content">
         <NavBar />
         <Switch>
-          <Route exact path="/" component={Dashboard} />
+          <Route exact path="/" component={Home} />
           <Route exact path="/home" component={RequireAuth(Dashboard)} />
           <Route path="/catalog" component={RequireAuth(Catalogue)} />
           <Route path="/signup" component={Signup} />
