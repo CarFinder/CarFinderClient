@@ -1,6 +1,6 @@
 <h1>Project name</h1>
 CarFinder
-[![Build Status](https://travis-ci.org/CarFinder/CarFinderClient.svg?branch=dev)](https://travis-ci.org/CarFinder/CarFinderClient)
+<image src="https://travis-ci.org/CarFinder/CarFinderClient.svg?branch=dev">
 <h1>Table of Contents</h1>
 <ul>
   <li><a href="#installation">Installation</a></li>
