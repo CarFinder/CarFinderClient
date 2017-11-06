@@ -12,6 +12,6 @@ export interface Filter {
   kmsTo?: number;
 }
 
-export type SavedSearch = {
+export interface SavedSearch {
   savedFilters: Filter[];
-};
+}

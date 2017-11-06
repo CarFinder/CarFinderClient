@@ -1,4 +1,4 @@
-export type User = {
+export interface User {
   id?: string;
   name?: string;
   email?: string;
@@ -6,6 +6,6 @@ export type User = {
   signedup?: boolean;
   interfaceLanguage?: string;
   subscription?: string;
-};
+}
 
 export type InitialState = User;

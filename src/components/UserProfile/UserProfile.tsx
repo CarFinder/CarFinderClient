@@ -27,9 +27,8 @@ export interface Props {
   image: string;
   subscription: boolean;
 }
-export interface State {}
 
-export default class UserProfile extends React.PureComponent<Props, State> {
+export default class UserProfile extends React.PureComponent<Props, {}> {
   constructor() {
     super();
   }

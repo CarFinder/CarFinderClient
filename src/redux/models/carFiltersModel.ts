@@ -1,4 +1,4 @@
-export type CarFilter = {
+export interface CarFilter {
   filterValues?: {
     marks?: any[];
     models?: any[];
@@ -20,6 +20,6 @@ export type CarFilter = {
     skip?: number;
     sort?: string;
   };
-};
+}
 
 export type InitialState = CarFilter;
