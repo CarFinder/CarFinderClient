@@ -1,6 +1,6 @@
 <h1>Project name</h1>
-CarFinder
-<image src="https://travis-ci.org/CarFinder/CarFinderClient.svg?branch=dev">
+<p><span>CarFinder</span>&nbsp;
+<image src="https://travis-ci.org/CarFinder/CarFinderClient.svg?branch=dev"></p>
 <h1>Table of Contents</h1>
 <ul>
   <li><a href="#installation">Installation</a></li>
