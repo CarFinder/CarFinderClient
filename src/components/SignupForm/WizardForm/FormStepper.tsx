@@ -10,8 +10,7 @@ export interface Props {
 }
 
 const FormStepper = (props: Props) => {
-  const lang =
-    props.language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
+  const lang = props.language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
   return (
     <ul className="steps is-narrow is-medium is-centered has-content-centered">
       <li

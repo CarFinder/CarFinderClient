@@ -11,7 +11,7 @@ import { InitialState } from '../models/filterResultsModel';
 const initialState: InitialState = {
   filterResults: [],
   allAdsLoaded: false,
-  selectedAd:''
+  selectedAd: ''
 };
 
 export default function filterResultsReducer(
@@ -35,16 +35,16 @@ export default function filterResultsReducer(
         ...state,
         allAdsLoaded: action.payload
       };
-    case CLEAR_SELECTED_AD: 
+    case CLEAR_SELECTED_AD:
       return {
         ...state,
-        selectedAd:''
+        selectedAd: ''
       };
     case SELECT_AD:
-    return {
-      ...state,
-      selectedAd:action.payload
-    };
+      return {
+        ...state,
+        selectedAd: action.payload
+      };
     default:
       return state;
   }
