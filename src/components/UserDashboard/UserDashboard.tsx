@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as interfaces from '../../interfaces';
+import Calculator from '../Calculator/Calculator';
 import SavedSearch from '../SavedSearch/SavedSearch';
 
 import './style.less';
@@ -34,6 +35,7 @@ const UserDashboard = (props: Props) => {
         handleRemoveFilterById={handleRemoveFilterById}
         savedSearchResults={savedSearchResults}
       />
+      <Calculator language={language} loading={loading} />
     </div>
   );
 };
