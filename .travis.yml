@@ -1,13 +1,21 @@
 sudo: enabled
 language: node_js
 node_js:
-  - "8"
+- '8'
 before_install:
-  - yarn global add typescript tslint prettier
+- yarn global add typescript tslint prettier
 cache: yarn
 install:
-  - yarn
+- yarn
 script:
-  - tslint ./src/**/*.t*
-  - prettier --print-width 100 --tab-width 2 --single-quote --trailing-comma none --list-different --parser typescript "./src/**/*.t*"
-
+- tslint ./src/**/*.t*
+- prettier --print-width 100 --tab-width 2 --single-quote --trailing-comma none --list-different
+  --parser typescript "./src/**/*.t*"
+after_success:
+- webpack -p
+- bash ./scripts/deploy.sh
+env:
+  global:
+  - GH_USER: AnatolyBelobrovik
+  - GH_REPO: anatolybelobrovik.github.io
+  - secure: lZ2MHWIV63UqMPZTDyD8ctMzQ3BUP9lGpQWRw+C0inXEMtmPRCvbA34FajGC9nssYj/t3wheME9ROeMD+N+U5Ug3upRHH1ptlqR22w2RmV1MkRAaO/BLbJJaF6/23oSl2Qi6F82uU2cia6fJkHAk4Aig185TzgHfs50ETxmwgr+1rNrFVy+FRmIyLKseWSKRXIvkVnflKjwFHQPRcRTx6L3Menp2w4VaYAxtDp9xJJJyQBsE6C5wunei8PzFjBv1pM9ix1riFq7DglQxVtbBtj6nXVjBCoD1LOx0Vh0a1e3upxOW/aZimAQtQ7aXpTL97FNXS5EvCsse8aaeWO72m2BV6bh6GnRT3k7kpwaqeaioGGWlbZ7BS4f6WEnC2Ap4/L9VrSdFrhXYZVdzeU4ykymGbeZescmFfvJ7pE8588rZflEuyIO07sqlQUPgXR0xSdUSmxspsSuHKISd119TSvy+jF6ITD84Kk4KKBTxpDxkDlu1f8zu/EPbjoQ9NskOEJncxMuJuigYqhSezh3opBOCRYy/GnE4sZj3I+bXNbK86510RWdkdzX7fZGs7eQlYrs8+vpGZ8xu5JUnu84KtIDn2UqzmdPJO1PV8FbTptB41PbTvAXv9qgjq/2Ml/ysB+iA3uqRcGGdV6OjHuxcq+Bq6Q8RVFJ6XoKieJ1AmNU=
