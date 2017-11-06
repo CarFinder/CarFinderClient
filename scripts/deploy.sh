@@ -18,7 +18,7 @@ git config --global user.name "Travis"
 git clone --quiet --branch=master https://${GH_TOKEN}@github.com/${GH_USER}/${GH_REPO}.git
 
 #go into directory and copy data we're interested in to that directory
-cd master
+cd ${GH_REPO}
 cp -Rf $HOME/dist/* .
 
 echo "Allow files with underscore https://help.github.com/articles/files-that-start-with-an-underscore-are-missing/" > .nojekyll
