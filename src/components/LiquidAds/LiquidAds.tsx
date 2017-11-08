@@ -7,17 +7,28 @@ export interface Props {
   liquidAds: interfaces.LiquidAds[];
 }
 
-const LiquidAds = (props: Props) => (
-  <section className="section">
-    <div className="container is-fluid">
-      <div className="columns">
-        <div className="column is-centered">
-          <SliderWithText content={mockData} />
+// TODO: remove mockdata
+class LiquidAds extends React.PureComponent<Props, {}> {
+
+  public componentDidMount() {
+    // this.props.handleGetLiquidAds();
+  }
+
+  public render() {
+    return (
+      <section className="section">
+        <div className="container is-fluid">
+          <div className="columns">
+            <div className="column is-centered">
+              <SliderWithText content={mockData} />
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </section>
-);
+      </section>
+    );
+  }
+
+}
 
 export default LiquidAds;
 
