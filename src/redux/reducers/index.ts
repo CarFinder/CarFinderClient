@@ -1,5 +1,6 @@
 import { Action, combineReducers, Reducer } from 'redux';
 import { reducer as reduxFormReducer } from 'redux-form';
+import calculateLiquidityReducer from './calculateLiquidity';
 import carFiltersReducer from './carFilters';
 import filterResultsReducer from './filterResults';
 import formStateReducer from './formState';
@@ -14,7 +15,8 @@ const rootReducer: Reducer<any> = combineReducers({
   filterResults: filterResultsReducer,
   carFilters: carFiltersReducer,
   savedSearch: savedSearchReducer,
-  savedSearchResults: savedSearchResultsReducer
+  savedSearchResults: savedSearchResultsReducer,
+  calculateLiquidity: calculateLiquidityReducer
 });
 
 export default rootReducer;
