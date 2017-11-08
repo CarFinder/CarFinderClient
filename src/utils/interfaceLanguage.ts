@@ -44,6 +44,9 @@ export interface Language {
         [key: string]: string;
       };
     };
+    liquidity: {
+      [key: string]: string;
+    };
   };
   en: {
     validation: {
@@ -89,6 +92,9 @@ export interface Language {
       [key: string]: {
         [key: string]: string;
       };
+    };
+    liquidity: {
+      [key: string]: string;
     };
   };
 }
@@ -244,6 +250,14 @@ const interfaceLanguage: Language = {
         cancel: 'Отмена',
         confirm: 'Удалить все'
       }
+    },
+    liquidity: {
+      calculator: 'Калькулятор ликвидности',
+      calculate: 'Рассчитать',
+      defaultMsg: 'Выберете параметры, чтобы рассчитать ликвидность',
+      resultsStart: 'Мы нашли',
+      resultsEnd: 'объявлений, которые были проданы в течение месяца',
+      ads: 'Перейти к объявлениям'
     }
   },
   en: {
@@ -395,6 +409,14 @@ const interfaceLanguage: Language = {
         cancel: 'Cancel',
         confirm: 'Remove all'
       }
+    },
+    liquidity: {
+      calculator: 'Calculate Liquidity',
+      calculate: 'Calculate',
+      defaultMsg: 'Choose filter parameters to calculate liquidity',
+      resultsStart: 'We found',
+      resultsEnd: 'ads that were sold over the last month',
+      ads: 'See ads'
     }
   }
 };
