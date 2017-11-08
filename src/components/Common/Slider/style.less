@@ -74,3 +74,88 @@
     }
   }
 }
+
+.slider-with-text {
+  height: 40vh;
+  width: 100%;
+  background: #FFF;
+  position: relative;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0;
+  }
+
+  .slide-with-text {
+    height: 100%;
+    width: 100%;
+  }
+
+  .full-height {
+    height: 100%;
+  }
+
+  .dotsContainer {
+    @media screen and (max-width: 540px) {
+      display: none;
+    }
+
+    position: absolute;
+    bottom: 2%;
+    width: 100%;
+    text-align: center;
+    z-index: 99999;
+
+    .dot {
+      display: inline-block;
+      height: 12px;
+      background: rgb(218, 218, 218);
+      padding: 0px 6px;
+      margin-right: 5px;
+      cursor: pointer;
+      border-radius: 60px;
+    }
+    .isCurrent {
+      background: #ffdd57;
+    }
+  }
+
+  .nextArrow {
+    position: absolute;
+    top: 70%;
+    right: 5%;
+    cursor: pointer;
+    transition: all ease-in 0.2s;
+    color: #FFDD57;
+    opacity: 0.5;
+
+    &:hover {
+      opacity: 1;
+      transform: scale(1.4);
+      transition: all ease-in 0.2s;
+    }
+  }
+
+  .backArrow {
+    position: absolute;
+    top: 70%;
+    left: 5%;
+    cursor: pointer;
+    color: #FFDD57;
+    opacity: 0.5;
+
+    transition: all ease-in 0.2s;
+
+    &:hover {
+      opacity: 1;
+      transform: scale(1.4);
+      transition: all ease-in 0.2s;
+    }
+  }
+}
