@@ -10,8 +10,7 @@ install:
 - yarn
 script:
 - tslint ./src/**/*.t*
-- prettier --print-width 100 --tab-width 2 --single-quote --trailing-comma none --list-different
-  --parser typescript "./src/**/*.t*"
+- prettier --print-width 100 --tab-width 2 --single-quote --trailing-comma none --list-different --parser typescript "./src/**/*.t*"
 after_success:
 - webpack -p
 - bash ./scripts/deploy.sh
