@@ -36,9 +36,12 @@ const CarAd = (props: Props) => {
           <span className="has-text-grey">
             <i className="fa fa-clock-o" aria-hidden="true" />&nbsp;{year}
           </span>
-          <span className="has-text-grey-light">
-            <i className="fa fa-road" aria-hidden="true" />&nbsp;{kms !== 0 ? kms : 'New'}
-          </span>
+          {kms !== 0 && (
+            <span className="has-text-grey-light">
+              <i className="fa fa-road" aria-hidden="true" />&nbsp;{kms}
+            </span>
+          )}
+          {kms === 0 && <span className="new-tag tag is-success">New</span>}
         </div>
       </figure>
     </div>
