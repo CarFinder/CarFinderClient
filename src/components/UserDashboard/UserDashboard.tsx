@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as interfaces from '../../interfaces';
+import LiquidAds from '../LiquidAds/LiquidAds';
 import SavedSearch from '../SavedSearch/SavedSearch';
 
 import './style.less';
@@ -8,10 +9,12 @@ export interface Props {
   handleFetchSavedSearchResults: () => void;
   handleRemoveAllFilters: () => void;
   handleRemoveFilterById: (id: string) => void;
+  handleGetLiquidAds: () => void;
   searchError?: any;
   loading: boolean;
   language: string;
   savedSearchResults: interfaces.SavedFilterResults[];
+  liquidAds: interfaces.LiquidAds[];
 }
 
 const UserDashboard = (props: Props) => {
@@ -20,12 +23,15 @@ const UserDashboard = (props: Props) => {
     loading,
     searchError,
     savedSearchResults,
+    liquidAds,
     handleFetchSavedSearchResults,
     handleRemoveAllFilters,
-    handleRemoveFilterById
+    handleRemoveFilterById,
+    handleGetLiquidAds
   } = props;
   return (
     <div>
+      <LiquidAds liquidAds={liquidAds} handleGetLiquidAds={handleGetLiquidAds} />
       <SavedSearch
         language={language}
         loading={loading}
