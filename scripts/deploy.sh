@@ -15,14 +15,14 @@ git config --global user.email "travis@travis-ci.org"
 git config --global user.name "Travis"
 
 #using token clone gh-pages branch
-git clone --quiet --branch=master https://${GH_TOKEN}@github.com/${GH_USER}/${GH_REPO}.git
+git clone --quiet --branch=master https://${GH_TOKEN}@github.com/${GH_USER}/${GH_REPO}.git > /dev/null
 
 #go into directory and copy data we're interested in to that directory
 cd ${GH_REPO}
 cp -Rf $HOME/dist/* .
 
 echo "Allow files with underscore https://help.github.com/articles/files-that-start-with-an-underscore-are-missing/" > .nojekyll
-echo "[View live](https://${GH_USER}.github.io/${GH_REPO}/)" > README.md
+echo "[View live](https://${GH_USER}.github.io/)" > README.md
 
 #add, commit and push files
 git add -f .
