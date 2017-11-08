@@ -28,5 +28,9 @@ export default {
     fetchSavedSearchResults: () => axios.get('/api/ad/saved'),
     removeAllSavedFilters: () => axios.delete('/api/filter/saved/all'),
     removeSavedFilterById: (id: string) => axios.delete(`/api/filter/saved/${id}`)
+  },
+  liquidity: {
+    getLiquidity: (data: interfaces.LiquidityFilter) =>
+      axios.post('/api/liquidity/get-liquidity', data)
   }
 };
