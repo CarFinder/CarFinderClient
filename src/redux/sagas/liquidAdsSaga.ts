@@ -1,7 +1,7 @@
 import { SagaIterator } from 'redux-saga';
 import { call, put, takeEvery } from 'redux-saga/effects';
 import api from '../../api/api';
-import actionTypes from '../actions/actionTypes';
+import * as actionTypes from '../actions/actionTypes';
 import { Action } from './index';
 
 function* callGetLiquidAds(action: Action) {
@@ -17,6 +17,6 @@ function* callGetLiquidAds(action: Action) {
   }
 }
 
-export default function* watchChangePassword(): SagaIterator {
+export default function* watchLiquidAds(): SagaIterator {
   yield takeEvery(actionTypes.GET_LIQUID_ADS, callGetLiquidAds);
 }

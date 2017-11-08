@@ -3,6 +3,7 @@ import carFiltersSaga from './carFiltersSaga';
 import changePasswordSaga from './changePasswordSaga';
 import changeUserDataSaga from './changeUserData';
 import emailConfrimationSaga from './emailConfirmationSaga';
+import liquidAdsSaga from './liquidAdsSaga';
 import savedSearchResultsSaga from './savedSearchResults';
 import savedSearchSaga from './savedSearchSaga';
 import signinSaga from './signinSaga';
@@ -17,7 +18,8 @@ function* rootSaga() {
     fork(carFiltersSaga),
     fork(changeUserDataSaga),
     fork(savedSearchSaga),
-    fork(savedSearchResultsSaga)
+    fork(savedSearchResultsSaga),
+    fork(liquidAdsSaga)
   ];
 }
 
