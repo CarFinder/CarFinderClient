@@ -63,6 +63,19 @@ export const transformDataForSave = (values: any): interfaces.SavedFilter => {
   return data;
 };
 
+export const transformDataForLiquidity = (values: any): interfaces.LiquidityFilter => {
+  const data: interfaces.LiquidityFilter = {
+    markId: values.markId
+  };
+  if (values.modelId.length !== 0) {
+    data.modelId = values.modelId.map((pair: interfaces.SelectOptions) => pair.value);
+  }
+  if (values.bodyTypeId.length !== 0) {
+    data.bodyTypeId = values.bodyTypeId.map((pair: interfaces.SelectOptions) => pair.value);
+  }
+  return data;
+};
+
 export const transformDataForSearch = (
   filtersData: any,
   sortingParams: any
