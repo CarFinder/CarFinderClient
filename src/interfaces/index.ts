@@ -90,6 +90,12 @@ interface CarModel {
   year: number;
 }
 
+export interface LiquidityFilter {
+  markId: string;
+  modelId?: SelectOptions[] | string[];
+  bodyTypeId?: SelectOptions[] | string[];
+}
+
 export interface SavedFilterResults {
   filterId: string;
   filterName: string;
