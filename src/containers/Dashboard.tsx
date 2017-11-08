@@ -21,7 +21,7 @@ interface StateToProps {
   loading: boolean;
   language: string;
   savedSearchResults: interfaces.SavedFilterResults[];
-  liquidity: number;
+  liquidity: number | null;
   filterValues: interfaces.FilterValues;
 }
 

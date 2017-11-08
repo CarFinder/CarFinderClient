@@ -17,7 +17,7 @@ export interface Props {
   handleCalculateLiquidity: (data: any) => void;
   searchError?: any;
   loading: boolean;
-  liquidity: number;
+  liquidity: number | null;
   language: string;
   savedSearchResults: interfaces.SavedFilterResults[];
   filterValues: interfaces.FilterValues;

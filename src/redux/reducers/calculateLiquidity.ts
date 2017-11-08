@@ -3,7 +3,7 @@ import { CalculateLiquidityActions } from '../actions/calculateLiquidityActions'
 import { InitialState } from '../models/calculateLiquidityModel';
 
 const initialState: InitialState = {
-  result: 0
+  result: null
 };
 
 export default function calculateLiquidityReducer(state: InitialState = initialState, action: any) {

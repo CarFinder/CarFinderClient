@@ -1,5 +1,5 @@
 export interface CalculateLiquidity {
-  result: number;
+  result: number | null;
 }
 
 export type InitialState = CalculateLiquidity;
