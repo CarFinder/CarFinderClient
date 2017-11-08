@@ -1,4 +1,5 @@
 import { fork } from 'redux-saga/effects';
+import calculateLiquiditySaga from './calculateLiquiditySaga';
 import carFiltersSaga from './carFiltersSaga';
 import changePasswordSaga from './changePasswordSaga';
 import changeUserDataSaga from './changeUserData';
@@ -17,7 +18,8 @@ function* rootSaga() {
     fork(carFiltersSaga),
     fork(changeUserDataSaga),
     fork(savedSearchSaga),
-    fork(savedSearchResultsSaga)
+    fork(savedSearchResultsSaga),
+    fork(calculateLiquiditySaga)
   ];
 }
 
