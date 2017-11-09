@@ -76,7 +76,7 @@
 }
 
 .slider-with-text {
-  height: 40vh;
+  height: 70vh;
   width: 100%;
   background: #FFF;
   position: relative;
@@ -92,9 +92,50 @@
     margin: 0;
   }
 
+  @media screen and (max-width: 1024px) {
+    height: 30vh;
+  }
+  @media screen and (max-width: 768px) {
+    height: 60vh;
+  }
+
+  @media screen and (max-width: 480px) {
+    height: 80vh;
+  }
+
+  @media screen and (max-width:640px) {
+    height: 90vh;
+  }
+
+  @media screen and (max-width:568px) {
+    height: 50%;
+  }
+
+  @media screen and (max-width: 768px) {
+    .button-group {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+
+  @media screen and (max-width: 320px) {
+    .button-group {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
   .slide-with-text {
     height: 100%;
     width: 100%;
+
+    @media screen and (max-width: 1024px) {
+      height: 350px;
+    }
+
+    @media screen and (max-width: 320px) {
+      height: 150px;
+    }
   }
 
   .full-height {
@@ -123,39 +164,6 @@
     }
     .isCurrent {
       background: #ffdd57;
-    }
-  }
-
-  .nextArrow {
-    position: absolute;
-    top: 70%;
-    right: 5%;
-    cursor: pointer;
-    transition: all ease-in 0.2s;
-    color: #FFDD57;
-    opacity: 0.5;
-
-    &:hover {
-      opacity: 1;
-      transform: scale(1.4);
-      transition: all ease-in 0.2s;
-    }
-  }
-
-  .backArrow {
-    position: absolute;
-    top: 70%;
-    left: 5%;
-    cursor: pointer;
-    color: #FFDD57;
-    opacity: 0.5;
-
-    transition: all ease-in 0.2s;
-
-    &:hover {
-      opacity: 1;
-      transform: scale(1.4);
-      transition: all ease-in 0.2s;
     }
   }
 }

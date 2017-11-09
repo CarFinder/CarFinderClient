@@ -66,8 +66,8 @@ const SlideWithText = (props: PropTypes) => {
             </div>
           </div>
         </div>
-        <div className="is-clearfix">
-          <button className="button down is-warning pull-right">See advertisements</button>
+        <div className="button-group">
+          <button className="button is-warning">See advertisements</button>
         </div>
       </div>
     </div>

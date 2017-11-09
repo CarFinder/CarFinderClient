@@ -103,4 +103,5 @@ export interface LiquidAds {
   model?: string;
   median?: number;
   images?: string[];
+  url?: string;
 }

@@ -352,7 +352,7 @@ class CarFilter extends React.PureComponent<Props, State> {
                   <button
                     disabled={loading}
                     type="submit"
-                    className={classnames('button is-warning is-pulled-right', {
+                    className={classnames('button is-warning mr is-pulled-right', {
                       'is-loading': loading
                     })}
                   >
@@ -378,7 +378,7 @@ class CarFilter extends React.PureComponent<Props, State> {
                       disabled={loading}
                       type="button"
                       onClick={e => this.onSaveFilter(e)}
-                      className={classnames('button is-default is-pulled-right', {
+                      className={classnames('button is-default mr is-pulled-right', {
                         'is-loading': loading
                       })}
                     >

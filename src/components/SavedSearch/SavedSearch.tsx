@@ -89,7 +89,7 @@ class SavedSearch extends React.PureComponent<Props, State> {
                   this.setState({
                     displayModal: true
                   })}
-                className={classnames('button is-default', {
+                className={classnames('button mb is-default', {
                   'is-loading': loading
                 })}
               >

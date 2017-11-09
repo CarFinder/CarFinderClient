@@ -33,6 +33,10 @@ export default class SliderWithText extends PureComponent<Props, State> {
     this.setState({ background: this.props.content, current: 0, ready: true });
   }
 
+  public componentDidMount() {
+    setTimeout(this.nextSlide, 2000);
+  }
+
   public preloadNextImage = () => {
     const current = this.state.current;
     const background = this.state.background;
@@ -79,6 +83,7 @@ export default class SliderWithText extends PureComponent<Props, State> {
     if (current === imageArray) {
       this.setState({ current: 0 });
     }
+    setTimeout(this.nextSlide, 2000);
   }
 
   public render() {
@@ -87,8 +92,6 @@ export default class SliderWithText extends PureComponent<Props, State> {
         {this.state.ready ? (
           <SlideWithText background={this.state.background} current={this.state.current} />
         ) : null}
-        <LeftArrow previousSlide={this.previousSlide} />
-        <RightArrow nextSlide={this.nextSlide} />
         <Dots
           numberOfDots={this.state.background.length}
           isCurrent={this.state.current}
