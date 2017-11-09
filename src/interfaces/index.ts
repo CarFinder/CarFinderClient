@@ -88,6 +88,7 @@ interface CarModel {
   sourceName: string;
   sourceUrl: string;
   year: number;
+  isSold?: boolean;
 }
 
 export interface SavedFilterResults {

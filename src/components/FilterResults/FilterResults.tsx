@@ -85,6 +85,7 @@ const FilterResults = (props: Props) => {
             year={value.year}
             images={value.images}
             kms={value.kms}
+            isSold={value.isSold}
           />
         </article>
       );
