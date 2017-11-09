@@ -18,6 +18,11 @@ export interface Props {
 
 const AdPreview = (props: Props) => {
   const { model, mark, description, price, year, images, kms, source, sourceUrl } = props;
+
+  const onCopyClick = () => {
+    document.execCommand('copy', false);
+  };
+
   return (
     <div>
       <div>
@@ -44,13 +49,20 @@ const AdPreview = (props: Props) => {
       </div>
       <div className="ad-link-container">
         <label htmlFor="source">{source}</label>
-        <input
-          className="has-icons-right input"
-          value={sourceUrl}
-          id="has-icons-right"
-          onClick={(e: any) => e.target.select()}
-          readOnly={true}
-        />
+        <div className="field has-addons">
+          <input
+            className="has-icons-right input"
+            value={sourceUrl}
+            id="source"
+            onClick={(e: any) => e.target.select()}
+            readOnly={true}
+          />
+          <p className="control">
+            <a className="button">
+              <i className="fa fa-clipboard" aria-hidden="true" onClick={onCopyClick} />
+            </a>
+          </p>
+        </div>
       </div>
     </div>
   );
