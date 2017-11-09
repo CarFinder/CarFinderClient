@@ -14,7 +14,10 @@ function* callFetchMarks(action: Action) {
     yield put({ type: actionTypes.SET_MARKS_VALUES, payload: data });
     yield put({ type: actionTypes.SET_LOADING, payload: false });
   } catch (e) {
-    yield put({ type: actionTypes.SET_SEARCH_ERROR, payload: 'Server-side error' });
+    yield put({
+      type: actionTypes.SET_SEARCH_ERROR,
+      payload: e.response.data.error ? e.response.data.error : 'Server-side error'
+    });
     yield put({ type: actionTypes.SET_MARKS_VALUES, payload: [] });
     yield put({ type: actionTypes.SET_LOADING, payload: false });
   }
@@ -29,7 +32,10 @@ function* callFetchModels(action: Action) {
     yield put({ type: actionTypes.SET_MODELS_VALUES, payload: data });
     yield put({ type: actionTypes.SET_LOADING, payload: false });
   } catch (e) {
-    yield put({ type: actionTypes.SET_SEARCH_ERROR, payload: 'Server-side error' });
+    yield put({
+      type: actionTypes.SET_SEARCH_ERROR,
+      payload: e.response.data.error ? e.response.data.error : 'Server-side error'
+    });
     yield put({ type: actionTypes.SET_MODELS_VALUES, payload: [] });
     yield put({ type: actionTypes.SET_LOADING, payload: false });
   }
@@ -44,7 +50,10 @@ function* callFetchBodyTypes(action: Action) {
     yield put({ type: actionTypes.SET_BODY_TYPES_VALUES, payload: data });
     yield put({ type: actionTypes.SET_LOADING, payload: false });
   } catch (e) {
-    yield put({ type: actionTypes.SET_SEARCH_ERROR, payload: 'Server-side error' });
+    yield put({
+      type: actionTypes.SET_SEARCH_ERROR,
+      payload: e.response.data.error ? e.response.data.error : 'Server-side error'
+    });
     yield put({ type: actionTypes.SET_BODY_TYPES_VALUES, payload: [] });
     yield put({ type: actionTypes.SET_LOADING, payload: false });
   }
@@ -62,7 +71,10 @@ function* callFetchFilterResults(action: any) {
     yield put({ type: actionTypes.SET_FILTER_RESULTS, payload: response.data });
     yield put({ type: actionTypes.SET_LOADING, payload: false });
   } catch (e) {
-    yield put({ type: actionTypes.SET_SEARCH_ERROR, payload: 'Server-side error' });
+    yield put({
+      type: actionTypes.SET_SEARCH_ERROR,
+      payload: e.response.data.error ? e.response.data.error : 'Server-side error'
+    });
     yield put({ type: actionTypes.SET_LOADING, payload: false });
   }
 }

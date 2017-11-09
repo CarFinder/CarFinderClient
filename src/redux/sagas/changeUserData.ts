@@ -60,7 +60,7 @@ function* callChangeUserAvatar(action: Action) {
     yield put({ type: 'SET_LOADING', payload: false });
     yield put({
       type: 'SET_CHANGE_USER_DATA_ERROR',
-      payload: e.response ? e.response.data.error : 'Server-side error'
+      payload: e.response.data.error ? e.response.data.error : 'Server-side error'
     });
   }
 }
