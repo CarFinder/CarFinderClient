@@ -7,6 +7,7 @@ import '../style.less';
 export interface Props {
   page: number;
   language: string;
+  changePage: (index: number) => void;
 }
 
 const FormStepper = (props: Props) => {
@@ -18,7 +19,7 @@ const FormStepper = (props: Props) => {
           'is-active': props.page === 1
         })}
       >
-        <a className="has-text-dark">
+        <a className="has-text-dark" onClick={() => props.changePage(1)}>
           <span className="steps-marker">
             <span className="icon">
               <i className="fa fa-user" />
@@ -34,7 +35,7 @@ const FormStepper = (props: Props) => {
           'is-active': props.page === 2
         })}
       >
-        <a className="has-text-dark">
+        <a className="has-text-dark" onClick={() => props.changePage(2)}>
           <span className="steps-marker">
             <span className="icon">
               <i className="fa fa-envelope-open" />
@@ -50,7 +51,7 @@ const FormStepper = (props: Props) => {
           'is-active': props.page === 3
         })}
       >
-        <a className="has-text-dark">
+        <a className="has-text-dark" onClick={() => props.changePage(3)}>
           <span className="steps-marker">
             <span className="icon">
               <i className="fa fa-shield" />

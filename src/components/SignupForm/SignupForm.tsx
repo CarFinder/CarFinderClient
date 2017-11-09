@@ -18,6 +18,7 @@ export interface Props {
   signedup: boolean;
   authError?: any;
   language: string;
+  formValues: any;
 }
 
 export interface State {
@@ -53,7 +54,19 @@ class SignupFrom extends React.PureComponent<Props, State> {
   };
 
   public nextPage = () => {
+    if (this.state.page !== 3) {
+      localStorage.setItem('signupValues', JSON.stringify(this.props.formValues.values));
+    }
     this.setState({ page: this.state.page + 1 });
+  };
+
+  public changePage = (index: number) => {
+    if (this.state.page === 4) {
+      return;
+    } else {
+      localStorage.setItem('signupValues', JSON.stringify(this.props.formValues.values));
+      this.setState({ page: index });
+    }
   };
 
   public render() {
@@ -74,7 +87,7 @@ class SignupFrom extends React.PureComponent<Props, State> {
                   <h1 className="is-size-3 has-text-centered">{lang.signupForm.title}</h1>
                 )}
                 <div className="form-stepper">
-                  <FormStepper page={page} language={language} />
+                  <FormStepper page={page} language={language} changePage={this.changePage} />
                 </div>
                 <div className="signup-form">
                   {page === 1 && <FirstPage onSubmit={this.nextPage} language={language} />}
