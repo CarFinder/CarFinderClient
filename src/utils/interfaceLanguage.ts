@@ -117,6 +117,7 @@ const interfaceLanguage: Language = {
       106: 'Ошибка загрузки изображения',
       107: 'Ошибка при получении данных',
       120: 'Ошибка при соединении с базой данных',
+      409: 'Пользователь с таким е-мэйлом уже существует',
       11000: 'Такой аккаунт уже существует',
       serverUnavailable:
         'В данный момент сервер не доступен. Обновите страницу или попытайтесь позже'
@@ -271,6 +272,7 @@ const interfaceLanguage: Language = {
       106: 'Image upload error',
       107: 'Error while receiving data',
       120: 'Database connection error',
+      409: 'User with such email already exists',
       11000: 'Account already exists',
       serverUnavailable: 'Server is currently unavailable. Please reload the page and try again.'
     },
