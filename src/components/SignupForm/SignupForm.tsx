@@ -39,9 +39,7 @@ class SignupFrom extends React.PureComponent<Props, State> {
         page: 4
       });
     } else if (props.authError) {
-      this.setState({
-        page: 1
-      });
+      this.setState(this.state);
     }
   }
 
@@ -61,7 +59,7 @@ class SignupFrom extends React.PureComponent<Props, State> {
   };
 
   public changePage = (index: number) => {
-    if (this.state.page === 4) {
+    if (this.state.page === 4 || this.props.formValues.syncErrors) {
       return;
     } else {
       localStorage.setItem('signupValues', JSON.stringify(this.props.formValues.values));
