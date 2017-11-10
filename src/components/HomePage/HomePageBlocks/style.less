@@ -1,0 +1,53 @@
+.hero {
+  &-button {
+    color: rgba(0, 0, 0, 0.7);
+    font-weight: bold;
+  }
+  &-image {
+    position: relative;
+    background: url('https://static.pexels.com/photos/57645/pexels-photo-57645.jpeg') center;
+    background-size: cover;
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+  }
+}
+
+.section {
+  &-column {
+    text-align: center;
+  }
+  &-features, &-contact {
+    background-color: rgb(245, 245, 245);
+    & .title {
+      color: rgba(0, 0, 0, 0.5);
+      text-align: center;
+      font-weight: normal;
+    }
+  }
+  &-icon {
+    background-color: rgb(255, 255, 255);
+    height: 10rem !important;
+    width: 10rem !important;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+  }
+  & .image {
+    margin: 0 auto 1rem ;
+  }
+  &-technologies {
+    background-color: rgb(40, 40, 52);
+    & .title, .subtitle {
+      text-align: center;
+      color: rgb(255, 255, 255);
+      font-weight: lighter;
+    }
+  }
+}
+
