@@ -99,7 +99,8 @@ class SavedSearch extends React.PureComponent<Props, State> {
                 onClick={() =>
                   this.setState({
                     displayModal: true
-                  })}
+                  })
+                }
                 className={classnames('button is-default', {
                   'is-loading': loading
                 })}
@@ -119,7 +120,8 @@ class SavedSearch extends React.PureComponent<Props, State> {
               onClick={() =>
                 this.setState({
                   filtersToDisplay: savedSearchResults.length
-                })}
+                })
+              }
             >
               {lang.savedSearch.seeAllFilters}
             </div>
