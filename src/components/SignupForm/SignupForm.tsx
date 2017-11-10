@@ -1,3 +1,4 @@
+import queryString from 'query-string';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import * as interfaces from '../../interfaces';
@@ -19,6 +20,12 @@ export interface Props {
   authError?: any;
   language: string;
   formValues: any;
+  history: {
+    replace: (url: string) => void;
+  };
+  location: {
+    search: any;
+  };
 }
 
 export interface State {
@@ -45,6 +52,12 @@ class SignupFrom extends React.PureComponent<Props, State> {
     this.props.handleClearError();
   }
 
+  public componentDidMount() {
+    this.props.handleClearError();
+    const step = queryString.parse(this.props.location.search).step;
+    step ? this.setState({ page: parseInt(step, 10) }) : this.setState({ page: 1 });
+  }
+
   public handleSubmit = (userData: interfaces.SignupUserData) => {
     this.props.handleSignup(userData);
     localStorage.removeItem('signupValues');
@@ -55,12 +68,14 @@ class SignupFrom extends React.PureComponent<Props, State> {
       localStorage.setItem('signupValues', JSON.stringify(this.props.formValues.values));
     }
     this.setState({ page: this.state.page + 1 });
+    this.props.history.replace(`/signup/?step=${this.state.page + 1}`);
   };
 
   public changePage = (index: number) => {
     if (this.state.page !== 4 && index < this.state.page) {
       localStorage.setItem('signupValues', JSON.stringify(this.props.formValues.values));
       this.setState({ page: index });
+      this.props.history.replace(`/signup/?step=${index}`);
     }
   };
 
