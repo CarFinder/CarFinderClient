@@ -3,6 +3,7 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import * as interfaces from '../../interfaces';
 import interfaceLanguage from '../../utils/interfaceLanguage';
+import { validateSignup } from '../../utils/utils';
 import Notification from '../Common/Notification/Notifiation';
 import FirstPage from './WizardForm/FirstPage';
 import FormStepper from './WizardForm/FormStepper';
@@ -55,7 +56,12 @@ class SignupFrom extends React.PureComponent<Props, State> {
   public componentDidMount() {
     this.props.handleClearError();
     const step = queryString.parse(this.props.location.search).step;
-    step ? this.setState({ page: parseInt(step, 10) }) : this.setState({ page: 1 });
+    let pageIndex = validateSignup(step);
+    if (this.props.signedup) {
+      pageIndex = 4;
+    }
+    this.setState({ page: pageIndex });
+    this.props.history.replace(`/signup/?step=${pageIndex}`);
   }
 
   public handleSubmit = (userData: interfaces.SignupUserData) => {
@@ -64,16 +70,22 @@ class SignupFrom extends React.PureComponent<Props, State> {
   };
 
   public nextPage = () => {
-    if (this.state.page !== 3) {
-      localStorage.setItem('signupValues', JSON.stringify(this.props.formValues.values));
-    }
+    const formValues = {
+      name: this.props.formValues.values.name,
+      email: this.props.formValues.values.email
+    };
+    localStorage.setItem('signupValues', JSON.stringify(formValues));
     this.setState({ page: this.state.page + 1 });
     this.props.history.replace(`/signup/?step=${this.state.page + 1}`);
   };
 
   public changePage = (index: number) => {
     if (this.state.page !== 4 && index < this.state.page) {
-      localStorage.setItem('signupValues', JSON.stringify(this.props.formValues.values));
+      const formValues = {
+        name: this.props.formValues.values.name,
+        email: this.props.formValues.values.email
+      };
+      localStorage.setItem('signupValues', JSON.stringify(formValues));
       this.setState({ page: index });
       this.props.history.replace(`/signup/?step=${index}`);
     }
