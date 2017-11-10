@@ -38,9 +38,7 @@ class SignupFrom extends React.PureComponent<Props, State> {
       this.setState({
         page: 4
       });
-    } else if (props.authError) {
-      this.setState(this.state);
-    }
+    } 
   }
 
   public componentWillMount() {
@@ -60,9 +58,7 @@ class SignupFrom extends React.PureComponent<Props, State> {
   };
 
   public changePage = (index: number) => {
-    if (this.state.page === 4 || this.state.page < index) {
-      return;
-    } else {
+    if (this.state.page !== 4 && index < this.state.page) {
       localStorage.setItem('signupValues', JSON.stringify(this.props.formValues.values));
       this.setState({ page: index });
     }
