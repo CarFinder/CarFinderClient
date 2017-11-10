@@ -38,7 +38,7 @@ class SignupFrom extends React.PureComponent<Props, State> {
       this.setState({
         page: 4
       });
-    } 
+    }
   }
 
   public componentWillMount() {
