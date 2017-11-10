@@ -1,6 +1,6 @@
 {
   "printWidth": 100,
-  "parser": "babylon",
+  "parser": "typescript",
   "tabWidth": 2,
   "singleQuote": true,
   "trailingComma": "none",
