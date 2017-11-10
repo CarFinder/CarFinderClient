@@ -60,7 +60,7 @@ class SignupFrom extends React.PureComponent<Props, State> {
   };
 
   public changePage = (index: number) => {
-    if (this.state.page === 4 || (this.props.formValues.syncErrors && (this.state.page < index))) {
+    if (this.state.page === 4 || this.state.page < index) {
       return;
     } else {
       localStorage.setItem('signupValues', JSON.stringify(this.props.formValues.values));
