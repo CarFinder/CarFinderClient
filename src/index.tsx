@@ -11,7 +11,7 @@ import rootReducer from './redux/reducers';
 import rootSaga from './redux/sagas/index';
 import setAuthorizationHeader from './utils/axiosHeader';
 
-import 'index.less';
+import './index.less';
 
 import Footer from './components/Common/Footer/Footer';
 import NavBar from './components/Common/NavBar/NavBar';
