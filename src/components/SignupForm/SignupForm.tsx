@@ -49,6 +49,7 @@ class SignupFrom extends React.PureComponent<Props, State> {
 
   public handleSubmit = (userData: interfaces.SignupUserData) => {
     this.props.handleSignup(userData);
+    localStorage.removeItem('signupValues');
   };
 
   public nextPage = () => {
@@ -59,7 +60,7 @@ class SignupFrom extends React.PureComponent<Props, State> {
   };
 
   public changePage = (index: number) => {
-    if (this.state.page === 4 || this.props.formValues.syncErrors) {
+    if (this.state.page === 4 || (this.props.formValues.syncErrors && (this.state.page < index))) {
       return;
     } else {
       localStorage.setItem('signupValues', JSON.stringify(this.props.formValues.values));
