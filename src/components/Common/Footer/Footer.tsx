@@ -1,8 +1,13 @@
+import classNames from 'classnames';
 import * as React from 'react';
 import './style.less';
 
 const Footer = () => (
-  <footer className="footer">
+  <footer
+    className={classNames('footer', {
+      'dark-theme': window.location.href === 'http://localhost:3001/'
+    })}
+  >
     <div className="container">
       <div className="content has-text-centered">
         <p>
