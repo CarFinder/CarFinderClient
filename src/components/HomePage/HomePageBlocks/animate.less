@@ -1,0 +1,66 @@
+.section {
+  &-icon {
+    opacity: 0;
+    box-shadow: 0 0 0 4px rgba(255,255,255,1);
+    transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+    &:hover {
+      background: rgb(177, 177, 177);
+	    color: #ffdd57;
+      box-shadow: 0 0 0 8px rgba(255,255,255,0.3);
+      & span {
+        animation: toRightFromLeft 0.3s forwards;
+      }
+    }
+  }
+  &-image {
+      opacity: 0;
+      transition: width 0.3s height 0.3s;
+    &:hover {
+      
+      cursor: pointer;
+    } 
+  }
+}
+
+.visible {
+  &-1 {
+    animation: visibility .3s forwards;
+  }
+  &-2 {
+    animation: visibility .5s forwards;
+  }
+  &-3 {
+    animation: visibility .7s forwards;
+  }
+  &-4 {
+    animation: visibility .9s forwards;
+  }
+}
+
+@keyframes toRightFromLeft {
+	49% {
+		transform: translate(100%);
+	}
+	50% {
+		opacity: 0;
+		transform: translate(-100%);
+	}
+	51% {
+		opacity: 1;
+	}
+}
+
+@keyframes visibility {
+	50% {
+    opacity: 0;
+    transform: translate(0, 10%);
+  }
+  70% {
+    opacity: 0.5;
+    transform: translate(0, -10%);
+  }
+	100% {
+		opacity: 1;
+	}
+}
+
