@@ -19,6 +19,13 @@
   }
 }
 
+.container {
+  &-stats {
+    max-width: 50%;
+    margin-top: 2rem;
+  }
+}
+
 .section {
   &-column {
     text-align: center;
@@ -29,6 +36,13 @@
       color: rgba(0, 0, 0, 0.5);
       text-align: center;
       font-weight: normal;
+    }
+  }
+  &-form {
+    display: flex;
+    flex-direction: column;
+    & .button {
+      font-weight: bold;
     }
   }
   &-icon {
