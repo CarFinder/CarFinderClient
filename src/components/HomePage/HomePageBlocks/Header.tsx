@@ -13,6 +13,13 @@ const Header = (props: any) => {
             Get Started
           </Link>
         </div>
+        <div className="container container-stats has-text-centered">
+          <div className="columns">
+            <div className="column section-column">Ads</div>
+            <div className="column section-column">Users</div>
+            <div className="column section-column">Models</div>
+          </div>
+        </div>
       </div>
     </section>
   );
