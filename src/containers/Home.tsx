@@ -6,8 +6,7 @@ import * as getStatsActions from '../redux/actions/getStatsActions';
 import * as submitMessageActions from '../redux/actions/messageActions';
 
 interface DispatchFromProps {
-  handleClearAuthError: () => void;
-  handleClearSearchError: () => void;
+  handleClearError: () => void;
   handleGetStats: () => void;
   handleSubmitMessage: (message: any) => void;
 }
@@ -33,8 +32,8 @@ const mapStateToProps = (state: any) => ({
 const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
   handleSubmitMessage: (message: any) => dispatch(submitMessageActions.submitMessage(message)),
   handleGetStats: () => dispatch(getStatsActions.getStats()),
-  handleClearAuthError: () => dispatch(formStateActions.setAuthError('')),
-  handleClearSearchError: () => dispatch(formStateActions.setSearchError(''))
+  handleClearError: () =>
+    dispatch(formStateActions.setSearchError('') || formStateActions.setAuthError(''))
 });
 
 export default connect<StateToProps, DispatchFromProps>(mapStateToProps, mapDispatchToProps)(

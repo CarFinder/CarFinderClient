@@ -7,8 +7,7 @@ import Technologies from './HomePageBlocks/Technologies';
 
 export interface Props {
   handleSubmitMessage: (message: any) => void;
-  handleClearAuthError: () => void;
-  handleClearSearchError: () => void;
+  handleClearError: () => void;
   handleGetStats: () => void;
   loading: boolean;
   searchError?: any;
@@ -19,13 +18,12 @@ export interface Props {
 }
 
 class HomePage extends React.PureComponent<Props, any> {
-  public handleSubmit = (message: any) => {
+  public handleSubmit = (message: interfaces.SendMessage) => {
     this.props.handleSubmitMessage(message);
   };
 
   public componentDidMount() {
-    this.props.handleClearAuthError();
-    this.props.handleClearSearchError();
+    this.props.handleClearError();
     this.props.handleGetStats();
   }
 
@@ -37,7 +35,7 @@ class HomePage extends React.PureComponent<Props, any> {
         <Features language={language} />
         <Technologies language={language} />
         <Contact
-          handleSubmit={this.handleSubmit}
+          onSubmit={this.handleSubmit}
           language={language}
           loading={loading}
           successMessage={successMessage}

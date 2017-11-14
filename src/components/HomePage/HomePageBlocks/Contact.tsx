@@ -1,6 +1,7 @@
 import classnames from 'classnames';
 import * as React from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { validateForm as validate } from '../../../utils/formValidation';
 import interfaceLanguage from '../../../utils/interfaceLanguage';
 import Notification from '../../Common/Notification/Notifiation';
 import './style.less';
@@ -93,8 +94,7 @@ const Contact = (props: Props) => {
             title={lang.home.message}
           />
           <button
-            type="button"
-            onClick={e => this.onSaveFilter(e)}
+            type="submit"
             className={classnames('button is-warning', {
               'is-loading': props.loading
             })}
@@ -108,5 +108,6 @@ const Contact = (props: Props) => {
 };
 
 export default reduxForm<any, any>({
-  form: 'contactForm'
+  form: 'contactForm',
+  validate
 })(Contact);

@@ -15,7 +15,10 @@ function* callSubmitMessage(action: Action) {
     yield put({ type: 'SET_LOADING', payload: false });
   } catch (e) {
     yield put({ type: 'SET_LOADING', payload: false });
-    yield put({ type: 'SET_AUTH_ERROR', payload: e.response.data.error });
+    yield put({
+      type: 'SET_AUTH_ERROR',
+      payload: e.response.data.error ? e.response.data.error : 'Server-side error'
+    });
   }
 }
 
