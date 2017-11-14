@@ -14,10 +14,24 @@
   }
   &-image {
       opacity: 0;
-      transition: width 0.3s height 0.3s;
     &:hover {
-      
+      transform: scale(1.1);
       cursor: pointer;
+    } 
+  }
+  &-stats {
+    box-shadow: 0 0 0 4px rgba(255,255,255,1);
+    transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+    & .counter-text {
+      transition: color 0.3s;
+    }
+    &:hover {
+      background: rgb(177, 177, 177);
+      box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.3);
+      color: #ffdd57;
+      & .counter-text {
+        color: #ffdd57 !important;
+      }
     } 
   }
 }
