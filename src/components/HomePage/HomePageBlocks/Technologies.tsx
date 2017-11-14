@@ -1,8 +1,13 @@
 import classNames from 'classnames';
 import * as React from 'react';
 import Waypoint from 'react-waypoint';
+import interfaceLanguage from '../../../utils/interfaceLanguage';
 import './animate.less';
 import './style.less';
+
+interface Props {
+  language: string;
+}
 
 class Technologies extends React.PureComponent<any, any> {
   constructor() {
@@ -13,13 +18,13 @@ class Technologies extends React.PureComponent<any, any> {
   }
 
   public render() {
+    const { language } = this.props;
+    const lang = language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
     return (
       <section className="section section-technologies">
         <div className="container">
-          <p className="title section-title">Technologies</p>
-          <p className="subtitle section-title">
-            We used the following technologies to provide the best user experience for you:
-          </p>
+          <p className="title section-title">{lang.home.technologies}</p>
+          <p className="subtitle section-title">{lang.home.technologiesSubtitle}</p>
           <Waypoint
             onEnter={() =>
               this.setState({

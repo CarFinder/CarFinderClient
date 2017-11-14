@@ -1,10 +1,15 @@
 import classNames from 'classnames';
 import * as React from 'react';
 import Waypoint from 'react-waypoint';
+import interfaceLanguage from '../../../utils/interfaceLanguage';
 import './animate.less';
 import './style.less';
 
-class Features extends React.PureComponent<any, any> {
+interface Props {
+  language: string;
+}
+
+class Features extends React.PureComponent<Props, any> {
   constructor() {
     super();
     this.state = {
@@ -13,10 +18,12 @@ class Features extends React.PureComponent<any, any> {
   }
 
   public render() {
+    const { language } = this.props;
+    const lang = language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
     return (
       <section className="section section-features">
         <div className="container">
-          <p className="title">Features</p>
+          <p className="title">{lang.home.features}</p>
           <Waypoint
             onEnter={() =>
               this.setState({
@@ -40,7 +47,7 @@ class Features extends React.PureComponent<any, any> {
                     <i className="fa fa fa-car" />
                   </span>
                 </span>
-                <p className="title is-4">Search for the best offers from top platforms</p>
+                <p className="title is-4">{lang.home.featuresSearch}</p>
               </div>
               <div className="column section-column">
                 <span
@@ -52,7 +59,7 @@ class Features extends React.PureComponent<any, any> {
                     <i className="fa fa-floppy-o" />
                   </span>
                 </span>
-                <p className="title is-4">Save your search filters</p>
+                <p className="title is-4">{lang.home.featuresFilter}</p>
               </div>
               <div className="column section-column">
                 <span
@@ -64,7 +71,7 @@ class Features extends React.PureComponent<any, any> {
                     <i className="fa fa-envelope-open-o" />
                   </span>
                 </span>
-                <p className="title is-4">Be the first to get new offers</p>
+                <p className="title is-4">{lang.home.featuresOffers}</p>
               </div>
               <div className="column section-column">
                 <span
@@ -77,7 +84,7 @@ class Features extends React.PureComponent<any, any> {
                   </span>
                 </span>
 
-                <p className="title is-4">Find out how fast you can sell your car</p>
+                <p className="title is-4">{lang.home.featuresLiquid}</p>
               </div>
             </div>
           </Waypoint>
