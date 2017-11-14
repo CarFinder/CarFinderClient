@@ -4,7 +4,8 @@
   "scripts": {
     "dev-server": "webpack-dev-server",
     "lint": "tslint ./src/**/*.t*",
-    "prettier": "prettier --list-different --config ./.prettierrc ./src/**/*.t*"
+    "prettier": "prettier --list-different --config ./.prettierrc ./src/**/*.t*",
+    "build:prod": "webpack -p --env.NODE_ENV=production"
   },
   "main": "index.tsx",
   "license": "MIT",
