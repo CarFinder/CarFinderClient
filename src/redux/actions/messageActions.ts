@@ -6,21 +6,11 @@ export interface SubmitMessage {
   payload: Message;
 }
 
-export interface SubmitMessageSuccess {
-  type: actionTypes.SUBMIT_MESSAGE_SUCCESS;
-}
-
-export type SubmitMessageAction = SubmitMessage | SubmitMessageSuccess;
+export type SubmitMessageAction = SubmitMessage;
 
 export function submitMessage(payload: Message): SubmitMessage {
   return {
     type: actionTypes.SUBMIT_MESSAGE,
     payload
-  };
-}
-
-export function submitMessageSuccess(): SubmitMessageSuccess {
-  return {
-    type: actionTypes.SUBMIT_MESSAGE_SUCCESS
   };
 }
