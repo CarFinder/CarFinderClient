@@ -14,13 +14,15 @@ export default {
     changeUserAvatar: (data: interfaces.ChangeUserAvatar) =>
       axios.post('api/user/update-user-image', data),
     changeUserSettings: (data: interfaces.ChangeUserSettings) =>
-      axios.post('api/user/update-user-settings', data)
+      axios.post('api/user/update-user-settings', data),
+    submitMessage: (data: interfaces.SendMessage) => axios.post('/api/user/message', data)
   },
   filters: {
     fetchMarks: () => axios.get('/api/filter/marks'),
     fetchBodyTypes: () => axios.get('/api/filter/bodytypes'),
     fetchModels: (markId: string) => axios.post('/api/filter/models', { markId }),
-    fetchResults: (data: interfaces.CarFilter) => axios.post('/api/posts', data)
+    fetchResults: (data: interfaces.CarFilter) => axios.post('/api/posts', data),
+    fetchStats: () => axios.get('api/filter/stats')
   },
   savedSearch: {
     fetchFilters: () => axios.get('/api/filter/saved'),
