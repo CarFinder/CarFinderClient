@@ -41,6 +41,9 @@ export interface Language {
         [key: string]: string;
       };
     };
+    home: {
+      [key: string]: string;
+    };
   };
   en: {
     validation: {
@@ -83,6 +86,9 @@ export interface Language {
       [key: string]: {
         [key: string]: string;
       };
+    };
+    home: {
+      [key: string]: string;
     };
   };
 }
@@ -241,6 +247,29 @@ const interfaceLanguage: Language = {
         cancel: 'Отмена',
         confirm: 'Удалить все'
       }
+    },
+    home: {
+      motto: 'Автомобили Для Успешных Людей.',
+      getStarted: 'Начать Работу',
+      ads: 'Объявлений',
+      users: 'Пользователей',
+      models: 'Моделей',
+      features: 'Преимущества',
+      featuresSearch: 'Лучшие предложения с популярных платформ',
+      featuresFilter: 'Сохранение параметров поиска',
+      featuresOffers: 'Рассылка с информацией о новых объявлениях',
+      featuresLiquid: 'Рассчет ликвидности',
+      technologies: 'Технологии',
+      technologiesSubtitle:
+        'Мы использовали следующие технологии, чтобы сделать наш сервис удобным для пользователей:',
+      contactUs: 'Свяжитесь с нами',
+      message: 'Сообщение',
+      messagePlaceholder: 'Введите ваше сообщение',
+      nameField: 'Ваше имя',
+      nameFieldPlaceholder: 'Введите ваше имя',
+      emailField: 'Ваш е-мэйл',
+      emailFieldPlaceholder: 'Введите ваш е-мэйл',
+      submit: 'Отправить сообщение'
     }
   },
   en: {
@@ -395,6 +424,29 @@ const interfaceLanguage: Language = {
         cancel: 'Cancel',
         confirm: 'Remove all'
       }
+    },
+    home: {
+      motto: 'If You Want To Get Ahead, Get A Car.',
+      getStarted: 'Get Started',
+      ads: 'Ads',
+      users: 'Users',
+      models: 'Models',
+      features: 'Features',
+      featuresSearch: 'Search for the best offers from top platforms',
+      featuresFilter: 'Save your search filters',
+      featuresOffers: 'Be the first to get new offers',
+      featuresLiquid: 'Find out how fast you can sell your car',
+      technologies: 'Technologies',
+      technologiesSubtitle:
+        'We used the following technologies to provide the best user experience for you:',
+      contactUs: 'Contact us',
+      message: 'Message',
+      messagePlaceholder: 'Your message',
+      nameField: 'Your name',
+      nameFieldPlaceholder: 'Enter your name',
+      emailField: 'Your email',
+      emailFieldPlaceholder: 'Enter your email',
+      submit: 'Submit your message'
     }
   }
 };
