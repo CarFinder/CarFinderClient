@@ -64,5 +64,13 @@ module.exports = {
       }
     ]
   },
-  plugins: [new WebpackNotifierPlugin(), new ExtractTextPlugin('styles.css')]
+  plugins: [
+    new WebpackNotifierPlugin(),
+    new ExtractTextPlugin('styles.css'),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+      }
+    })
+  ]
 };
