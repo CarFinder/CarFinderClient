@@ -21,8 +21,14 @@
 
 .container {
   &-stats {
-    max-width: 50%;
-    margin-top: 2rem;
+    .columns {
+      justify-content: space-between;
+      margin-top: 2rem;
+    }
+    .column {
+      display: flex;
+      justify-content: center;
+    }
   }
 }
 
@@ -36,6 +42,9 @@
       color: rgba(0, 0, 0, 0.5);
       text-align: center;
       font-weight: normal;
+    }
+    & .button {
+      margin-right: 0;
     }
   }
   &-form {
@@ -62,6 +71,21 @@
       color: rgb(255, 255, 255);
       font-weight: lighter;
     }
+  }
+  &-stats {
+    display: flex;
+    flex-direction: column;
+    color:  rgba(0, 0, 0, 0.5);
+    background-color: rgb(255, 255, 255);
+    height: 11rem !important;
+    width: 11rem !important;
+    border-radius: 50%;
+  }
+}
+
+.counter {
+  &-text {
+    color:  rgba(0, 0, 0, 0.5) !important;
   }
 }
 
