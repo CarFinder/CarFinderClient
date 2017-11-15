@@ -1,4 +1,5 @@
 import * as React from 'react';
+import api from '../../api/api';
 import * as interfaces from '../../interfaces';
 import Contact from './HomePageBlocks/Contact';
 import Features from './HomePageBlocks/Features';
@@ -6,7 +7,9 @@ import Header from './HomePageBlocks/Header';
 import Technologies from './HomePageBlocks/Technologies';
 
 export interface Props {
-  handleSubmitMessage: (message: any) => void;
+  handleSetLoading: (loading: boolean) => void;
+  handleSetSuccessMessage: (message: string) => void;
+  handleSetError: (error: string) => void;
   handleClearError: () => void;
   handleGetStats: () => void;
   loading: boolean;
@@ -19,7 +22,19 @@ export interface Props {
 
 class HomePage extends React.PureComponent<Props, any> {
   public handleSubmit = (message: interfaces.SendMessage) => {
-    this.props.handleSubmitMessage(message);
+    this.props.handleSetLoading(true);
+    this.props.handleClearError();
+    api.user
+      .submitMessage(message)
+      .then(response => {
+        this.props.handleSetLoading(false);
+        this.props.handleSetSuccessMessage('Сообщение было отправлено успешно');
+      })
+      .catch(e => {
+        this.props.handleSetLoading(false);
+        const error = e.response.data.error ? e.response.data.error : 'Server-side error';
+        this.props.handleSetError(error);
+      });
   };
 
   public componentDidMount() {

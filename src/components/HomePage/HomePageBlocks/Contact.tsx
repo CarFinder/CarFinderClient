@@ -14,7 +14,6 @@ export interface Props {
   meta?: any;
   custom?: object;
   handleSubmit: React.FormEventHandler<any>;
-  invalid?: boolean;
   language: string;
   loading: boolean;
   successMessage?: string;

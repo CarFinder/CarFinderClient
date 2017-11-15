@@ -3,12 +3,13 @@ import HomePage from '../components/HomePage/HomePage';
 import * as interfaces from '../interfaces';
 import * as formStateActions from '../redux/actions/formStateActions';
 import * as getStatsActions from '../redux/actions/getStatsActions';
-import * as submitMessageActions from '../redux/actions/messageActions';
 
 interface DispatchFromProps {
   handleClearError: () => void;
   handleGetStats: () => void;
-  handleSubmitMessage: (message: any) => void;
+  handleSetLoading: (loading: boolean) => void;
+  handleSetError: (error: string) => void;
+  handleSetSuccessMessage: (message: string) => void;
 }
 
 interface StateToProps {
@@ -30,7 +31,10 @@ const mapStateToProps = (state: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
-  handleSubmitMessage: (message: any) => dispatch(submitMessageActions.submitMessage(message)),
+  handleSetLoading: (loading: boolean) => dispatch(formStateActions.setLoading(loading)),
+  handleSetError: (error: string) => dispatch(formStateActions.setAuthError(error)),
+  handleSetSuccessMessage: (message: string) =>
+    dispatch(formStateActions.setSuccessMessage(message)),
   handleGetStats: () => dispatch(getStatsActions.getStats()),
   handleClearError: () =>
     dispatch(formStateActions.setSearchError('') || formStateActions.setAuthError(''))
