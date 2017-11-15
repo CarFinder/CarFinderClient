@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const WebpackNotifierPlugin = require('webpack-notifier');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
   devtool: 'source-map',
@@ -64,5 +65,14 @@ module.exports = {
       }
     ]
   },
-  plugins: [new WebpackNotifierPlugin(), new ExtractTextPlugin('styles.css')]
+  plugins: [
+    new WebpackNotifierPlugin(),
+    new ExtractTextPlugin('styles.css'),
+    new OptimizeCssAssetsPlugin({
+      assetNameRegExp: /\.optimize\.css$/g,
+      cssProcessor: require('cssnano'),
+      cssProcessorOptions: { discardComments: { removeAll: true } },
+      canPrint: true
+    })
+  ]
 };
