@@ -2,7 +2,7 @@
   "name": "car-finder",
   "version": "1.0.0",
   "scripts": {
-    "dev-server": "webpack-dev-server",
+    "dev-server": "webpack-dev-server --env.NODE_ENV=development",
     "lint": "tslint ./src/**/*.t*",
     "prettier": "prettier --list-different --config ./.prettierrc ./src/**/*.t*",
     "build:prod": "webpack -p --env.NODE_ENV=production"
