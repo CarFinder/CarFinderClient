@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const WebpackNotifierPlugin = require('webpack-notifier');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = env => {
   return {
@@ -72,7 +73,13 @@ module.exports = env => {
         'process.env': {
           NODE_ENV: JSON.stringify(env.NODE_ENV)
         }
-      })
+      }),
+      new OptimizeCssAssetsPlugin({
+      assetNameRegExp: /\.optimize\.css$/g,
+      cssProcessor: require('cssnano'),
+      cssProcessorOptions: { discardComments: { removeAll: true } },
+      canPrint: true
+    })
     ]
   };
 };

@@ -1,3 +1,4 @@
+import classnames from 'classnames';
 import * as React from 'react';
 import './style.less';
 
@@ -14,12 +15,17 @@ export interface Props {
 
 const CarAd = (props: Props) => {
   const { model, mark, description, price, year, images, kms, isSold } = props;
+  let imageLoaded: boolean = false;
   return (
     <div>
       <div className="media">
         <figure className="media-left">
           <p className="ad-image">
-            <img className="image is-128x128" src={images[0]} />
+            <img
+              className={classnames('image is-128x128', { invisible: !imageLoaded })}
+              src={images[0]}
+              onLoad={() => (imageLoaded = true)}
+            />
           </p>
         </figure>
         <figure className="media-content">
