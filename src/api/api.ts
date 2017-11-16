@@ -30,7 +30,6 @@ export default {
     removeSavedFilterById: (id: string) => axios.delete(`/api/filter/saved/${id}`)
   },
   liquidity: {
-    getLiquidity: (data: interfaces.LiquidityFilter) =>
-      axios.post('/api/liquidity/get-liquidity', data)
+    getLiquidity: (data: interfaces.LiquidityFilter) => axios.post('/api/ad/get-liquidity', data)
   }
 };
