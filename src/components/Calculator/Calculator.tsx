@@ -168,7 +168,7 @@ class Calculator extends React.PureComponent<Props, State> {
                 />
               </div>
               <hr />
-              <div className="is-size-4">
+              <div className="calculator-result-container is-size-4">
                 {liquidity !== null && (
                   <div>
                     {`${lang.liquidity.resultsStart} ${liquidity} ${lang.liquidity.resultsEnd}`}

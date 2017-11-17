@@ -14,6 +14,11 @@ button.calculator {
 }
 
 .calculator {
+  &-result-container {
+    @media screen and (min-width: 700px) {
+      min-height: 200px;
+    }
+  }
   &-result {
     display: flex;
     justify-content: flex-end;

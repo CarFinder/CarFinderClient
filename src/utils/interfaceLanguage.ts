@@ -238,7 +238,7 @@ const interfaceLanguage: Language = {
     savedSearch: {
       savedFilters: 'Сохраненные фильтры',
       clearFilters: 'Очистить фильтры',
-      noSavedFilters: 'У вас нет сохраненных фильтров',
+      noSavedFilters: 'У вас нет фильтров',
       seeAllFilters: 'Смотреть все',
       noAdsToDisplay: 'По запрашиваему фильтру нет объявлений',
       savedSearchResults: 'Сохраненные запросы по фильтру'
