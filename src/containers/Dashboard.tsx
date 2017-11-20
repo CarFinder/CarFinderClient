@@ -21,7 +21,7 @@ interface StateToProps {
   loading: boolean;
   language: string;
   savedSearchResults: interfaces.SavedFilterResults[];
-  liquidity: number | null;
+  liquidity: interfaces.CalculateLiquidity;
   filterValues: interfaces.FilterValues;
 }
 
@@ -31,7 +31,7 @@ const mapStateToProps = (state: any) => ({
   language: state.user.interfaceLanguage,
   savedSearchResults: state.savedSearchResults,
   filterValues: state.carFilters.filterValues,
-  liquidity: state.calculateLiquidity.result
+  liquidity: state.calculateLiquidity
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<any>) => ({

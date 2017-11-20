@@ -102,3 +102,9 @@ export interface SavedFilterResults {
   filterUrl: string;
   ads: CarModel[];
 }
+
+export interface CalculateLiquidity {
+  result: number | null;
+  total: number | null;
+  averageTime: Date | null;
+}
