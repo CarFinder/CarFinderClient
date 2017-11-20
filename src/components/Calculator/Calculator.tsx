@@ -18,7 +18,7 @@ export interface Props {
   handleCalculateLiquidity: (data: any) => void;
   loading: boolean;
   language: string;
-  liquidity: number | null;
+  liquidity: interfaces.CalculateLiquidity;
   filterValues: interfaces.FilterValues;
 }
 
@@ -51,7 +51,6 @@ class Calculator extends React.PureComponent<Props, State> {
   public componentWillMount() {
     this.props.handleClearError();
     this.props.handleFetchMarksValues();
-    this.props.handleFetchBodyTypesValues();
   }
 
   public componentWillReceiveProps(props: Props) {
@@ -71,7 +70,7 @@ class Calculator extends React.PureComponent<Props, State> {
       this.setState({
         data: {
           ...this.state.data,
-          [field]: value
+          [field]: [value]
         }
       });
     }
@@ -145,35 +144,33 @@ class Calculator extends React.PureComponent<Props, State> {
               </div>
               <div className="column">
                 <SelectInput
-                  multiple
+                  multiple={false}
                   field="modelId"
                   label={lang.carFilters.model}
-                  value={data.modelId}
+                  value={data.modelId.length === 0 ? '' : data.modelId[0]}
                   options={filterValues.models}
                   onChange={this.onChangeSelect}
                   disabled={filterValues.models.length === 0}
                   error={errors.modelId}
                 />
               </div>
-              <div className="column">
-                <SelectInput
-                  multiple
-                  field="bodyTypeId"
-                  label={lang.carFilters.bodyType}
-                  value={data.bodyTypeId}
-                  options={filterValues.bodyTypes}
-                  onChange={this.onChangeSelect}
-                  disabled={filterValues.bodyTypes.length === 0}
-                  error={errors.bodyTypeId}
-                />
-              </div>
               <hr />
               <div className="calculator-result-container is-size-4">
-                {liquidity !== null && (
+                {liquidity.result !== null && (
                   <div>
-                    {`${lang.liquidity.resultsStart} ${liquidity} ${lang.liquidity.resultsEnd}`}
+                    <div>
+                      {liquidity.result > 0
+                        ? `${lang.liquidity.result} ${liquidity.result}`
+                        : `${lang.liquidity.noResult}`}
+                    </div>
+                    <div>
+                      {liquidity.result > 0
+                        ? `${lang.liquidity.averageTime} ${liquidity.averageTime}`
+                        : ''}
+                    </div>
+                    <div>{`${lang.liquidity.total} ${liquidity.total}.`}</div>
                     <div className="calculator-result">
-                      {liquidity > 0 && (
+                      {liquidity.result > 0 && (
                         <Link to={`/catalog/${this.state.url}`} className="button is-warning">
                           {lang.liquidity.ads}
                         </Link>
@@ -181,7 +178,7 @@ class Calculator extends React.PureComponent<Props, State> {
                     </div>
                   </div>
                 )}
-                {liquidity === null && lang.liquidity.defaultMsg}
+                {liquidity.result === null && lang.liquidity.defaultMsg}
               </div>
             </section>
             <footer className="modal-card-foot calculator-footer">
