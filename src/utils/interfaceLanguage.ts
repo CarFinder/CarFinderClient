@@ -143,7 +143,7 @@ const interfaceLanguage: Language = {
       confirmPasswordFieldPlaceholder: 'Подтвердите пароль',
       signupConfirmation: 'Подтверждение регистрации',
       signupConfirmationMessage:
-        'Мы отправили на почтовый ящик письмо с ссылой активации. Пожалуйста, пройдите по ней' +
+        'Мы отправили на почтовый ящик письмо с ссылой активации. Пожалуйста, пройдите по ней ' +
         'для того, чтобы закончить регистрацию'
     },
     signinForm: {
