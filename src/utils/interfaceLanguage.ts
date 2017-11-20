@@ -255,8 +255,10 @@ const interfaceLanguage: Language = {
       calculator: 'Калькулятор ликвидности',
       calculate: 'Рассчитать',
       defaultMsg: 'Выберете параметры, чтобы рассчитать ликвидность',
-      resultsStart: 'Мы нашли',
-      resultsEnd: 'объявлений, которые были проданы в течение месяца',
+      result: 'Количество объявлений, которые были проданы в течение месяца: ',
+      averageTime: 'Среднее время продажи по объявлению, дней: ',
+      total: 'Всего продано автомобилей за месяц: ',
+      noResult: 'За последний месяц не было продано ни одного объявления из выбранной категории.',
       ads: 'Перейти к объявлениям'
     }
   },
@@ -414,8 +416,10 @@ const interfaceLanguage: Language = {
       calculator: 'Calculate Liquidity',
       calculate: 'Calculate',
       defaultMsg: 'Choose filter parameters to calculate liquidity',
-      resultsStart: 'We found',
-      resultsEnd: 'ads that were sold over the last month',
+      result: 'Number of cars for the chosen filter sold last month: ',
+      averageTime: 'Average selling time, days: ',
+      total: 'Total number of cars sold last month: ',
+      noResult: 'No cars for the chosen filter were sold last month.',
       ads: 'See ads'
     }
   }
