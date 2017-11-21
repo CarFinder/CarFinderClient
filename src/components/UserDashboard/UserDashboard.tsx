@@ -52,6 +52,7 @@ const UserDashboard = (props: Props) => {
         savedSearchResults={savedSearchResults}
       />
       <Calculator
+        searchError={searchError}
         language={language}
         loading={loading}
         liquidity={liquidity}

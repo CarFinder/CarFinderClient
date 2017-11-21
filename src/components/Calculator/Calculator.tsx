@@ -6,6 +6,7 @@ import { validateMark } from '../../utils/carFiltersValidation';
 import interfaceLanguage from '../../utils/interfaceLanguage';
 import { getPathFromFilters } from '../../utils/utils';
 import SelectInput from '../Common/FormInputs/SelectInput';
+import Notification from '../Common/Notification/Notifiation';
 
 import './style.less';
 
@@ -18,6 +19,7 @@ export interface Props {
   handleCalculateLiquidity: (data: any) => void;
   loading: boolean;
   language: string;
+  searchError?: any;
   liquidity: interfaces.CalculateLiquidity;
   filterValues: interfaces.FilterValues;
 }
@@ -105,8 +107,11 @@ class Calculator extends React.PureComponent<Props, State> {
 
   public render() {
     const { data, errors } = this.state;
-    const { language, loading, filterValues, liquidity } = this.props;
+    const { language, loading, filterValues, liquidity, searchError } = this.props;
     const lang = language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
+    const errorMessage = searchError.code
+      ? lang.errors[searchError.code.toString()]
+      : lang.errors.serverUnavailable;
     return (
       <div>
         <div
@@ -158,6 +163,7 @@ class Calculator extends React.PureComponent<Props, State> {
               <div className="calculator-result-container is-size-4">
                 {liquidity.result !== null && (
                   <div>
+                    {searchError && <Notification type="danger" text={errorMessage} />}
                     <div>
                       {liquidity.result > 0
                         ? `${lang.liquidity.result} ${liquidity.result}`
@@ -170,11 +176,9 @@ class Calculator extends React.PureComponent<Props, State> {
                     </div>
                     <div>{`${lang.liquidity.total} ${liquidity.total}.`}</div>
                     <div className="calculator-result">
-                      {liquidity.result > 0 && (
-                        <Link to={`/catalog/${this.state.url}`} className="button is-warning">
-                          {lang.liquidity.ads}
-                        </Link>
-                      )}
+                      <Link to={`/catalog/${this.state.url}`} className="button is-warning">
+                        {lang.liquidity.ads}
+                      </Link>
                     </div>
                   </div>
                 )}

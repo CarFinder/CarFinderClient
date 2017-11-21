@@ -14,7 +14,10 @@ function* callCalculateLiquidity(action: Action) {
     yield put({ type: actionTypes.GET_LIQUIDITY, payload: response.data });
     yield put({ type: actionTypes.SET_LOADING, payload: false });
   } catch (e) {
-    yield put({ type: actionTypes.SET_SEARCH_ERROR, payload: 'Server-side error' });
+    yield put({
+      type: actionTypes.SET_SEARCH_ERROR,
+      payload: e.response.data.error ? e.response.data.error : 'Server-side error'
+    });
     yield put({ type: actionTypes.SET_LOADING, payload: false });
   }
 }
