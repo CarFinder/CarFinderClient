@@ -20,16 +20,16 @@ export default {
     fetchMarks: () => axios.get('/api/filter/marks'),
     fetchBodyTypes: () => axios.get('/api/filter/bodytypes'),
     fetchModels: (markId: string) => axios.post('/api/filter/models', { markId }),
-    fetchResults: (data: interfaces.CarFilter) => axios.post('/api/ad', data)
+    fetchResults: (data: interfaces.CarFilter) => axios.post('/api/posts', data)
   },
   savedSearch: {
     fetchFilters: () => axios.get('/api/filter/saved'),
     submitSavedFilter: (data: interfaces.SavedFilter) => axios.post('/api/filter/saved', { data }),
-    fetchSavedSearchResults: () => axios.get('/api/ad/saved'),
+    fetchSavedSearchResults: () => axios.get('/api/posts/saved'),
     removeAllSavedFilters: () => axios.delete('/api/filter/saved/all'),
     removeSavedFilterById: (id: string) => axios.delete(`/api/filter/saved/${id}`)
   },
   liquidity: {
-    getLiquidity: (data: interfaces.LiquidityFilter) => axios.post('/api/ad/get-liquidity', data)
+    getLiquidity: (data: interfaces.LiquidityFilter) => axios.post('/api/posts/get-liquidity', data)
   }
 };
