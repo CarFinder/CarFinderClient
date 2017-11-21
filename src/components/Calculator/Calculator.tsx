@@ -132,7 +132,8 @@ class Calculator extends React.PureComponent<Props, State> {
                 onClick={() =>
                   this.setState({
                     isActive: !this.state.isActive
-                  })}
+                  })
+                }
               />
             </header>
             <section className="modal-card-body">
@@ -203,7 +204,8 @@ class Calculator extends React.PureComponent<Props, State> {
           onClick={() =>
             this.setState({
               isActive: !this.state.isActive
-            })}
+            })
+          }
         >
           <i className="fa fa-bars" aria-hidden="true" />
         </button>
