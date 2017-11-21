@@ -186,7 +186,12 @@ class Calculator extends React.PureComponent<Props, State> {
               </div>
             </section>
             <footer className="modal-card-foot calculator-footer">
-              <button className="button is-success" onClick={this.handleCalculateLiquidity}>
+              <button
+                className={classNames('button is-success', {
+                  'is-loading': loading
+                })}
+                onClick={this.handleCalculateLiquidity}
+              >
                 {lang.liquidity.calculate}
               </button>
             </footer>
