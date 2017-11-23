@@ -1,3 +1,4 @@
+import axios from 'axios';
 import classnames from 'classnames';
 import * as React from 'react';
 import './style.less';
@@ -11,10 +12,12 @@ export interface Props {
   year: number;
   images: string[];
   kms: number;
+  source: string;
 }
 
 const CarAd = (props: Props) => {
-  const { model, mark, description, price, year, images, kms, isSold } = props;
+  const { model, mark, description, price, year, images, kms, isSold, source } = props;
+  const isAvBy = source === 'av.by' ? true : false;
   let imageLoaded: boolean = false;
   return (
     <div>
@@ -23,7 +26,11 @@ const CarAd = (props: Props) => {
           <p className="ad-image">
             <img
               className={classnames('image is-128x128', { invisible: !imageLoaded })}
-              src={images[0]}
+              src={
+                isAvBy
+                  ? 'https://cdn4.iconfinder.com/data/icons/oakcons-2/16/Image-128.png'
+                  : images[0]
+              }
               onLoad={() => (imageLoaded = true)}
             />
           </p>

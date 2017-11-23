@@ -22,12 +22,14 @@ const AdPreview = (props: Props) => {
   const onCopyClick = () => {
     document.execCommand('copy', false);
   };
-
+  const isAvBy = source === 'av.by' ? true : false;
   return (
     <div>
-      <div>
-        <Slider images={images} />
-      </div>
+      {!isAvBy && (
+        <div>
+          <Slider images={images} />
+        </div>
+      )}
       <div className="preview-media">
         <div className="content">
           <p className="ad-title is-size-3">{mark + ' ' + model}</p>

@@ -86,6 +86,7 @@ const FilterResults = (props: Props) => {
             images={value.images}
             kms={value.kms}
             isSold={value.isSold}
+            source={value.sourceName}
           />
         </article>
       );
@@ -135,7 +136,7 @@ const FilterResults = (props: Props) => {
                         images={value.images}
                         kms={value.kms}
                         sourceUrl={value.sourceUrl}
-                        source={lang.carFilterResults.adSource}
+                        source={value.sourceName}
                         key={'preview' + index}
                       />
                     );
