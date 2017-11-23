@@ -30,6 +30,6 @@ export default {
     removeSavedFilterById: (id: string) => axios.delete(`/api/filter/saved/${id}`)
   },
   liquidAds: {
-    fetchLiquidAds: () => axios.get('/api/liquid')
+    fetchLiquidAds: () => axios.get('/api/posts/most_liquid')
   }
 };
