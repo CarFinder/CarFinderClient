@@ -58,7 +58,7 @@ class Technologies extends React.PureComponent<any, any> {
                 })}
               >
                 <figure className="image is-128x128">
-                  <a href="https://reactjs.org/">
+                  <a href="https://redux.js.org/">
                     <img src="https://raw.githubusercontent.com/reactjs/redux/master/logo/logo.png" />
                   </a>
                 </figure>
