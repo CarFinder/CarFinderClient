@@ -27,6 +27,12 @@ export interface ChangeUserSettings {
   subscription?: boolean;
 }
 
+export interface SendMessage {
+  name: string;
+  email: string;
+  message: string;
+}
+
 export interface SelectOptions {
   label: string;
   value: string;
@@ -96,4 +102,10 @@ export interface SavedFilterResults {
   filterName: string;
   filterUrl: string;
   ads: CarModel[];
+}
+
+export interface ServiceStats {
+  ads: number;
+  users: number;
+  models: number;
 }

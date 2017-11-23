@@ -19,7 +19,8 @@ export default {
     changeUserAvatar: (data: interfaces.ChangeUserAvatar) =>
       axios.post(`${apiUrl}/api/user/update-user-image`, data),
     changeUserSettings: (data: interfaces.ChangeUserSettings) =>
-      axios.post(`${apiUrl}/api/user/update-user-settings`, data)
+      axios.post(`${apiUrl}/api/user/update-user-settings`, data),
+    submitMessage: (data: interfaces.SendMessage) => axios.post(`${apiUrl}/api/user/send-message`, data)
   },
   filters: {
     fetchMarks: () => axios.get(`${apiUrl}/api/filter/marks`),
@@ -34,5 +35,8 @@ export default {
     fetchSavedSearchResults: () => axios.get(`${apiUrl}/api/posts/saved`),
     removeAllSavedFilters: () => axios.delete(`${apiUrl}/api/filter/saved/all`),
     removeSavedFilterById: (id: string) => axios.delete(`${apiUrl}/api/filter/saved/${id}`)
+  },
+  stats: {
+    fetchStats: () => axios.get(`${apiUrl}/api/stats/landing-stats`)
   }
 };
