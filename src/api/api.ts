@@ -2,35 +2,41 @@ import axios from 'axios';
 import * as interfaces from '../interfaces';
 import { User } from '../redux/models/userModel';
 
+declare var process: any;
+
+const apiUrl = process.env.NODE_ENV === 'production' ? 'https://carfinderapp.herokuapp.com/' : '';
+
 export default {
   user: {
-    getUser: (data: interfaces.SigninUserData) => axios.post('/api/user/signin', data),
-    signup: (data: interfaces.SignupUserData) => axios.post('/api/user/register', data),
-    confirmEmail: (token: string) => axios.post('/api/user/confirm', { token }),
-    submitEmail: (data: interfaces.RestorePasswordUserData) => axios.post('/api/user/forgot', data),
+    getUser: (data: interfaces.SigninUserData) => axios.post(`${apiUrl}/api/user/signin`, data),
+    signup: (data: interfaces.SignupUserData) => axios.post(`${apiUrl}/api/user/register`, data),
+    confirmEmail: (token: string) => axios.post(`${apiUrl}/api/user/confirm`, { token }),
+    submitEmail: (data: interfaces.RestorePasswordUserData) =>
+      axios.post(`${apiUrl}/api/user/forgot`, data),
     changePassword: (data: interfaces.RestorePasswordUserData) =>
-      axios.post('/api/user/restore', { data }),
-    changeUserData: (data: User) => axios.post('api/user/update-user-data', data),
+      axios.post(`${apiUrl}/api/user/restore`, { data }),
+    changeUserData: (data: User) => axios.post(`${apiUrl}/api/user/update-user-data`, data),
     changeUserAvatar: (data: interfaces.ChangeUserAvatar) =>
-      axios.post('api/user/update-user-image', data),
+      axios.post(`${apiUrl}/api/user/update-user-image`, data),
     changeUserSettings: (data: interfaces.ChangeUserSettings) =>
-      axios.post('api/user/update-user-settings', data),
-    submitMessage: (data: interfaces.SendMessage) => axios.post('/api/user/send-message', data)
+      axios.post(`${apiUrl}/api/user/update-user-settings`, data),
+    submitMessage: (data: interfaces.SendMessage) => axios.post(`${apiUrl}/api/user/send-message`, data)
   },
   filters: {
-    fetchMarks: () => axios.get('/api/filter/marks'),
-    fetchBodyTypes: () => axios.get('/api/filter/bodytypes'),
-    fetchModels: (markId: string) => axios.post('/api/filter/models', { markId }),
-    fetchResults: (data: interfaces.CarFilter) => axios.post('/api/posts', data)
+    fetchMarks: () => axios.get(`${apiUrl}/api/filter/marks`),
+    fetchBodyTypes: () => axios.get(`${apiUrl}/api/filter/bodytypes`),
+    fetchModels: (markId: string) => axios.post(`${apiUrl}/api/filter/models`, { markId }),
+    fetchResults: (data: interfaces.CarFilter) => axios.post(`${apiUrl}/api/posts`, data)
   },
   savedSearch: {
-    fetchFilters: () => axios.get('/api/filter/saved'),
-    submitSavedFilter: (data: interfaces.SavedFilter) => axios.post('/api/filter/saved', { data }),
-    fetchSavedSearchResults: () => axios.get('/api/posts/saved'),
-    removeAllSavedFilters: () => axios.delete('/api/filter/saved/all'),
-    removeSavedFilterById: (id: string) => axios.delete(`/api/filter/saved/${id}`)
+    fetchFilters: () => axios.get(`${apiUrl}/api/filter/saved`),
+    submitSavedFilter: (data: interfaces.SavedFilter) =>
+      axios.post(`${apiUrl}/api/filter/saved`, { data }),
+    fetchSavedSearchResults: () => axios.get(`${apiUrl}/api/posts/saved`),
+    removeAllSavedFilters: () => axios.delete(`${apiUrl}/api/filter/saved/all`),
+    removeSavedFilterById: (id: string) => axios.delete(`${apiUrl}/api/filter/saved/${id}`)
   },
   stats: {
-    fetchStats: () => axios.get('api/stats/landing-stats')
+    fetchStats: () => axios.get(`${apiUrl}/api/stats/landing-stats`)
   }
 };
