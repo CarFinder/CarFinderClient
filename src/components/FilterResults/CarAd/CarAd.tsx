@@ -31,7 +31,7 @@ const CarAd = (props: Props) => {
         <figure className="media-content">
           <div className="content">
             <p className="ad-title">{mark + ' ' + model}</p>
-            <p>{description}</p>
+            <p>{description.length > 530 ? `${description.substring(0, 529)}...` : description}</p>
           </div>
         </figure>
         <figure className="media-right">
