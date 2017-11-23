@@ -119,6 +119,9 @@ export const transformDataForSearch = (
   if (filtersData.kmsTo) {
     data.filter.kmsTo = filtersData.kmsTo;
   }
+  if (filtersData.sourceName !== 'all') {
+    data.filter.sourceName = filtersData.sourceName;
+  }
   if (sortingParams.limit) {
     data.limit = sortingParams.limit;
   }
@@ -164,10 +167,11 @@ export const getPathFromFilters = (filters: any) => {
   const priceToPath = filters.priceTo ? `&priceTo=${filters.priceTo}` : '';
   const kmFromPath = filters.kmsFrom ? `&kmsFrom=${filters.kmsFrom}` : '';
   const kmToPath = filters.kmsTo ? `&kmsTo=${filters.kmsTo}` : '';
+  const sourceNamePath = filters.sourceName ? `&sourceName=${filters.sourceName}` : 'all';
 
   const path =
     `${markPath}${modelPath}${bodyPath}${yearFromPath}` +
-    `${yearToPath}${priceFromPath}${priceToPath}${kmFromPath}${kmToPath}`;
+    `${yearToPath}${priceFromPath}${priceToPath}${kmFromPath}${kmToPath}${sourceNamePath}`;
 
   return path;
 };
@@ -182,6 +186,7 @@ export const getStateFromPath = (path: string) => {
   const priceToVal = queryString.parse(path).priceTo;
   const kmsFromVal = queryString.parse(path).kmsFrom;
   const kmsToVal = queryString.parse(path).kmsTo;
+  const sourceNameVal = queryString.parse(path).sourceName;
 
   return {
     markId: mark,
@@ -192,7 +197,8 @@ export const getStateFromPath = (path: string) => {
     priceFrom: priceFromVal ? parseInt(priceFromVal, 10) : 0,
     priceTo: priceToVal ? parseInt(priceToVal, 10) : 0,
     kmsFrom: kmsFromVal ? parseInt(kmsFromVal, 10) : 0,
-    kmsTo: kmsToVal ? parseInt(kmsToVal, 10) : 0
+    kmsTo: kmsToVal ? parseInt(kmsToVal, 10) : 0,
+    sourceName: sourceNameVal ? sourceNameVal : ''
   };
 };
 
