@@ -1,7 +1,11 @@
 {
   "printWidth": 100,
-  "parser": "typescript",
+  "parser": "babylon",
   "tabWidth": 2,
   "singleQuote": true,
-  "trailingComma": "none"
+  "trailingComma": "none",
+  "useTabs": false,
+  "semi": true
+  "bracketSpacing": true,
+  "jsxBracketSameLine": false
 }

@@ -233,14 +233,15 @@ class CarFilter extends React.PureComponent<Props, State> {
     const { filterValues } = this.props.carFilters;
     const { searchError, loading, language, successMessage } = this.props;
     const lang = language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
+    const errorMessage = !searchError.code
+      ? lang.errors.serverUnavailable
+      : lang.errors[searchError.code.toString()];
     return (
       <div className="section">
         <div className="container is-fluid">
           <div className="columns">
             <div className="column is-centered">
-              {searchError && (
-                <Notification type="danger" text={lang.searchErrors.serverUnavailable} />
-              )}
+              {searchError && <Notification type="danger" text={errorMessage} />}
               {successMessage && <Notification type="success" text={successMessage} />}
               <form className="box" onSubmit={this.onSubmit}>
                 <div className="columns">
@@ -352,7 +353,7 @@ class CarFilter extends React.PureComponent<Props, State> {
                   <button
                     disabled={loading}
                     type="submit"
-                    className={classnames('button is-warning is-pulled-right', {
+                    className={classnames('button is-warning mr is-pulled-right', {
                       'is-loading': loading
                     })}
                   >
@@ -378,7 +379,7 @@ class CarFilter extends React.PureComponent<Props, State> {
                       disabled={loading}
                       type="button"
                       onClick={e => this.onSaveFilter(e)}
-                      className={classnames('button is-default is-pulled-right', {
+                      className={classnames('button is-default mr is-pulled-right', {
                         'is-loading': loading
                       })}
                     >

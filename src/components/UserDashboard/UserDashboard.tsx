@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as interfaces from '../../interfaces';
 import Calculator from '../Calculator/Calculator';
+import LiquidAds from '../LiquidAds/LiquidAds';
 import SavedSearch from '../SavedSearch/SavedSearch';
 
 import './style.less';
@@ -15,12 +16,14 @@ export interface Props {
   handleFetchModelsValues: (mark: string) => void;
   handleSetLiquidity: (data: any) => void;
   handleCalculateLiquidity: (data: any) => void;
+  handleGetLiquidAds: () => void;
   searchError?: any;
   loading: boolean;
   liquidity: interfaces.CalculateLiquidity;
   language: string;
   savedSearchResults: interfaces.SavedFilterResults[];
   filterValues: interfaces.FilterValues;
+  liquidAds: interfaces.LiquidAds[];
 }
 
 const UserDashboard = (props: Props) => {
@@ -31,6 +34,7 @@ const UserDashboard = (props: Props) => {
     searchError,
     filterValues,
     savedSearchResults,
+    liquidAds,
     handleFetchSavedSearchResults,
     handleRemoveAllFilters,
     handleRemoveFilterById,
@@ -39,13 +43,16 @@ const UserDashboard = (props: Props) => {
     handleFetchBodyTypesValues,
     handleFetchModelsValues,
     handleSetLiquidity,
-    handleCalculateLiquidity
+    handleCalculateLiquidity,
+    handleGetLiquidAds
   } = props;
   return (
     <div>
+      <LiquidAds liquidAds={liquidAds} handleGetLiquidAds={handleGetLiquidAds} />
       <SavedSearch
         language={language}
         loading={loading}
+        searchError={searchError}
         handleFetchSavedSearchResults={handleFetchSavedSearchResults}
         handleRemoveAllFilters={handleRemoveAllFilters}
         handleRemoveFilterById={handleRemoveFilterById}

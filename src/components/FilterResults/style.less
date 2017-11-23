@@ -5,4 +5,20 @@
     opacity: 0.5;
     cursor: pointer;
   }
+  &.new-ad {
+    border-left: 5px solid #FFDD57;
+  }
+
+  @media screen and (max-width: 540px) {
+      &.new-ad {
+        border-top: 5px solid #FFDD57;
+        border-left: none;
+      }
+  }
+}
+
+@media screen and (max-width: 540px) {
+  &.modal-card-title {
+    font-size: 0.9em;
+  }
 }

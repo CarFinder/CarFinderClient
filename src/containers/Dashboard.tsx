@@ -4,6 +4,8 @@ import * as interfaces from '../interfaces';
 import * as calculateLiquidityActions from '../redux/actions/calculateLiquidityActions';
 import * as carFiltersActions from '../redux/actions/carFiltersActions';
 import * as formStateActions from '../redux/actions/formStateActions';
+import * as liquidAdsActions from '../redux/actions/liquidAdsActions';
+import * as savedSearchActions from '../redux/actions/savedSearchActions';
 import * as savedSearchResultsActions from '../redux/actions/savedSearchResultsActions';
 
 interface DispatchFromProps {
@@ -14,6 +16,7 @@ interface DispatchFromProps {
   handleFetchMarksValues: () => void;
   handleFetchBodyTypesValues: () => void;
   handleFetchModelsValues: (mark: string) => void;
+  handleGetLiquidAds: () => void;
 }
 
 interface StateToProps {
@@ -23,6 +26,7 @@ interface StateToProps {
   savedSearchResults: interfaces.SavedFilterResults[];
   liquidity: interfaces.CalculateLiquidity;
   filterValues: interfaces.FilterValues;
+  liquidAds: interfaces.LiquidAds[];
 }
 
 const mapStateToProps = (state: any) => ({
@@ -31,7 +35,8 @@ const mapStateToProps = (state: any) => ({
   language: state.user.interfaceLanguage,
   savedSearchResults: state.savedSearchResults,
   filterValues: state.carFilters.filterValues,
-  liquidity: state.calculateLiquidity
+  liquidity: state.calculateLiquidity,
+  liquidAds: state.liquidAds.liquidAds,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
@@ -45,7 +50,8 @@ const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
   handleFetchBodyTypesValues: () => dispatch(carFiltersActions.fetchBodyTypesValues()),
   handleFetchModelsValues: (mark: string) => dispatch(carFiltersActions.fetchModelsValues(mark)),
   handleCalculateLiquidity: (data: interfaces.LiquidityFilter) =>
-    dispatch(calculateLiquidityActions.сalculateLiquidity(data))
+    dispatch(calculateLiquidityActions.сalculateLiquidity(data)),
+  handleGetLiquidAds: () => dispatch(liquidAdsActions.getLiquidAds())
 });
 
 export default connect<StateToProps, DispatchFromProps>(mapStateToProps, mapDispatchToProps)(

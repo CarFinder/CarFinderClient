@@ -14,6 +14,8 @@ export interface Props {
   language: string;
 }
 
+const data = localStorage.getItem('signupValues');
+
 const renderTextField = ({ input, name, title, meta: { touched, error }, ...custom }: Props) => (
   <div className="field">
     <label htmlFor="title" className="label">
@@ -59,6 +61,7 @@ const FirstPage = (props: Props) => {
 
 export default reduxForm<any, any>({
   form: 'signupForm',
+  initialValues: data ? JSON.parse(data) : {},
   destroyOnUnmount: false,
   forceUnregisterOnUnmount: true,
   validate

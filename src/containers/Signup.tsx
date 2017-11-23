@@ -14,13 +14,15 @@ interface StateToProps {
   language: string;
   authError?: any;
   signedup: boolean;
+  formValues: any;
 }
 
 const mapStateToProps = (state: any) => ({
   loading: state.formState.loading,
   authError: state.formState.authError,
   signedup: state.user.signedup,
-  language: state.user.interfaceLanguage
+  language: state.user.interfaceLanguage,
+  formValues: state.form.signupForm
 });
 
 const mapDispatchToProps = (

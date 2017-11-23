@@ -1,13 +1,18 @@
 sudo: enabled
 language: node_js
 node_js:
-  - "8"
-before_install:
-  - yarn global add typescript tslint prettier
+- '8'
 cache: yarn
 install:
-  - yarn
+- yarn
 script:
-  - tslint ./src/**/*.t*
-  - prettier --print-width 100 --tab-width 2 --single-quote --trailing-comma none --list-different --parser typescript "./src/**/*.t*"
-
+- yarn lint
+- yarn prettier
+after_success:
+- yarn build:prod
+- bash ./scripts/deploy.sh
+env:
+  global:
+  - GH_USER: CarFinder
+  - GH_REPO: carfinder.github.io
+  - secure: Mzn8tE7R6YVyzWw680D9v6ZPgQL9XI4f52B06OjiF/ks5/IFNueA3zWVnKHXgn3RbYZrKwj2spmf1hr0XXTUjjfjUsRW4xnJvv+C0LM+7jTyqtEFhJrUrgDUUNQObNNccKuYGmBvXzMvlz3lyGj+2U523FzdwdCQ6OWOwQh/ceLNvYD74eMf0jOqBioiTwQ1iKj2GvtlVsbmCRGSLZoAFCqJPrbB6s0QtS+n4DI9M5e78HFL6Fw6qreEhfz6yeixTzYEK67ji997LdMgJRiMc5Csyy445FYd1q/YqcJFjhxg8sXLVPgOCCs6JzANN2A/9pu790hZf638Xf8+MTB5DMSVPBzxOVVuaaYKqZ26vSEF3FQ0eoGbStu2n07KVEe4NV8WdKE/P0knHN2UBMAoWOdxPhNQCAC6f74+DYAFLl13UY5Y4eMtkNMi5fQPg+ZiiJu5qHDNI4I2ldU1mN8KoLt3s7JKe9w7QFnV0LuKPQNgWPWOi7iZCVaNxSQrQmo2mkLfDlPQpBD5XpzB9i5o7j2btYZmnLv/ujEFpyPaTsyF7JbLjkwJ57T2cM1pnNbVrd236ujnkaT2a2+2HSrPGVWdefIv+UTYSFKdqWfk1+085DQqoSzd/S7jp5r0YfgF+dwI3bfUj7R6BtxdycLhK5KWBljfKZuTs95XdeABD2M=
