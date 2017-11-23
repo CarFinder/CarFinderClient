@@ -3,6 +3,7 @@ import * as React from 'react';
 import * as interfaces from '../../interfaces';
 import interfaceLanguage from '../../utils/interfaceLanguage';
 import Modal from '../Common/Modal/Modal';
+import Notification from '../Common/Notification/Notifiation';
 import SavedSearchResult from './SavedSearchResult/SavedSearchResult';
 import './style.less';
 
@@ -12,6 +13,7 @@ export interface Props {
   handleRemoveFilterById: (id: string) => void;
   loading: boolean;
   language: string;
+  searchError?: any;
   savedSearchResults: interfaces.SavedFilterResults[];
 }
 
@@ -50,10 +52,18 @@ class SavedSearch extends React.PureComponent<Props, State> {
   };
 
   public render() {
-    const { language, loading, savedSearchResults, handleRemoveFilterById } = this.props;
+    const {
+      language,
+      loading,
+      savedSearchResults,
+      handleRemoveFilterById,
+      searchError
+    } = this.props;
     const { filtersToDisplay, displayModal } = this.state;
     const lang = language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
-
+    const errorMessage = searchError.code
+      ? lang.errors[searchError.code.toString()]
+      : lang.errors.serverUnavailable;
     const renderFilters = (
       <div>
         {savedSearchResults.length > 0 &&
@@ -76,6 +86,7 @@ class SavedSearch extends React.PureComponent<Props, State> {
 
     return (
       <div className="section">
+        {searchError && <Notification type="danger" text={errorMessage} />}
         <div className="container saved-search-container is-fluid">
           <header className="saved-search-container-head">
             <p className="container-title">{lang.savedSearch.savedFilters}</p>
@@ -84,12 +95,13 @@ class SavedSearch extends React.PureComponent<Props, State> {
             <div className="column is-centered">
               <button
                 type="button"
-                disabled={savedSearchResults.length === 0}
+                disabled={savedSearchResults.length === 0 || searchError}
                 onClick={() =>
                   this.setState({
                     displayModal: true
-                  })}
-                className={classnames('button mb is-default', {
+                  })
+                }
+                className={classnames('button is-default', {
                   'is-loading': loading
                 })}
               >
@@ -108,7 +120,8 @@ class SavedSearch extends React.PureComponent<Props, State> {
               onClick={() =>
                 this.setState({
                   filtersToDisplay: savedSearchResults.length
-                })}
+                })
+              }
             >
               {lang.savedSearch.seeAllFilters}
             </div>

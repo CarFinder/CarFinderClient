@@ -30,6 +30,7 @@ const SavedSearchResult = (props: Props) => {
             year={value.year}
             images={value.images}
             kms={value.kms}
+            source={value.sourceName}
           />
         </article>
       ))}

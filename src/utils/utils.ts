@@ -182,3 +182,22 @@ export const getStateFromPath = (path: string) => {
     kmsTo: kmsToVal ? parseInt(kmsToVal, 10) : 0
   };
 };
+
+export const validateSignup = (step: string | undefined) => {
+  const localUserValues = localStorage.getItem('signupValues');
+  if (localUserValues) {
+    const decodedUserValues = JSON.parse(localUserValues);
+    switch (step) {
+      case '2':
+        return decodedUserValues.name ? 2 : 1;
+      case '3':
+        return decodedUserValues.name && decodedUserValues.email
+          ? 3
+          : decodedUserValues.name ? 2 : 1;
+      default:
+        return 1;
+    }
+  } else {
+    return 1;
+  }
+};

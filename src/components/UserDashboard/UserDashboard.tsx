@@ -35,6 +35,7 @@ const UserDashboard = (props: Props) => {
       <SavedSearch
         language={language}
         loading={loading}
+        searchError={searchError}
         handleFetchSavedSearchResults={handleFetchSavedSearchResults}
         handleRemoveAllFilters={handleRemoveAllFilters}
         handleRemoveFilterById={handleRemoveFilterById}

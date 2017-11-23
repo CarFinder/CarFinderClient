@@ -1,7 +1,9 @@
+import queryString from 'query-string';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import * as interfaces from '../../interfaces';
 import interfaceLanguage from '../../utils/interfaceLanguage';
+import { validateSignup } from '../../utils/utils';
 import Notification from '../Common/Notification/Notifiation';
 import FirstPage from './WizardForm/FirstPage';
 import FormStepper from './WizardForm/FormStepper';
@@ -18,6 +20,13 @@ export interface Props {
   signedup: boolean;
   authError?: any;
   language: string;
+  formValues: any;
+  history: {
+    replace: (url: string) => void;
+  };
+  location: {
+    search: any;
+  };
 }
 
 export interface State {
@@ -37,10 +46,6 @@ class SignupFrom extends React.PureComponent<Props, State> {
       this.setState({
         page: 4
       });
-    } else if (props.authError) {
-      this.setState({
-        page: 1
-      });
     }
   }
 
@@ -48,12 +53,42 @@ class SignupFrom extends React.PureComponent<Props, State> {
     this.props.handleClearError();
   }
 
+  public componentDidMount() {
+    this.props.handleClearError();
+    const step = queryString.parse(this.props.location.search).step;
+    let pageIndex = validateSignup(step);
+    if (this.props.signedup) {
+      pageIndex = 4;
+    }
+    this.setState({ page: pageIndex });
+    this.props.history.replace(`/signup/?step=${pageIndex}`);
+  }
+
   public handleSubmit = (userData: interfaces.SignupUserData) => {
     this.props.handleSignup(userData);
+    localStorage.removeItem('signupValues');
   };
 
   public nextPage = () => {
+    const formValues = {
+      name: this.props.formValues.values.name,
+      email: this.props.formValues.values.email
+    };
+    localStorage.setItem('signupValues', JSON.stringify(formValues));
     this.setState({ page: this.state.page + 1 });
+    this.props.history.replace(`/signup/?step=${this.state.page + 1}`);
+  };
+
+  public changePage = (index: number) => {
+    if (this.state.page !== 4 && index < this.state.page) {
+      const formValues = {
+        name: this.props.formValues.values.name,
+        email: this.props.formValues.values.email
+      };
+      localStorage.setItem('signupValues', JSON.stringify(formValues));
+      this.setState({ page: index });
+      this.props.history.replace(`/signup/?step=${index}`);
+    }
   };
 
   public render() {
@@ -61,8 +96,8 @@ class SignupFrom extends React.PureComponent<Props, State> {
     const { loading, authError, language } = this.props;
     const lang = this.props.language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
     const errorMessage = !authError.code
-      ? lang.searchErrors.serverUnavailable
-      : lang.authErrors[authError.code.toString()];
+      ? lang.errors.serverUnavailable
+      : lang.errors[authError.code.toString()];
     return (
       <div className="section">
         <div className="container">
@@ -74,7 +109,7 @@ class SignupFrom extends React.PureComponent<Props, State> {
                   <h1 className="is-size-3 has-text-centered">{lang.signupForm.title}</h1>
                 )}
                 <div className="form-stepper">
-                  <FormStepper page={page} language={language} />
+                  <FormStepper page={page} language={language} changePage={this.changePage} />
                 </div>
                 <div className="signup-form">
                   {page === 1 && <FirstPage onSubmit={this.nextPage} language={language} />}

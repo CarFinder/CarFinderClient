@@ -63,8 +63,8 @@ export default class UserProfile extends React.PureComponent<Props, {}> {
     } = this.props;
     const lang = language === 'ru' ? interfaceLang.ru : interfaceLang.en;
     const errorMessage = changeUserDataError.code
-      ? lang.authErrors[changeUserDataError.code.toString()]
-      : lang.searchErrors.serverUnavailable;
+      ? lang.errors[changeUserDataError.code.toString()]
+      : lang.errors.serverUnavailable;
     return (
       <div className="section">
         <div className="container is-fluid">

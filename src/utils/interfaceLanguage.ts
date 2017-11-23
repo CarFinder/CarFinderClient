@@ -6,10 +6,7 @@ export interface Language {
     navigation: {
       [key: string]: string;
     };
-    authErrors: {
-      [key: string]: string;
-    };
-    searchErrors: {
+    errors: {
       [key: string]: string;
     };
     signupForm: {
@@ -52,10 +49,7 @@ export interface Language {
     navigation: {
       [key: string]: string;
     };
-    authErrors: {
-      [key: string]: string;
-    };
-    searchErrors: {
+    errors: {
       [key: string]: string;
     };
     signupForm: {
@@ -114,14 +108,17 @@ const interfaceLanguage: Language = {
       ruLang: 'Рус',
       engLang: 'Англ'
     },
-    authErrors: {
-      103: 'Аккаунт не активирован',
-      102: 'Ошибка авторизации',
+    errors: {
       101: 'Неверный е-мэйл или пароль',
+      102: 'Ошибка авторизации',
+      103: 'Аккаунт не активирован',
+      104: 'Ошибка авторизации',
       105: 'Неверный формат введенных данных',
-      11000: 'Такой аккаунт уже существует'
-    },
-    searchErrors: {
+      106: 'Ошибка загрузки изображения',
+      107: 'Ошибка при получении данных',
+      120: 'Ошибка при соединении с базой данных',
+      409: 'Пользователь с таким е-мэйлом уже существует',
+      11000: 'Такой аккаунт уже существует',
       serverUnavailable:
         'В данный момент сервер не доступен. Обновите страницу или попытайтесь позже'
     },
@@ -146,7 +143,7 @@ const interfaceLanguage: Language = {
       confirmPasswordFieldPlaceholder: 'Подтвердите пароль',
       signupConfirmation: 'Подтверждение регистрации',
       signupConfirmationMessage:
-        'Мы отправили на почтовый ящик письмо с ссылой активации. Пожалуйста, пройдите по ней' +
+        'Мы отправили на почтовый ящик письмо с ссылой активации. Пожалуйста, пройдите по ней ' +
         'для того, чтобы закончить регистрацию'
     },
     signinForm: {
@@ -187,8 +184,8 @@ const interfaceLanguage: Language = {
       bodyType: 'Тип кузова',
       yearFrom: 'Год выпуска от',
       yearTo: 'Год выпуска до',
-      priceFrom: 'Цена от, USD',
-      priceTo: 'Цена до, USD',
+      priceFrom: 'Цена от, руб.',
+      priceTo: 'Цена до, руб.',
       kmFrom: 'Пробег от, км.',
       kmTo: 'Пробег до, км.',
       saveFilters: 'Сохранить',
@@ -266,14 +263,17 @@ const interfaceLanguage: Language = {
       ruLang: 'Rus',
       engLang: 'Eng'
     },
-    authErrors: {
-      103: 'Account is not activated',
-      102: 'Authorization error',
+    errors: {
       101: 'Incorrect email or password',
-      105: 'Wrong data format',
-      11000: 'Account already exists'
-    },
-    searchErrors: {
+      102: 'Authorization error',
+      103: 'Account is not activated',
+      104: 'User data error',
+      105: 'Incorrect data format',
+      106: 'Image upload error',
+      107: 'Error while receiving data',
+      120: 'Database connection error',
+      409: 'User with such email already exists',
+      11000: 'Account already exists',
       serverUnavailable: 'Server is currently unavailable. Please reload the page and try again.'
     },
     signupForm: {
@@ -338,8 +338,8 @@ const interfaceLanguage: Language = {
       bodyType: 'Body Type',
       yearFrom: 'Year From',
       yearTo: 'Year To',
-      priceFrom: 'Price From, USD',
-      priceTo: 'Price To, USD',
+      priceFrom: 'Price From, BYN',
+      priceTo: 'Price To, BYN',
       kmFrom: 'KMs From',
       kmTo: 'KMs To',
       saveFilters: 'Save',
