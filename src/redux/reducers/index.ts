@@ -3,6 +3,7 @@ import { reducer as reduxFormReducer } from 'redux-form';
 import carFiltersReducer from './carFilters';
 import filterResultsReducer from './filterResults';
 import formStateReducer from './formState';
+import liquidAdsReducer from './liquidAds';
 import getStatsReducer from './getStats';
 import savedSearchReducer from './savedSearch';
 import savedSearchResultsReducer from './savedSearchResults';
@@ -16,6 +17,7 @@ const rootReducer: Reducer<any> = combineReducers({
   carFilters: carFiltersReducer,
   savedSearch: savedSearchReducer,
   savedSearchResults: savedSearchResultsReducer,
+  liquidAds: liquidAdsReducer,
   getStats: getStatsReducer
 });
 
