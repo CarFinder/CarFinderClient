@@ -38,7 +38,7 @@ const CarAd = (props: Props) => {
           <div className="media-info">
             <span className="has-text-warning">
               <strong className="ad-price">
-                <i className="fa fa-usd" aria-hidden="true" />&nbsp;{price}
+                <i className="fa fa-tag" aria-hidden="true" />&nbsp;{price}
               </strong>
             </span>
             <span className="has-text-grey">
