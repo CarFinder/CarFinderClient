@@ -120,3 +120,9 @@ export type REMOVE_SAVED_FILTER = typeof REMOVE_SAVED_FILTER;
 
 export const REMOVE_ALL_SAVED_FILTERS = 'REMOVE_ALL_SAVED_FILTERS';
 export type REMOVE_ALL_SAVED_FILTERS = typeof REMOVE_ALL_SAVED_FILTERS;
+
+export const SET_STATS = 'SET_STATS';
+export type SET_STATS = typeof SET_STATS;
+
+export const GET_STATS = 'GET_STATS';
+export type GET_STATS = typeof GET_STATS;
