@@ -9,7 +9,7 @@ script:
 - yarn lint
 - yarn prettier
 after_success:
-- webpack -p
+- yarn build:prod
 - bash ./scripts/deploy.sh
 env:
   global:

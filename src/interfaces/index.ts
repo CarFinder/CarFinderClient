@@ -27,6 +27,12 @@ export interface ChangeUserSettings {
   subscription?: boolean;
 }
 
+export interface SendMessage {
+  name: string;
+  email: string;
+  message: string;
+}
+
 export interface SelectOptions {
   label: string;
   value: string;
@@ -93,9 +99,37 @@ interface CarModel {
   isSold?: boolean;
 }
 
+export interface LiquidityFilter {
+  markId: string;
+  modelId?: SelectOptions[] | string[];
+  bodyTypeId?: SelectOptions[] | string[];
+}
+
 export interface SavedFilterResults {
   filterId: string;
   filterName: string;
   filterUrl: string;
   ads: CarModel[];
+}
+
+
+export interface CalculateLiquidity {
+  result: number | null;
+  total: number | null;
+  averageTime: Date | null;
+}
+
+export interface LiquidAds {
+  _id?: string;
+  mark?: string;
+  model?: string;
+  median?: number;
+  images?: string[];
+  url?: string;
+}
+
+export interface ServiceStats {
+  ads: number;
+  users: number;
+  models: number;
 }

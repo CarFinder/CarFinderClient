@@ -5,6 +5,7 @@ export interface SignupFormData {
   email: string;
   password: string;
   passwordConfirmation: string;
+  message?: string;
 }
 
 const nameRegExp = new RegExp(`^[a-zA-Zа-яёА-ЯЁ\s\'\-]+$`);
@@ -37,6 +38,9 @@ export const validateForm = (values: SignupFormData): object => {
     errors.passwordConfirmation = lang.required;
   } else if (values.passwordConfirmation !== values.password) {
     errors.passwordConfirmation = lang.invalidPasswordConfirmation;
+  }
+  if (!values.message) {
+    errors.message = lang.required;
   }
   return errors;
 };
