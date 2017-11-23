@@ -167,7 +167,7 @@ export const getPathFromFilters = (filters: any) => {
   const priceToPath = filters.priceTo ? `&priceTo=${filters.priceTo}` : '';
   const kmFromPath = filters.kmsFrom ? `&kmsFrom=${filters.kmsFrom}` : '';
   const kmToPath = filters.kmsTo ? `&kmsTo=${filters.kmsTo}` : '';
-  const sourceNamePath = filters.sourceName ? `&sourceName=${filters.sourceName}` : 'all';
+  const sourceNamePath = filters.sourceName ? `&sourceName=${filters.sourceName}` : '';
 
   const path =
     `${markPath}${modelPath}${bodyPath}${yearFromPath}` +
