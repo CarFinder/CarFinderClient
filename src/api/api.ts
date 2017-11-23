@@ -39,6 +39,9 @@ export default {
   liquidAds: {
     fetchLiquidAds: () => axios.get(`${apiUrl}/api/posts/most_liquid`)
   },
+  liquidity: {
+    getLiquidity: (data: interfaces.LiquidityFilter) => axios.post('/api/posts/get-liquidity', data)
+  },
   stats: {
     fetchStats: () => axios.get(`${apiUrl}/api/stats/landing-stats`)
   }

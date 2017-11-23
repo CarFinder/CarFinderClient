@@ -1,0 +1,38 @@
+button.calculator {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  opacity: 0.9;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 1.5rem;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.calculator {
+  &-result-container {
+    @media screen and (min-width: 700px) {
+      min-height: 200px;
+    }
+  }
+  &-result {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+  }
+  &-title {
+    display: flex;
+    justify-content: center;
+    @media screen and (max-width: 400px) {
+      flex-direction: column;
+    }
+  }
+  &-footer {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
