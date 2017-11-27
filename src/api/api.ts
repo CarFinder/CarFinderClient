@@ -28,5 +28,11 @@ export default {
     fetchSavedSearchResults: () => axios.get('/api/posts/saved'),
     removeAllSavedFilters: () => axios.delete('/api/filter/saved/all'),
     removeSavedFilterById: (id: string) => axios.delete(`/api/filter/saved/${id}`)
+  },
+  utils: {
+    getImage: (imagePath: string, hostName: string) =>
+      axios.get(`/redirect/image?url=${imagePath}&host=${hostName}`, {
+        responseType: 'blob'
+      })
   }
 };

@@ -11,6 +11,7 @@ interface Props {
   dotClick?: (index: number) => void;
   preloadNextImage?: () => void;
   images: string[];
+  source: string;
 }
 
 interface State {
@@ -90,7 +91,11 @@ export default class Slider extends PureComponent<Props, State> {
     return (
       <div className="slider">
         {this.state.ready ? (
-          <Slide background={this.state.background} current={this.state.current} />
+          <Slide
+            background={this.state.background}
+            current={this.state.current}
+            source={this.props.source}
+          />
         ) : null}
         <LeftArrow previousSlide={this.previousSlide} />
         <RightArrow nextSlide={this.nextSlide} />
