@@ -20,7 +20,8 @@ export default {
       axios.post(`${apiUrl}/api/user/update-user-image`, data),
     changeUserSettings: (data: interfaces.ChangeUserSettings) =>
       axios.post(`${apiUrl}/api/user/update-user-settings`, data),
-    submitMessage: (data: interfaces.SendMessage) => axios.post(`${apiUrl}/api/user/send-message`, data)
+    submitMessage: (data: interfaces.SendMessage) =>
+      axios.post(`${apiUrl}/api/user/send-message`, data)
   },
   filters: {
     fetchMarks: () => axios.get(`${apiUrl}/api/filter/marks`),

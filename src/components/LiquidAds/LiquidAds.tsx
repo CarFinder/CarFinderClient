@@ -8,7 +8,6 @@ export interface Props {
 }
 
 class LiquidAds extends React.PureComponent<Props, {}> {
-
   public componentDidMount() {
     this.props.handleGetLiquidAds();
   }
@@ -17,8 +16,7 @@ class LiquidAds extends React.PureComponent<Props, {}> {
     const { liquidAds } = this.props;
     const noDataPlaceholder = (
       <div className="box is-centered has-text-centered">
-        Sorry, we don't have stats to display most liquid ads.
-        Please, come back later.
+        Sorry, we don't have stats to display most liquid ads. Please, come back later.
       </div>
     );
     return (
@@ -26,19 +24,14 @@ class LiquidAds extends React.PureComponent<Props, {}> {
         <div className="container is-fluid">
           <div className="columns">
             <div className="column is-centered">
-            {
-              liquidAds.length === 0 && noDataPlaceholder
-            }
-            {
-              liquidAds.length !==0 && <SliderWithText content={liquidAds} />
-            }
+              {liquidAds.length === 0 && noDataPlaceholder}
+              {liquidAds.length !== 0 && <SliderWithText content={liquidAds} />}
             </div>
           </div>
         </div>
       </section>
     );
   }
-
 }
 
 export default LiquidAds;

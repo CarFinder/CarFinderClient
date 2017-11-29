@@ -25,7 +25,7 @@ const mapStateToProps = (state: any) => ({
   searchError: state.formState.searchError,
   language: state.user.interfaceLanguage,
   savedSearchResults: state.savedSearchResults,
-  liquidAds: state.liquidAds.liquidAds,
+  liquidAds: state.liquidAds.liquidAds
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
@@ -34,7 +34,7 @@ const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
     dispatch(savedSearchResultsActions.fetchSavedSearchResults()),
   handleRemoveFilterById: (id: string) =>
     dispatch(savedSearchResultsActions.removeSavedFilterById(id)),
-    handleGetLiquidAds: () => dispatch(liquidAdsActions.getLiquidAds())
+  handleGetLiquidAds: () => dispatch(liquidAdsActions.getLiquidAds())
 });
 
 export default connect<StateToProps, DispatchFromProps>(mapStateToProps, mapDispatchToProps)(

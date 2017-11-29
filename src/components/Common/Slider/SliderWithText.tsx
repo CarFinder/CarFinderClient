@@ -54,24 +54,24 @@ export default class SliderWithText extends PureComponent<Props, State> {
     } else {
       return null;
     }
-  }
+  };
 
-  public dotClick = (dotIndex: number)  => {
+  public dotClick = (dotIndex: number) => {
     this.setState({ current: dotIndex });
-  }
+  };
 
   public previousSlide = () => {
     const current = this.state.current;
     const imageArray = this.state.background.length - 1;
 
-    if (current >= 1)  {
+    if (current >= 1) {
       this.setState({ current: current - 1 });
     }
 
     if (current === 0) {
       this.setState({ current: imageArray });
     }
-  }
+  };
 
   public nextSlide = () => {
     const current = this.state.current;
@@ -84,7 +84,7 @@ export default class SliderWithText extends PureComponent<Props, State> {
       this.setState({ current: 0 });
     }
     setTimeout(this.nextSlide, 2000);
-  }
+  };
 
   public render() {
     return (
