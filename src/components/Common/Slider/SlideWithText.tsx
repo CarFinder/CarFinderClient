@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './style.less';
 
 interface PropTypes {
@@ -11,7 +12,7 @@ const SlideWithText = (props: PropTypes) => {
 
   const styles = {
     imageBackground: {
-      backgroundImage: `url(${currentAd.images[0]})`,
+      backgroundImage: `url(${currentAd.image})`,
       backgroundSize: 'cover',
       backgroundPosition: 'center center',
       borderRadius: '5px'
@@ -57,6 +58,20 @@ const SlideWithText = (props: PropTypes) => {
             <div className="field is-expanded">
               <div className="field has-addons">
                 <p className="control">
+                  <a className="button is-static">Body Type</a>
+                </p>
+                <p className="control is-expanded">
+                  <input type="text" className="input" value={currentAd.body} readOnly />
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="field is-horizontal">
+          <div className="field-body">
+            <div className="field is-expanded">
+              <div className="field has-addons">
+                <p className="control">
                   <a className="button is-static">Median</a>
                 </p>
                 <p className="control is-expanded">
@@ -67,7 +82,9 @@ const SlideWithText = (props: PropTypes) => {
           </div>
         </div>
         <div className="button-group">
-          <button className="button is-warning">See advertisements</button>
+          <Link to={currentAd.url}>
+            <button className="button is-warning">See advertisements</button>
+          </Link>
         </div>
       </div>
     </div>

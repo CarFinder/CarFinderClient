@@ -7,11 +7,10 @@ export interface Props {
   liquidAds: interfaces.LiquidAds[];
 }
 
-// TODO: remove mockdata
 class LiquidAds extends React.PureComponent<Props, {}> {
 
   public componentDidMount() {
-    // this.props.handleGetLiquidAds();
+    this.props.handleGetLiquidAds();
   }
 
   public render() {

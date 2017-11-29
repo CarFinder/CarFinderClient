@@ -47,7 +47,7 @@ export default class SliderWithText extends PureComponent<Props, State> {
           style={{
             display: 'none',
             height: '100%',
-            backgroundImage: `url(${this.state.background[this.state.current + 1].images[0]})`
+            backgroundImage: `url(${this.state.background[this.state.current + 1].image})`
           }}
         />
       );
