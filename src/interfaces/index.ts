@@ -27,6 +27,12 @@ export interface ChangeUserSettings {
   subscription?: boolean;
 }
 
+export interface SendMessage {
+  name: string;
+  email: string;
+  message: string;
+}
+
 export interface SelectOptions {
   label: string;
   value: string;
@@ -88,6 +94,7 @@ interface CarModel {
   sourceName: string;
   sourceUrl: string;
   year: number;
+  isSold?: boolean;
 }
 
 export interface SavedFilterResults {
@@ -97,6 +104,7 @@ export interface SavedFilterResults {
   ads: CarModel[];
 }
 
+
 export interface LiquidAds {
   _id?: string;
   mark?: string;
@@ -105,4 +113,11 @@ export interface LiquidAds {
   median?: number;
   image?: string;
   url?: string;
+}
+
+export interface ServiceStats {
+  ads: number;
+  users: number;
+  models: number;
+
 }

@@ -126,3 +126,10 @@ export type GET_LIQUID_ADS = typeof GET_LIQUID_ADS;
 
 export const SET_LIQUID_ADS = 'SET_LIQUID_ADS';
 export type SET_LIQUID_ADS = typeof SET_LIQUID_ADS;
+
+export const SET_STATS = 'SET_STATS';
+export type SET_STATS = typeof SET_STATS;
+
+export const GET_STATS = 'GET_STATS';
+export type GET_STATS = typeof GET_STATS;
+

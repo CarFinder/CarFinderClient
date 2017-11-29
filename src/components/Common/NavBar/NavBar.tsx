@@ -70,7 +70,8 @@ class NavBar extends React.PureComponent<Props, State> {
             onClick={() =>
               this.setState({
                 open: false
-              })}
+              })
+            }
           >
             CarFinder
           </Link>
@@ -92,7 +93,8 @@ class NavBar extends React.PureComponent<Props, State> {
               onClick={() =>
                 this.setState({
                   open: false
-                })}
+                })
+              }
             >
               {lang.navigation.homepage}
             </Link>
@@ -102,7 +104,8 @@ class NavBar extends React.PureComponent<Props, State> {
               onClick={() =>
                 this.setState({
                   open: false
-                })}
+                })
+              }
             >
               {lang.navigation.catalog}
             </Link>
@@ -122,7 +125,8 @@ class NavBar extends React.PureComponent<Props, State> {
                   onClick={() =>
                     this.setState({
                       open: false
-                    })}
+                    })
+                  }
                 >
                   {lang.navigation.signin}
                 </Link>
@@ -132,7 +136,8 @@ class NavBar extends React.PureComponent<Props, State> {
                   onClick={() =>
                     this.setState({
                       open: false
-                    })}
+                    })
+                  }
                 >
                   {lang.navigation.signup}
                 </Link>
@@ -150,7 +155,8 @@ class NavBar extends React.PureComponent<Props, State> {
                     onClick={() =>
                       this.setState({
                         open: false
-                      })}
+                      })
+                    }
                   >
                     {lang.navigation.profile}
                   </Link>

@@ -16,6 +16,7 @@ export interface CarModel {
   sourceName: string;
   sourceUrl: string;
   year: number;
+  isSold?: boolean;
 }
 
 export type InitialState = FilterResults;

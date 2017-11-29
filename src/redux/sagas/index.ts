@@ -4,6 +4,7 @@ import changePasswordSaga from './changePasswordSaga';
 import changeUserDataSaga from './changeUserData';
 import emailConfrimationSaga from './emailConfirmationSaga';
 import liquidAdsSaga from './liquidAdsSaga';
+import landingPageSaga from './landingPageSaga';
 import savedSearchResultsSaga from './savedSearchResults';
 import savedSearchSaga from './savedSearchSaga';
 import signinSaga from './signinSaga';
@@ -19,7 +20,8 @@ function* rootSaga() {
     fork(changeUserDataSaga),
     fork(savedSearchSaga),
     fork(savedSearchResultsSaga),
-    fork(liquidAdsSaga)
+    fork(liquidAdsSaga),
+    fork(landingPageSaga)
   ];
 }
 

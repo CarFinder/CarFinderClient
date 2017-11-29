@@ -39,8 +39,8 @@ class SigninFrom extends React.PureComponent<Props, {}> {
     const { loading, authError, language } = this.props;
     const lang = this.props.language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
     const errorMessage = !authError.code
-      ? lang.searchErrors.serverUnavailable
-      : lang.authErrors[authError.code.toString()];
+      ? lang.errors.serverUnavailable
+      : lang.errors[authError.code.toString()];
     return (
       <div className="section">
         <div className="container">
