@@ -82,21 +82,21 @@ CarFinder project is a system which aggregates car sale ads from different platf
     <td>Receive newsletter with user-defined filter results</td>
     <td></td>
     <td></td>
-    <td>In progress</td>
+    <td>&#10004;</td>
   </tr>
   </tr>
     <tr>
     <td>View most liquid marks and models</td>
     <td></td>
     <td></td>
-    <td>In progress</td>
+    <td>&#10004;</td>
   </tr>
   </tr>
     <tr>
     <td>Calculate liquidity for cars with user-defined parameters</td>
     <td></td>
     <td></td>
-    <td>In progress</td>
+    <td>&#10004;</td>
   </tr>
  </table>
 <h1  id="technologies">Technologies</h1>

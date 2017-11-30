@@ -97,11 +97,23 @@ interface CarModel {
   isSold?: boolean;
 }
 
+export interface LiquidityFilter {
+  markId: string;
+  modelId?: SelectOptions[] | string[];
+  bodyTypeId?: SelectOptions[] | string[];
+}
+
 export interface SavedFilterResults {
   filterId: string;
   filterName: string;
   filterUrl: string;
   ads: CarModel[];
+}
+
+export interface CalculateLiquidity {
+  result: number | null;
+  total: number | null;
+  averageTime: Date | null;
 }
 
 export interface LiquidAds {

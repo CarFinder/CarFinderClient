@@ -41,6 +41,9 @@ export interface Language {
         [key: string]: string;
       };
     };
+    liquidity: {
+      [key: string]: string;
+    };
     home: {
       [key: string]: string;
     };
@@ -86,6 +89,9 @@ export interface Language {
       [key: string]: {
         [key: string]: string;
       };
+    };
+    liquidity: {
+      [key: string]: string;
     };
     home: {
       [key: string]: string;
@@ -235,7 +241,7 @@ const interfaceLanguage: Language = {
     savedSearch: {
       savedFilters: 'Сохраненные фильтры',
       clearFilters: 'Очистить фильтры',
-      noSavedFilters: 'У вас нет сохраненных фильтров',
+      noSavedFilters: 'У вас нет фильтров',
       seeAllFilters: 'Смотреть все',
       noAdsToDisplay: 'По запрашиваему фильтру нет объявлений',
       savedSearchResults: 'Сохраненные запросы по фильтру'
@@ -247,6 +253,16 @@ const interfaceLanguage: Language = {
         cancel: 'Отмена',
         confirm: 'Удалить все'
       }
+    },
+    liquidity: {
+      calculator: 'Калькулятор ликвидности',
+      calculate: 'Рассчитать',
+      defaultMsg: 'Выберете параметры, чтобы рассчитать ликвидность',
+      result: 'Количество объявлений, которые были проданы в течение месяца: ',
+      averageTime: 'Среднее время продажи по объявлению, дней: ',
+      total: 'Всего продано автомобилей за месяц: ',
+      noResult: 'За последний месяц не было продано ни одного объявления из выбранной категории.',
+      ads: 'Перейти к объявлениям'
     },
     home: {
       motto: 'Автомобили Для Успешных Людей.',
@@ -424,6 +440,16 @@ const interfaceLanguage: Language = {
         cancel: 'Cancel',
         confirm: 'Remove all'
       }
+    },
+    liquidity: {
+      calculator: 'Calculate Liquidity',
+      calculate: 'Calculate',
+      defaultMsg: 'Choose filter parameters to calculate liquidity',
+      result: 'Number of cars for the chosen filter sold last month: ',
+      averageTime: 'Average selling time, days: ',
+      total: 'Total number of cars sold last month: ',
+      noResult: 'No cars for the chosen filter were sold last month.',
+      ads: 'See ads'
     },
     home: {
       motto: 'If You Want To Get Ahead, Get A Car.',

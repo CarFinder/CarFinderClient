@@ -1,4 +1,5 @@
 import queryString from 'query-string';
+import api from '../api/api';
 import * as interfaces from '../interfaces/index';
 
 export const transformDataForSignup = (userData: interfaces.SignupUserData) => {
@@ -59,6 +60,19 @@ export const transformDataForSave = (values: any): interfaces.SavedFilter => {
   }
   if (values.kmsTo) {
     data.kmsTo = values.kmsTo;
+  }
+  return data;
+};
+
+export const transformDataForLiquidity = (values: any): interfaces.LiquidityFilter => {
+  const data: interfaces.LiquidityFilter = {
+    markId: values.markId
+  };
+  if (values.modelId.length !== 0) {
+    data.modelId = values.modelId.map((pair: interfaces.SelectOptions) => pair.value);
+  }
+  if (values.bodyTypeId.length !== 0) {
+    data.bodyTypeId = values.bodyTypeId.map((pair: interfaces.SelectOptions) => pair.value);
   }
   return data;
 };
@@ -126,6 +140,14 @@ export interface FileReaderEvent extends Event {
   target: FileReaderEventTarget;
   getMessage(): string;
 }
+
+export const receiveImageFromAvby = async (
+  imagePath: string,
+  hostName: string
+): Promise<string> => {
+  const response = await api.utils.getImage(imagePath, hostName);
+  return await toBase64(response.data);
+};
 
 export const toBase64 = async (file: File): Promise<string> => {
   return new Promise<any>((resolve, reject) => {
