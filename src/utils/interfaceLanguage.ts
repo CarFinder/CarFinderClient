@@ -202,6 +202,8 @@ const interfaceLanguage: Language = {
       kmTo: 'Пробег до, км.',
       saveFilters: 'Сохранить',
       searchFilters: 'Поиск',
+      sourceName: 'Источник',
+      allSources: 'Все',
       adsPerPage: 'Объявлений на странице',
       price: 'Цена'
     },
@@ -389,6 +391,8 @@ const interfaceLanguage: Language = {
       kmTo: 'KMs To',
       saveFilters: 'Save',
       searchFilters: 'Search',
+      sourceName: 'Source',
+      allSources: 'All',
       chooseFilters: 'Please choose search options',
       adsPerPage: 'Ads per page',
       price: 'Price'

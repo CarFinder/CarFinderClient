@@ -54,6 +54,7 @@ export interface State {
     priceTo: number;
     kmsFrom: number;
     kmsTo: number;
+    sourceName: string;
     url: string;
   };
   errors: any;
@@ -74,6 +75,7 @@ class CarFilter extends React.PureComponent<Props, State> {
         priceTo: 0,
         kmsFrom: 0,
         kmsTo: 0,
+        sourceName: 'all',
         url: ''
       },
       errors: {}
@@ -130,6 +132,7 @@ class CarFilter extends React.PureComponent<Props, State> {
         priceTo: stateFromPath.priceTo,
         kmsFrom: stateFromPath.kmsFrom,
         kmsTo: stateFromPath.kmsTo,
+        sourceName: stateFromPath.sourceName,
         url: location
       }
     });
@@ -141,11 +144,20 @@ class CarFilter extends React.PureComponent<Props, State> {
   };
 
   public onChangeSelect = (value: any, field: string) => {
-    if (field !== 'markId') {
+    if (field === 'modelId' || field === 'bodyTypeId') {
       this.setState({
         data: {
           ...this.state.data,
           [field]: value
+        }
+      });
+    }
+    if (field === 'sourceName') {
+      this.setState({
+        data: {
+          ...this.state.data,
+          [field]: value.value,
+          modelId: []
         }
       });
     }
@@ -236,6 +248,21 @@ class CarFilter extends React.PureComponent<Props, State> {
     const errorMessage = !searchError.code
       ? lang.errors.serverUnavailable
       : lang.errors[searchError.code.toString()];
+
+    const sourceValues = [
+      {
+        value: 'all',
+        label: lang.carFilters.allSources
+      },
+      {
+        value: 'av.by',
+        label: 'av.by'
+      },
+      {
+        value: 'onliner',
+        label: 'onliner.by'
+      }
+    ];
     return (
       <div className="section">
         <div className="container is-fluid">
@@ -278,6 +305,15 @@ class CarFilter extends React.PureComponent<Props, State> {
                       onChange={this.onChangeSelect}
                       disabled={filterValues.bodyTypes.length === 0}
                       error={errors.bodyTypeId}
+                    />
+                  </div>
+                  <div className="column">
+                    <SelectInput
+                      field="sourceName"
+                      label={lang.carFilters.sourceName}
+                      value={data.sourceName}
+                      options={sourceValues}
+                      onChange={this.onChangeSelect}
                     />
                   </div>
                 </div>

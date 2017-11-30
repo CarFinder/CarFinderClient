@@ -61,6 +61,7 @@ export interface CarFilter {
     priceTo?: number;
     kmsFrom?: number;
     kmsTo?: number;
+    sourceName?: string;
   };
   limit: number;
   skip: any;
@@ -79,6 +80,7 @@ export interface SavedFilter {
   priceTo?: number;
   kmsFrom?: number;
   kmsTo?: number;
+  sourceName?: string;
   url?: string;
 }
 
