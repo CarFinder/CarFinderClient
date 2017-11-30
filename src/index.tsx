@@ -26,6 +26,10 @@ import Signin from './containers/Signin';
 import Signup from './containers/Signup';
 import UserProfile from './containers/UserProfile';
 
+declare var process: any;
+
+const apiUrl = process.env.NODE_ENV;
+
 const App = () => {
   if (localStorage.jwt) {
     const payload = jwt_decode(localStorage.jwt);
@@ -56,7 +60,7 @@ const App = () => {
 
 const sagaMiddleware = createSagaMiddleware();
 const initialState = {};
-const composeEnhansers = composeWithDevTools || compose;
+const composeEnhansers = process.env.NODE_ENV === 'production' ? compose : composeWithDevTools;
 const store: Store<any> = createStore(
   rootReducer,
   initialState,
