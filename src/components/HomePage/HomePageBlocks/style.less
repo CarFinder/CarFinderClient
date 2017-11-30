@@ -1,0 +1,113 @@
+.hero {
+  &-button {
+    color: rgba(0, 0, 0, 0.7);
+    font-weight: bold;
+  }
+  &-image {
+    position: relative;
+    &-loaded, &-preload {
+      position: absolute;
+      background-size: cover;
+      background-position: center;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+    }
+    &-loaded {
+      z-index: 2;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+    &-preload {
+      z-index: 1;
+    }
+    &-fade-in {
+      opacity: 1;
+    }
+  }
+  &-title, &-subtitle {
+    color: rgb(255, 255, 255);
+  }
+}
+
+.container {
+  z-index: 3;
+  &-stats {
+    .columns {
+      justify-content: space-between;
+      margin-top: 2rem;
+    }
+    .column {
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
+
+.section {
+  &-column {
+    text-align: center;
+  }
+  &-features, &-contact {
+    background-color: rgb(245, 245, 245);
+    & .title {
+      color: rgba(0, 0, 0, 0.5);
+      text-align: center;
+      font-weight: normal;
+    }
+    & .button {
+      margin-right: 0;
+    }
+  }
+  &-form {
+    display: flex;
+    flex-direction: column;
+    & .button {
+      font-weight: bold;
+    }
+  }
+  &-icon {
+    background-color: rgb(255, 255, 255);
+    height: 10rem !important;
+    width: 10rem !important;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+  }
+  & .image {
+    margin: 0 auto 1rem ;
+  }
+  &-technologies {
+    background-color: rgb(40, 40, 52);
+    & .title, .subtitle {
+      text-align: center;
+      color: rgb(255, 255, 255);
+      font-weight: lighter;
+    }
+  }
+  &-stats {
+    display: flex;
+    flex-direction: column;
+    color:  rgba(0, 0, 0, 0.5);
+    background-color: rgb(255, 255, 255);
+    height: 11rem !important;
+    width: 11rem !important;
+    border-radius: 50%;
+  }
+}
+
+.counter {
+  &-text {
+    color:  rgba(0, 0, 0, 0.5) !important;
+  }
+}
+
