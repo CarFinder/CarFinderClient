@@ -13,12 +13,12 @@ module.exports = env => {
       publicPath: 'dist',
       path: path.resolve('./dist')
     },
-    devServer: {
-      port: 3001,
-      proxy: {
-        '/api': 'http://localhost:2999'
-        // '/api': 'http://13.59.75.154:3000'
-      },
+  devServer: {
+    port: 3001,
+    proxy: {
+      '/api': 'http://localhost:2999',
+      '/redirect': 'http://localhost:9090'
+    },
       historyApiFallback: true,
       inline: true,
       stats: {

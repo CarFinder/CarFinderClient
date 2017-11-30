@@ -1,5 +1,5 @@
-import interfaces from '../../interfaces';
-import actionTypes from './actionTypes';
+import * as interfaces from '../../interfaces';
+import * as actionTypes from './actionTypes';
 
 export interface GetLiquidAds {
   type: actionTypes.GET_LIQUID_ADS;

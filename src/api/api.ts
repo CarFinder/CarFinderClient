@@ -20,7 +20,8 @@ export default {
       axios.post(`${apiUrl}/api/user/update-user-image`, data),
     changeUserSettings: (data: interfaces.ChangeUserSettings) =>
       axios.post(`${apiUrl}/api/user/update-user-settings`, data),
-    submitMessage: (data: interfaces.SendMessage) => axios.post(`${apiUrl}/api/user/send-message`, data)
+    submitMessage: (data: interfaces.SendMessage) =>
+      axios.post(`${apiUrl}/api/user/send-message`, data)
   },
   filters: {
     fetchMarks: () => axios.get(`${apiUrl}/api/filter/marks`),
@@ -40,9 +41,16 @@ export default {
     fetchLiquidAds: () => axios.get(`${apiUrl}/api/posts/most_liquid`)
   },
   liquidity: {
-    getLiquidity: (data: interfaces.LiquidityFilter) => axios.post('/api/posts/get-liquidity', data)
+    getLiquidity: (data: interfaces.LiquidityFilter) =>
+      axios.post(`${apiUrl}/api/posts/get-liquidity`, data)
   },
   stats: {
     fetchStats: () => axios.get(`${apiUrl}/api/stats/landing-stats`)
+  },
+  utils: {
+    getImage: (imagePath: string, hostName: string) =>
+      axios.get(`/redirect/image?url=${imagePath}&host=${hostName}`, {
+        responseType: 'blob'
+      })
   }
 };

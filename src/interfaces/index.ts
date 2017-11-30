@@ -112,7 +112,6 @@ export interface SavedFilterResults {
   ads: CarModel[];
 }
 
-
 export interface CalculateLiquidity {
   result: number | null;
   total: number | null;
@@ -123,8 +122,9 @@ export interface LiquidAds {
   _id?: string;
   mark?: string;
   model?: string;
+  body?: string;
   median?: number;
-  images?: string[];
+  image?: string;
   url?: string;
 }
 
