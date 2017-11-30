@@ -82,6 +82,7 @@ class CarFilter extends React.PureComponent<Props, State> {
 
   public componentWillMount() {
     this.props.handleClearFilters();
+    this.props.clearFilterResults();
     this.props.handleClearError();
     this.props.handleFetchMarksValues();
     this.props.handleFetchBodyTypesValues();
@@ -91,7 +92,6 @@ class CarFilter extends React.PureComponent<Props, State> {
   public async componentDidMount() {
     if (queryString.parse(this.props.location.search).mark) {
       this.props.handleFetchModelsValues(queryString.parse(this.props.location.search).mark);
-      this.props.clearFilterResults();
       this.props.handleSetAds([]);
       this.props.handleSetSkip(0);
 
