@@ -116,7 +116,7 @@ export interface SavedFilterResults {
 export interface CalculateLiquidity {
   result: number | null;
   total: number | null;
-  averageTime: Date | null;
+  averageTime: number | null;
 }
 
 export interface LiquidAds {

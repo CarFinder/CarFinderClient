@@ -167,15 +167,15 @@ class Calculator extends React.PureComponent<Props, State> {
                     {searchError && <Notification type="danger" text={errorMessage} />}
                     <div>
                       {liquidity.result > 0
-                        ? `${lang.liquidity.result} ${liquidity.result}`
+                        ? <div>{lang.liquidity.result} <span className="calculator-stat">{liquidity.result}.</span></div>
                         : `${lang.liquidity.noResult}`}
                     </div>
                     <div>
-                      {liquidity.result > 0
-                        ? `${lang.liquidity.averageTime} ${liquidity.averageTime}`
+                      {liquidity.averageTime && liquidity.result > 0
+                        ? <div>{lang.liquidity.averageTime}<span className="calculator-stat">{Math.round(liquidity.averageTime)}.</span></div>
                         : ''}
                     </div>
-                    <div>{`${lang.liquidity.total} ${liquidity.total}.`}</div>
+                    <div>{lang.liquidity.total}<span className="calculator-stat">{liquidity.total}.</span></div>
                     <div className="calculator-result">
                       <Link to={`/catalog/${this.state.url}`} className="button is-warning">
                         {lang.liquidity.ads}
