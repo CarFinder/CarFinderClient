@@ -36,7 +36,7 @@ const mapStateToProps = (state: any) => ({
   savedSearchResults: state.savedSearchResults,
   filterValues: state.carFilters.filterValues,
   liquidity: state.calculateLiquidity,
-  liquidAds: state.liquidAds.liquidAds,
+  liquidAds: state.liquidAds.liquidAds
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<any>) => ({

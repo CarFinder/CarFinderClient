@@ -52,15 +52,15 @@ export interface SortingParams {
 
 export interface CarFilter {
   filter: {
-    markId: string,
-    modelId?: SelectOptions[] | string[],
-    bodyTypeId?: SelectOptions[] | string[],
-    yearFrom?: number,
-    yearTo?: number,
-    priceFrom?: number,
-    priceTo?: number,
-    kmsFrom?: number,
-    kmsTo?: number
+    markId: string;
+    modelId?: SelectOptions[] | string[];
+    bodyTypeId?: SelectOptions[] | string[];
+    yearFrom?: number;
+    yearTo?: number;
+    priceFrom?: number;
+    priceTo?: number;
+    kmsFrom?: number;
+    kmsTo?: number;
   };
   limit: number;
   skip: any;
@@ -109,7 +109,6 @@ export interface SavedFilterResults {
   filterUrl: string;
   ads: CarModel[];
 }
-
 
 export interface CalculateLiquidity {
   result: number | null;
