@@ -68,50 +68,67 @@ module.exports = env => {
         }
       ]
     },
-    plugins: [
-      new WebpackNotifierPlugin(),
-      new ExtractTextPlugin('styles.css'),
-      new webpack.DefinePlugin({
-        'process.env': {
-          NODE_ENV: JSON.stringify(env.NODE_ENV)
-        }
-      }),
-      new webpack.optimize.ModuleConcatenationPlugin(),
-      new webpack.HashedModuleIdsPlugin(),
-      new webpack.optimize.UglifyJsPlugin({
-        compress: {
-          warnings: false,
-          screw_ie8: true,
-          conditionals: true,
-          unused: true,
-          comparisons: true,
-          sequences: true,
-          dead_code: true,
-          evaluate: true,
-          if_return: true,
-          join_vars: true
-        },
-        output: {
-          comments: false
-        },
-        sourceMap: true
-      }),
-      new OptimizeCssAssetsPlugin({
-        assetNameRegExp: /\.optimize\.css$/g,
-        cssProcessor: require('cssnano'),
-        cssProcessorOptions: { discardComments: { removeAll: true } },
-        canPrint: true
-      }),
-      new StyleExtHtmlWebpackPlugin({
-        minify: true
-      }),
-      new CompressionPlugin({
-        asset: '[path].gz[query]',
-        algorithm: 'gzip',
-        test: /\.js$|\.ts$|\.tsx$|\.css$|\.html$|\.eot?.+$|\.ttf?.+$|\.woff?.+$|\.svg?.+$/,
-        threshold: 10240,
-        minRatio: 0.8
-      })
-    ]
+    plugins:
+      env.NODE_ENV === 'production'
+        ? [
+            new WebpackNotifierPlugin(),
+            new ExtractTextPlugin('styles.css'),
+            new webpack.DefinePlugin({
+              'process.env': {
+                NODE_ENV: JSON.stringify(env.NODE_ENV)
+              }
+            }),
+            new webpack.optimize.ModuleConcatenationPlugin(),
+            new webpack.HashedModuleIdsPlugin(),
+            new webpack.optimize.UglifyJsPlugin({
+              compress: {
+                warnings: false,
+                screw_ie8: true,
+                conditionals: true,
+                unused: true,
+                comparisons: true,
+                sequences: true,
+                dead_code: true,
+                evaluate: true,
+                if_return: true,
+                join_vars: true
+              },
+              output: {
+                comments: false
+              },
+              sourceMap: true
+            }),
+            new OptimizeCssAssetsPlugin({
+              assetNameRegExp: /\.optimize\.css$/g,
+              cssProcessor: require('cssnano'),
+              cssProcessorOptions: { discardComments: { removeAll: true } },
+              canPrint: true
+            }),
+            new StyleExtHtmlWebpackPlugin({
+              minify: true
+            }),
+            new CompressionPlugin({
+              asset: '[path].gz[query]',
+              algorithm: 'gzip',
+              test: /\.js$|\.ts$|\.tsx$|\.css$|\.html$|\.eot?.+$|\.ttf?.+$|\.woff?.+$|\.svg?.+$/,
+              threshold: 10240,
+              minRatio: 0.8
+            })
+          ]
+        : [
+            new WebpackNotifierPlugin(),
+            new ExtractTextPlugin('styles.css'),
+            new webpack.DefinePlugin({
+              'process.env': {
+                NODE_ENV: JSON.stringify(env.NODE_ENV)
+              }
+            }),
+            new OptimizeCssAssetsPlugin({
+              assetNameRegExp: /\.optimize\.css$/g,
+              cssProcessor: require('cssnano'),
+              cssProcessorOptions: { discardComments: { removeAll: true } },
+              canPrint: true
+            })
+          ]
   };
 };
