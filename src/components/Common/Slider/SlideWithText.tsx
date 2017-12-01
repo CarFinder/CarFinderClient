@@ -1,14 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import interfaceLanguage from '../../../utils/interfaceLanguage';
 import './style.less';
 
 interface PropTypes {
   background: any[];
   current: any;
+  language: string;
 }
 
 const SlideWithText = (props: PropTypes) => {
   const currentAd: any = props.background[props.current];
+
+  const lang = props.language === 'ru' ? interfaceLanguage.ru : interfaceLanguage.en;
 
   const styles = {
     imageBackground: {
@@ -30,7 +34,7 @@ const SlideWithText = (props: PropTypes) => {
             <div className="field is-expanded">
               <div className="field has-addons">
                 <p className="control">
-                  <a className="button is-static">Mark</a>
+                  <a className="button is-static">{lang.liquidAds.mark}</a>
                 </p>
                 <p className="control is-expanded">
                   <input type="text" className="input" value={currentAd.mark} readOnly />
@@ -44,7 +48,7 @@ const SlideWithText = (props: PropTypes) => {
             <div className="field is-expanded">
               <div className="field has-addons">
                 <p className="control">
-                  <a className="button is-static">Model</a>
+                  <a className="button is-static">{lang.liquidAds.model}</a>
                 </p>
                 <p className="control is-expanded">
                   <input type="text" className="input" value={currentAd.model} readOnly />
@@ -58,7 +62,7 @@ const SlideWithText = (props: PropTypes) => {
             <div className="field is-expanded">
               <div className="field has-addons">
                 <p className="control">
-                  <a className="button is-static">Body Type</a>
+                  <a className="button is-static">{lang.liquidAds.body}</a>
                 </p>
                 <p className="control is-expanded">
                   <input type="text" className="input" value={currentAd.body} readOnly />
@@ -72,7 +76,7 @@ const SlideWithText = (props: PropTypes) => {
             <div className="field is-expanded">
               <div className="field has-addons">
                 <p className="control">
-                  <a className="button is-static">Median</a>
+                  <a className="button is-static">{lang.liquidAds.median}</a>
                 </p>
                 <p className="control is-expanded">
                   <input type="text" className="input" value={currentAd.median} readOnly />
@@ -83,7 +87,7 @@ const SlideWithText = (props: PropTypes) => {
         </div>
         <div className="button-group">
           <Link to={currentAd.url}>
-            <button className="button is-warning">See advertisements</button>
+            <button className="button is-warning">{lang.liquidAds.seeAds}</button>
           </Link>
         </div>
       </div>

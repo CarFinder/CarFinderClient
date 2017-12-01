@@ -48,7 +48,7 @@ const UserDashboard = (props: Props) => {
   } = props;
   return (
     <div>
-      <LiquidAds liquidAds={liquidAds} handleGetLiquidAds={handleGetLiquidAds} />
+      <LiquidAds language={language} liquidAds={liquidAds} handleGetLiquidAds={handleGetLiquidAds} />
       <SavedSearch
         language={language}
         loading={loading}

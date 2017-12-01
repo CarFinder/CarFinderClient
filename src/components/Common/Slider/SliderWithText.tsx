@@ -11,6 +11,7 @@ interface Props {
   dotClick?: (index: number) => void;
   preloadNextImage?: () => void;
   content: any[];
+  language: string;
 }
 
 interface State {
@@ -90,7 +91,11 @@ export default class SliderWithText extends PureComponent<Props, State> {
     return (
       <div className="slider-with-text">
         {this.state.ready ? (
-          <SlideWithText background={this.state.background} current={this.state.current} />
+          <SlideWithText
+            language={this.props.language}
+            background={this.state.background}
+            current={this.state.current}
+          />
         ) : null}
         <Dots
           numberOfDots={this.state.background.length}

@@ -47,6 +47,9 @@ export interface Language {
     home: {
       [key: string]: string;
     };
+    liquidAds: {
+      [key: string]: string;
+    };
   };
   en: {
     validation: {
@@ -94,6 +97,9 @@ export interface Language {
       [key: string]: string;
     };
     home: {
+      [key: string]: string;
+    };
+    liquidAds: {
       [key: string]: string;
     };
   };
@@ -255,6 +261,15 @@ const interfaceLanguage: Language = {
         cancel: 'Отмена',
         confirm: 'Удалить все'
       }
+    },
+    liquidAds: {
+      noStatsAvailable:
+        'Извините, но данных не достаточно для показа статистики по самым ликвидным моделям.',
+      seeAds: 'Смотреть объявления',
+      mark: 'Марка',
+      model: 'Модель',
+      body: 'Кузов',
+      median: 'Медиана'
     },
     liquidity: {
       calculator: 'Калькулятор ликвидности',
@@ -454,6 +469,14 @@ const interfaceLanguage: Language = {
       total: 'Total number of cars sold last month: ',
       noResult: 'No cars for the chosen filter were sold last month.',
       ads: 'See ads'
+    },
+    liquidAds: {
+      noStatsAvailable: `Sorry, we don't have stats to display most liquid ads. Please, come back later.`,
+      seeAds: 'See advertisements',
+      mark: 'Maker',
+      model: 'Model',
+      body: 'Body',
+      median: 'Median'
     },
     home: {
       motto: 'If You Want To Get Ahead, Get A Car.',
