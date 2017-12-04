@@ -16,8 +16,8 @@ export interface State {
 }
 
 export default class DropPhoto extends React.PureComponent<Props, State> {
-  constructor() {
-    super();
+  constructor(props: Props) {
+    super(props);
     this.state = {
       image: null,
       typeError: false

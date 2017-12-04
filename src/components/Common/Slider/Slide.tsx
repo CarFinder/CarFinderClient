@@ -12,8 +12,8 @@ interface State {
 }
 
 class Slide extends React.PureComponent<PropTypes, State> {
-  constructor() {
-    super();
+  constructor(props: PropTypes) {
+    super(props);
     this.state = {
       image: null
     };

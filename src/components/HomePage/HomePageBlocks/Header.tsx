@@ -20,8 +20,8 @@ interface Header {
 }
 
 class Header extends React.PureComponent<Props, any> {
-  constructor() {
-    super();
+  constructor(props: Props) {
+    super(props);
     this.backgroundImage = null;
   }
 

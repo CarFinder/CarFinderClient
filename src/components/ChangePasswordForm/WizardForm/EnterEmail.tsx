@@ -44,6 +44,7 @@ const EnterEmail = (props: Props) => {
     <form onSubmit={props.handleSubmit}>
       <div>
         <Field
+          // @ts-ignore: redux from types error
           name="email"
           type="email"
           component={renderTextField}

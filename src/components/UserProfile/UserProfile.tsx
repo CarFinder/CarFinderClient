@@ -29,8 +29,8 @@ export interface Props {
 }
 
 export default class UserProfile extends React.PureComponent<Props, {}> {
-  constructor() {
-    super();
+  constructor(props: Props) {
+    super(props);
   }
 
   public componentDidMount() {

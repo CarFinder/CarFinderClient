@@ -155,6 +155,7 @@ export const receiveImageFromAvby = async (
 export const toBase64 = async (file: File): Promise<string> => {
   return new Promise<any>((resolve, reject) => {
     const reader = new FileReader();
+    // @ts-ignore: Event type error
     reader.onload = (event: FileReaderEvent) => {
       resolve(event.target.result);
     };

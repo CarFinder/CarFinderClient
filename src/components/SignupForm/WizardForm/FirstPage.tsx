@@ -43,6 +43,7 @@ const FirstPage = (props: Props) => {
     <form onSubmit={props.handleSubmit}>
       <div>
         <Field
+          // @ts-ignore: redux from types error
           name="name"
           placeholder={lang.signupForm.nameFieldPlaceholder}
           component={renderTextField}

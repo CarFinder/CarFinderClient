@@ -30,8 +30,8 @@ const mapDispatchToProps = (dispatch: Dispatch<actions.UserAction>) => ({
 });
 
 class NavBar extends React.PureComponent<Props, State> {
-  constructor() {
-    super();
+  constructor(props: Props) {
+    super(props);
     this.state = {
       open: false
     };

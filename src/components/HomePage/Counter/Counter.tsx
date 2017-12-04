@@ -15,12 +15,12 @@ interface Counter {
   loops: number;
   loopsCounter: number;
   increment: number;
-  interval: number;
+  interval: any;
 }
 
 class Counter extends React.PureComponent<Props, State> {
   constructor(props: Props) {
-    super();
+    super(props);
     this.state = {
       counter: 0
     };

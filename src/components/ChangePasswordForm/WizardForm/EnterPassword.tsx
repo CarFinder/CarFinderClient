@@ -46,6 +46,7 @@ const EnterPassword = (props: Props) => {
       <p className="help has-text-grey-light">{lang.changePassword.passwordTooltip}</p>
       <div>
         <Field
+          // @ts-ignore: redux from types error
           name="password"
           type="password"
           component={renderTextField}
@@ -55,6 +56,7 @@ const EnterPassword = (props: Props) => {
       </div>
       <div>
         <Field
+          // @ts-ignore: redux from types error
           name="passwordConfirmation"
           type="password"
           component={renderTextField}

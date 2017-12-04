@@ -43,6 +43,7 @@ const ThirdPage = (props: Props) => {
       <p className="help has-text-grey-light">{lang.signupForm.passwordTooltip}</p>
       <div>
         <Field
+          // @ts-ignore: redux from types error
           name="password"
           placeholder={lang.signupForm.passwordFieldPlaceholder}
           component={renderTextField}
@@ -51,6 +52,7 @@ const ThirdPage = (props: Props) => {
       </div>
       <div>
         <Field
+          // @ts-ignore: redux from types error
           name="passwordConfirmation"
           placeholder={lang.signupForm.confirmPasswordFieldPlaceholder}
           component={renderTextField}
