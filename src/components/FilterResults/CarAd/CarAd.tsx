@@ -19,8 +19,8 @@ interface CarAd {
   previewImage: any;
 }
 class CarAd extends React.PureComponent<Props, {}> {
-  constructor() {
-    super();
+  constructor(props: Props) {
+    super(props);
     this.previewImage = null;
   }
 

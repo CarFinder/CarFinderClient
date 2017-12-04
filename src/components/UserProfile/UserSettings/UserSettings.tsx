@@ -18,7 +18,7 @@ export interface State {
 
 export default class UserSettings extends React.PureComponent<Props, State> {
   constructor(props: Props) {
-    super();
+    super(props);
     this.state = {
       subscription: props.subscription,
       interfaceLanguage: props.interfaceLanguage

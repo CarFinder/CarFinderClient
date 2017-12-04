@@ -36,8 +36,8 @@ export interface State {
 }
 
 class Calculator extends React.PureComponent<Props, State> {
-  constructor() {
-    super();
+  constructor(props: Props) {
+    super(props);
     this.state = {
       data: {
         markId: '',

@@ -50,8 +50,8 @@ interface State {
 }
 
 class Catalogue extends React.PureComponent<Props, State> {
-  constructor() {
-    super();
+  constructor(props: Props) {
+    super(props);
     this.state = {
       skip: 0,
       items: []

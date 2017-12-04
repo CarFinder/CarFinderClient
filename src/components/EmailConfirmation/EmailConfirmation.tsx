@@ -26,8 +26,8 @@ export interface State {
 }
 
 class EmailConfirmation extends React.PureComponent<Props, State> {
-  constructor() {
-    super();
+  constructor(props: Props) {
+    super(props);
     this.state = {
       loading: true,
       hasError: false

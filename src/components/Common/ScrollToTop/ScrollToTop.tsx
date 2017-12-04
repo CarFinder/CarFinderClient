@@ -8,12 +8,12 @@ export interface Props {
 }
 
 export interface State {
-  intervalId: number;
+  intervalId: any;
 }
 
 class ScrollTopTop extends React.PureComponent<Props, State> {
-  constructor() {
-    super();
+  constructor(props: Props) {
+    super(props);
     this.state = {
       intervalId: 0
     };

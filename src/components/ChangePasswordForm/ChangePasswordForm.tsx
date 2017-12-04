@@ -34,8 +34,8 @@ export interface State {
 }
 
 class ChangePasswordForm extends React.PureComponent<Props, State> {
-  constructor() {
-    super();
+  constructor(props: Props) {
+    super(props);
     this.state = {
       token: ''
     };

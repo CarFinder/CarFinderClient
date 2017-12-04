@@ -21,8 +21,8 @@ interface State {
 }
 
 export default class SliderWithText extends PureComponent<Props, State> {
-  constructor() {
-    super();
+  constructor(props: Props) {
+    super(props);
     this.state = {
       background: [],
       current: null,

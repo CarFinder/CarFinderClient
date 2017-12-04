@@ -10,8 +10,8 @@ interface Props {
 }
 
 class Features extends React.PureComponent<Props, any> {
-  constructor() {
-    super();
+  constructor(props: Props) {
+    super(props);
     this.state = {
       visibleIcon: false
     };

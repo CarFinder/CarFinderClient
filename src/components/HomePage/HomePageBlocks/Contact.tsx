@@ -75,18 +75,21 @@ const Contact = (props: Props) => {
         <p className="title section-title">{lang.home.contactUs}</p>
         <form className="section-form" onSubmit={props.handleSubmit}>
           <Field
+            // @ts-ignore: redux from types error
             name="name"
             placeholder={lang.home.nameFieldPlaceholder}
             component={renderTextField}
             title={lang.home.nameField}
           />
           <Field
+            // @ts-ignore: redux from types error
             name="email"
             placeholder={lang.home.emailFieldPlaceholder}
             component={renderTextField}
             title={lang.home.emailField}
           />
           <Field
+            // @ts-ignore: redux from types error
             name="message"
             placeholder={lang.home.messagePlaceholder}
             component={renderTextArea}

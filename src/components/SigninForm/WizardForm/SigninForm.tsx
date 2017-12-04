@@ -49,6 +49,7 @@ const SigninForm = (props: Props) => {
       <p className="help has-text-grey-light">{lang.signinForm.passwordTooltip}</p>
       <div>
         <Field
+          // @ts-ignore: redux from types error
           name="email"
           type="email"
           component={renderTextField}
@@ -58,6 +59,7 @@ const SigninForm = (props: Props) => {
       </div>
       <div>
         <Field
+          // @ts-ignore: redux from types error
           name="password"
           type="password"
           component={renderTextField}

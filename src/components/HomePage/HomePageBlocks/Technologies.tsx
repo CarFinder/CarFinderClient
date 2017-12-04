@@ -10,8 +10,8 @@ interface Props {
 }
 
 class Technologies extends React.PureComponent<any, any> {
-  constructor() {
-    super();
+  constructor(props: Props) {
+    super(props);
     this.state = {
       visibleIcon: false
     };
