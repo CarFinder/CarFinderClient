@@ -50,6 +50,4 @@ const mapDispatchToProps = (
     dispatch(userActions.userChangeUserSettings(userSettings))
 });
 
-export default connect<StateToProps, any>(mapStateToProps, mapDispatchToProps)(
-  UserProfile
-);
+export default connect<StateToProps, any>(mapStateToProps, mapDispatchToProps)(UserProfile);

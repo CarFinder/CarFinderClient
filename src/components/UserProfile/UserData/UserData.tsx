@@ -51,7 +51,7 @@ const UserData = (props: Props) => {
     <form onSubmit={props.handleSubmit}>
       <div>
         <Field
-         // @ts-ignore: redux from types error
+          // @ts-ignore: redux from types error
           name="name"
           type="name"
           placeholder={lang.userProfile.nameFieldPlaceholder}
@@ -61,7 +61,7 @@ const UserData = (props: Props) => {
       </div>
       <div>
         <Field
-         // @ts-ignore: redux from types error
+          // @ts-ignore: redux from types error
           name="email"
           type="email"
           placeholder={lang.userProfile.emailFieldPlaceholder}

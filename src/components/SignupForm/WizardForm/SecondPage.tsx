@@ -41,7 +41,7 @@ const SecondPage = (props: Props) => {
     <form onSubmit={props.handleSubmit}>
       <div>
         <Field
-         // @ts-ignore: redux from types error
+          // @ts-ignore: redux from types error
           name="email"
           placeholder={lang.signupForm.emailFieldPlaceholder}
           component={renderTextField}
