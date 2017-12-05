@@ -47,6 +47,7 @@ export default class DropPhoto extends React.PureComponent<Props, State> {
         <div className="dropzone">
           <Dropzone
             accept="image/jpeg, image/png"
+            maxSize={2097152}
             multiple={false}
             onDrop={this.onDrop}
             className="field"

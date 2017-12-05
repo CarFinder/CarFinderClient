@@ -242,9 +242,9 @@ const interfaceLanguage: Language = {
       typeError: 'Неподдерживаемый тип файла',
       changePassword: 'Сбросить пароль',
       dndHint:
-        '<strong>Перетащите</strong> вашу аватарку сюда или <strong>нажмите</strong> для выбора аватара',
+        '<strong>Перетащите</strong> вашу аватарку сюда или <strong>нажмите</strong> для выбора аватара. Размер изображения <strong>не должен превышать 2 мб</strong>.',
       dndUpdateHint:
-        'Для обновления <strong>перетащите</strong> вашу аватарку сюда или <strong>нажмите</strong> для выбора аватара'
+        'Для обновления <strong>перетащите</strong> вашу аватарку сюда или <strong>нажмите</strong> для выбора аватара. Размер изображения <strong>не должен превышать 2 мб</strong>.'
     },
     savedSearch: {
       savedFilters: 'Сохраненные фильтры',
@@ -440,9 +440,10 @@ const interfaceLanguage: Language = {
       subscription: 'Use email for updates',
       typeError: 'Unsupported type',
       changePassword: 'Restore password',
-      dndHint: '<strong>Drag</strong> your avatar here or <strong>click</strong> to browse avatar',
+      dndHint:
+        '<strong>Drag</strong> your avatar here or <strong>click</strong> to browse avatar. Image size should be <strong>less than 2 mb</strong>.',
       dndUpdateHint:
-        'For update <strong>drag</strong> your avatar here or <strong>click</strong> to browse avatar'
+        'For update <strong>drag</strong> your avatar here or <strong>click</strong> to browse avatar. Image size should be <strong>less than 2 mb</strong>.'
     },
     savedSearch: {
       savedFilters: 'Saved filters',
