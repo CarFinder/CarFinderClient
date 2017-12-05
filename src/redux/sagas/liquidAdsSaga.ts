@@ -12,8 +12,9 @@ function* callGetLiquidAds(action: Action) {
     yield put({ type: actionTypes.SET_LIQUID_ADS, payload: response.data });
     yield put({ type: actionTypes.SET_LOADING, payload: false });
   } catch (e) {
+    const err = e.response.data ? e.response.data.error : 'Server unavailable';
     yield put({ type: actionTypes.SET_LOADING, payload: false });
-    yield put({ type: actionTypes.SET_SEARCH_ERROR, payload: e.response.data.error });
+    yield put({ type: actionTypes.SET_SEARCH_ERROR, payload: err });
   }
 }
 
