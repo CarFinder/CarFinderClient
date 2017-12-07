@@ -16,8 +16,8 @@ export default {
     changePassword: (data: interfaces.RestorePasswordUserData) =>
       axios.post(`${apiUrl}/api/user/restore`, { data }),
     changeUserData: (data: User) => axios.post(`${apiUrl}/api/user/update-user-data`, data),
-    changeUserAvatar: (data: interfaces.ChangeUserAvatar) =>
-      axios.post(`${apiUrl}/api/user/update-user-image`, data),
+    changeUserAvatar: (data: FormData) =>
+    axios.post(`${apiUrl}/api/user/update-user-image`, data),
     changeUserSettings: (data: interfaces.ChangeUserSettings) =>
       axios.post(`${apiUrl}/api/user/update-user-settings`, data),
     submitMessage: (data: interfaces.SendMessage) =>
