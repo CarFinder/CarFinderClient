@@ -163,6 +163,12 @@ export const toBase64 = async (file: File): Promise<string> => {
   });
 };
 
+export const toFormData = async (file: File): Promise<FormData> => {
+  const formData = new FormData();
+  formData.append('file', file);
+  return formData;
+};
+
 export const getPathFromFilters = (filters: any) => {
   const markPath = `?mark=${filters.markId}`;
   const modelPath = filters.modelId.length
