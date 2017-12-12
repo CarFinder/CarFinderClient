@@ -38,14 +38,17 @@ export default class UserProfile extends React.PureComponent<Props, {}> {
   }
 
   public handleSubmitData = (userData: interfaces.ChangeUserSettings) => {
+    this.props.handleClearError();
     this.props.handleChangeUserData(userData);
   };
 
   public handleSetAvatar = (avatar: File) => {
+    this.props.handleClearError();
     this.props.handleChangeUserAvatar(avatar);
   };
 
   public handleChangeUserSettings = (userSettings: interfaces.ChangeUserSettings) => {
+    this.props.handleClearError();
     this.props.handleChangeUserSettings(userSettings);
   };
 
