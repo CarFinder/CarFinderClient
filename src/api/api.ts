@@ -4,7 +4,7 @@ import { User } from '../redux/models/userModel';
 
 declare var process: any;
 
-const apiUrl = process.env.NODE_ENV === 'production' ? 'https://carfinderapp.herokuapp.com' : '';
+const apiUrl = process.env.NODE_ENV === 'production' ? 'http://165.227.147.36:2999' : '';
 
 export default {
   user: {
